@@ -6,7 +6,9 @@ title: Hello World
 What language is complete without the classic **Hello World** program? Let's see how we can write this in Ghost. You ready?
 
 ```ghost
-print("Hello, world!");
+let message = "Hello, world!";
+
+print message;
 ```
 
 Couldn't be any simpler. Here's the same thing but written in C for comparison.
@@ -16,7 +18,9 @@ Couldn't be any simpler. Here's the same thing but written in C for comparison.
 
 int main(int argc, char *argv[])
 {
-    printf("Hello, world!");
+    char message = "Hello, world!";
+
+    printf("%s", message);
 
     return 0;
 }
@@ -25,7 +29,9 @@ int main(int argc, char *argv[])
 And in Python.
 
 ```python
-print("Hello, world!")
+message = "Hello, world!"
+
+print(message)
 ```
 
 And in PHP.
@@ -33,9 +39,7 @@ And in PHP.
 ```php
 <?php
 
-echo 'Hello, world!';
+$message = 'Hello, world!';
+
+echo $message;
 ```
-
-You'll notice that Ghost is nearly identical to Python here. Clean syntax and no boilerplate code. This is intentional.
-
-You may be left wondering what the point of Ghost is if its identical to Python but with those silly semicolons in place. If we were just writing "Hello, world!" out on the screen I'd have to agree with you. Once you dig into more of the core concepts of Ghost you'll start to see the two programming languages start to diverge more and more.

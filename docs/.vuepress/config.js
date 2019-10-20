@@ -2,6 +2,12 @@ module.exports = {
     title: 'Ghost',
     description: 'A general-purpose object oriented programming language',
 
+    plugins: [
+        '@vuepress/last-updated',
+        '@vuepress/back-to-top',
+        '@vuepress/nprogress'
+    ],
+
     themeConfig: {
         sidebar: [
             {
