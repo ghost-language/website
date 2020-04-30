@@ -1,1 +1,1 @@
-# Ghost Website
+# Ghost Website and Documentation

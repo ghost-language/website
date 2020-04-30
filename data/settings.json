@@ -1,0 +1,47 @@
+{
+  "sidebar": [
+    {
+      "section": "Introduction",
+      "topics": [
+        {
+          "title": "Getting Started",
+          "slug": "getting-started"
+        },
+        {
+          "title": "Q & A",
+          "slug": "qa"
+        }
+      ]
+    },
+    {
+      "section": "Language",
+      "topics": [
+        {
+          "title": "Syntax",
+          "slug": "syntax"
+        },
+        {
+          "title": "Values",
+          "slug": "values"
+        },
+        {
+          "title": "Method Calls",
+          "slug": "method-calls"
+        },
+        {
+          "title": "Control Flow",
+          "slug": "control-flow"
+        }
+      ]
+    },
+    {
+      "section": "Standard Library",
+      "topics": [
+        {
+          "title": "Math",
+          "slug": "math"
+        }
+      ]
+    }
+  ]
+}
