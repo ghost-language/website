@@ -31,6 +31,14 @@
         {
           "title": "Control Flow",
           "slug": "control-flow"
+        },
+        {
+          "title": "Variables",
+          "slug": "variables"
+        },
+        {
+          "title": "Functions",
+          "slug": "functions"
         }
       ]
     },

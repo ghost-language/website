@@ -25,6 +25,16 @@ else false for if null return true let while
 ```
 
 ## Identifiers
+Naming rules are similar to other programming languages. Identifiers must start with a letter or underscore and may then contain letters, digits, and underscores. Case is sensitive.
+
+```
+hello
+camelCase
+PascalCase
+_under_score
+abc123
+ALL_CAPS
+```
 
 ## Blocks
 Ghost uses curly braces to define _blocks_. You can use a block anywhere a statement is allowed, like in control flow statements.
