@@ -35,3 +35,51 @@ let value = returnSum(1, 2);
 ```
 
 The assigned value is the result of the functions `return` statement. As mentioned earlier, if no `return` statement is found within the function, a value of `nil` will be returned implicitly.
+
+## Closures
+Functions are _first class_ in Ghost, which just means they are real values that you can get a reference to, store in variables, pass around, etc.
+
+```javascript
+function addPair(a, b) {
+    return a + b;
+}
+
+function identity(a) {
+    return a;
+}
+
+print(identity(addPair)(1, 2));
+
+// Prints "3"
+```
+
+Since function declarations are statements, you can declare local functions inside another function:
+
+```javascript
+function outerFunction() {
+    function localFunction() {
+        print("I'm local!");
+    }
+
+    localFunction();
+}
+```
+
+You can even combine local functions, first-class functions, and block scope:
+
+```javascript
+function returnFunction() {
+    let outside = "outside";
+
+    function inner() {
+        print(outside);
+    }
+
+    return inner;
+}
+
+let newFunction = returnFunction();
+newFunction();
+
+// Prints "outside"
+```
