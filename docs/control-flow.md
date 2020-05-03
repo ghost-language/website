@@ -53,7 +53,7 @@ The simplest, a `while` statement executes a chunk of code as long as a conditio
 
 ```javascript
 // Hailstone sequence
-let n = 27;
+var n = 27;
 
 while (n != 1) {
     if (n - 2 * (n / 2) == 0) {
@@ -70,7 +70,7 @@ This evaluates the expression `n != 1`. If it is true, then it executes the foll
 The second looping statement is the `for` statement. It requires three parts: the _initilialization_, the _condition_, and the _update_. Each of these parts are separated by a `;` and are all required.
 
 ```javascript
-for(let i = 0; i < 5; i = i + 1) {
+for(var i = 0; i < 5; i = i + 1) {
     print(i);
 }
 ```

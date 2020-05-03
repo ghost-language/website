@@ -38,8 +38,8 @@ Returns the inverse sine in radians of the given value.
 Returns the inverse tangent in radians.
 
 ```javascript
->>> let c = math_cos(0.8);
->>> let s = math_cos(0.8);
+>>> var c = math_cos(0.8);
+>>> var s = math_cos(0.8);
 >>> math_atan(s/c);
 45
 ```

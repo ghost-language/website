@@ -21,7 +21,7 @@ Comments behave like whitespace and are discarded during execution.
 Ghost has a small subset of reserved words used as predefined identifiers. None of the identifiers listed here should be used as identifiers in any of your scripts.
 
 ```
-else false for if null return true let while
+else false for if null return true var while
 ```
 
 ## Identifiers

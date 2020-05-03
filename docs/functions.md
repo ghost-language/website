@@ -31,7 +31,7 @@ If execution reaches the end of the block without hitting a `return`, it implici
 Once you have a function, calling it is as simple as passing the required parameters along with the function name:
 
 ```javascript
-let value = returnSum(1, 2);
+var value = returnSum(1, 2);
 ```
 
 The assigned value is the result of the functions `return` statement. As mentioned earlier, if no `return` statement is found within the function, a value of `nil` will be returned implicitly.
@@ -69,7 +69,7 @@ You can even combine local functions, first-class functions, and block scope:
 
 ```javascript
 function returnFunction() {
-    let outside = "outside";
+    var outside = "outside";
 
     function inner() {
         print(outside);
@@ -78,7 +78,7 @@ function returnFunction() {
     return inner;
 }
 
-let newFunction = returnFunction();
+var newFunction = returnFunction();
 newFunction();
 
 // Prints "outside"
