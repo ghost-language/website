@@ -28,5 +28,5 @@ A string is an array of bytes. String literals are surrounded in double quotes.
 "Hello, world!"
 ```
 
-## Nil
-Ghost, like many languages, has a special value `nil`. It functions a bit like `void` in some languages: it indicates the absence of a value. If you call a method that doesn't return anything and get its return value, you get `nil` back.
+## Null
+Ghost, like many languages, has a special value `null`. It functions a bit like `void` in some languages: it indicates the absence of a value. If you call a method that doesn't return anything and get its return value, you get `null` back.

@@ -25,7 +25,7 @@ function returnSum(a, b) {
 }
 ```
 
-If execution reaches the end of the block without hitting a `return`, it implicitly returns `nil`.
+If execution reaches the end of the block without hitting a `return`, it implicitly returns `null`.
 
 ## Calling Functions
 Once you have a function, calling it is as simple as passing the required parameters along with the function name:
@@ -34,7 +34,7 @@ Once you have a function, calling it is as simple as passing the required parame
 var value = returnSum(1, 2);
 ```
 
-The assigned value is the result of the functions `return` statement. As mentioned earlier, if no `return` statement is found within the function, a value of `nil` will be returned implicitly.
+The assigned value is the result of the functions `return` statement. As mentioned earlier, if no `return` statement is found within the function, a value of `null` will be returned implicitly.
 
 ## Closures
 Functions are _first class_ in Ghost, which just means they are real values that you can get a reference to, store in variables, pass around, etc.
