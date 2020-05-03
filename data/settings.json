@@ -43,6 +43,10 @@
         {
           "title": "Method Calls",
           "slug": "method-calls"
+        },
+        {
+          "title": "Errors",
+          "slug": "errors"
         }
       ]
     },
