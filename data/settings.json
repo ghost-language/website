@@ -25,20 +25,24 @@
           "slug": "values"
         },
         {
-          "title": "Method Calls",
-          "slug": "method-calls"
+          "title": "Variables",
+          "slug": "variables"
+        },
+        {
+          "title": "Operators",
+          "slug": "operators"
         },
         {
           "title": "Control Flow",
           "slug": "control-flow"
         },
         {
-          "title": "Variables",
-          "slug": "variables"
-        },
-        {
           "title": "Functions",
           "slug": "functions"
+        },
+        {
+          "title": "Method Calls",
+          "slug": "method-calls"
         }
       ]
     },

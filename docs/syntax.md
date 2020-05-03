@@ -45,18 +45,3 @@ Ghost uses curly braces to define _blocks_. You can use a block anywhere a state
     print("Two statements.");
 }
 ```
-
-## Precedence and Associativity
-The following table summarizes the operator precedence in Ghost, from highest to lowest. Operators in the same box have the same precedence.
-
-| Precedence | Operator | Description | Associates |
-|------------|----------|-------------|------------|
-| 1 | `()` `.` | Grouping, Method call | Left |
-| 2 | `-` | Negate | Right |
-| 3 | `*` `/` | Multiply, Divide | Left |
-| 4 | `+` `-` | Add, Subtract | Left |
-| 5 | `<` `<=` `>` `>=` | Comparison | Left |
-| 6 | `==` `!=` | Equals, Not equal | Left |
-| 7 | `and` | Logical and | Left |
-| 8 | `or` | Logical or | Left |
-| 9 | `=` | Assignment | Right |

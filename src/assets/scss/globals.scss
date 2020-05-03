@@ -60,3 +60,37 @@ h1 {
 a {
   color: $brandPrimary;
 }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-color: transparent;
+
+  td, th {
+    transition: background .15s ease-in-out, transform .15s ease-in-out, border-color .15s linear;
+    border-bottom: 1px solid;
+    padding: .5em .75em;
+    vertical-align: top;
+  }
+
+  th:not([align]) {
+    text-align: left;
+  }
+
+  th {
+    border-width: 0 0 2px;
+  }
+
+  .bright & {
+    th, td {
+      border-color: shade($backgroundBright, 10%);
+    }
+  }
+
+  .dark & {
+    th, td {
+      border-color: tint($backgroundDark, 10%);
+    }
+  }
+}
