@@ -45,8 +45,8 @@
           "slug": "method-calls"
         },
         {
-          "title": "Errors",
-          "slug": "errors"
+          "title": "Error Handling",
+          "slug": "error-handling"
         }
       ]
     },
