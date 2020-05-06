@@ -41,6 +41,10 @@
           "slug": "functions"
         },
         {
+          "title": "Classes",
+          "slug": "classes"
+        },
+        {
           "title": "Method Calls",
           "slug": "method-calls"
         },
