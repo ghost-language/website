@@ -65,7 +65,7 @@ A method declaration looks like the following. Note the placement of parentheses
 ```javascript
 class ClassName
 {
-    function fooBarBaz(arg1, arg2, arg3)
+    fooBarBaz(arg1, arg2, arg3)
     {
         // method body
     }
@@ -87,7 +87,7 @@ In the argument list, there MUST NOT be a space before each comma, and there MUS
 ```javascript
 class ClassName
 {
-    function fooBarBaz(arg1, arg2, arg3)
+    fooBarBaz(arg1, arg2, arg3)
     {
         // method body
     }
