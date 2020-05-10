@@ -15,6 +15,11 @@ A style guide is about consistency. Consistency with this style guide is importa
 
 Many projects have their own coding style guidelines. In the event of any conflicts, such project-specific guides take precedence for that project.
 
+## General
+- Class names MUST be declared in `StudlyCaps`
+- Method names MUST be declared in `camelCase`
+- Variable names MUST be declared in `cameCase`
+
 ## Lines
 There MUST NOT be a hard limit on line length.
 
