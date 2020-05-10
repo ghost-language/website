@@ -131,3 +131,16 @@ class CoffeeMaker {
     }
 }
 ```
+
+## Inheritance
+A class can inherit from a "parent" or _superclass_. When you invoke a method on an object of some class, if it can't be found, it walks up the chain of superclasses looking for it there.
+
+To inherit another class, use `extends` when you declare your class:
+
+```javascript
+class Bar extends foo {
+    //
+}
+```
+
+This declares a new class Bar that inherits from Foo.

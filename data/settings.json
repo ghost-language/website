@@ -62,6 +62,15 @@
           "slug": "math"
         }
       ]
+    },
+    {
+      "section": "Developer Guides",
+      "topics": [
+        {
+          "title": "Style Guide for Ghost Code",
+          "slug": "style-guide-for-ghost-code"
+        }
+      ]
     }
   ]
 }
