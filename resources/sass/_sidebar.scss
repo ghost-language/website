@@ -1,0 +1,77 @@
+.sidebar {
+
+    &__container {
+        @apply flex flex-col w-64 pt-5 pb-4;
+    }
+
+    //     ul {
+    //         list-style-type: none;
+    //         margin: 0; padding: 0;
+
+    //         li {
+    //             display: block;
+    //             padding: .65em 0;
+
+    //             h2{
+    //                 display: block;
+    //                 font-size: 0.875em;
+    //                 font-weight: 500;
+    //                 color: #090910;
+    //                 text-decoration: none;
+    //                 margin-bottom: 0;
+    //                 cursor: pointer;
+    //                 transition: all 0.3s ease;
+
+    //                 &:hover {
+    //                     transform: translate3d(5px, 0, 0); // translate3d uses hardware acceleration
+    //                 }
+    //             }
+
+    //             a {
+    //                 display: block;
+    //                 font-size: .875em;
+    //                 font-weight: 500;
+    //                 // color: $black;
+    //                 text-decoration: none;
+
+    //                 &:hover {
+    //                     transform: translate3d(5px, 0, 0); // translate3d uses hardware acceleration
+    //                 }
+    //             }
+    //         }
+
+    //         ul {
+    //             overflow: hidden;
+    //             max-height: 0;
+    //             transition: max-height .45s ease;
+
+    //             li {
+    //                 a {
+    //                     position: relative;
+    //                     padding-left: 1em;
+    //                     font-weight: 400;
+    //                     line-height: 1.25;
+    //                 }
+
+    //                 &.active a::before {
+    //                     content: "";
+    //                     position: absolute;
+    //                     top: .25em; left: 0;
+    //                     width: .5rem; height: .5rem;
+    //                     // background: url(/img/icons/active_marker.min.svg) no-repeat center;
+    //                 }
+    //             }
+    //         }
+
+    //         li.sub--on {
+    //             &> h2 {
+    //                 margin-bottom: 1em;
+    //             }
+
+    //             ul {
+    //                 max-height: none;
+    //             }
+    //         }
+    //     }
+    // }
+}
