@@ -29,7 +29,7 @@ class DocsController extends Controller
             define('CURRENT_VERSION', $version);
         }
 
-        $page    = $page ?: 'introduction';
+        $page    = $page ?: 'getting-started';
         $content = $this->docs->get($version, $page);
 
         if (is_null($content)) {

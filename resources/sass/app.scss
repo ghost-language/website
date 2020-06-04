@@ -1,8 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;900&family=Ubuntu+Mono&display=swap');
+
 @tailwind base;
 
 @tailwind components;
 
 @tailwind utilities;
 
+@import "banner";
+@import "header";
+@import "page";
+@import "prism";
 @import "sidebar";
 @import "typography";

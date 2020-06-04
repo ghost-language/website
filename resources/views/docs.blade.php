@@ -1,15 +1,26 @@
 @extends('layouts.default')
 
 @section('content')
-    <div class="flex">
-        <div class="sidebar hidden md:flex md:flex-shrink-0">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 pt-8 lg:gap-6">
+
+        <div class="hidden lg:block lg:col-span-3 sidebar">
+            {!! $index !!}
+        </div>
+
+        <div class="lg:col-span-9">
+            {!! $content !!}
+        </div>
+
+    </div>
+    {{-- <div class="flex">
+        <aside class="sidebar">
             <div class="sidebar__container">
                 {!! $index !!}
             </div>
-        </div>
+        </aside>
 
-        <div class="p-0 md:pl-12 max-w-screen-md">
+        <div>
             {!! $content !!}
         </div>
-    </div>
+    </div> --}}
 @endsection

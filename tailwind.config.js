@@ -1,6 +1,10 @@
 module.exports = {
   theme: {
     extend: {
+      fontFamily: {
+        'sans': ['Inter', 'sans-serif'],
+        'mono': ['Ubuntu Mono', 'monospace'],
+      },
       colors: {
         ui: {
           background: 'var(--color-ui-background)',

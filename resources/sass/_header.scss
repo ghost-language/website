@@ -1,0 +1,23 @@
+.header {
+    @apply py-2 mb-4;
+
+    &__container {
+        @apply max-w-6xl mx-auto w-full flex justify-between items-center p-6;
+    }
+
+    a {
+        @apply text-gray-500;
+
+        &:hover {
+            @apply text-gray-600;
+        }
+    }
+}
+
+.logo {
+    @apply h-6 w-auto;
+
+    @screen sm {
+        @apply h-5;
+    }
+}

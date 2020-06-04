@@ -65,24 +65,27 @@ p, ol, ul, pre, strong, blockquote {
 }
 
 a {
-    @apply text-blue-500 font-semibold;
+    @apply text-indigo-500 font-semibold;
 
     &:hover {
-        @apply text-blue-700 underline;
+        @apply text-indigo-700 underline;
     }
 }
 
 h1, h2, h3, h4, h5, h6 {
-    @apply pt-8;
+    @apply pt-8 tracking-wide leading-none pb-4;
 }
 
+h1:first-of-type {
+    @apply pt-0;
+}
 
 h2 + h3, h2 + h2, h3 + h3 {
-    @apply border-none -mt-20;
+    @apply border-none;
 }
 
 h2, h3 {
-    @apply border-b border-gray-300 pb-1 mb-3;
+    @apply border-b border-gray-300 pb-2 mb-4;
 }
 
 ul {
@@ -122,34 +125,43 @@ blockquote {
 }
 
 code {
-    @apply px-1 py-1 text-black bg-gray-200 font-semibold font-mono text-sm;
+    @apply px-1 py-1 text-black font-semibold font-mono text-sm;
 }
 
-// pre[class*="language-"] {
-//   @apply max-w-full overflow-x-auto rounded;
-//   & + p {
-//     @apply mt-4;
-//   }
-//   & > code[class*="language-"] {
-//     @apply border-none leading-relaxed;
-//   }
-// }
+pre[class*="language-"] {
+    @apply p-6 font-mono font-normal leading-none max-w-full overflow-x-auto rounded;
 
-// table {
-//   @apply text-left mb-6;
-//   td, th {
-//     @apply py-3 px-4;
-//     &:first-child {
-//       @apply pl-0;
-//     }
-//     &:last-child {
-//       @apply pr-0;
-//     }
-//   }
-//   tr {
-//     @apply border-b border-ui-border;
-//     &:last-child {
-//       @apply border-b-0;
-//     }
-//   }
-// }
+    font-size: 1em;
+
+    & + p {
+        @apply mt-4;
+    }
+
+    & > code[class*="language-"] {
+        @apply p-0 border-none leading-relaxed;
+    }
+}
+
+table {
+    @apply text-left mb-6 w-full;
+
+    td, th {
+        @apply py-3 px-4;
+
+        &:first-child {
+            @apply pl-0;
+        }
+
+        &:last-child {
+            @apply pr-0;
+        }
+    }
+
+    tr {
+        @apply border-b border-gray-300;
+
+        &:last-child {
+            @apply border-b-0;
+        }
+    }
+}

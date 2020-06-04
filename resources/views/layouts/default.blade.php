@@ -2,20 +2,23 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
 
         <title>Ghost</title>
 
         {{-- Styles --}}
         <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
     </head>
-    <body class="min-h-screen">
-        <div class="font-sans antialiased">
-            @include('partials._header')
+    <body class="font-sans antialiased text-gray-900">
+        @include('partials._header')
 
-            <main class="container mx-auto relative flex flex-wrap justify-start flex-1 w-full">
+        <main>
+            <div class="max-w-6xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
                 @yield('content')
-            </main>
-        </div>
+            </div>
+        </main>
+
+        <script src="{{ mix('/js/app.js') }}"></script>
     </body>
 </html>
