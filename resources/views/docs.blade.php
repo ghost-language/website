@@ -9,6 +9,5 @@
         <div class="lg:col-span-9">
             {!! $content !!}
         </div>
-
     </div>
 @endsection

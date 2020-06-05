@@ -10,8 +10,9 @@
         {{-- Styles --}}
         <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
     </head>
-    <body class="font-sans antialiased text-gray-900">
+    <body class="font-sans antialiased text-gray-900" x-data="{ isOpen: false }">
         @include('partials._header')
+        <x-sidebar></x-sidebar>
 
         <main>
             <div class="max-w-6xl mx-auto py-12 px-6">
