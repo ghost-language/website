@@ -1,6 +1,4 @@
-@extends('layouts.default')
-
-@section('content')
+<x-layout>
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 pt-8 lg:gap-6">
         <div class="hidden lg:block lg:col-span-3 sidebar">
             {!! $index !!}
@@ -10,4 +8,4 @@
             {!! $content !!}
         </div>
     </div>
-@endsection
+</x-layout>
