@@ -2,6 +2,7 @@
 /public/hot
 /public/storage
 /resources/docs
+/resources/blog
 /storage/*.key
 /vendor
 .DS_Store

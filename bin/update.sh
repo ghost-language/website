@@ -7,5 +7,6 @@ fi
 
 composer install
 source "$(dirname "$0")/checkout_latest_docs.sh"
+source "$(dirname "$0")/checkout_latest_blog.sh"
 npm install
 npm run dev
