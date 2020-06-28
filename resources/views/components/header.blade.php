@@ -32,6 +32,10 @@
                 <a href="/docs" class="text-base leading-6 font-medium">
                     Documentation
                 </a>
+
+                <a href="/blog" class="text-base leading-6 font-medium">
+                    Blog
+                </a>
             {{-- </div> --}}
         </nav>
     </div>

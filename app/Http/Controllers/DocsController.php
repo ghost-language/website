@@ -7,18 +7,36 @@ use Symfony\Component\DomCrawler\Crawler;
 
 class DocsController extends Controller
 {
+    /**
+     * @var \App\Documentation
+     */
     protected $docs;
 
+    /**
+     * Create a new DocsController instance.
+     *
+     * @param  \App\Documentation  $docs
+     */
     public function __construct(Documentation $docs)
     {
         $this->docs = $docs;
     }
 
+    /**
+     * Redirect to the default version documentation.
+     */
     public function index()
     {
         return redirect('docs/'.DEFAULT_VERSION);
     }
 
+    /**
+     * Show the specified documentation if specified, otherwise
+     * load the Getting Started page.
+     *
+     * @param  string  $version
+     * @param  string|null  $page
+     */
     public function show($version, $page = null)
     {
         if (! $this->isVersion($version)) {
@@ -63,6 +81,12 @@ class DocsController extends Controller
         ]);
     }
 
+    /**
+     * Determine if the provided version is valid.
+     *
+     * @param  string  $version
+     * @return bool
+     */
     protected function isVersion($version)
     {
         return array_key_exists($version, Documentation::getDocVersions());
