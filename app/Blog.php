@@ -44,6 +44,9 @@ class Blog
                 ->filter(function($path) {
                     return Str::endsWith($path, '.md');
                 })
+                ->reject(function($path) {
+                    return Str::startsWith($path->getFilename(), 'README');
+                })
                 ->map(function($path) {
                     $filename                  = Str::after($path, 'blog/');
                     [$date, $slug, $extension] = explode('.', $filename, 3);
