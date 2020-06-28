@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 if (! defined('DEFAULT_VERSION')) {
-    define('DEFAULT_VERSION', 'master');
+    define('DEFAULT_VERSION', 'nightly');
 }
 
 Route::get('/docs', 'DocsController@index');

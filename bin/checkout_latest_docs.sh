@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DOCS_VERSIONS=(
-  master
+  nightly
 )
 
 for v in "${DOCS_VERSIONS[@]}"; do

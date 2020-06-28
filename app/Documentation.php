@@ -84,7 +84,7 @@ class Documentation
     public static function getDocVersions()
     {
         return [
-            'master' => 'Master',
+            'nightly' => 'Nightly',
         ];
     }
 }
