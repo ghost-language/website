@@ -8,6 +8,8 @@ if (! defined('DEFAULT_VERSION')) {
 
 Route::pattern('slug', '[a-z0-9-]+');
 
+Route::get('/x/{project}', 'VanityController')->name('vanity')->where('project', '(.*)');
+
 Route::get('/blog', 'BlogController@index')->name('blog.index');
 Route::get('/blog/{year}/{month}/{slug}', 'BlogController@show')->name('blog.show');
 
