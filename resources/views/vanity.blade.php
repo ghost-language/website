@@ -1,5 +1,7 @@
 <html>
     <head>
+        <meta name="go-import" content="ghostlang.org/x/{{ $project }} git {{ $repository }}">
+
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165345570-1"></script>
 
@@ -14,7 +16,6 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="go-import" content="ghostlang.org git {{ $repository }}">
 
         <title>Ghost - go get {{ $project }}</title>
 
@@ -45,7 +46,7 @@
     <body>
         <div class="flex items-center justify-center h-screen">
             <div class="text-sm text-gray-400">
-                go get <span class="text-indigo-400 font-bold">ghost</span>
+                go get <span class="text-indigo-400 font-bold">{{ $project }}</span>
             </div>
         </div>
     </body>
