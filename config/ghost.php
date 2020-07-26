@@ -4,7 +4,8 @@ return [
 
     'repositories' => [
 
-        'ghost' => 'https://github.com/ghost-language/ghost',
+        'engine' => 'https://github.com/ghost-language/engine',
+        'ghost'  => 'https://github.com/ghost-language/ghost',
 
     ]
 
