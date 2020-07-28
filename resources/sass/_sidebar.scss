@@ -11,10 +11,10 @@
                 @apply mt-1;
 
                 li {
-                    @apply text-sm m-0;
+                    @apply text-sm m-0 px-2 -mx-2 py-1 block;
 
                     a {
-                        @apply px-2 -mx-2 py-1 transition duration-200 ease-in-out relative block text-gray-600 font-medium;
+                        @apply transition duration-200 ease-in-out relative text-gray-600 font-medium;
 
                         &:hover {
                             @apply text-gray-900;

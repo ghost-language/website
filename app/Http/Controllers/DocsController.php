@@ -47,14 +47,8 @@ class DocsController extends Controller
             define('CURRENT_VERSION', $version);
         }
 
-        $page    = $page ?: 'getting-started';
-        $content = $this->docs->get($version, $page);
-
-        if (is_null($content)) {
-
-        }
-
-        $title = (new Crawler($content))->filterXPath('//h1');
+        $page = $page ?: 'getting-started';
+        $doc  = $this->docs->get($version, $page);
 
         $section   = '';
 
@@ -71,9 +65,9 @@ class DocsController extends Controller
         }
 
         return view('docs', [
-           'title'          => count($title) ? $title->text() : null,
+           'title'          => $doc->title,
            'index'          => $this->docs->getIndex($version),
-           'content'        => $content,
+           'content'        => $doc->content,
            'currentVersion' => $version,
            'versions'       => Documentation::getDocVersions(),
            'currentSection' => $section,

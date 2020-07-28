@@ -2,7 +2,9 @@
 
 namespace App;
 
+use Illuminate\Support\Str;
 use Illuminate\Filesystem\Filesystem;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
 use Illuminate\Contracts\Cache\Repository as Cache;
 
 class Documentation
@@ -50,16 +52,44 @@ class Documentation
         });
     }
 
+    public function getAll($version)
+    {
+        return $this->cache->remember('docs.'.$version.'.all', 5, function() use ($version) {
+            return collect($this->files->allFiles(base_path('resources/docs/'.$version)))
+                ->filter(function($path) {
+                    return Str::endsWith($path, '.md');
+                })
+                ->reject(function($path) {
+                    return Str::startsWith($path->getFilename(), 'README');
+                })
+                ->map(function($path) use($version) {
+                    $filename           = Str::after($path, 'docs/'.$version.'/');
+                    [$slug, $extension] = explode('.', $filename, 2);
+                    $document           = YamlFrontMatter::parse($this->files->get($path));
+
+                    return (object) [
+                        'path'    => $path->getPathName(),
+                        'slug'    => $slug,
+                        'url'     => route('docs.version', [$version, $slug]),
+                        'title'   => $document->title,
+                        'content' => $this->replaceLinks($version, (new Parsedown)->text($document->body())),
+                    ];
+                });
+            });
+    }
+
     public function get($version, $page)
     {
         return $this->cache->remember('docs.'.$version.'.'.$page, 5, function() use ($version, $page) {
-            $path = base_path('resources/docs/'.$version.'/'.$page.'.md');
+            $doc = $this->getAll($version)
+                ->where('slug', $page)
+                ->first();
 
-            if ($this->files->exists($path)) {
-                return $this->replaceLinks($version, (new Parsedown)->text($this->files->get($path)));
+            if (! $doc) {
+                return null;
             }
 
-            return null;
+            return $doc;
         });
     }
 
