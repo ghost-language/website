@@ -30,7 +30,7 @@
                     </div>
                 </li>
 
-                <li class="mt-10">
+                {{-- <li class="mt-10">
                     <div class="flex">
                         <div class="flex-shrink-0">
                             <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
@@ -41,14 +41,14 @@
                         </div>
                         <div class="ml-4">
                             <h4 class="mb-1 text-lg py-0 leading-6 font-medium text-gray-900">
-                                Fast
+                                Fast (soon)
                             </h4>
                             <p class="pt-0 text-base leading-6 text-gray-600">
                                 Ghost's underlying implementation is written in Go utilizing a bytecode compiler.
                             </p>
                         </div>
                     </div>
-                </li>
+                </li> --}}
 
                 <li class="mt-10">
                     <div class="flex">
@@ -89,20 +89,19 @@
         </div>
 
         <div class="mt-10 relative lg:mt-0">
-            <pre class="relative mx-auto language-javascript"><code>class CoffeeMaker {
-    constructor(coffee) {
-        this.coffee = coffee;
+            <pre class="relative mx-auto language-dart"><code>class CoffeeMaker {
+    function __constructor(coffee) {
+        this.coffee = coffee
     }
 
-    brew() {
-        print("Enjoy your cup of " + this.coffee);
-        this.coffee = null;
+    function brew() {
+        print('Enjoy your cup of ' + this.coffee)
     }
 }
 
-let maker = CoffeeMaker("espresso");
+maker := CoffeeMaker('espresso')
 
-maker.brew();</code></pre>
+maker.brew()</code></pre>
 
             <pre class="relative mx-auto language-text"><code>>>> Enjoy your cup of espresso</code></pre>
         </div>

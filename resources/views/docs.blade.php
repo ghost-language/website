@@ -5,7 +5,13 @@
         </div>
 
         <div class="lg:col-span-9">
-            {!! $content !!}
+            <div class="text-lg mb-6">
+                <h1 class="mt-2 mb-8 text-4xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-5xl sm:leading-10">{{ $title }}</h1>
+            </div>
+
+            <div class="prose text-gray-700">
+                {!! $content !!}
+            </div>
         </div>
     </div>
 </x-layout>
