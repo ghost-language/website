@@ -9,7 +9,7 @@
         </div>
 
         <span class="leading-none">
-            {{ DEFAULT_VERSION }}
+            {{ LATEST_VERSION }}
         </span>
     </div>
 </div>

@@ -6,6 +6,10 @@ if (! defined('DEFAULT_VERSION')) {
     define('DEFAULT_VERSION', 'nightly');
 }
 
+if (! defined('LATEST_VERSION')) {
+    define('LATEST_VERSION', 'v0.1.1');
+}
+
 Route::pattern('slug', '[a-z0-9-]+');
 
 Route::get('/x/{project}', 'VanityController')->name('vanity')->where('project', '(.*)');
