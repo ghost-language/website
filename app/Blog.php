@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Filesystem\Filesystem;
@@ -54,16 +55,26 @@ class Blog
                     $document                  = YamlFrontMatter::parse($this->files->get($path));
 
                     return (object) [
-                        'path'    => $path->getPathName(),
-                        'date'    => $date,
-                        'year'    => $date->format('Y'),
-                        'month'   => $date->format('m'),
-                        'day'     => $date->format('d'),
-                        'slug'    => $slug,
-                        'url'     => route('blog.show', [$date->format('Y'), $date->format('m'), $slug]),
-                        'title'   => $document->title,
-                        'content' => (new Parsedown)->text($document->body()),
+                        'path'      => $path->getPathName(),
+                        'date'      => $date,
+                        'year'      => $date->format('Y'),
+                        'month'     => $date->format('m'),
+                        'day'       => $date->format('d'),
+                        'slug'      => $slug,
+                        'url'       => route('blog.show', [$date->format('Y'), $date->format('m'), $slug]),
+                        'title'     => $document->title,
+                        'published' => $document->published,
+                        'content'   => (new Parsedown)->text($document->body()),
                     ];
+                })
+                ->filter(function($post) {
+                    // Is the post published?
+                    // And if not, are we working locally?
+                    if (! App::environment('local')) {
+                        return $post->published;
+                    }
+
+                    return true;
                 })
                 ->sortByDesc('date');
             });

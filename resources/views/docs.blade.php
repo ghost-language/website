@@ -6,7 +6,7 @@
 
         <div class="lg:col-span-9">
             <div class="text-lg mb-6">
-                <h1 class="mt-2 mb-8 text-4xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-5xl sm:leading-10">{{ $title }}</h1>
+                <h1 class="mt-2 mb-8 text-4xl leading-tight font-extrabold tracking-tight text-gray-900 sm:text-5xl">{{ $title }}</h1>
             </div>
 
             <div class="prose text-gray-700">
