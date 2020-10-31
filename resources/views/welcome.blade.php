@@ -62,7 +62,7 @@
                                 Small
                             </h4>
                             <p class="pt-0 text-base leading-6 text-gray-600">
-                                Ghost relies on no outside dependencies, making it portable and great for constrained devices.
+                                Ghost maintains a small footprint (< megabyte), making it portable and great for constrained devices.
                             </p>
                         </div>
                     </div>
