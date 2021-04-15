@@ -46,6 +46,7 @@
         <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
     </head>
     <body class="font-sans antialiased text-gray-900 language-javascript" x-data="{ isOpen: false }">
+        <x-banner></x-banner>
         <x-header></x-header>
         <x-sidebar></x-sidebar>
 

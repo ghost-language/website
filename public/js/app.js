@@ -1,2 +1,3956 @@
-/*! For license information please see app.js.LICENSE.txt */
-(()=>{var t={443:function(t){t.exports=function(){"use strict";function t(t,e,n){return e in t?Object.defineProperty(t,e,{value:n,enumerable:!0,configurable:!0,writable:!0}):t[e]=n,t}function e(t,e){var n=Object.keys(t);if(Object.getOwnPropertySymbols){var r=Object.getOwnPropertySymbols(t);e&&(r=r.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),n.push.apply(n,r)}return n}function n(n){for(var r=1;r<arguments.length;r++){var i=null!=arguments[r]?arguments[r]:{};r%2?e(Object(i),!0).forEach((function(e){t(n,e,i[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(n,Object.getOwnPropertyDescriptors(i)):e(Object(i)).forEach((function(t){Object.defineProperty(n,t,Object.getOwnPropertyDescriptor(i,t))}))}return n}function r(){return new Promise((t=>{"loading"==document.readyState?document.addEventListener("DOMContentLoaded",t):t()}))}function i(t){return Array.from(new Set(t))}function u(){return navigator.userAgent.includes("Node.js")||navigator.userAgent.includes("jsdom")}function a(t,e){"template"!==t.tagName.toLowerCase()?console.warn(`Alpine: [${e}] directive should only be added to <template> tags. See https://github.com/alpinejs/alpine#${e}`):1!==t.content.childElementCount&&console.warn(`Alpine: <template> tag with [${e}] encountered with multiple element roots. Make sure <template> only has a single child node.`)}function o(t){return t.replace(/([a-z])([A-Z])/g,"$1-$2").replace(/[_\s]/,"-").toLowerCase()}function s(t){return t.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g,((t,e)=>e.toUpperCase()))}function c(t,e){if(!1===e(t))return;let n=t.firstElementChild;for(;n;)c(n,e),n=n.nextElementSibling}function l(t,e){var n;return function(){var r=this,i=arguments,u=function(){n=null,t.apply(r,i)};clearTimeout(n),n=setTimeout(u,e)}}function f(t,e,n={}){return"function"==typeof t?t.call(e):new Function(["$data",...Object.keys(n)],`var __alpine_result; with($data) { __alpine_result = ${t} }; return __alpine_result`)(e,...Object.values(n))}function p(t,e,n={}){if("function"==typeof t)return t.call(e,n.$event);if(Object.keys(e).includes(t)){let r=new Function(["dataContext",...Object.keys(n)],`with(dataContext) { return ${t} }`)(e,...Object.values(n));if("function"==typeof r)return r.call(e,n.$event)}return new Function(["dataContext",...Object.keys(n)],`with(dataContext) { ${t} }`)(e,...Object.values(n))}const h=/^x-(on|bind|data|text|html|model|if|for|show|cloak|transition|ref|spread)\b/;function d(t){const e=m(t.name);return h.test(e)}function v(t,e,n){let r=Array.from(t.attributes).filter(d).map(_),i=r.filter((t=>"spread"===t.type))[0];if(i){let t=f(i.expression,e.$data);r=r.concat(Object.entries(t).map((([t,e])=>_({name:t,value:e}))))}return n?r.filter((t=>t.type===n)):g(r)}function g(t){let e=["bind","model","show","catch-all"];return t.sort(((t,n)=>{let r=-1===e.indexOf(t.type)?"catch-all":t.type,i=-1===e.indexOf(n.type)?"catch-all":n.type;return e.indexOf(r)-e.indexOf(i)}))}function _({name:t,value:e}){const n=m(t),r=n.match(h),i=n.match(/:([a-zA-Z\-:]+)/),u=n.match(/\.[^.\]]+(?=[^\]]*$)/g)||[];return{type:r?r[1]:null,value:i?i[1]:null,modifiers:u.map((t=>t.replace(".",""))),expression:e}}function y(t){return["disabled","checked","required","readonly","hidden","open","selected","autofocus","itemscope","multiple","novalidate","allowfullscreen","allowpaymentrequest","formnovalidate","autoplay","controls","loop","muted","playsinline","default","ismap","reversed","async","defer","nomodule"].includes(t)}function m(t){return t.startsWith("@")?t.replace("@","x-on:"):t.startsWith(":")?t.replace(":","x-bind:"):t}function b(t,e=Boolean){return t.split(" ").filter(e)}const x="in",w="out";function k(t,e,n,r=!1){if(r)return e();if(t.__x_transition&&t.__x_transition.type===x)return;const i=v(t,n,"transition"),u=v(t,n,"show")[0];if(u&&u.modifiers.includes("transition")){let n=u.modifiers;if(n.includes("out")&&!n.includes("in"))return e();const r=n.includes("in")&&n.includes("out");n=r?n.filter(((t,e)=>e<n.indexOf("out"))):n,E(t,n,e)}else i.some((t=>["enter","enter-start","enter-end"].includes(t.value)))?F(t,n,i,e):e()}function A(t,e,n,r=!1){if(r)return e();if(t.__x_transition&&t.__x_transition.type===w)return;const i=v(t,n,"transition"),u=v(t,n,"show")[0];if(u&&u.modifiers.includes("transition")){let n=u.modifiers;if(n.includes("in")&&!n.includes("out"))return e();const r=n.includes("in")&&n.includes("out");n=r?n.filter(((t,e)=>e>n.indexOf("out"))):n,O(t,n,r,e)}else i.some((t=>["leave","leave-start","leave-end"].includes(t.value)))?$(t,n,i,e):e()}function E(t,e,n){S(t,e,n,(()=>{}),{duration:j(e,"duration",150),origin:j(e,"origin","center"),first:{opacity:0,scale:j(e,"scale",95)},second:{opacity:1,scale:100}},x)}function O(t,e,n,r){S(t,e,(()=>{}),r,{duration:n?j(e,"duration",150):j(e,"duration",150)/2,origin:j(e,"origin","center"),first:{opacity:1,scale:100},second:{opacity:0,scale:j(e,"scale",95)}},w)}function j(t,e,n){if(-1===t.indexOf(e))return n;const r=t[t.indexOf(e)+1];if(!r)return n;if("scale"===e&&!z(r))return n;if("duration"===e){let t=r.match(/([0-9]+)ms/);if(t)return t[1]}return"origin"===e&&["top","right","left","center","bottom"].includes(t[t.indexOf(e)+2])?[r,t[t.indexOf(e)+2]].join(" "):r}function S(t,e,n,r,i,u){t.__x_transition&&(cancelAnimationFrame(t.__x_transition.nextFrame),t.__x_transition.callback&&t.__x_transition.callback());const a=t.style.opacity,o=t.style.transform,s=t.style.transformOrigin,c=!e.includes("opacity")&&!e.includes("scale"),l=c||e.includes("opacity"),f=c||e.includes("scale"),p={start(){l&&(t.style.opacity=i.first.opacity),f&&(t.style.transform=`scale(${i.first.scale/100})`)},during(){f&&(t.style.transformOrigin=i.origin),t.style.transitionProperty=[l?"opacity":"",f?"transform":""].join(" ").trim(),t.style.transitionDuration=i.duration/1e3+"s",t.style.transitionTimingFunction="cubic-bezier(0.4, 0.0, 0.2, 1)"},show(){n()},end(){l&&(t.style.opacity=i.second.opacity),f&&(t.style.transform=`scale(${i.second.scale/100})`)},hide(){r()},cleanup(){l&&(t.style.opacity=a),f&&(t.style.transform=o),f&&(t.style.transformOrigin=s),t.style.transitionProperty=null,t.style.transitionDuration=null,t.style.transitionTimingFunction=null}};P(t,p,u)}function F(t,e,n,r){let i=n=>"function"==typeof n?e.evaluateReturnExpression(t,n):n;const u=b(i((n.find((t=>"enter"===t.value))||{expression:""}).expression)),a=b(i((n.find((t=>"enter-start"===t.value))||{expression:""}).expression)),o=b(i((n.find((t=>"enter-end"===t.value))||{expression:""}).expression));C(t,u,a,o,r,(()=>{}),x)}function $(t,e,n,r){C(t,b((n.find((t=>"leave"===t.value))||{expression:""}).expression),b((n.find((t=>"leave-start"===t.value))||{expression:""}).expression),b((n.find((t=>"leave-end"===t.value))||{expression:""}).expression),(()=>{}),r,w)}function C(t,e,n,r,i,u,a){t.__x_transition&&(cancelAnimationFrame(t.__x_transition.nextFrame),t.__x_transition.callback&&t.__x_transition.callback());const o=t.__x_original_classes||[],s={start(){t.classList.add(...n)},during(){t.classList.add(...e)},show(){i()},end(){t.classList.remove(...n.filter((t=>!o.includes(t)))),t.classList.add(...r)},hide(){u()},cleanup(){t.classList.remove(...e.filter((t=>!o.includes(t)))),t.classList.remove(...r.filter((t=>!o.includes(t))))}};P(t,s,a)}function P(t,e,n){t.__x_transition={type:n,callback:T((()=>{e.hide(),t.isConnected&&e.cleanup(),delete t.__x_transition})),nextFrame:null},e.start(),e.during(),t.__x_transition.nextFrame=requestAnimationFrame((()=>{let n=1e3*Number(getComputedStyle(t).transitionDuration.replace(/,.*/,"").replace("s",""));0===n&&(n=1e3*Number(getComputedStyle(t).animationDuration.replace("s",""))),e.show(),t.__x_transition.nextFrame=requestAnimationFrame((()=>{e.end(),setTimeout(t.__x_transition.callback,n)}))}))}function z(t){return!isNaN(t)}function T(t){let e=!1;return function(){e||(e=!0,t.apply(this,arguments))}}function R(t,e,n,r,i){a(e,"x-for");let u=L("function"==typeof n?t.evaluateReturnExpression(e,n):n),o=N(t,e,u,i),s=e;o.forEach(((n,a)=>{let c=D(u,n,a,o,i()),l=I(t,e,a,c),f=B(s.nextElementSibling,l);f?(delete f.__x_for_key,f.__x_for=c,t.updateElements(f,(()=>f.__x_for))):(f=W(e,s),k(f,(()=>{}),t,r),f.__x_for=c,t.initializeElements(f,(()=>f.__x_for))),s=f,s.__x_for_key=l})),M(s,t)}function L(t){let e=/,([^,\}\]]*)(?:,([^,\}\]]*))?$/,n=/^\(|\)$/g,r=/([\s\S]*?)\s+(?:in|of)\s+([\s\S]*)/,i=t.match(r);if(!i)return;let u={};u.items=i[2].trim();let a=i[1].trim().replace(n,""),o=a.match(e);return o?(u.item=a.replace(e,"").trim(),u.index=o[1].trim(),o[2]&&(u.collection=o[2].trim())):u.item=a,u}function D(t,e,r,i,u){let a=u?n({},u):{};return a[t.item]=e,t.index&&(a[t.index]=r),t.collection&&(a[t.collection]=i),a}function I(t,e,n,r){let i=v(e,t,"bind").filter((t=>"key"===t.value))[0];return i?t.evaluateReturnExpression(e,i.expression,(()=>r)):n}function N(t,e,n,r){let i=v(e,t,"if")[0];return i&&!t.evaluateReturnExpression(e,i.expression)?[]:t.evaluateReturnExpression(e,n.items,r)}function W(t,e){let n=document.importNode(t.content,!0);return e.parentElement.insertBefore(n,e.nextElementSibling),e.nextElementSibling}function B(t,e){if(!t)return;if(t.__x_for_key===e)return t;let n=t;for(;n;){if(n.__x_for_key===e)return n.parentElement.insertBefore(n,t);n=!(!n.nextElementSibling||void 0===n.nextElementSibling.__x_for_key)&&n.nextElementSibling}}function M(t,e){for(var n=!(!t.nextElementSibling||void 0===t.nextElementSibling.__x_for_key)&&t.nextElementSibling;n;){let t=n,r=n.nextElementSibling;A(n,(()=>{t.remove()}),e),n=!(!r||void 0===r.__x_for_key)&&r}}function U(t,e,n,r,u,a,o){var c=t.evaluateReturnExpression(e,r,u);if("value"===n)if(void 0===c&&r.match(/\./).length&&(c=""),"radio"===e.type)void 0===e.attributes.value&&"bind"===a?e.value=c:"bind"!==a&&(e.checked=e.value==c);else if("checkbox"===e.type)"string"==typeof c&&"bind"===a?e.value=c:"bind"!==a&&(Array.isArray(c)?e.checked=c.some((t=>t==e.value)):e.checked=!!c);else if("SELECT"===e.tagName)Z(e,c);else{if(e.value===c)return;e.value=c}else if("class"===n)if(Array.isArray(c)){const t=e.__x_original_classes||[];e.setAttribute("class",i(t.concat(c)).join(" "))}else if("object"==typeof c)Object.keys(c).sort(((t,e)=>c[t]-c[e])).forEach((t=>{c[t]?b(t).forEach((t=>e.classList.add(t))):b(t).forEach((t=>e.classList.remove(t)))}));else{const t=e.__x_original_classes||[],n=b(c);e.setAttribute("class",i(t.concat(n)).join(" "))}else n=o.includes("camel")?s(n):n,[null,void 0,!1].includes(c)?e.removeAttribute(n):y(n)?q(e,n,n):q(e,n,c)}function q(t,e,n){t.getAttribute(e)!=n&&t.setAttribute(e,n)}function Z(t,e){const n=[].concat(e).map((t=>t+""));Array.from(t.options).forEach((t=>{t.selected=n.includes(t.value||t.text)}))}function H(t,e,n){void 0===e&&n.match(/\./)&&(e=""),t.innerText=e}function G(t,e,n,r){e.innerHTML=t.evaluateReturnExpression(e,n,r)}function K(t,e,n,r,i=!1){const u=()=>{e.style.display="none"},a=()=>{1===e.style.length&&"none"===e.style.display?e.removeAttribute("style"):e.style.removeProperty("display")};if(!0===i)return void(n?a():u());const o=r=>{n?(("none"===e.style.display||e.__x_transition)&&k(e,(()=>{a()}),t),r((()=>{}))):"none"!==e.style.display?A(e,(()=>{r((()=>{u()}))}),t):r((()=>{}))};r.includes("immediate")?o((t=>t())):(t.showDirectiveLastElement&&!t.showDirectiveLastElement.contains(e)&&t.executeAndClearRemainingShowDirectiveStack(),t.showDirectiveStack.push(o),t.showDirectiveLastElement=e)}function V(t,e,n,r,i){a(e,"x-if");const u=e.nextElementSibling&&!0===e.nextElementSibling.__x_inserted_me;if(!n||u&&!e.__x_transition)!n&&u&&A(e.nextElementSibling,(()=>{e.nextElementSibling.remove()}),t,r);else{const n=document.importNode(e.content,!0);e.parentElement.insertBefore(n,e.nextElementSibling),k(e.nextElementSibling,(()=>{}),t,r),t.initializeElements(e.nextElementSibling,i),e.nextElementSibling.__x_inserted_me=!0}}function J(t,e,n,r,i,u={}){const a={passive:r.includes("passive")};if(r.includes("camel")&&(n=s(n)),r.includes("away")){let o=s=>{e.contains(s.target)||e.offsetWidth<1&&e.offsetHeight<1||(Y(t,i,s,u),r.includes("once")&&document.removeEventListener(n,o,a))};document.addEventListener(n,o,a)}else{let o=r.includes("window")?window:r.includes("document")?document:e,s=c=>{o!==window&&o!==document||document.body.contains(e)?X(n)&&Q(c,r)||(r.includes("prevent")&&c.preventDefault(),r.includes("stop")&&c.stopPropagation(),r.includes("self")&&c.target!==e)||(!1===Y(t,i,c,u)?c.preventDefault():r.includes("once")&&o.removeEventListener(n,s,a)):o.removeEventListener(n,s,a)};if(r.includes("debounce")){let t=r[r.indexOf("debounce")+1]||"invalid-wait",e=z(t.split("ms")[0])?Number(t.split("ms")[0]):250;s=l(s,e)}o.addEventListener(n,s,a)}}function Y(t,e,r,i){return t.evaluateCommandExpression(r.target,e,(()=>n(n({},i()),{},{$event:r})))}function X(t){return["keydown","keyup"].includes(t)}function Q(t,e){let n=e.filter((t=>!["window","document","prevent","stop"].includes(t)));if(n.includes("debounce")){let t=n.indexOf("debounce");n.splice(t,z((n[t+1]||"invalid-wait").split("ms")[0])?2:1)}if(0===n.length)return!1;if(1===n.length&&n[0]===tt(t.key))return!1;const r=["ctrl","shift","alt","meta","cmd","super"].filter((t=>n.includes(t)));return n=n.filter((t=>!r.includes(t))),!(r.length>0&&r.filter((e=>("cmd"!==e&&"super"!==e||(e="meta"),t[`${e}Key`]))).length===r.length&&n[0]===tt(t.key))}function tt(t){switch(t){case"/":return"slash";case" ":case"Spacebar":return"space";default:return t&&o(t)}}function et(t,e,r,i,u){var a="select"===e.tagName.toLowerCase()||["checkbox","radio"].includes(e.type)||r.includes("lazy")?"change":"input";J(t,e,a,r,`${i} = rightSideOfExpression($event, ${i})`,(()=>n(n({},u()),{},{rightSideOfExpression:nt(e,r,i)})))}function nt(t,e,n){return"radio"===t.type&&(t.hasAttribute("name")||t.setAttribute("name",n)),(n,r)=>{if(n instanceof CustomEvent&&n.detail)return n.detail;if("checkbox"===t.type){if(Array.isArray(r)){const t=e.includes("number")?rt(n.target.value):n.target.value;return n.target.checked?r.concat([t]):r.filter((e=>e!==t))}return n.target.checked}if("select"===t.tagName.toLowerCase()&&t.multiple)return e.includes("number")?Array.from(n.target.selectedOptions).map((t=>rt(t.value||t.text))):Array.from(n.target.selectedOptions).map((t=>t.value||t.text));{const t=n.target.value;return e.includes("number")?rt(t):e.includes("trim")?t.trim():t}}}function rt(t){const e=t?parseFloat(t):null;return z(e)?e:t}const{isArray:it}=Array,{getPrototypeOf:ut,create:at,defineProperty:ot,defineProperties:st,isExtensible:ct,getOwnPropertyDescriptor:lt,getOwnPropertyNames:ft,getOwnPropertySymbols:pt,preventExtensions:ht,hasOwnProperty:dt}=Object,{push:vt,concat:gt,map:_t}=Array.prototype;function yt(t){return void 0===t}function mt(t){return"function"==typeof t}function bt(t){return"object"==typeof t}const xt=new WeakMap;function wt(t,e){xt.set(t,e)}const kt=t=>xt.get(t)||t;function At(t,e){return t.valueIsObservable(e)?t.getProxy(e):e}function Et(t){return dt.call(t,"value")&&(t.value=kt(t.value)),t}function Ot(t,e,n){gt.call(ft(n),pt(n)).forEach((r=>{let i=lt(n,r);i.configurable||(i=Lt(t,i,At)),ot(e,r,i)})),ht(e)}class jt{constructor(t,e){this.originalTarget=e,this.membrane=t}get(t,e){const{originalTarget:n,membrane:r}=this,i=n[e],{valueObserved:u}=r;return u(n,e),r.getProxy(i)}set(t,e,n){const{originalTarget:r,membrane:{valueMutated:i}}=this;return r[e]!==n?(r[e]=n,i(r,e)):"length"===e&&it(r)&&i(r,e),!0}deleteProperty(t,e){const{originalTarget:n,membrane:{valueMutated:r}}=this;return delete n[e],r(n,e),!0}apply(t,e,n){}construct(t,e,n){}has(t,e){const{originalTarget:n,membrane:{valueObserved:r}}=this;return r(n,e),e in n}ownKeys(t){const{originalTarget:e}=this;return gt.call(ft(e),pt(e))}isExtensible(t){const e=ct(t);if(!e)return e;const{originalTarget:n,membrane:r}=this,i=ct(n);return i||Ot(r,t,n),i}setPrototypeOf(t,e){}getPrototypeOf(t){const{originalTarget:e}=this;return ut(e)}getOwnPropertyDescriptor(t,e){const{originalTarget:n,membrane:r}=this,{valueObserved:i}=this.membrane;i(n,e);let u=lt(n,e);if(yt(u))return u;const a=lt(t,e);return yt(a)?(u=Lt(r,u,At),u.configurable||ot(t,e,u),u):a}preventExtensions(t){const{originalTarget:e,membrane:n}=this;return Ot(n,t,e),ht(e),!0}defineProperty(t,e,n){const{originalTarget:r,membrane:i}=this,{valueMutated:u}=i,{configurable:a}=n;if(dt.call(n,"writable")&&!dt.call(n,"value")){const t=lt(r,e);n.value=t.value}return ot(r,e,Et(n)),!1===a&&ot(t,e,Lt(i,n,At)),u(r,e),!0}}function St(t,e){return t.valueIsObservable(e)?t.getReadOnlyProxy(e):e}class Ft{constructor(t,e){this.originalTarget=e,this.membrane=t}get(t,e){const{membrane:n,originalTarget:r}=this,i=r[e],{valueObserved:u}=n;return u(r,e),n.getReadOnlyProxy(i)}set(t,e,n){return!1}deleteProperty(t,e){return!1}apply(t,e,n){}construct(t,e,n){}has(t,e){const{originalTarget:n,membrane:{valueObserved:r}}=this;return r(n,e),e in n}ownKeys(t){const{originalTarget:e}=this;return gt.call(ft(e),pt(e))}setPrototypeOf(t,e){}getOwnPropertyDescriptor(t,e){const{originalTarget:n,membrane:r}=this,{valueObserved:i}=r;i(n,e);let u=lt(n,e);if(yt(u))return u;const a=lt(t,e);return yt(a)?(u=Lt(r,u,St),dt.call(u,"set")&&(u.set=void 0),u.configurable||ot(t,e,u),u):a}preventExtensions(t){return!1}defineProperty(t,e,n){return!1}}function $t(t){let e;return it(t)?e=[]:bt(t)&&(e={}),e}const Ct=Object.prototype;function Pt(t){if(null===t)return!1;if("object"!=typeof t)return!1;if(it(t))return!0;const e=ut(t);return e===Ct||null===e||null===ut(e)}const zt=(t,e)=>{},Tt=(t,e)=>{},Rt=t=>t;function Lt(t,e,n){const{set:r,get:i}=e;return dt.call(e,"value")?e.value=n(t,e.value):(yt(i)||(e.get=function(){return n(t,i.call(kt(this)))}),yt(r)||(e.set=function(e){r.call(kt(this),t.unwrapProxy(e))})),e}class Dt{constructor(t){if(this.valueDistortion=Rt,this.valueMutated=Tt,this.valueObserved=zt,this.valueIsObservable=Pt,this.objectGraph=new WeakMap,!yt(t)){const{valueDistortion:e,valueMutated:n,valueObserved:r,valueIsObservable:i}=t;this.valueDistortion=mt(e)?e:Rt,this.valueMutated=mt(n)?n:Tt,this.valueObserved=mt(r)?r:zt,this.valueIsObservable=mt(i)?i:Pt}}getProxy(t){const e=kt(t),n=this.valueDistortion(e);if(this.valueIsObservable(n)){const r=this.getReactiveState(e,n);return r.readOnly===t?t:r.reactive}return n}getReadOnlyProxy(t){t=kt(t);const e=this.valueDistortion(t);return this.valueIsObservable(e)?this.getReactiveState(t,e).readOnly:e}unwrapProxy(t){return kt(t)}getReactiveState(t,e){const{objectGraph:n}=this;let r=n.get(e);if(r)return r;const i=this;return r={get reactive(){const n=new jt(i,e),r=new Proxy($t(e),n);return wt(r,t),ot(this,"reactive",{value:r}),r},get readOnly(){const n=new Ft(i,e),r=new Proxy($t(e),n);return wt(r,t),ot(this,"readOnly",{value:r}),r}},n.set(e,r),r}}function It(t,e){let n=new Dt({valueMutated(t,n){e(t,n)}});return{data:n.getProxy(t),membrane:n}}function Nt(t,e){let n=t.unwrapProxy(e),r={};return Object.keys(n).forEach((t=>{["$el","$refs","$nextTick","$watch"].includes(t)||(r[t]=n[t])})),r}class Wt{constructor(t,e=null){this.$el=t;const n=this.$el.getAttribute("x-data"),r=""===n?"{}":n,i=this.$el.getAttribute("x-init");this.unobservedData=e?e.getUnobservedData():f(r,{$el:this.$el});let{membrane:u,data:a}=this.wrapDataInObservable(this.unobservedData);this.$data=a,this.membrane=u,this.unobservedData.$el=this.$el,this.unobservedData.$refs=this.getRefsProxy(),this.nextTickStack=[],this.unobservedData.$nextTick=t=>{this.nextTickStack.push(t)},this.watchers={},this.unobservedData.$watch=(t,e)=>{this.watchers[t]||(this.watchers[t]=[]),this.watchers[t].push(e)};let o=e?e.$el:this.$el;var s;Object.entries(Bt.magicProperties).forEach((([t,e])=>{Object.defineProperty(this.unobservedData,`$${t}`,{get:function(){return e(o)}})})),this.showDirectiveStack=[],this.showDirectiveLastElement,i&&!e&&(this.pauseReactivity=!0,s=this.evaluateReturnExpression(this.$el,i),this.pauseReactivity=!1),this.initializeElements(this.$el),this.listenForNewElementsToInitialize(),"function"==typeof s&&s.call(this.$data),e||setTimeout((()=>{Bt.onComponentInitializeds.forEach((t=>t(this)))}),0)}getUnobservedData(){return Nt(this.membrane,this.$data)}wrapDataInObservable(t){var e=this;let n=l((function(){e.updateElements(e.$el)}),0);return It(t,((t,r)=>{e.watchers[r]?e.watchers[r].forEach((e=>e(t[r]))):Object.keys(e.watchers).filter((t=>t.includes("."))).forEach((n=>{let i=n.split(".");r===i[i.length-1]&&i.reduce(((i,u)=>(Object.is(t,i)&&e.watchers[n].forEach((e=>e(t[r]))),i[u])),e.getUnobservedData())})),e.pauseReactivity||n()}))}walkAndSkipNestedComponents(t,e,n=(()=>{})){c(t,(t=>t.hasAttribute("x-data")&&!t.isSameNode(this.$el)?(t.__x||n(t),!1):e(t)))}initializeElements(t,e=(()=>{})){this.walkAndSkipNestedComponents(t,(t=>void 0===t.__x_for_key&&void 0===t.__x_inserted_me&&void this.initializeElement(t,e)),(t=>{t.__x=new Wt(t)})),this.executeAndClearRemainingShowDirectiveStack(),this.executeAndClearNextTickStack(t)}initializeElement(t,e){t.hasAttribute("class")&&v(t,this).length>0&&(t.__x_original_classes=b(t.getAttribute("class"))),this.registerListeners(t,e),this.resolveBoundAttributes(t,!0,e)}updateElements(t,e=(()=>{})){this.walkAndSkipNestedComponents(t,(t=>{if(void 0!==t.__x_for_key&&!t.isSameNode(this.$el))return!1;this.updateElement(t,e)}),(t=>{t.__x=new Wt(t)})),this.executeAndClearRemainingShowDirectiveStack(),this.executeAndClearNextTickStack(t)}executeAndClearNextTickStack(t){t===this.$el&&this.nextTickStack.length>0&&requestAnimationFrame((()=>{for(;this.nextTickStack.length>0;)this.nextTickStack.shift()()}))}executeAndClearRemainingShowDirectiveStack(){this.showDirectiveStack.reverse().map((t=>new Promise((e=>{t((t=>{e(t)}))})))).reduce(((t,e)=>t.then((()=>e.then((t=>t()))))),Promise.resolve((()=>{}))),this.showDirectiveStack=[],this.showDirectiveLastElement=void 0}updateElement(t,e){this.resolveBoundAttributes(t,!1,e)}registerListeners(t,e){v(t,this).forEach((({type:n,value:r,modifiers:i,expression:u})=>{switch(n){case"on":J(this,t,r,i,u,e);break;case"model":et(this,t,i,u,e)}}))}resolveBoundAttributes(t,e=!1,n){let r=v(t,this);if(void 0!==t.type&&"radio"===t.type){const t=r.findIndex((t=>"model"===t.type));t>-1&&r.push(r.splice(t,1)[0])}r.forEach((({type:i,value:u,modifiers:a,expression:o})=>{switch(i){case"model":U(this,t,"value",o,n,i,a);break;case"bind":if("template"===t.tagName.toLowerCase()&&"key"===u)return;U(this,t,u,o,n,i,a);break;case"text":var s=this.evaluateReturnExpression(t,o,n);H(t,s,o);break;case"html":G(this,t,o,n);break;case"show":s=this.evaluateReturnExpression(t,o,n),K(this,t,s,a,e);break;case"if":if(r.some((t=>"for"===t.type)))return;s=this.evaluateReturnExpression(t,o,n),V(this,t,s,e,n);break;case"for":R(this,t,o,e,n);break;case"cloak":t.removeAttribute("x-cloak")}}))}evaluateReturnExpression(t,e,r=(()=>{})){return f(e,this.$data,n(n({},r()),{},{$dispatch:this.getDispatchFunction(t)}))}evaluateCommandExpression(t,e,r=(()=>{})){return p(e,this.$data,n(n({},r()),{},{$dispatch:this.getDispatchFunction(t)}))}getDispatchFunction(t){return(e,n={})=>{t.dispatchEvent(new CustomEvent(e,{detail:n,bubbles:!0}))}}listenForNewElementsToInitialize(){const t=this.$el,e={childList:!0,attributes:!0,subtree:!0};new MutationObserver((t=>{for(let e=0;e<t.length;e++){const n=t[e].target.closest("[x-data]");if(n&&n.isSameNode(this.$el)){if("attributes"===t[e].type&&"x-data"===t[e].attributeName){const n=f(t[e].target.getAttribute("x-data")||"{}",{$el:this.$el});Object.keys(n).forEach((t=>{this.$data[t]!==n[t]&&(this.$data[t]=n[t])}))}t[e].addedNodes.length>0&&t[e].addedNodes.forEach((t=>{1!==t.nodeType||t.__x_inserted_me||(!t.matches("[x-data]")||t.__x?this.initializeElements(t):t.__x=new Wt(t))}))}}})).observe(t,e)}getRefsProxy(){var t=this;return new Proxy({},{get(e,n){return"$isAlpineProxy"===n||(t.walkAndSkipNestedComponents(t.$el,(t=>{t.hasAttribute("x-ref")&&t.getAttribute("x-ref")===n&&(r=t)})),r);var r}})}}const Bt={version:"2.5.0",pauseMutationObserver:!1,magicProperties:{},onComponentInitializeds:[],start:async function(){u()||await r(),this.discoverComponents((t=>{this.initializeComponent(t)})),document.addEventListener("turbolinks:load",(()=>{this.discoverUninitializedComponents((t=>{this.initializeComponent(t)}))})),this.listenForNewUninitializedComponentsAtRunTime((t=>{this.initializeComponent(t)}))},discoverComponents:function(t){document.querySelectorAll("[x-data]").forEach((e=>{t(e)}))},discoverUninitializedComponents:function(t,e=null){const n=(e||document).querySelectorAll("[x-data]");Array.from(n).filter((t=>void 0===t.__x)).forEach((e=>{t(e)}))},listenForNewUninitializedComponentsAtRunTime:function(t){const e=document.querySelector("body"),n={childList:!0,attributes:!0,subtree:!0};new MutationObserver((t=>{if(!this.pauseMutationObserver)for(let e=0;e<t.length;e++)t[e].addedNodes.length>0&&t[e].addedNodes.forEach((t=>{1===t.nodeType&&(t.parentElement&&t.parentElement.closest("[x-data]")||this.discoverUninitializedComponents((t=>{this.initializeComponent(t)}),t.parentElement))}))})).observe(e,n)},initializeComponent:function(t){if(!t.__x)try{t.__x=new Wt(t)}catch(t){setTimeout((()=>{throw t}),0)}},clone:function(t,e){e.__x||(e.__x=new Wt(e,t))},addMagicProperty:function(t,e){this.magicProperties[t]=e},onComponentInitialized:function(t){this.onComponentInitializeds.push(t)}};return u()||(window.Alpine=Bt,window.deferLoadingAlpine?window.deferLoadingAlpine((function(){window.Alpine.start()})):window.Alpine.start()),Bt}()},80:(t,e,n)=>{"use strict";n(443);window._=n(486),n(660),n(46),n(65)},486:function(t,e,n){var r;t=n.nmd(t),function(){var i,u="Expected a function",a="__lodash_hash_undefined__",o="__lodash_placeholder__",s=16,c=32,l=64,f=128,p=256,h=1/0,d=9007199254740991,v=NaN,g=4294967295,_=[["ary",f],["bind",1],["bindKey",2],["curry",8],["curryRight",s],["flip",512],["partial",c],["partialRight",l],["rearg",p]],y="[object Arguments]",m="[object Array]",b="[object Boolean]",x="[object Date]",w="[object Error]",k="[object Function]",A="[object GeneratorFunction]",E="[object Map]",O="[object Number]",j="[object Object]",S="[object Promise]",F="[object RegExp]",$="[object Set]",C="[object String]",P="[object Symbol]",z="[object WeakMap]",T="[object ArrayBuffer]",R="[object DataView]",L="[object Float32Array]",D="[object Float64Array]",I="[object Int8Array]",N="[object Int16Array]",W="[object Int32Array]",B="[object Uint8Array]",M="[object Uint8ClampedArray]",U="[object Uint16Array]",q="[object Uint32Array]",Z=/\b__p \+= '';/g,H=/\b(__p \+=) '' \+/g,G=/(__e\(.*?\)|\b__t\)) \+\n'';/g,K=/&(?:amp|lt|gt|quot|#39);/g,V=/[&<>"']/g,J=RegExp(K.source),Y=RegExp(V.source),X=/<%-([\s\S]+?)%>/g,Q=/<%([\s\S]+?)%>/g,tt=/<%=([\s\S]+?)%>/g,et=/\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,nt=/^\w*$/,rt=/[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g,it=/[\\^$.*+?()[\]{}|]/g,ut=RegExp(it.source),at=/^\s+|\s+$/g,ot=/^\s+/,st=/\s+$/,ct=/\{(?:\n\/\* \[wrapped with .+\] \*\/)?\n?/,lt=/\{\n\/\* \[wrapped with (.+)\] \*/,ft=/,? & /,pt=/[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g,ht=/\\(\\)?/g,dt=/\$\{([^\\}]*(?:\\.[^\\}]*)*)\}/g,vt=/\w*$/,gt=/^[-+]0x[0-9a-f]+$/i,_t=/^0b[01]+$/i,yt=/^\[object .+?Constructor\]$/,mt=/^0o[0-7]+$/i,bt=/^(?:0|[1-9]\d*)$/,xt=/[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g,wt=/($^)/,kt=/['\n\r\u2028\u2029\\]/g,At="\\u0300-\\u036f\\ufe20-\\ufe2f\\u20d0-\\u20ff",Et="\\u2700-\\u27bf",Ot="a-z\\xdf-\\xf6\\xf8-\\xff",jt="A-Z\\xc0-\\xd6\\xd8-\\xde",St="\\ufe0e\\ufe0f",Ft="\\xac\\xb1\\xd7\\xf7\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf\\u2000-\\u206f \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000",$t="['’]",Ct="[\\ud800-\\udfff]",Pt="["+Ft+"]",zt="["+At+"]",Tt="\\d+",Rt="[\\u2700-\\u27bf]",Lt="["+Ot+"]",Dt="[^\\ud800-\\udfff"+Ft+Tt+Et+Ot+jt+"]",It="\\ud83c[\\udffb-\\udfff]",Nt="[^\\ud800-\\udfff]",Wt="(?:\\ud83c[\\udde6-\\uddff]){2}",Bt="[\\ud800-\\udbff][\\udc00-\\udfff]",Mt="["+jt+"]",Ut="(?:"+Lt+"|"+Dt+")",qt="(?:"+Mt+"|"+Dt+")",Zt="(?:['’](?:d|ll|m|re|s|t|ve))?",Ht="(?:['’](?:D|LL|M|RE|S|T|VE))?",Gt="(?:"+zt+"|"+It+")"+"?",Kt="[\\ufe0e\\ufe0f]?",Vt=Kt+Gt+("(?:\\u200d(?:"+[Nt,Wt,Bt].join("|")+")"+Kt+Gt+")*"),Jt="(?:"+[Rt,Wt,Bt].join("|")+")"+Vt,Yt="(?:"+[Nt+zt+"?",zt,Wt,Bt,Ct].join("|")+")",Xt=RegExp($t,"g"),Qt=RegExp(zt,"g"),te=RegExp(It+"(?="+It+")|"+Yt+Vt,"g"),ee=RegExp([Mt+"?"+Lt+"+"+Zt+"(?="+[Pt,Mt,"$"].join("|")+")",qt+"+"+Ht+"(?="+[Pt,Mt+Ut,"$"].join("|")+")",Mt+"?"+Ut+"+"+Zt,Mt+"+"+Ht,"\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])","\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])",Tt,Jt].join("|"),"g"),ne=RegExp("[\\u200d\\ud800-\\udfff"+At+St+"]"),re=/[a-z][A-Z]|[A-Z]{2}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/,ie=["Array","Buffer","DataView","Date","Error","Float32Array","Float64Array","Function","Int8Array","Int16Array","Int32Array","Map","Math","Object","Promise","RegExp","Set","String","Symbol","TypeError","Uint8Array","Uint8ClampedArray","Uint16Array","Uint32Array","WeakMap","_","clearTimeout","isFinite","parseInt","setTimeout"],ue=-1,ae={};ae[L]=ae[D]=ae[I]=ae[N]=ae[W]=ae[B]=ae[M]=ae[U]=ae[q]=!0,ae[y]=ae[m]=ae[T]=ae[b]=ae[R]=ae[x]=ae[w]=ae[k]=ae[E]=ae[O]=ae[j]=ae[F]=ae[$]=ae[C]=ae[z]=!1;var oe={};oe[y]=oe[m]=oe[T]=oe[R]=oe[b]=oe[x]=oe[L]=oe[D]=oe[I]=oe[N]=oe[W]=oe[E]=oe[O]=oe[j]=oe[F]=oe[$]=oe[C]=oe[P]=oe[B]=oe[M]=oe[U]=oe[q]=!0,oe[w]=oe[k]=oe[z]=!1;var se={"\\":"\\","'":"'","\n":"n","\r":"r","\u2028":"u2028","\u2029":"u2029"},ce=parseFloat,le=parseInt,fe="object"==typeof n.g&&n.g&&n.g.Object===Object&&n.g,pe="object"==typeof self&&self&&self.Object===Object&&self,he=fe||pe||Function("return this")(),de=e&&!e.nodeType&&e,ve=de&&t&&!t.nodeType&&t,ge=ve&&ve.exports===de,_e=ge&&fe.process,ye=function(){try{var t=ve&&ve.require&&ve.require("util").types;return t||_e&&_e.binding&&_e.binding("util")}catch(t){}}(),me=ye&&ye.isArrayBuffer,be=ye&&ye.isDate,xe=ye&&ye.isMap,we=ye&&ye.isRegExp,ke=ye&&ye.isSet,Ae=ye&&ye.isTypedArray;function Ee(t,e,n){switch(n.length){case 0:return t.call(e);case 1:return t.call(e,n[0]);case 2:return t.call(e,n[0],n[1]);case 3:return t.call(e,n[0],n[1],n[2])}return t.apply(e,n)}function Oe(t,e,n,r){for(var i=-1,u=null==t?0:t.length;++i<u;){var a=t[i];e(r,a,n(a),t)}return r}function je(t,e){for(var n=-1,r=null==t?0:t.length;++n<r&&!1!==e(t[n],n,t););return t}function Se(t,e){for(var n=null==t?0:t.length;n--&&!1!==e(t[n],n,t););return t}function Fe(t,e){for(var n=-1,r=null==t?0:t.length;++n<r;)if(!e(t[n],n,t))return!1;return!0}function $e(t,e){for(var n=-1,r=null==t?0:t.length,i=0,u=[];++n<r;){var a=t[n];e(a,n,t)&&(u[i++]=a)}return u}function Ce(t,e){return!!(null==t?0:t.length)&&Be(t,e,0)>-1}function Pe(t,e,n){for(var r=-1,i=null==t?0:t.length;++r<i;)if(n(e,t[r]))return!0;return!1}function ze(t,e){for(var n=-1,r=null==t?0:t.length,i=Array(r);++n<r;)i[n]=e(t[n],n,t);return i}function Te(t,e){for(var n=-1,r=e.length,i=t.length;++n<r;)t[i+n]=e[n];return t}function Re(t,e,n,r){var i=-1,u=null==t?0:t.length;for(r&&u&&(n=t[++i]);++i<u;)n=e(n,t[i],i,t);return n}function Le(t,e,n,r){var i=null==t?0:t.length;for(r&&i&&(n=t[--i]);i--;)n=e(n,t[i],i,t);return n}function De(t,e){for(var n=-1,r=null==t?0:t.length;++n<r;)if(e(t[n],n,t))return!0;return!1}var Ie=Ze("length");function Ne(t,e,n){var r;return n(t,(function(t,n,i){if(e(t,n,i))return r=n,!1})),r}function We(t,e,n,r){for(var i=t.length,u=n+(r?1:-1);r?u--:++u<i;)if(e(t[u],u,t))return u;return-1}function Be(t,e,n){return e==e?function(t,e,n){var r=n-1,i=t.length;for(;++r<i;)if(t[r]===e)return r;return-1}(t,e,n):We(t,Ue,n)}function Me(t,e,n,r){for(var i=n-1,u=t.length;++i<u;)if(r(t[i],e))return i;return-1}function Ue(t){return t!=t}function qe(t,e){var n=null==t?0:t.length;return n?Ke(t,e)/n:v}function Ze(t){return function(e){return null==e?i:e[t]}}function He(t){return function(e){return null==t?i:t[e]}}function Ge(t,e,n,r,i){return i(t,(function(t,i,u){n=r?(r=!1,t):e(n,t,i,u)})),n}function Ke(t,e){for(var n,r=-1,u=t.length;++r<u;){var a=e(t[r]);a!==i&&(n=n===i?a:n+a)}return n}function Ve(t,e){for(var n=-1,r=Array(t);++n<t;)r[n]=e(n);return r}function Je(t){return function(e){return t(e)}}function Ye(t,e){return ze(e,(function(e){return t[e]}))}function Xe(t,e){return t.has(e)}function Qe(t,e){for(var n=-1,r=t.length;++n<r&&Be(e,t[n],0)>-1;);return n}function tn(t,e){for(var n=t.length;n--&&Be(e,t[n],0)>-1;);return n}function en(t,e){for(var n=t.length,r=0;n--;)t[n]===e&&++r;return r}var nn=He({À:"A",Á:"A",Â:"A",Ã:"A",Ä:"A",Å:"A",à:"a",á:"a",â:"a",ã:"a",ä:"a",å:"a",Ç:"C",ç:"c",Ð:"D",ð:"d",È:"E",É:"E",Ê:"E",Ë:"E",è:"e",é:"e",ê:"e",ë:"e",Ì:"I",Í:"I",Î:"I",Ï:"I",ì:"i",í:"i",î:"i",ï:"i",Ñ:"N",ñ:"n",Ò:"O",Ó:"O",Ô:"O",Õ:"O",Ö:"O",Ø:"O",ò:"o",ó:"o",ô:"o",õ:"o",ö:"o",ø:"o",Ù:"U",Ú:"U",Û:"U",Ü:"U",ù:"u",ú:"u",û:"u",ü:"u",Ý:"Y",ý:"y",ÿ:"y",Æ:"Ae",æ:"ae",Þ:"Th",þ:"th",ß:"ss",Ā:"A",Ă:"A",Ą:"A",ā:"a",ă:"a",ą:"a",Ć:"C",Ĉ:"C",Ċ:"C",Č:"C",ć:"c",ĉ:"c",ċ:"c",č:"c",Ď:"D",Đ:"D",ď:"d",đ:"d",Ē:"E",Ĕ:"E",Ė:"E",Ę:"E",Ě:"E",ē:"e",ĕ:"e",ė:"e",ę:"e",ě:"e",Ĝ:"G",Ğ:"G",Ġ:"G",Ģ:"G",ĝ:"g",ğ:"g",ġ:"g",ģ:"g",Ĥ:"H",Ħ:"H",ĥ:"h",ħ:"h",Ĩ:"I",Ī:"I",Ĭ:"I",Į:"I",İ:"I",ĩ:"i",ī:"i",ĭ:"i",į:"i",ı:"i",Ĵ:"J",ĵ:"j",Ķ:"K",ķ:"k",ĸ:"k",Ĺ:"L",Ļ:"L",Ľ:"L",Ŀ:"L",Ł:"L",ĺ:"l",ļ:"l",ľ:"l",ŀ:"l",ł:"l",Ń:"N",Ņ:"N",Ň:"N",Ŋ:"N",ń:"n",ņ:"n",ň:"n",ŋ:"n",Ō:"O",Ŏ:"O",Ő:"O",ō:"o",ŏ:"o",ő:"o",Ŕ:"R",Ŗ:"R",Ř:"R",ŕ:"r",ŗ:"r",ř:"r",Ś:"S",Ŝ:"S",Ş:"S",Š:"S",ś:"s",ŝ:"s",ş:"s",š:"s",Ţ:"T",Ť:"T",Ŧ:"T",ţ:"t",ť:"t",ŧ:"t",Ũ:"U",Ū:"U",Ŭ:"U",Ů:"U",Ű:"U",Ų:"U",ũ:"u",ū:"u",ŭ:"u",ů:"u",ű:"u",ų:"u",Ŵ:"W",ŵ:"w",Ŷ:"Y",ŷ:"y",Ÿ:"Y",Ź:"Z",Ż:"Z",Ž:"Z",ź:"z",ż:"z",ž:"z",Ĳ:"IJ",ĳ:"ij",Œ:"Oe",œ:"oe",ŉ:"'n",ſ:"s"}),rn=He({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"});function un(t){return"\\"+se[t]}function an(t){return ne.test(t)}function on(t){var e=-1,n=Array(t.size);return t.forEach((function(t,r){n[++e]=[r,t]})),n}function sn(t,e){return function(n){return t(e(n))}}function cn(t,e){for(var n=-1,r=t.length,i=0,u=[];++n<r;){var a=t[n];a!==e&&a!==o||(t[n]=o,u[i++]=n)}return u}function ln(t){var e=-1,n=Array(t.size);return t.forEach((function(t){n[++e]=t})),n}function fn(t){var e=-1,n=Array(t.size);return t.forEach((function(t){n[++e]=[t,t]})),n}function pn(t){return an(t)?function(t){var e=te.lastIndex=0;for(;te.test(t);)++e;return e}(t):Ie(t)}function hn(t){return an(t)?function(t){return t.match(te)||[]}(t):function(t){return t.split("")}(t)}var dn=He({"&amp;":"&","&lt;":"<","&gt;":">","&quot;":'"',"&#39;":"'"});var vn=function t(e){var n,r=(e=null==e?he:vn.defaults(he.Object(),e,vn.pick(he,ie))).Array,At=e.Date,Et=e.Error,Ot=e.Function,jt=e.Math,St=e.Object,Ft=e.RegExp,$t=e.String,Ct=e.TypeError,Pt=r.prototype,zt=Ot.prototype,Tt=St.prototype,Rt=e["__core-js_shared__"],Lt=zt.toString,Dt=Tt.hasOwnProperty,It=0,Nt=(n=/[^.]+$/.exec(Rt&&Rt.keys&&Rt.keys.IE_PROTO||""))?"Symbol(src)_1."+n:"",Wt=Tt.toString,Bt=Lt.call(St),Mt=he._,Ut=Ft("^"+Lt.call(Dt).replace(it,"\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g,"$1.*?")+"$"),qt=ge?e.Buffer:i,Zt=e.Symbol,Ht=e.Uint8Array,Gt=qt?qt.allocUnsafe:i,Kt=sn(St.getPrototypeOf,St),Vt=St.create,Jt=Tt.propertyIsEnumerable,Yt=Pt.splice,te=Zt?Zt.isConcatSpreadable:i,ne=Zt?Zt.iterator:i,se=Zt?Zt.toStringTag:i,fe=function(){try{var t=pu(St,"defineProperty");return t({},"",{}),t}catch(t){}}(),pe=e.clearTimeout!==he.clearTimeout&&e.clearTimeout,de=At&&At.now!==he.Date.now&&At.now,ve=e.setTimeout!==he.setTimeout&&e.setTimeout,_e=jt.ceil,ye=jt.floor,Ie=St.getOwnPropertySymbols,He=qt?qt.isBuffer:i,gn=e.isFinite,_n=Pt.join,yn=sn(St.keys,St),mn=jt.max,bn=jt.min,xn=At.now,wn=e.parseInt,kn=jt.random,An=Pt.reverse,En=pu(e,"DataView"),On=pu(e,"Map"),jn=pu(e,"Promise"),Sn=pu(e,"Set"),Fn=pu(e,"WeakMap"),$n=pu(St,"create"),Cn=Fn&&new Fn,Pn={},zn=Nu(En),Tn=Nu(On),Rn=Nu(jn),Ln=Nu(Sn),Dn=Nu(Fn),In=Zt?Zt.prototype:i,Nn=In?In.valueOf:i,Wn=In?In.toString:i;function Bn(t){if(no(t)&&!Za(t)&&!(t instanceof Zn)){if(t instanceof qn)return t;if(Dt.call(t,"__wrapped__"))return Wu(t)}return new qn(t)}var Mn=function(){function t(){}return function(e){if(!eo(e))return{};if(Vt)return Vt(e);t.prototype=e;var n=new t;return t.prototype=i,n}}();function Un(){}function qn(t,e){this.__wrapped__=t,this.__actions__=[],this.__chain__=!!e,this.__index__=0,this.__values__=i}function Zn(t){this.__wrapped__=t,this.__actions__=[],this.__dir__=1,this.__filtered__=!1,this.__iteratees__=[],this.__takeCount__=g,this.__views__=[]}function Hn(t){var e=-1,n=null==t?0:t.length;for(this.clear();++e<n;){var r=t[e];this.set(r[0],r[1])}}function Gn(t){var e=-1,n=null==t?0:t.length;for(this.clear();++e<n;){var r=t[e];this.set(r[0],r[1])}}function Kn(t){var e=-1,n=null==t?0:t.length;for(this.clear();++e<n;){var r=t[e];this.set(r[0],r[1])}}function Vn(t){var e=-1,n=null==t?0:t.length;for(this.__data__=new Kn;++e<n;)this.add(t[e])}function Jn(t){var e=this.__data__=new Gn(t);this.size=e.size}function Yn(t,e){var n=Za(t),r=!n&&qa(t),i=!n&&!r&&Va(t),u=!n&&!r&&!i&&lo(t),a=n||r||i||u,o=a?Ve(t.length,$t):[],s=o.length;for(var c in t)!e&&!Dt.call(t,c)||a&&("length"==c||i&&("offset"==c||"parent"==c)||u&&("buffer"==c||"byteLength"==c||"byteOffset"==c)||mu(c,s))||o.push(c);return o}function Xn(t){var e=t.length;return e?t[Vr(0,e-1)]:i}function Qn(t,e){return Lu($i(t),sr(e,0,t.length))}function tr(t){return Lu($i(t))}function er(t,e,n){(n!==i&&!Ba(t[e],n)||n===i&&!(e in t))&&ar(t,e,n)}function nr(t,e,n){var r=t[e];Dt.call(t,e)&&Ba(r,n)&&(n!==i||e in t)||ar(t,e,n)}function rr(t,e){for(var n=t.length;n--;)if(Ba(t[n][0],e))return n;return-1}function ir(t,e,n,r){return hr(t,(function(t,i,u){e(r,t,n(t),u)})),r}function ur(t,e){return t&&Ci(e,zo(e),t)}function ar(t,e,n){"__proto__"==e&&fe?fe(t,e,{configurable:!0,enumerable:!0,value:n,writable:!0}):t[e]=n}function or(t,e){for(var n=-1,u=e.length,a=r(u),o=null==t;++n<u;)a[n]=o?i:So(t,e[n]);return a}function sr(t,e,n){return t==t&&(n!==i&&(t=t<=n?t:n),e!==i&&(t=t>=e?t:e)),t}function cr(t,e,n,r,u,a){var o,s=1&e,c=2&e,l=4&e;if(n&&(o=u?n(t,r,u,a):n(t)),o!==i)return o;if(!eo(t))return t;var f=Za(t);if(f){if(o=function(t){var e=t.length,n=new t.constructor(e);e&&"string"==typeof t[0]&&Dt.call(t,"index")&&(n.index=t.index,n.input=t.input);return n}(t),!s)return $i(t,o)}else{var p=vu(t),h=p==k||p==A;if(Va(t))return Ai(t,s);if(p==j||p==y||h&&!u){if(o=c||h?{}:_u(t),!s)return c?function(t,e){return Ci(t,du(t),e)}(t,function(t,e){return t&&Ci(e,To(e),t)}(o,t)):function(t,e){return Ci(t,hu(t),e)}(t,ur(o,t))}else{if(!oe[p])return u?t:{};o=function(t,e,n){var r=t.constructor;switch(e){case T:return Ei(t);case b:case x:return new r(+t);case R:return function(t,e){var n=e?Ei(t.buffer):t.buffer;return new t.constructor(n,t.byteOffset,t.byteLength)}(t,n);case L:case D:case I:case N:case W:case B:case M:case U:case q:return Oi(t,n);case E:return new r;case O:case C:return new r(t);case F:return function(t){var e=new t.constructor(t.source,vt.exec(t));return e.lastIndex=t.lastIndex,e}(t);case $:return new r;case P:return i=t,Nn?St(Nn.call(i)):{}}var i}(t,p,s)}}a||(a=new Jn);var d=a.get(t);if(d)return d;a.set(t,o),oo(t)?t.forEach((function(r){o.add(cr(r,e,n,r,t,a))})):ro(t)&&t.forEach((function(r,i){o.set(i,cr(r,e,n,i,t,a))}));var v=f?i:(l?c?uu:iu:c?To:zo)(t);return je(v||t,(function(r,i){v&&(r=t[i=r]),nr(o,i,cr(r,e,n,i,t,a))})),o}function lr(t,e,n){var r=n.length;if(null==t)return!r;for(t=St(t);r--;){var u=n[r],a=e[u],o=t[u];if(o===i&&!(u in t)||!a(o))return!1}return!0}function fr(t,e,n){if("function"!=typeof t)throw new Ct(u);return Pu((function(){t.apply(i,n)}),e)}function pr(t,e,n,r){var i=-1,u=Ce,a=!0,o=t.length,s=[],c=e.length;if(!o)return s;n&&(e=ze(e,Je(n))),r?(u=Pe,a=!1):e.length>=200&&(u=Xe,a=!1,e=new Vn(e));t:for(;++i<o;){var l=t[i],f=null==n?l:n(l);if(l=r||0!==l?l:0,a&&f==f){for(var p=c;p--;)if(e[p]===f)continue t;s.push(l)}else u(e,f,r)||s.push(l)}return s}Bn.templateSettings={escape:X,evaluate:Q,interpolate:tt,variable:"",imports:{_:Bn}},Bn.prototype=Un.prototype,Bn.prototype.constructor=Bn,qn.prototype=Mn(Un.prototype),qn.prototype.constructor=qn,Zn.prototype=Mn(Un.prototype),Zn.prototype.constructor=Zn,Hn.prototype.clear=function(){this.__data__=$n?$n(null):{},this.size=0},Hn.prototype.delete=function(t){var e=this.has(t)&&delete this.__data__[t];return this.size-=e?1:0,e},Hn.prototype.get=function(t){var e=this.__data__;if($n){var n=e[t];return n===a?i:n}return Dt.call(e,t)?e[t]:i},Hn.prototype.has=function(t){var e=this.__data__;return $n?e[t]!==i:Dt.call(e,t)},Hn.prototype.set=function(t,e){var n=this.__data__;return this.size+=this.has(t)?0:1,n[t]=$n&&e===i?a:e,this},Gn.prototype.clear=function(){this.__data__=[],this.size=0},Gn.prototype.delete=function(t){var e=this.__data__,n=rr(e,t);return!(n<0)&&(n==e.length-1?e.pop():Yt.call(e,n,1),--this.size,!0)},Gn.prototype.get=function(t){var e=this.__data__,n=rr(e,t);return n<0?i:e[n][1]},Gn.prototype.has=function(t){return rr(this.__data__,t)>-1},Gn.prototype.set=function(t,e){var n=this.__data__,r=rr(n,t);return r<0?(++this.size,n.push([t,e])):n[r][1]=e,this},Kn.prototype.clear=function(){this.size=0,this.__data__={hash:new Hn,map:new(On||Gn),string:new Hn}},Kn.prototype.delete=function(t){var e=lu(this,t).delete(t);return this.size-=e?1:0,e},Kn.prototype.get=function(t){return lu(this,t).get(t)},Kn.prototype.has=function(t){return lu(this,t).has(t)},Kn.prototype.set=function(t,e){var n=lu(this,t),r=n.size;return n.set(t,e),this.size+=n.size==r?0:1,this},Vn.prototype.add=Vn.prototype.push=function(t){return this.__data__.set(t,a),this},Vn.prototype.has=function(t){return this.__data__.has(t)},Jn.prototype.clear=function(){this.__data__=new Gn,this.size=0},Jn.prototype.delete=function(t){var e=this.__data__,n=e.delete(t);return this.size=e.size,n},Jn.prototype.get=function(t){return this.__data__.get(t)},Jn.prototype.has=function(t){return this.__data__.has(t)},Jn.prototype.set=function(t,e){var n=this.__data__;if(n instanceof Gn){var r=n.__data__;if(!On||r.length<199)return r.push([t,e]),this.size=++n.size,this;n=this.__data__=new Kn(r)}return n.set(t,e),this.size=n.size,this};var hr=Ti(xr),dr=Ti(wr,!0);function vr(t,e){var n=!0;return hr(t,(function(t,r,i){return n=!!e(t,r,i)})),n}function gr(t,e,n){for(var r=-1,u=t.length;++r<u;){var a=t[r],o=e(a);if(null!=o&&(s===i?o==o&&!co(o):n(o,s)))var s=o,c=a}return c}function _r(t,e){var n=[];return hr(t,(function(t,r,i){e(t,r,i)&&n.push(t)})),n}function yr(t,e,n,r,i){var u=-1,a=t.length;for(n||(n=yu),i||(i=[]);++u<a;){var o=t[u];e>0&&n(o)?e>1?yr(o,e-1,n,r,i):Te(i,o):r||(i[i.length]=o)}return i}var mr=Ri(),br=Ri(!0);function xr(t,e){return t&&mr(t,e,zo)}function wr(t,e){return t&&br(t,e,zo)}function kr(t,e){return $e(e,(function(e){return Xa(t[e])}))}function Ar(t,e){for(var n=0,r=(e=bi(e,t)).length;null!=t&&n<r;)t=t[Iu(e[n++])];return n&&n==r?t:i}function Er(t,e,n){var r=e(t);return Za(t)?r:Te(r,n(t))}function Or(t){return null==t?t===i?"[object Undefined]":"[object Null]":se&&se in St(t)?function(t){var e=Dt.call(t,se),n=t[se];try{t[se]=i;var r=!0}catch(t){}var u=Wt.call(t);r&&(e?t[se]=n:delete t[se]);return u}(t):function(t){return Wt.call(t)}(t)}function jr(t,e){return t>e}function Sr(t,e){return null!=t&&Dt.call(t,e)}function Fr(t,e){return null!=t&&e in St(t)}function $r(t,e,n){for(var u=n?Pe:Ce,a=t[0].length,o=t.length,s=o,c=r(o),l=1/0,f=[];s--;){var p=t[s];s&&e&&(p=ze(p,Je(e))),l=bn(p.length,l),c[s]=!n&&(e||a>=120&&p.length>=120)?new Vn(s&&p):i}p=t[0];var h=-1,d=c[0];t:for(;++h<a&&f.length<l;){var v=p[h],g=e?e(v):v;if(v=n||0!==v?v:0,!(d?Xe(d,g):u(f,g,n))){for(s=o;--s;){var _=c[s];if(!(_?Xe(_,g):u(t[s],g,n)))continue t}d&&d.push(g),f.push(v)}}return f}function Cr(t,e,n){var r=null==(t=Su(t,e=bi(e,t)))?t:t[Iu(Yu(e))];return null==r?i:Ee(r,t,n)}function Pr(t){return no(t)&&Or(t)==y}function zr(t,e,n,r,u){return t===e||(null==t||null==e||!no(t)&&!no(e)?t!=t&&e!=e:function(t,e,n,r,u,a){var o=Za(t),s=Za(e),c=o?m:vu(t),l=s?m:vu(e),f=(c=c==y?j:c)==j,p=(l=l==y?j:l)==j,h=c==l;if(h&&Va(t)){if(!Va(e))return!1;o=!0,f=!1}if(h&&!f)return a||(a=new Jn),o||lo(t)?nu(t,e,n,r,u,a):function(t,e,n,r,i,u,a){switch(n){case R:if(t.byteLength!=e.byteLength||t.byteOffset!=e.byteOffset)return!1;t=t.buffer,e=e.buffer;case T:return!(t.byteLength!=e.byteLength||!u(new Ht(t),new Ht(e)));case b:case x:case O:return Ba(+t,+e);case w:return t.name==e.name&&t.message==e.message;case F:case C:return t==e+"";case E:var o=on;case $:var s=1&r;if(o||(o=ln),t.size!=e.size&&!s)return!1;var c=a.get(t);if(c)return c==e;r|=2,a.set(t,e);var l=nu(o(t),o(e),r,i,u,a);return a.delete(t),l;case P:if(Nn)return Nn.call(t)==Nn.call(e)}return!1}(t,e,c,n,r,u,a);if(!(1&n)){var d=f&&Dt.call(t,"__wrapped__"),v=p&&Dt.call(e,"__wrapped__");if(d||v){var g=d?t.value():t,_=v?e.value():e;return a||(a=new Jn),u(g,_,n,r,a)}}if(!h)return!1;return a||(a=new Jn),function(t,e,n,r,u,a){var o=1&n,s=iu(t),c=s.length,l=iu(e).length;if(c!=l&&!o)return!1;var f=c;for(;f--;){var p=s[f];if(!(o?p in e:Dt.call(e,p)))return!1}var h=a.get(t),d=a.get(e);if(h&&d)return h==e&&d==t;var v=!0;a.set(t,e),a.set(e,t);var g=o;for(;++f<c;){var _=t[p=s[f]],y=e[p];if(r)var m=o?r(y,_,p,e,t,a):r(_,y,p,t,e,a);if(!(m===i?_===y||u(_,y,n,r,a):m)){v=!1;break}g||(g="constructor"==p)}if(v&&!g){var b=t.constructor,x=e.constructor;b==x||!("constructor"in t)||!("constructor"in e)||"function"==typeof b&&b instanceof b&&"function"==typeof x&&x instanceof x||(v=!1)}return a.delete(t),a.delete(e),v}(t,e,n,r,u,a)}(t,e,n,r,zr,u))}function Tr(t,e,n,r){var u=n.length,a=u,o=!r;if(null==t)return!a;for(t=St(t);u--;){var s=n[u];if(o&&s[2]?s[1]!==t[s[0]]:!(s[0]in t))return!1}for(;++u<a;){var c=(s=n[u])[0],l=t[c],f=s[1];if(o&&s[2]){if(l===i&&!(c in t))return!1}else{var p=new Jn;if(r)var h=r(l,f,c,t,e,p);if(!(h===i?zr(f,l,3,r,p):h))return!1}}return!0}function Rr(t){return!(!eo(t)||(e=t,Nt&&Nt in e))&&(Xa(t)?Ut:yt).test(Nu(t));var e}function Lr(t){return"function"==typeof t?t:null==t?us:"object"==typeof t?Za(t)?Mr(t[0],t[1]):Br(t):ds(t)}function Dr(t){if(!Au(t))return yn(t);var e=[];for(var n in St(t))Dt.call(t,n)&&"constructor"!=n&&e.push(n);return e}function Ir(t){if(!eo(t))return function(t){var e=[];if(null!=t)for(var n in St(t))e.push(n);return e}(t);var e=Au(t),n=[];for(var r in t)("constructor"!=r||!e&&Dt.call(t,r))&&n.push(r);return n}function Nr(t,e){return t<e}function Wr(t,e){var n=-1,i=Ga(t)?r(t.length):[];return hr(t,(function(t,r,u){i[++n]=e(t,r,u)})),i}function Br(t){var e=fu(t);return 1==e.length&&e[0][2]?Ou(e[0][0],e[0][1]):function(n){return n===t||Tr(n,t,e)}}function Mr(t,e){return xu(t)&&Eu(e)?Ou(Iu(t),e):function(n){var r=So(n,t);return r===i&&r===e?Fo(n,t):zr(e,r,3)}}function Ur(t,e,n,r,u){t!==e&&mr(e,(function(a,o){if(u||(u=new Jn),eo(a))!function(t,e,n,r,u,a,o){var s=$u(t,n),c=$u(e,n),l=o.get(c);if(l)return void er(t,n,l);var f=a?a(s,c,n+"",t,e,o):i,p=f===i;if(p){var h=Za(c),d=!h&&Va(c),v=!h&&!d&&lo(c);f=c,h||d||v?Za(s)?f=s:Ka(s)?f=$i(s):d?(p=!1,f=Ai(c,!0)):v?(p=!1,f=Oi(c,!0)):f=[]:uo(c)||qa(c)?(f=s,qa(s)?f=mo(s):eo(s)&&!Xa(s)||(f=_u(c))):p=!1}p&&(o.set(c,f),u(f,c,r,a,o),o.delete(c));er(t,n,f)}(t,e,o,n,Ur,r,u);else{var s=r?r($u(t,o),a,o+"",t,e,u):i;s===i&&(s=a),er(t,o,s)}}),To)}function qr(t,e){var n=t.length;if(n)return mu(e+=e<0?n:0,n)?t[e]:i}function Zr(t,e,n){e=e.length?ze(e,(function(t){return Za(t)?function(e){return Ar(e,1===t.length?t[0]:t)}:t})):[us];var r=-1;return e=ze(e,Je(cu())),function(t,e){var n=t.length;for(t.sort(e);n--;)t[n]=t[n].value;return t}(Wr(t,(function(t,n,i){return{criteria:ze(e,(function(e){return e(t)})),index:++r,value:t}})),(function(t,e){return function(t,e,n){var r=-1,i=t.criteria,u=e.criteria,a=i.length,o=n.length;for(;++r<a;){var s=ji(i[r],u[r]);if(s)return r>=o?s:s*("desc"==n[r]?-1:1)}return t.index-e.index}(t,e,n)}))}function Hr(t,e,n){for(var r=-1,i=e.length,u={};++r<i;){var a=e[r],o=Ar(t,a);n(o,a)&&ti(u,bi(a,t),o)}return u}function Gr(t,e,n,r){var i=r?Me:Be,u=-1,a=e.length,o=t;for(t===e&&(e=$i(e)),n&&(o=ze(t,Je(n)));++u<a;)for(var s=0,c=e[u],l=n?n(c):c;(s=i(o,l,s,r))>-1;)o!==t&&Yt.call(o,s,1),Yt.call(t,s,1);return t}function Kr(t,e){for(var n=t?e.length:0,r=n-1;n--;){var i=e[n];if(n==r||i!==u){var u=i;mu(i)?Yt.call(t,i,1):pi(t,i)}}return t}function Vr(t,e){return t+ye(kn()*(e-t+1))}function Jr(t,e){var n="";if(!t||e<1||e>d)return n;do{e%2&&(n+=t),(e=ye(e/2))&&(t+=t)}while(e);return n}function Yr(t,e){return zu(ju(t,e,us),t+"")}function Xr(t){return Xn(Mo(t))}function Qr(t,e){var n=Mo(t);return Lu(n,sr(e,0,n.length))}function ti(t,e,n,r){if(!eo(t))return t;for(var u=-1,a=(e=bi(e,t)).length,o=a-1,s=t;null!=s&&++u<a;){var c=Iu(e[u]),l=n;if("__proto__"===c||"constructor"===c||"prototype"===c)return t;if(u!=o){var f=s[c];(l=r?r(f,c,s):i)===i&&(l=eo(f)?f:mu(e[u+1])?[]:{})}nr(s,c,l),s=s[c]}return t}var ei=Cn?function(t,e){return Cn.set(t,e),t}:us,ni=fe?function(t,e){return fe(t,"toString",{configurable:!0,enumerable:!1,value:ns(e),writable:!0})}:us;function ri(t){return Lu(Mo(t))}function ii(t,e,n){var i=-1,u=t.length;e<0&&(e=-e>u?0:u+e),(n=n>u?u:n)<0&&(n+=u),u=e>n?0:n-e>>>0,e>>>=0;for(var a=r(u);++i<u;)a[i]=t[i+e];return a}function ui(t,e){var n;return hr(t,(function(t,r,i){return!(n=e(t,r,i))})),!!n}function ai(t,e,n){var r=0,i=null==t?r:t.length;if("number"==typeof e&&e==e&&i<=2147483647){for(;r<i;){var u=r+i>>>1,a=t[u];null!==a&&!co(a)&&(n?a<=e:a<e)?r=u+1:i=u}return i}return oi(t,e,us,n)}function oi(t,e,n,r){var u=0,a=null==t?0:t.length;if(0===a)return 0;for(var o=(e=n(e))!=e,s=null===e,c=co(e),l=e===i;u<a;){var f=ye((u+a)/2),p=n(t[f]),h=p!==i,d=null===p,v=p==p,g=co(p);if(o)var _=r||v;else _=l?v&&(r||h):s?v&&h&&(r||!d):c?v&&h&&!d&&(r||!g):!d&&!g&&(r?p<=e:p<e);_?u=f+1:a=f}return bn(a,4294967294)}function si(t,e){for(var n=-1,r=t.length,i=0,u=[];++n<r;){var a=t[n],o=e?e(a):a;if(!n||!Ba(o,s)){var s=o;u[i++]=0===a?0:a}}return u}function ci(t){return"number"==typeof t?t:co(t)?v:+t}function li(t){if("string"==typeof t)return t;if(Za(t))return ze(t,li)+"";if(co(t))return Wn?Wn.call(t):"";var e=t+"";return"0"==e&&1/t==-1/0?"-0":e}function fi(t,e,n){var r=-1,i=Ce,u=t.length,a=!0,o=[],s=o;if(n)a=!1,i=Pe;else if(u>=200){var c=e?null:Ji(t);if(c)return ln(c);a=!1,i=Xe,s=new Vn}else s=e?[]:o;t:for(;++r<u;){var l=t[r],f=e?e(l):l;if(l=n||0!==l?l:0,a&&f==f){for(var p=s.length;p--;)if(s[p]===f)continue t;e&&s.push(f),o.push(l)}else i(s,f,n)||(s!==o&&s.push(f),o.push(l))}return o}function pi(t,e){return null==(t=Su(t,e=bi(e,t)))||delete t[Iu(Yu(e))]}function hi(t,e,n,r){return ti(t,e,n(Ar(t,e)),r)}function di(t,e,n,r){for(var i=t.length,u=r?i:-1;(r?u--:++u<i)&&e(t[u],u,t););return n?ii(t,r?0:u,r?u+1:i):ii(t,r?u+1:0,r?i:u)}function vi(t,e){var n=t;return n instanceof Zn&&(n=n.value()),Re(e,(function(t,e){return e.func.apply(e.thisArg,Te([t],e.args))}),n)}function gi(t,e,n){var i=t.length;if(i<2)return i?fi(t[0]):[];for(var u=-1,a=r(i);++u<i;)for(var o=t[u],s=-1;++s<i;)s!=u&&(a[u]=pr(a[u]||o,t[s],e,n));return fi(yr(a,1),e,n)}function _i(t,e,n){for(var r=-1,u=t.length,a=e.length,o={};++r<u;){var s=r<a?e[r]:i;n(o,t[r],s)}return o}function yi(t){return Ka(t)?t:[]}function mi(t){return"function"==typeof t?t:us}function bi(t,e){return Za(t)?t:xu(t,e)?[t]:Du(bo(t))}var xi=Yr;function wi(t,e,n){var r=t.length;return n=n===i?r:n,!e&&n>=r?t:ii(t,e,n)}var ki=pe||function(t){return he.clearTimeout(t)};function Ai(t,e){if(e)return t.slice();var n=t.length,r=Gt?Gt(n):new t.constructor(n);return t.copy(r),r}function Ei(t){var e=new t.constructor(t.byteLength);return new Ht(e).set(new Ht(t)),e}function Oi(t,e){var n=e?Ei(t.buffer):t.buffer;return new t.constructor(n,t.byteOffset,t.length)}function ji(t,e){if(t!==e){var n=t!==i,r=null===t,u=t==t,a=co(t),o=e!==i,s=null===e,c=e==e,l=co(e);if(!s&&!l&&!a&&t>e||a&&o&&c&&!s&&!l||r&&o&&c||!n&&c||!u)return 1;if(!r&&!a&&!l&&t<e||l&&n&&u&&!r&&!a||s&&n&&u||!o&&u||!c)return-1}return 0}function Si(t,e,n,i){for(var u=-1,a=t.length,o=n.length,s=-1,c=e.length,l=mn(a-o,0),f=r(c+l),p=!i;++s<c;)f[s]=e[s];for(;++u<o;)(p||u<a)&&(f[n[u]]=t[u]);for(;l--;)f[s++]=t[u++];return f}function Fi(t,e,n,i){for(var u=-1,a=t.length,o=-1,s=n.length,c=-1,l=e.length,f=mn(a-s,0),p=r(f+l),h=!i;++u<f;)p[u]=t[u];for(var d=u;++c<l;)p[d+c]=e[c];for(;++o<s;)(h||u<a)&&(p[d+n[o]]=t[u++]);return p}function $i(t,e){var n=-1,i=t.length;for(e||(e=r(i));++n<i;)e[n]=t[n];return e}function Ci(t,e,n,r){var u=!n;n||(n={});for(var a=-1,o=e.length;++a<o;){var s=e[a],c=r?r(n[s],t[s],s,n,t):i;c===i&&(c=t[s]),u?ar(n,s,c):nr(n,s,c)}return n}function Pi(t,e){return function(n,r){var i=Za(n)?Oe:ir,u=e?e():{};return i(n,t,cu(r,2),u)}}function zi(t){return Yr((function(e,n){var r=-1,u=n.length,a=u>1?n[u-1]:i,o=u>2?n[2]:i;for(a=t.length>3&&"function"==typeof a?(u--,a):i,o&&bu(n[0],n[1],o)&&(a=u<3?i:a,u=1),e=St(e);++r<u;){var s=n[r];s&&t(e,s,r,a)}return e}))}function Ti(t,e){return function(n,r){if(null==n)return n;if(!Ga(n))return t(n,r);for(var i=n.length,u=e?i:-1,a=St(n);(e?u--:++u<i)&&!1!==r(a[u],u,a););return n}}function Ri(t){return function(e,n,r){for(var i=-1,u=St(e),a=r(e),o=a.length;o--;){var s=a[t?o:++i];if(!1===n(u[s],s,u))break}return e}}function Li(t){return function(e){var n=an(e=bo(e))?hn(e):i,r=n?n[0]:e.charAt(0),u=n?wi(n,1).join(""):e.slice(1);return r[t]()+u}}function Di(t){return function(e){return Re(Qo(Zo(e).replace(Xt,"")),t,"")}}function Ii(t){return function(){var e=arguments;switch(e.length){case 0:return new t;case 1:return new t(e[0]);case 2:return new t(e[0],e[1]);case 3:return new t(e[0],e[1],e[2]);case 4:return new t(e[0],e[1],e[2],e[3]);case 5:return new t(e[0],e[1],e[2],e[3],e[4]);case 6:return new t(e[0],e[1],e[2],e[3],e[4],e[5]);case 7:return new t(e[0],e[1],e[2],e[3],e[4],e[5],e[6])}var n=Mn(t.prototype),r=t.apply(n,e);return eo(r)?r:n}}function Ni(t){return function(e,n,r){var u=St(e);if(!Ga(e)){var a=cu(n,3);e=zo(e),n=function(t){return a(u[t],t,u)}}var o=t(e,n,r);return o>-1?u[a?e[o]:o]:i}}function Wi(t){return ru((function(e){var n=e.length,r=n,a=qn.prototype.thru;for(t&&e.reverse();r--;){var o=e[r];if("function"!=typeof o)throw new Ct(u);if(a&&!s&&"wrapper"==ou(o))var s=new qn([],!0)}for(r=s?r:n;++r<n;){var c=ou(o=e[r]),l="wrapper"==c?au(o):i;s=l&&wu(l[0])&&424==l[1]&&!l[4].length&&1==l[9]?s[ou(l[0])].apply(s,l[3]):1==o.length&&wu(o)?s[c]():s.thru(o)}return function(){var t=arguments,r=t[0];if(s&&1==t.length&&Za(r))return s.plant(r).value();for(var i=0,u=n?e[i].apply(this,t):r;++i<n;)u=e[i].call(this,u);return u}}))}function Bi(t,e,n,u,a,o,s,c,l,p){var h=e&f,d=1&e,v=2&e,g=24&e,_=512&e,y=v?i:Ii(t);return function i(){for(var f=arguments.length,m=r(f),b=f;b--;)m[b]=arguments[b];if(g)var x=su(i),w=en(m,x);if(u&&(m=Si(m,u,a,g)),o&&(m=Fi(m,o,s,g)),f-=w,g&&f<p){var k=cn(m,x);return Ki(t,e,Bi,i.placeholder,n,m,k,c,l,p-f)}var A=d?n:this,E=v?A[t]:t;return f=m.length,c?m=Fu(m,c):_&&f>1&&m.reverse(),h&&l<f&&(m.length=l),this&&this!==he&&this instanceof i&&(E=y||Ii(E)),E.apply(A,m)}}function Mi(t,e){return function(n,r){return function(t,e,n,r){return xr(t,(function(t,i,u){e(r,n(t),i,u)})),r}(n,t,e(r),{})}}function Ui(t,e){return function(n,r){var u;if(n===i&&r===i)return e;if(n!==i&&(u=n),r!==i){if(u===i)return r;"string"==typeof n||"string"==typeof r?(n=li(n),r=li(r)):(n=ci(n),r=ci(r)),u=t(n,r)}return u}}function qi(t){return ru((function(e){return e=ze(e,Je(cu())),Yr((function(n){var r=this;return t(e,(function(t){return Ee(t,r,n)}))}))}))}function Zi(t,e){var n=(e=e===i?" ":li(e)).length;if(n<2)return n?Jr(e,t):e;var r=Jr(e,_e(t/pn(e)));return an(e)?wi(hn(r),0,t).join(""):r.slice(0,t)}function Hi(t){return function(e,n,u){return u&&"number"!=typeof u&&bu(e,n,u)&&(n=u=i),e=vo(e),n===i?(n=e,e=0):n=vo(n),function(t,e,n,i){for(var u=-1,a=mn(_e((e-t)/(n||1)),0),o=r(a);a--;)o[i?a:++u]=t,t+=n;return o}(e,n,u=u===i?e<n?1:-1:vo(u),t)}}function Gi(t){return function(e,n){return"string"==typeof e&&"string"==typeof n||(e=yo(e),n=yo(n)),t(e,n)}}function Ki(t,e,n,r,u,a,o,s,f,p){var h=8&e;e|=h?c:l,4&(e&=~(h?l:c))||(e&=-4);var d=[t,e,u,h?a:i,h?o:i,h?i:a,h?i:o,s,f,p],v=n.apply(i,d);return wu(t)&&Cu(v,d),v.placeholder=r,Tu(v,t,e)}function Vi(t){var e=jt[t];return function(t,n){if(t=yo(t),(n=null==n?0:bn(go(n),292))&&gn(t)){var r=(bo(t)+"e").split("e");return+((r=(bo(e(r[0]+"e"+(+r[1]+n)))+"e").split("e"))[0]+"e"+(+r[1]-n))}return e(t)}}var Ji=Sn&&1/ln(new Sn([,-0]))[1]==h?function(t){return new Sn(t)}:ls;function Yi(t){return function(e){var n=vu(e);return n==E?on(e):n==$?fn(e):function(t,e){return ze(e,(function(e){return[e,t[e]]}))}(e,t(e))}}function Xi(t,e,n,a,h,d,v,g){var _=2&e;if(!_&&"function"!=typeof t)throw new Ct(u);var y=a?a.length:0;if(y||(e&=-97,a=h=i),v=v===i?v:mn(go(v),0),g=g===i?g:go(g),y-=h?h.length:0,e&l){var m=a,b=h;a=h=i}var x=_?i:au(t),w=[t,e,n,a,h,m,b,d,v,g];if(x&&function(t,e){var n=t[1],r=e[1],i=n|r,u=i<131,a=r==f&&8==n||r==f&&n==p&&t[7].length<=e[8]||384==r&&e[7].length<=e[8]&&8==n;if(!u&&!a)return t;1&r&&(t[2]=e[2],i|=1&n?0:4);var s=e[3];if(s){var c=t[3];t[3]=c?Si(c,s,e[4]):s,t[4]=c?cn(t[3],o):e[4]}(s=e[5])&&(c=t[5],t[5]=c?Fi(c,s,e[6]):s,t[6]=c?cn(t[5],o):e[6]);(s=e[7])&&(t[7]=s);r&f&&(t[8]=null==t[8]?e[8]:bn(t[8],e[8]));null==t[9]&&(t[9]=e[9]);t[0]=e[0],t[1]=i}(w,x),t=w[0],e=w[1],n=w[2],a=w[3],h=w[4],!(g=w[9]=w[9]===i?_?0:t.length:mn(w[9]-y,0))&&24&e&&(e&=-25),e&&1!=e)k=8==e||e==s?function(t,e,n){var u=Ii(t);return function a(){for(var o=arguments.length,s=r(o),c=o,l=su(a);c--;)s[c]=arguments[c];var f=o<3&&s[0]!==l&&s[o-1]!==l?[]:cn(s,l);return(o-=f.length)<n?Ki(t,e,Bi,a.placeholder,i,s,f,i,i,n-o):Ee(this&&this!==he&&this instanceof a?u:t,this,s)}}(t,e,g):e!=c&&33!=e||h.length?Bi.apply(i,w):function(t,e,n,i){var u=1&e,a=Ii(t);return function e(){for(var o=-1,s=arguments.length,c=-1,l=i.length,f=r(l+s),p=this&&this!==he&&this instanceof e?a:t;++c<l;)f[c]=i[c];for(;s--;)f[c++]=arguments[++o];return Ee(p,u?n:this,f)}}(t,e,n,a);else var k=function(t,e,n){var r=1&e,i=Ii(t);return function e(){return(this&&this!==he&&this instanceof e?i:t).apply(r?n:this,arguments)}}(t,e,n);return Tu((x?ei:Cu)(k,w),t,e)}function Qi(t,e,n,r){return t===i||Ba(t,Tt[n])&&!Dt.call(r,n)?e:t}function tu(t,e,n,r,u,a){return eo(t)&&eo(e)&&(a.set(e,t),Ur(t,e,i,tu,a),a.delete(e)),t}function eu(t){return uo(t)?i:t}function nu(t,e,n,r,u,a){var o=1&n,s=t.length,c=e.length;if(s!=c&&!(o&&c>s))return!1;var l=a.get(t),f=a.get(e);if(l&&f)return l==e&&f==t;var p=-1,h=!0,d=2&n?new Vn:i;for(a.set(t,e),a.set(e,t);++p<s;){var v=t[p],g=e[p];if(r)var _=o?r(g,v,p,e,t,a):r(v,g,p,t,e,a);if(_!==i){if(_)continue;h=!1;break}if(d){if(!De(e,(function(t,e){if(!Xe(d,e)&&(v===t||u(v,t,n,r,a)))return d.push(e)}))){h=!1;break}}else if(v!==g&&!u(v,g,n,r,a)){h=!1;break}}return a.delete(t),a.delete(e),h}function ru(t){return zu(ju(t,i,Hu),t+"")}function iu(t){return Er(t,zo,hu)}function uu(t){return Er(t,To,du)}var au=Cn?function(t){return Cn.get(t)}:ls;function ou(t){for(var e=t.name+"",n=Pn[e],r=Dt.call(Pn,e)?n.length:0;r--;){var i=n[r],u=i.func;if(null==u||u==t)return i.name}return e}function su(t){return(Dt.call(Bn,"placeholder")?Bn:t).placeholder}function cu(){var t=Bn.iteratee||as;return t=t===as?Lr:t,arguments.length?t(arguments[0],arguments[1]):t}function lu(t,e){var n,r,i=t.__data__;return("string"==(r=typeof(n=e))||"number"==r||"symbol"==r||"boolean"==r?"__proto__"!==n:null===n)?i["string"==typeof e?"string":"hash"]:i.map}function fu(t){for(var e=zo(t),n=e.length;n--;){var r=e[n],i=t[r];e[n]=[r,i,Eu(i)]}return e}function pu(t,e){var n=function(t,e){return null==t?i:t[e]}(t,e);return Rr(n)?n:i}var hu=Ie?function(t){return null==t?[]:(t=St(t),$e(Ie(t),(function(e){return Jt.call(t,e)})))}:_s,du=Ie?function(t){for(var e=[];t;)Te(e,hu(t)),t=Kt(t);return e}:_s,vu=Or;function gu(t,e,n){for(var r=-1,i=(e=bi(e,t)).length,u=!1;++r<i;){var a=Iu(e[r]);if(!(u=null!=t&&n(t,a)))break;t=t[a]}return u||++r!=i?u:!!(i=null==t?0:t.length)&&to(i)&&mu(a,i)&&(Za(t)||qa(t))}function _u(t){return"function"!=typeof t.constructor||Au(t)?{}:Mn(Kt(t))}function yu(t){return Za(t)||qa(t)||!!(te&&t&&t[te])}function mu(t,e){var n=typeof t;return!!(e=null==e?d:e)&&("number"==n||"symbol"!=n&&bt.test(t))&&t>-1&&t%1==0&&t<e}function bu(t,e,n){if(!eo(n))return!1;var r=typeof e;return!!("number"==r?Ga(n)&&mu(e,n.length):"string"==r&&e in n)&&Ba(n[e],t)}function xu(t,e){if(Za(t))return!1;var n=typeof t;return!("number"!=n&&"symbol"!=n&&"boolean"!=n&&null!=t&&!co(t))||(nt.test(t)||!et.test(t)||null!=e&&t in St(e))}function wu(t){var e=ou(t),n=Bn[e];if("function"!=typeof n||!(e in Zn.prototype))return!1;if(t===n)return!0;var r=au(n);return!!r&&t===r[0]}(En&&vu(new En(new ArrayBuffer(1)))!=R||On&&vu(new On)!=E||jn&&vu(jn.resolve())!=S||Sn&&vu(new Sn)!=$||Fn&&vu(new Fn)!=z)&&(vu=function(t){var e=Or(t),n=e==j?t.constructor:i,r=n?Nu(n):"";if(r)switch(r){case zn:return R;case Tn:return E;case Rn:return S;case Ln:return $;case Dn:return z}return e});var ku=Rt?Xa:ys;function Au(t){var e=t&&t.constructor;return t===("function"==typeof e&&e.prototype||Tt)}function Eu(t){return t==t&&!eo(t)}function Ou(t,e){return function(n){return null!=n&&(n[t]===e&&(e!==i||t in St(n)))}}function ju(t,e,n){return e=mn(e===i?t.length-1:e,0),function(){for(var i=arguments,u=-1,a=mn(i.length-e,0),o=r(a);++u<a;)o[u]=i[e+u];u=-1;for(var s=r(e+1);++u<e;)s[u]=i[u];return s[e]=n(o),Ee(t,this,s)}}function Su(t,e){return e.length<2?t:Ar(t,ii(e,0,-1))}function Fu(t,e){for(var n=t.length,r=bn(e.length,n),u=$i(t);r--;){var a=e[r];t[r]=mu(a,n)?u[a]:i}return t}function $u(t,e){if(("constructor"!==e||"function"!=typeof t[e])&&"__proto__"!=e)return t[e]}var Cu=Ru(ei),Pu=ve||function(t,e){return he.setTimeout(t,e)},zu=Ru(ni);function Tu(t,e,n){var r=e+"";return zu(t,function(t,e){var n=e.length;if(!n)return t;var r=n-1;return e[r]=(n>1?"& ":"")+e[r],e=e.join(n>2?", ":" "),t.replace(ct,"{\n/* [wrapped with "+e+"] */\n")}(r,function(t,e){return je(_,(function(n){var r="_."+n[0];e&n[1]&&!Ce(t,r)&&t.push(r)})),t.sort()}(function(t){var e=t.match(lt);return e?e[1].split(ft):[]}(r),n)))}function Ru(t){var e=0,n=0;return function(){var r=xn(),u=16-(r-n);if(n=r,u>0){if(++e>=800)return arguments[0]}else e=0;return t.apply(i,arguments)}}function Lu(t,e){var n=-1,r=t.length,u=r-1;for(e=e===i?r:e;++n<e;){var a=Vr(n,u),o=t[a];t[a]=t[n],t[n]=o}return t.length=e,t}var Du=function(t){var e=Ra(t,(function(t){return 500===n.size&&n.clear(),t})),n=e.cache;return e}((function(t){var e=[];return 46===t.charCodeAt(0)&&e.push(""),t.replace(rt,(function(t,n,r,i){e.push(r?i.replace(ht,"$1"):n||t)})),e}));function Iu(t){if("string"==typeof t||co(t))return t;var e=t+"";return"0"==e&&1/t==-1/0?"-0":e}function Nu(t){if(null!=t){try{return Lt.call(t)}catch(t){}try{return t+""}catch(t){}}return""}function Wu(t){if(t instanceof Zn)return t.clone();var e=new qn(t.__wrapped__,t.__chain__);return e.__actions__=$i(t.__actions__),e.__index__=t.__index__,e.__values__=t.__values__,e}var Bu=Yr((function(t,e){return Ka(t)?pr(t,yr(e,1,Ka,!0)):[]})),Mu=Yr((function(t,e){var n=Yu(e);return Ka(n)&&(n=i),Ka(t)?pr(t,yr(e,1,Ka,!0),cu(n,2)):[]})),Uu=Yr((function(t,e){var n=Yu(e);return Ka(n)&&(n=i),Ka(t)?pr(t,yr(e,1,Ka,!0),i,n):[]}));function qu(t,e,n){var r=null==t?0:t.length;if(!r)return-1;var i=null==n?0:go(n);return i<0&&(i=mn(r+i,0)),We(t,cu(e,3),i)}function Zu(t,e,n){var r=null==t?0:t.length;if(!r)return-1;var u=r-1;return n!==i&&(u=go(n),u=n<0?mn(r+u,0):bn(u,r-1)),We(t,cu(e,3),u,!0)}function Hu(t){return(null==t?0:t.length)?yr(t,1):[]}function Gu(t){return t&&t.length?t[0]:i}var Ku=Yr((function(t){var e=ze(t,yi);return e.length&&e[0]===t[0]?$r(e):[]})),Vu=Yr((function(t){var e=Yu(t),n=ze(t,yi);return e===Yu(n)?e=i:n.pop(),n.length&&n[0]===t[0]?$r(n,cu(e,2)):[]})),Ju=Yr((function(t){var e=Yu(t),n=ze(t,yi);return(e="function"==typeof e?e:i)&&n.pop(),n.length&&n[0]===t[0]?$r(n,i,e):[]}));function Yu(t){var e=null==t?0:t.length;return e?t[e-1]:i}var Xu=Yr(Qu);function Qu(t,e){return t&&t.length&&e&&e.length?Gr(t,e):t}var ta=ru((function(t,e){var n=null==t?0:t.length,r=or(t,e);return Kr(t,ze(e,(function(t){return mu(t,n)?+t:t})).sort(ji)),r}));function ea(t){return null==t?t:An.call(t)}var na=Yr((function(t){return fi(yr(t,1,Ka,!0))})),ra=Yr((function(t){var e=Yu(t);return Ka(e)&&(e=i),fi(yr(t,1,Ka,!0),cu(e,2))})),ia=Yr((function(t){var e=Yu(t);return e="function"==typeof e?e:i,fi(yr(t,1,Ka,!0),i,e)}));function ua(t){if(!t||!t.length)return[];var e=0;return t=$e(t,(function(t){if(Ka(t))return e=mn(t.length,e),!0})),Ve(e,(function(e){return ze(t,Ze(e))}))}function aa(t,e){if(!t||!t.length)return[];var n=ua(t);return null==e?n:ze(n,(function(t){return Ee(e,i,t)}))}var oa=Yr((function(t,e){return Ka(t)?pr(t,e):[]})),sa=Yr((function(t){return gi($e(t,Ka))})),ca=Yr((function(t){var e=Yu(t);return Ka(e)&&(e=i),gi($e(t,Ka),cu(e,2))})),la=Yr((function(t){var e=Yu(t);return e="function"==typeof e?e:i,gi($e(t,Ka),i,e)})),fa=Yr(ua);var pa=Yr((function(t){var e=t.length,n=e>1?t[e-1]:i;return n="function"==typeof n?(t.pop(),n):i,aa(t,n)}));function ha(t){var e=Bn(t);return e.__chain__=!0,e}function da(t,e){return e(t)}var va=ru((function(t){var e=t.length,n=e?t[0]:0,r=this.__wrapped__,u=function(e){return or(e,t)};return!(e>1||this.__actions__.length)&&r instanceof Zn&&mu(n)?((r=r.slice(n,+n+(e?1:0))).__actions__.push({func:da,args:[u],thisArg:i}),new qn(r,this.__chain__).thru((function(t){return e&&!t.length&&t.push(i),t}))):this.thru(u)}));var ga=Pi((function(t,e,n){Dt.call(t,n)?++t[n]:ar(t,n,1)}));var _a=Ni(qu),ya=Ni(Zu);function ma(t,e){return(Za(t)?je:hr)(t,cu(e,3))}function ba(t,e){return(Za(t)?Se:dr)(t,cu(e,3))}var xa=Pi((function(t,e,n){Dt.call(t,n)?t[n].push(e):ar(t,n,[e])}));var wa=Yr((function(t,e,n){var i=-1,u="function"==typeof e,a=Ga(t)?r(t.length):[];return hr(t,(function(t){a[++i]=u?Ee(e,t,n):Cr(t,e,n)})),a})),ka=Pi((function(t,e,n){ar(t,n,e)}));function Aa(t,e){return(Za(t)?ze:Wr)(t,cu(e,3))}var Ea=Pi((function(t,e,n){t[n?0:1].push(e)}),(function(){return[[],[]]}));var Oa=Yr((function(t,e){if(null==t)return[];var n=e.length;return n>1&&bu(t,e[0],e[1])?e=[]:n>2&&bu(e[0],e[1],e[2])&&(e=[e[0]]),Zr(t,yr(e,1),[])})),ja=de||function(){return he.Date.now()};function Sa(t,e,n){return e=n?i:e,e=t&&null==e?t.length:e,Xi(t,f,i,i,i,i,e)}function Fa(t,e){var n;if("function"!=typeof e)throw new Ct(u);return t=go(t),function(){return--t>0&&(n=e.apply(this,arguments)),t<=1&&(e=i),n}}var $a=Yr((function(t,e,n){var r=1;if(n.length){var i=cn(n,su($a));r|=c}return Xi(t,r,e,n,i)})),Ca=Yr((function(t,e,n){var r=3;if(n.length){var i=cn(n,su(Ca));r|=c}return Xi(e,r,t,n,i)}));function Pa(t,e,n){var r,a,o,s,c,l,f=0,p=!1,h=!1,d=!0;if("function"!=typeof t)throw new Ct(u);function v(e){var n=r,u=a;return r=a=i,f=e,s=t.apply(u,n)}function g(t){return f=t,c=Pu(y,e),p?v(t):s}function _(t){var n=t-l;return l===i||n>=e||n<0||h&&t-f>=o}function y(){var t=ja();if(_(t))return m(t);c=Pu(y,function(t){var n=e-(t-l);return h?bn(n,o-(t-f)):n}(t))}function m(t){return c=i,d&&r?v(t):(r=a=i,s)}function b(){var t=ja(),n=_(t);if(r=arguments,a=this,l=t,n){if(c===i)return g(l);if(h)return ki(c),c=Pu(y,e),v(l)}return c===i&&(c=Pu(y,e)),s}return e=yo(e)||0,eo(n)&&(p=!!n.leading,o=(h="maxWait"in n)?mn(yo(n.maxWait)||0,e):o,d="trailing"in n?!!n.trailing:d),b.cancel=function(){c!==i&&ki(c),f=0,r=l=a=c=i},b.flush=function(){return c===i?s:m(ja())},b}var za=Yr((function(t,e){return fr(t,1,e)})),Ta=Yr((function(t,e,n){return fr(t,yo(e)||0,n)}));function Ra(t,e){if("function"!=typeof t||null!=e&&"function"!=typeof e)throw new Ct(u);var n=function(){var r=arguments,i=e?e.apply(this,r):r[0],u=n.cache;if(u.has(i))return u.get(i);var a=t.apply(this,r);return n.cache=u.set(i,a)||u,a};return n.cache=new(Ra.Cache||Kn),n}function La(t){if("function"!=typeof t)throw new Ct(u);return function(){var e=arguments;switch(e.length){case 0:return!t.call(this);case 1:return!t.call(this,e[0]);case 2:return!t.call(this,e[0],e[1]);case 3:return!t.call(this,e[0],e[1],e[2])}return!t.apply(this,e)}}Ra.Cache=Kn;var Da=xi((function(t,e){var n=(e=1==e.length&&Za(e[0])?ze(e[0],Je(cu())):ze(yr(e,1),Je(cu()))).length;return Yr((function(r){for(var i=-1,u=bn(r.length,n);++i<u;)r[i]=e[i].call(this,r[i]);return Ee(t,this,r)}))})),Ia=Yr((function(t,e){var n=cn(e,su(Ia));return Xi(t,c,i,e,n)})),Na=Yr((function(t,e){var n=cn(e,su(Na));return Xi(t,l,i,e,n)})),Wa=ru((function(t,e){return Xi(t,p,i,i,i,e)}));function Ba(t,e){return t===e||t!=t&&e!=e}var Ma=Gi(jr),Ua=Gi((function(t,e){return t>=e})),qa=Pr(function(){return arguments}())?Pr:function(t){return no(t)&&Dt.call(t,"callee")&&!Jt.call(t,"callee")},Za=r.isArray,Ha=me?Je(me):function(t){return no(t)&&Or(t)==T};function Ga(t){return null!=t&&to(t.length)&&!Xa(t)}function Ka(t){return no(t)&&Ga(t)}var Va=He||ys,Ja=be?Je(be):function(t){return no(t)&&Or(t)==x};function Ya(t){if(!no(t))return!1;var e=Or(t);return e==w||"[object DOMException]"==e||"string"==typeof t.message&&"string"==typeof t.name&&!uo(t)}function Xa(t){if(!eo(t))return!1;var e=Or(t);return e==k||e==A||"[object AsyncFunction]"==e||"[object Proxy]"==e}function Qa(t){return"number"==typeof t&&t==go(t)}function to(t){return"number"==typeof t&&t>-1&&t%1==0&&t<=d}function eo(t){var e=typeof t;return null!=t&&("object"==e||"function"==e)}function no(t){return null!=t&&"object"==typeof t}var ro=xe?Je(xe):function(t){return no(t)&&vu(t)==E};function io(t){return"number"==typeof t||no(t)&&Or(t)==O}function uo(t){if(!no(t)||Or(t)!=j)return!1;var e=Kt(t);if(null===e)return!0;var n=Dt.call(e,"constructor")&&e.constructor;return"function"==typeof n&&n instanceof n&&Lt.call(n)==Bt}var ao=we?Je(we):function(t){return no(t)&&Or(t)==F};var oo=ke?Je(ke):function(t){return no(t)&&vu(t)==$};function so(t){return"string"==typeof t||!Za(t)&&no(t)&&Or(t)==C}function co(t){return"symbol"==typeof t||no(t)&&Or(t)==P}var lo=Ae?Je(Ae):function(t){return no(t)&&to(t.length)&&!!ae[Or(t)]};var fo=Gi(Nr),po=Gi((function(t,e){return t<=e}));function ho(t){if(!t)return[];if(Ga(t))return so(t)?hn(t):$i(t);if(ne&&t[ne])return function(t){for(var e,n=[];!(e=t.next()).done;)n.push(e.value);return n}(t[ne]());var e=vu(t);return(e==E?on:e==$?ln:Mo)(t)}function vo(t){return t?(t=yo(t))===h||t===-1/0?17976931348623157e292*(t<0?-1:1):t==t?t:0:0===t?t:0}function go(t){var e=vo(t),n=e%1;return e==e?n?e-n:e:0}function _o(t){return t?sr(go(t),0,g):0}function yo(t){if("number"==typeof t)return t;if(co(t))return v;if(eo(t)){var e="function"==typeof t.valueOf?t.valueOf():t;t=eo(e)?e+"":e}if("string"!=typeof t)return 0===t?t:+t;t=t.replace(at,"");var n=_t.test(t);return n||mt.test(t)?le(t.slice(2),n?2:8):gt.test(t)?v:+t}function mo(t){return Ci(t,To(t))}function bo(t){return null==t?"":li(t)}var xo=zi((function(t,e){if(Au(e)||Ga(e))Ci(e,zo(e),t);else for(var n in e)Dt.call(e,n)&&nr(t,n,e[n])})),wo=zi((function(t,e){Ci(e,To(e),t)})),ko=zi((function(t,e,n,r){Ci(e,To(e),t,r)})),Ao=zi((function(t,e,n,r){Ci(e,zo(e),t,r)})),Eo=ru(or);var Oo=Yr((function(t,e){t=St(t);var n=-1,r=e.length,u=r>2?e[2]:i;for(u&&bu(e[0],e[1],u)&&(r=1);++n<r;)for(var a=e[n],o=To(a),s=-1,c=o.length;++s<c;){var l=o[s],f=t[l];(f===i||Ba(f,Tt[l])&&!Dt.call(t,l))&&(t[l]=a[l])}return t})),jo=Yr((function(t){return t.push(i,tu),Ee(Lo,i,t)}));function So(t,e,n){var r=null==t?i:Ar(t,e);return r===i?n:r}function Fo(t,e){return null!=t&&gu(t,e,Fr)}var $o=Mi((function(t,e,n){null!=e&&"function"!=typeof e.toString&&(e=Wt.call(e)),t[e]=n}),ns(us)),Co=Mi((function(t,e,n){null!=e&&"function"!=typeof e.toString&&(e=Wt.call(e)),Dt.call(t,e)?t[e].push(n):t[e]=[n]}),cu),Po=Yr(Cr);function zo(t){return Ga(t)?Yn(t):Dr(t)}function To(t){return Ga(t)?Yn(t,!0):Ir(t)}var Ro=zi((function(t,e,n){Ur(t,e,n)})),Lo=zi((function(t,e,n,r){Ur(t,e,n,r)})),Do=ru((function(t,e){var n={};if(null==t)return n;var r=!1;e=ze(e,(function(e){return e=bi(e,t),r||(r=e.length>1),e})),Ci(t,uu(t),n),r&&(n=cr(n,7,eu));for(var i=e.length;i--;)pi(n,e[i]);return n}));var Io=ru((function(t,e){return null==t?{}:function(t,e){return Hr(t,e,(function(e,n){return Fo(t,n)}))}(t,e)}));function No(t,e){if(null==t)return{};var n=ze(uu(t),(function(t){return[t]}));return e=cu(e),Hr(t,n,(function(t,n){return e(t,n[0])}))}var Wo=Yi(zo),Bo=Yi(To);function Mo(t){return null==t?[]:Ye(t,zo(t))}var Uo=Di((function(t,e,n){return e=e.toLowerCase(),t+(n?qo(e):e)}));function qo(t){return Xo(bo(t).toLowerCase())}function Zo(t){return(t=bo(t))&&t.replace(xt,nn).replace(Qt,"")}var Ho=Di((function(t,e,n){return t+(n?"-":"")+e.toLowerCase()})),Go=Di((function(t,e,n){return t+(n?" ":"")+e.toLowerCase()})),Ko=Li("toLowerCase");var Vo=Di((function(t,e,n){return t+(n?"_":"")+e.toLowerCase()}));var Jo=Di((function(t,e,n){return t+(n?" ":"")+Xo(e)}));var Yo=Di((function(t,e,n){return t+(n?" ":"")+e.toUpperCase()})),Xo=Li("toUpperCase");function Qo(t,e,n){return t=bo(t),(e=n?i:e)===i?function(t){return re.test(t)}(t)?function(t){return t.match(ee)||[]}(t):function(t){return t.match(pt)||[]}(t):t.match(e)||[]}var ts=Yr((function(t,e){try{return Ee(t,i,e)}catch(t){return Ya(t)?t:new Et(t)}})),es=ru((function(t,e){return je(e,(function(e){e=Iu(e),ar(t,e,$a(t[e],t))})),t}));function ns(t){return function(){return t}}var rs=Wi(),is=Wi(!0);function us(t){return t}function as(t){return Lr("function"==typeof t?t:cr(t,1))}var os=Yr((function(t,e){return function(n){return Cr(n,t,e)}})),ss=Yr((function(t,e){return function(n){return Cr(t,n,e)}}));function cs(t,e,n){var r=zo(e),i=kr(e,r);null!=n||eo(e)&&(i.length||!r.length)||(n=e,e=t,t=this,i=kr(e,zo(e)));var u=!(eo(n)&&"chain"in n&&!n.chain),a=Xa(t);return je(i,(function(n){var r=e[n];t[n]=r,a&&(t.prototype[n]=function(){var e=this.__chain__;if(u||e){var n=t(this.__wrapped__),i=n.__actions__=$i(this.__actions__);return i.push({func:r,args:arguments,thisArg:t}),n.__chain__=e,n}return r.apply(t,Te([this.value()],arguments))})})),t}function ls(){}var fs=qi(ze),ps=qi(Fe),hs=qi(De);function ds(t){return xu(t)?Ze(Iu(t)):function(t){return function(e){return Ar(e,t)}}(t)}var vs=Hi(),gs=Hi(!0);function _s(){return[]}function ys(){return!1}var ms=Ui((function(t,e){return t+e}),0),bs=Vi("ceil"),xs=Ui((function(t,e){return t/e}),1),ws=Vi("floor");var ks,As=Ui((function(t,e){return t*e}),1),Es=Vi("round"),Os=Ui((function(t,e){return t-e}),0);return Bn.after=function(t,e){if("function"!=typeof e)throw new Ct(u);return t=go(t),function(){if(--t<1)return e.apply(this,arguments)}},Bn.ary=Sa,Bn.assign=xo,Bn.assignIn=wo,Bn.assignInWith=ko,Bn.assignWith=Ao,Bn.at=Eo,Bn.before=Fa,Bn.bind=$a,Bn.bindAll=es,Bn.bindKey=Ca,Bn.castArray=function(){if(!arguments.length)return[];var t=arguments[0];return Za(t)?t:[t]},Bn.chain=ha,Bn.chunk=function(t,e,n){e=(n?bu(t,e,n):e===i)?1:mn(go(e),0);var u=null==t?0:t.length;if(!u||e<1)return[];for(var a=0,o=0,s=r(_e(u/e));a<u;)s[o++]=ii(t,a,a+=e);return s},Bn.compact=function(t){for(var e=-1,n=null==t?0:t.length,r=0,i=[];++e<n;){var u=t[e];u&&(i[r++]=u)}return i},Bn.concat=function(){var t=arguments.length;if(!t)return[];for(var e=r(t-1),n=arguments[0],i=t;i--;)e[i-1]=arguments[i];return Te(Za(n)?$i(n):[n],yr(e,1))},Bn.cond=function(t){var e=null==t?0:t.length,n=cu();return t=e?ze(t,(function(t){if("function"!=typeof t[1])throw new Ct(u);return[n(t[0]),t[1]]})):[],Yr((function(n){for(var r=-1;++r<e;){var i=t[r];if(Ee(i[0],this,n))return Ee(i[1],this,n)}}))},Bn.conforms=function(t){return function(t){var e=zo(t);return function(n){return lr(n,t,e)}}(cr(t,1))},Bn.constant=ns,Bn.countBy=ga,Bn.create=function(t,e){var n=Mn(t);return null==e?n:ur(n,e)},Bn.curry=function t(e,n,r){var u=Xi(e,8,i,i,i,i,i,n=r?i:n);return u.placeholder=t.placeholder,u},Bn.curryRight=function t(e,n,r){var u=Xi(e,s,i,i,i,i,i,n=r?i:n);return u.placeholder=t.placeholder,u},Bn.debounce=Pa,Bn.defaults=Oo,Bn.defaultsDeep=jo,Bn.defer=za,Bn.delay=Ta,Bn.difference=Bu,Bn.differenceBy=Mu,Bn.differenceWith=Uu,Bn.drop=function(t,e,n){var r=null==t?0:t.length;return r?ii(t,(e=n||e===i?1:go(e))<0?0:e,r):[]},Bn.dropRight=function(t,e,n){var r=null==t?0:t.length;return r?ii(t,0,(e=r-(e=n||e===i?1:go(e)))<0?0:e):[]},Bn.dropRightWhile=function(t,e){return t&&t.length?di(t,cu(e,3),!0,!0):[]},Bn.dropWhile=function(t,e){return t&&t.length?di(t,cu(e,3),!0):[]},Bn.fill=function(t,e,n,r){var u=null==t?0:t.length;return u?(n&&"number"!=typeof n&&bu(t,e,n)&&(n=0,r=u),function(t,e,n,r){var u=t.length;for((n=go(n))<0&&(n=-n>u?0:u+n),(r=r===i||r>u?u:go(r))<0&&(r+=u),r=n>r?0:_o(r);n<r;)t[n++]=e;return t}(t,e,n,r)):[]},Bn.filter=function(t,e){return(Za(t)?$e:_r)(t,cu(e,3))},Bn.flatMap=function(t,e){return yr(Aa(t,e),1)},Bn.flatMapDeep=function(t,e){return yr(Aa(t,e),h)},Bn.flatMapDepth=function(t,e,n){return n=n===i?1:go(n),yr(Aa(t,e),n)},Bn.flatten=Hu,Bn.flattenDeep=function(t){return(null==t?0:t.length)?yr(t,h):[]},Bn.flattenDepth=function(t,e){return(null==t?0:t.length)?yr(t,e=e===i?1:go(e)):[]},Bn.flip=function(t){return Xi(t,512)},Bn.flow=rs,Bn.flowRight=is,Bn.fromPairs=function(t){for(var e=-1,n=null==t?0:t.length,r={};++e<n;){var i=t[e];r[i[0]]=i[1]}return r},Bn.functions=function(t){return null==t?[]:kr(t,zo(t))},Bn.functionsIn=function(t){return null==t?[]:kr(t,To(t))},Bn.groupBy=xa,Bn.initial=function(t){return(null==t?0:t.length)?ii(t,0,-1):[]},Bn.intersection=Ku,Bn.intersectionBy=Vu,Bn.intersectionWith=Ju,Bn.invert=$o,Bn.invertBy=Co,Bn.invokeMap=wa,Bn.iteratee=as,Bn.keyBy=ka,Bn.keys=zo,Bn.keysIn=To,Bn.map=Aa,Bn.mapKeys=function(t,e){var n={};return e=cu(e,3),xr(t,(function(t,r,i){ar(n,e(t,r,i),t)})),n},Bn.mapValues=function(t,e){var n={};return e=cu(e,3),xr(t,(function(t,r,i){ar(n,r,e(t,r,i))})),n},Bn.matches=function(t){return Br(cr(t,1))},Bn.matchesProperty=function(t,e){return Mr(t,cr(e,1))},Bn.memoize=Ra,Bn.merge=Ro,Bn.mergeWith=Lo,Bn.method=os,Bn.methodOf=ss,Bn.mixin=cs,Bn.negate=La,Bn.nthArg=function(t){return t=go(t),Yr((function(e){return qr(e,t)}))},Bn.omit=Do,Bn.omitBy=function(t,e){return No(t,La(cu(e)))},Bn.once=function(t){return Fa(2,t)},Bn.orderBy=function(t,e,n,r){return null==t?[]:(Za(e)||(e=null==e?[]:[e]),Za(n=r?i:n)||(n=null==n?[]:[n]),Zr(t,e,n))},Bn.over=fs,Bn.overArgs=Da,Bn.overEvery=ps,Bn.overSome=hs,Bn.partial=Ia,Bn.partialRight=Na,Bn.partition=Ea,Bn.pick=Io,Bn.pickBy=No,Bn.property=ds,Bn.propertyOf=function(t){return function(e){return null==t?i:Ar(t,e)}},Bn.pull=Xu,Bn.pullAll=Qu,Bn.pullAllBy=function(t,e,n){return t&&t.length&&e&&e.length?Gr(t,e,cu(n,2)):t},Bn.pullAllWith=function(t,e,n){return t&&t.length&&e&&e.length?Gr(t,e,i,n):t},Bn.pullAt=ta,Bn.range=vs,Bn.rangeRight=gs,Bn.rearg=Wa,Bn.reject=function(t,e){return(Za(t)?$e:_r)(t,La(cu(e,3)))},Bn.remove=function(t,e){var n=[];if(!t||!t.length)return n;var r=-1,i=[],u=t.length;for(e=cu(e,3);++r<u;){var a=t[r];e(a,r,t)&&(n.push(a),i.push(r))}return Kr(t,i),n},Bn.rest=function(t,e){if("function"!=typeof t)throw new Ct(u);return Yr(t,e=e===i?e:go(e))},Bn.reverse=ea,Bn.sampleSize=function(t,e,n){return e=(n?bu(t,e,n):e===i)?1:go(e),(Za(t)?Qn:Qr)(t,e)},Bn.set=function(t,e,n){return null==t?t:ti(t,e,n)},Bn.setWith=function(t,e,n,r){return r="function"==typeof r?r:i,null==t?t:ti(t,e,n,r)},Bn.shuffle=function(t){return(Za(t)?tr:ri)(t)},Bn.slice=function(t,e,n){var r=null==t?0:t.length;return r?(n&&"number"!=typeof n&&bu(t,e,n)?(e=0,n=r):(e=null==e?0:go(e),n=n===i?r:go(n)),ii(t,e,n)):[]},Bn.sortBy=Oa,Bn.sortedUniq=function(t){return t&&t.length?si(t):[]},Bn.sortedUniqBy=function(t,e){return t&&t.length?si(t,cu(e,2)):[]},Bn.split=function(t,e,n){return n&&"number"!=typeof n&&bu(t,e,n)&&(e=n=i),(n=n===i?g:n>>>0)?(t=bo(t))&&("string"==typeof e||null!=e&&!ao(e))&&!(e=li(e))&&an(t)?wi(hn(t),0,n):t.split(e,n):[]},Bn.spread=function(t,e){if("function"!=typeof t)throw new Ct(u);return e=null==e?0:mn(go(e),0),Yr((function(n){var r=n[e],i=wi(n,0,e);return r&&Te(i,r),Ee(t,this,i)}))},Bn.tail=function(t){var e=null==t?0:t.length;return e?ii(t,1,e):[]},Bn.take=function(t,e,n){return t&&t.length?ii(t,0,(e=n||e===i?1:go(e))<0?0:e):[]},Bn.takeRight=function(t,e,n){var r=null==t?0:t.length;return r?ii(t,(e=r-(e=n||e===i?1:go(e)))<0?0:e,r):[]},Bn.takeRightWhile=function(t,e){return t&&t.length?di(t,cu(e,3),!1,!0):[]},Bn.takeWhile=function(t,e){return t&&t.length?di(t,cu(e,3)):[]},Bn.tap=function(t,e){return e(t),t},Bn.throttle=function(t,e,n){var r=!0,i=!0;if("function"!=typeof t)throw new Ct(u);return eo(n)&&(r="leading"in n?!!n.leading:r,i="trailing"in n?!!n.trailing:i),Pa(t,e,{leading:r,maxWait:e,trailing:i})},Bn.thru=da,Bn.toArray=ho,Bn.toPairs=Wo,Bn.toPairsIn=Bo,Bn.toPath=function(t){return Za(t)?ze(t,Iu):co(t)?[t]:$i(Du(bo(t)))},Bn.toPlainObject=mo,Bn.transform=function(t,e,n){var r=Za(t),i=r||Va(t)||lo(t);if(e=cu(e,4),null==n){var u=t&&t.constructor;n=i?r?new u:[]:eo(t)&&Xa(u)?Mn(Kt(t)):{}}return(i?je:xr)(t,(function(t,r,i){return e(n,t,r,i)})),n},Bn.unary=function(t){return Sa(t,1)},Bn.union=na,Bn.unionBy=ra,Bn.unionWith=ia,Bn.uniq=function(t){return t&&t.length?fi(t):[]},Bn.uniqBy=function(t,e){return t&&t.length?fi(t,cu(e,2)):[]},Bn.uniqWith=function(t,e){return e="function"==typeof e?e:i,t&&t.length?fi(t,i,e):[]},Bn.unset=function(t,e){return null==t||pi(t,e)},Bn.unzip=ua,Bn.unzipWith=aa,Bn.update=function(t,e,n){return null==t?t:hi(t,e,mi(n))},Bn.updateWith=function(t,e,n,r){return r="function"==typeof r?r:i,null==t?t:hi(t,e,mi(n),r)},Bn.values=Mo,Bn.valuesIn=function(t){return null==t?[]:Ye(t,To(t))},Bn.without=oa,Bn.words=Qo,Bn.wrap=function(t,e){return Ia(mi(e),t)},Bn.xor=sa,Bn.xorBy=ca,Bn.xorWith=la,Bn.zip=fa,Bn.zipObject=function(t,e){return _i(t||[],e||[],nr)},Bn.zipObjectDeep=function(t,e){return _i(t||[],e||[],ti)},Bn.zipWith=pa,Bn.entries=Wo,Bn.entriesIn=Bo,Bn.extend=wo,Bn.extendWith=ko,cs(Bn,Bn),Bn.add=ms,Bn.attempt=ts,Bn.camelCase=Uo,Bn.capitalize=qo,Bn.ceil=bs,Bn.clamp=function(t,e,n){return n===i&&(n=e,e=i),n!==i&&(n=(n=yo(n))==n?n:0),e!==i&&(e=(e=yo(e))==e?e:0),sr(yo(t),e,n)},Bn.clone=function(t){return cr(t,4)},Bn.cloneDeep=function(t){return cr(t,5)},Bn.cloneDeepWith=function(t,e){return cr(t,5,e="function"==typeof e?e:i)},Bn.cloneWith=function(t,e){return cr(t,4,e="function"==typeof e?e:i)},Bn.conformsTo=function(t,e){return null==e||lr(t,e,zo(e))},Bn.deburr=Zo,Bn.defaultTo=function(t,e){return null==t||t!=t?e:t},Bn.divide=xs,Bn.endsWith=function(t,e,n){t=bo(t),e=li(e);var r=t.length,u=n=n===i?r:sr(go(n),0,r);return(n-=e.length)>=0&&t.slice(n,u)==e},Bn.eq=Ba,Bn.escape=function(t){return(t=bo(t))&&Y.test(t)?t.replace(V,rn):t},Bn.escapeRegExp=function(t){return(t=bo(t))&&ut.test(t)?t.replace(it,"\\$&"):t},Bn.every=function(t,e,n){var r=Za(t)?Fe:vr;return n&&bu(t,e,n)&&(e=i),r(t,cu(e,3))},Bn.find=_a,Bn.findIndex=qu,Bn.findKey=function(t,e){return Ne(t,cu(e,3),xr)},Bn.findLast=ya,Bn.findLastIndex=Zu,Bn.findLastKey=function(t,e){return Ne(t,cu(e,3),wr)},Bn.floor=ws,Bn.forEach=ma,Bn.forEachRight=ba,Bn.forIn=function(t,e){return null==t?t:mr(t,cu(e,3),To)},Bn.forInRight=function(t,e){return null==t?t:br(t,cu(e,3),To)},Bn.forOwn=function(t,e){return t&&xr(t,cu(e,3))},Bn.forOwnRight=function(t,e){return t&&wr(t,cu(e,3))},Bn.get=So,Bn.gt=Ma,Bn.gte=Ua,Bn.has=function(t,e){return null!=t&&gu(t,e,Sr)},Bn.hasIn=Fo,Bn.head=Gu,Bn.identity=us,Bn.includes=function(t,e,n,r){t=Ga(t)?t:Mo(t),n=n&&!r?go(n):0;var i=t.length;return n<0&&(n=mn(i+n,0)),so(t)?n<=i&&t.indexOf(e,n)>-1:!!i&&Be(t,e,n)>-1},Bn.indexOf=function(t,e,n){var r=null==t?0:t.length;if(!r)return-1;var i=null==n?0:go(n);return i<0&&(i=mn(r+i,0)),Be(t,e,i)},Bn.inRange=function(t,e,n){return e=vo(e),n===i?(n=e,e=0):n=vo(n),function(t,e,n){return t>=bn(e,n)&&t<mn(e,n)}(t=yo(t),e,n)},Bn.invoke=Po,Bn.isArguments=qa,Bn.isArray=Za,Bn.isArrayBuffer=Ha,Bn.isArrayLike=Ga,Bn.isArrayLikeObject=Ka,Bn.isBoolean=function(t){return!0===t||!1===t||no(t)&&Or(t)==b},Bn.isBuffer=Va,Bn.isDate=Ja,Bn.isElement=function(t){return no(t)&&1===t.nodeType&&!uo(t)},Bn.isEmpty=function(t){if(null==t)return!0;if(Ga(t)&&(Za(t)||"string"==typeof t||"function"==typeof t.splice||Va(t)||lo(t)||qa(t)))return!t.length;var e=vu(t);if(e==E||e==$)return!t.size;if(Au(t))return!Dr(t).length;for(var n in t)if(Dt.call(t,n))return!1;return!0},Bn.isEqual=function(t,e){return zr(t,e)},Bn.isEqualWith=function(t,e,n){var r=(n="function"==typeof n?n:i)?n(t,e):i;return r===i?zr(t,e,i,n):!!r},Bn.isError=Ya,Bn.isFinite=function(t){return"number"==typeof t&&gn(t)},Bn.isFunction=Xa,Bn.isInteger=Qa,Bn.isLength=to,Bn.isMap=ro,Bn.isMatch=function(t,e){return t===e||Tr(t,e,fu(e))},Bn.isMatchWith=function(t,e,n){return n="function"==typeof n?n:i,Tr(t,e,fu(e),n)},Bn.isNaN=function(t){return io(t)&&t!=+t},Bn.isNative=function(t){if(ku(t))throw new Et("Unsupported core-js use. Try https://npms.io/search?q=ponyfill.");return Rr(t)},Bn.isNil=function(t){return null==t},Bn.isNull=function(t){return null===t},Bn.isNumber=io,Bn.isObject=eo,Bn.isObjectLike=no,Bn.isPlainObject=uo,Bn.isRegExp=ao,Bn.isSafeInteger=function(t){return Qa(t)&&t>=-9007199254740991&&t<=d},Bn.isSet=oo,Bn.isString=so,Bn.isSymbol=co,Bn.isTypedArray=lo,Bn.isUndefined=function(t){return t===i},Bn.isWeakMap=function(t){return no(t)&&vu(t)==z},Bn.isWeakSet=function(t){return no(t)&&"[object WeakSet]"==Or(t)},Bn.join=function(t,e){return null==t?"":_n.call(t,e)},Bn.kebabCase=Ho,Bn.last=Yu,Bn.lastIndexOf=function(t,e,n){var r=null==t?0:t.length;if(!r)return-1;var u=r;return n!==i&&(u=(u=go(n))<0?mn(r+u,0):bn(u,r-1)),e==e?function(t,e,n){for(var r=n+1;r--;)if(t[r]===e)return r;return r}(t,e,u):We(t,Ue,u,!0)},Bn.lowerCase=Go,Bn.lowerFirst=Ko,Bn.lt=fo,Bn.lte=po,Bn.max=function(t){return t&&t.length?gr(t,us,jr):i},Bn.maxBy=function(t,e){return t&&t.length?gr(t,cu(e,2),jr):i},Bn.mean=function(t){return qe(t,us)},Bn.meanBy=function(t,e){return qe(t,cu(e,2))},Bn.min=function(t){return t&&t.length?gr(t,us,Nr):i},Bn.minBy=function(t,e){return t&&t.length?gr(t,cu(e,2),Nr):i},Bn.stubArray=_s,Bn.stubFalse=ys,Bn.stubObject=function(){return{}},Bn.stubString=function(){return""},Bn.stubTrue=function(){return!0},Bn.multiply=As,Bn.nth=function(t,e){return t&&t.length?qr(t,go(e)):i},Bn.noConflict=function(){return he._===this&&(he._=Mt),this},Bn.noop=ls,Bn.now=ja,Bn.pad=function(t,e,n){t=bo(t);var r=(e=go(e))?pn(t):0;if(!e||r>=e)return t;var i=(e-r)/2;return Zi(ye(i),n)+t+Zi(_e(i),n)},Bn.padEnd=function(t,e,n){t=bo(t);var r=(e=go(e))?pn(t):0;return e&&r<e?t+Zi(e-r,n):t},Bn.padStart=function(t,e,n){t=bo(t);var r=(e=go(e))?pn(t):0;return e&&r<e?Zi(e-r,n)+t:t},Bn.parseInt=function(t,e,n){return n||null==e?e=0:e&&(e=+e),wn(bo(t).replace(ot,""),e||0)},Bn.random=function(t,e,n){if(n&&"boolean"!=typeof n&&bu(t,e,n)&&(e=n=i),n===i&&("boolean"==typeof e?(n=e,e=i):"boolean"==typeof t&&(n=t,t=i)),t===i&&e===i?(t=0,e=1):(t=vo(t),e===i?(e=t,t=0):e=vo(e)),t>e){var r=t;t=e,e=r}if(n||t%1||e%1){var u=kn();return bn(t+u*(e-t+ce("1e-"+((u+"").length-1))),e)}return Vr(t,e)},Bn.reduce=function(t,e,n){var r=Za(t)?Re:Ge,i=arguments.length<3;return r(t,cu(e,4),n,i,hr)},Bn.reduceRight=function(t,e,n){var r=Za(t)?Le:Ge,i=arguments.length<3;return r(t,cu(e,4),n,i,dr)},Bn.repeat=function(t,e,n){return e=(n?bu(t,e,n):e===i)?1:go(e),Jr(bo(t),e)},Bn.replace=function(){var t=arguments,e=bo(t[0]);return t.length<3?e:e.replace(t[1],t[2])},Bn.result=function(t,e,n){var r=-1,u=(e=bi(e,t)).length;for(u||(u=1,t=i);++r<u;){var a=null==t?i:t[Iu(e[r])];a===i&&(r=u,a=n),t=Xa(a)?a.call(t):a}return t},Bn.round=Es,Bn.runInContext=t,Bn.sample=function(t){return(Za(t)?Xn:Xr)(t)},Bn.size=function(t){if(null==t)return 0;if(Ga(t))return so(t)?pn(t):t.length;var e=vu(t);return e==E||e==$?t.size:Dr(t).length},Bn.snakeCase=Vo,Bn.some=function(t,e,n){var r=Za(t)?De:ui;return n&&bu(t,e,n)&&(e=i),r(t,cu(e,3))},Bn.sortedIndex=function(t,e){return ai(t,e)},Bn.sortedIndexBy=function(t,e,n){return oi(t,e,cu(n,2))},Bn.sortedIndexOf=function(t,e){var n=null==t?0:t.length;if(n){var r=ai(t,e);if(r<n&&Ba(t[r],e))return r}return-1},Bn.sortedLastIndex=function(t,e){return ai(t,e,!0)},Bn.sortedLastIndexBy=function(t,e,n){return oi(t,e,cu(n,2),!0)},Bn.sortedLastIndexOf=function(t,e){if(null==t?0:t.length){var n=ai(t,e,!0)-1;if(Ba(t[n],e))return n}return-1},Bn.startCase=Jo,Bn.startsWith=function(t,e,n){return t=bo(t),n=null==n?0:sr(go(n),0,t.length),e=li(e),t.slice(n,n+e.length)==e},Bn.subtract=Os,Bn.sum=function(t){return t&&t.length?Ke(t,us):0},Bn.sumBy=function(t,e){return t&&t.length?Ke(t,cu(e,2)):0},Bn.template=function(t,e,n){var r=Bn.templateSettings;n&&bu(t,e,n)&&(e=i),t=bo(t),e=ko({},e,r,Qi);var u,a,o=ko({},e.imports,r.imports,Qi),s=zo(o),c=Ye(o,s),l=0,f=e.interpolate||wt,p="__p += '",h=Ft((e.escape||wt).source+"|"+f.source+"|"+(f===tt?dt:wt).source+"|"+(e.evaluate||wt).source+"|$","g"),d="//# sourceURL="+(Dt.call(e,"sourceURL")?(e.sourceURL+"").replace(/\s/g," "):"lodash.templateSources["+ ++ue+"]")+"\n";t.replace(h,(function(e,n,r,i,o,s){return r||(r=i),p+=t.slice(l,s).replace(kt,un),n&&(u=!0,p+="' +\n__e("+n+") +\n'"),o&&(a=!0,p+="';\n"+o+";\n__p += '"),r&&(p+="' +\n((__t = ("+r+")) == null ? '' : __t) +\n'"),l=s+e.length,e})),p+="';\n";var v=Dt.call(e,"variable")&&e.variable;v||(p="with (obj) {\n"+p+"\n}\n"),p=(a?p.replace(Z,""):p).replace(H,"$1").replace(G,"$1;"),p="function("+(v||"obj")+") {\n"+(v?"":"obj || (obj = {});\n")+"var __t, __p = ''"+(u?", __e = _.escape":"")+(a?", __j = Array.prototype.join;\nfunction print() { __p += __j.call(arguments, '') }\n":";\n")+p+"return __p\n}";var g=ts((function(){return Ot(s,d+"return "+p).apply(i,c)}));if(g.source=p,Ya(g))throw g;return g},Bn.times=function(t,e){if((t=go(t))<1||t>d)return[];var n=g,r=bn(t,g);e=cu(e),t-=g;for(var i=Ve(r,e);++n<t;)e(n);return i},Bn.toFinite=vo,Bn.toInteger=go,Bn.toLength=_o,Bn.toLower=function(t){return bo(t).toLowerCase()},Bn.toNumber=yo,Bn.toSafeInteger=function(t){return t?sr(go(t),-9007199254740991,d):0===t?t:0},Bn.toString=bo,Bn.toUpper=function(t){return bo(t).toUpperCase()},Bn.trim=function(t,e,n){if((t=bo(t))&&(n||e===i))return t.replace(at,"");if(!t||!(e=li(e)))return t;var r=hn(t),u=hn(e);return wi(r,Qe(r,u),tn(r,u)+1).join("")},Bn.trimEnd=function(t,e,n){if((t=bo(t))&&(n||e===i))return t.replace(st,"");if(!t||!(e=li(e)))return t;var r=hn(t);return wi(r,0,tn(r,hn(e))+1).join("")},Bn.trimStart=function(t,e,n){if((t=bo(t))&&(n||e===i))return t.replace(ot,"");if(!t||!(e=li(e)))return t;var r=hn(t);return wi(r,Qe(r,hn(e))).join("")},Bn.truncate=function(t,e){var n=30,r="...";if(eo(e)){var u="separator"in e?e.separator:u;n="length"in e?go(e.length):n,r="omission"in e?li(e.omission):r}var a=(t=bo(t)).length;if(an(t)){var o=hn(t);a=o.length}if(n>=a)return t;var s=n-pn(r);if(s<1)return r;var c=o?wi(o,0,s).join(""):t.slice(0,s);if(u===i)return c+r;if(o&&(s+=c.length-s),ao(u)){if(t.slice(s).search(u)){var l,f=c;for(u.global||(u=Ft(u.source,bo(vt.exec(u))+"g")),u.lastIndex=0;l=u.exec(f);)var p=l.index;c=c.slice(0,p===i?s:p)}}else if(t.indexOf(li(u),s)!=s){var h=c.lastIndexOf(u);h>-1&&(c=c.slice(0,h))}return c+r},Bn.unescape=function(t){return(t=bo(t))&&J.test(t)?t.replace(K,dn):t},Bn.uniqueId=function(t){var e=++It;return bo(t)+e},Bn.upperCase=Yo,Bn.upperFirst=Xo,Bn.each=ma,Bn.eachRight=ba,Bn.first=Gu,cs(Bn,(ks={},xr(Bn,(function(t,e){Dt.call(Bn.prototype,e)||(ks[e]=t)})),ks),{chain:!1}),Bn.VERSION="4.17.20",je(["bind","bindKey","curry","curryRight","partial","partialRight"],(function(t){Bn[t].placeholder=Bn})),je(["drop","take"],(function(t,e){Zn.prototype[t]=function(n){n=n===i?1:mn(go(n),0);var r=this.__filtered__&&!e?new Zn(this):this.clone();return r.__filtered__?r.__takeCount__=bn(n,r.__takeCount__):r.__views__.push({size:bn(n,g),type:t+(r.__dir__<0?"Right":"")}),r},Zn.prototype[t+"Right"]=function(e){return this.reverse()[t](e).reverse()}})),je(["filter","map","takeWhile"],(function(t,e){var n=e+1,r=1==n||3==n;Zn.prototype[t]=function(t){var e=this.clone();return e.__iteratees__.push({iteratee:cu(t,3),type:n}),e.__filtered__=e.__filtered__||r,e}})),je(["head","last"],(function(t,e){var n="take"+(e?"Right":"");Zn.prototype[t]=function(){return this[n](1).value()[0]}})),je(["initial","tail"],(function(t,e){var n="drop"+(e?"":"Right");Zn.prototype[t]=function(){return this.__filtered__?new Zn(this):this[n](1)}})),Zn.prototype.compact=function(){return this.filter(us)},Zn.prototype.find=function(t){return this.filter(t).head()},Zn.prototype.findLast=function(t){return this.reverse().find(t)},Zn.prototype.invokeMap=Yr((function(t,e){return"function"==typeof t?new Zn(this):this.map((function(n){return Cr(n,t,e)}))})),Zn.prototype.reject=function(t){return this.filter(La(cu(t)))},Zn.prototype.slice=function(t,e){t=go(t);var n=this;return n.__filtered__&&(t>0||e<0)?new Zn(n):(t<0?n=n.takeRight(-t):t&&(n=n.drop(t)),e!==i&&(n=(e=go(e))<0?n.dropRight(-e):n.take(e-t)),n)},Zn.prototype.takeRightWhile=function(t){return this.reverse().takeWhile(t).reverse()},Zn.prototype.toArray=function(){return this.take(g)},xr(Zn.prototype,(function(t,e){var n=/^(?:filter|find|map|reject)|While$/.test(e),r=/^(?:head|last)$/.test(e),u=Bn[r?"take"+("last"==e?"Right":""):e],a=r||/^find/.test(e);u&&(Bn.prototype[e]=function(){var e=this.__wrapped__,o=r?[1]:arguments,s=e instanceof Zn,c=o[0],l=s||Za(e),f=function(t){var e=u.apply(Bn,Te([t],o));return r&&p?e[0]:e};l&&n&&"function"==typeof c&&1!=c.length&&(s=l=!1);var p=this.__chain__,h=!!this.__actions__.length,d=a&&!p,v=s&&!h;if(!a&&l){e=v?e:new Zn(this);var g=t.apply(e,o);return g.__actions__.push({func:da,args:[f],thisArg:i}),new qn(g,p)}return d&&v?t.apply(this,o):(g=this.thru(f),d?r?g.value()[0]:g.value():g)})})),je(["pop","push","shift","sort","splice","unshift"],(function(t){var e=Pt[t],n=/^(?:push|sort|unshift)$/.test(t)?"tap":"thru",r=/^(?:pop|shift)$/.test(t);Bn.prototype[t]=function(){var t=arguments;if(r&&!this.__chain__){var i=this.value();return e.apply(Za(i)?i:[],t)}return this[n]((function(n){return e.apply(Za(n)?n:[],t)}))}})),xr(Zn.prototype,(function(t,e){var n=Bn[e];if(n){var r=n.name+"";Dt.call(Pn,r)||(Pn[r]=[]),Pn[r].push({name:e,func:n})}})),Pn[Bi(i,2).name]=[{name:"wrapper",func:i}],Zn.prototype.clone=function(){var t=new Zn(this.__wrapped__);return t.__actions__=$i(this.__actions__),t.__dir__=this.__dir__,t.__filtered__=this.__filtered__,t.__iteratees__=$i(this.__iteratees__),t.__takeCount__=this.__takeCount__,t.__views__=$i(this.__views__),t},Zn.prototype.reverse=function(){if(this.__filtered__){var t=new Zn(this);t.__dir__=-1,t.__filtered__=!0}else(t=this.clone()).__dir__*=-1;return t},Zn.prototype.value=function(){var t=this.__wrapped__.value(),e=this.__dir__,n=Za(t),r=e<0,i=n?t.length:0,u=function(t,e,n){var r=-1,i=n.length;for(;++r<i;){var u=n[r],a=u.size;switch(u.type){case"drop":t+=a;break;case"dropRight":e-=a;break;case"take":e=bn(e,t+a);break;case"takeRight":t=mn(t,e-a)}}return{start:t,end:e}}(0,i,this.__views__),a=u.start,o=u.end,s=o-a,c=r?o:a-1,l=this.__iteratees__,f=l.length,p=0,h=bn(s,this.__takeCount__);if(!n||!r&&i==s&&h==s)return vi(t,this.__actions__);var d=[];t:for(;s--&&p<h;){for(var v=-1,g=t[c+=e];++v<f;){var _=l[v],y=_.iteratee,m=_.type,b=y(g);if(2==m)g=b;else if(!b){if(1==m)continue t;break t}}d[p++]=g}return d},Bn.prototype.at=va,Bn.prototype.chain=function(){return ha(this)},Bn.prototype.commit=function(){return new qn(this.value(),this.__chain__)},Bn.prototype.next=function(){this.__values__===i&&(this.__values__=ho(this.value()));var t=this.__index__>=this.__values__.length;return{done:t,value:t?i:this.__values__[this.__index__++]}},Bn.prototype.plant=function(t){for(var e,n=this;n instanceof Un;){var r=Wu(n);r.__index__=0,r.__values__=i,e?u.__wrapped__=r:e=r;var u=r;n=n.__wrapped__}return u.__wrapped__=t,e},Bn.prototype.reverse=function(){var t=this.__wrapped__;if(t instanceof Zn){var e=t;return this.__actions__.length&&(e=new Zn(this)),(e=e.reverse()).__actions__.push({func:da,args:[ea],thisArg:i}),new qn(e,this.__chain__)}return this.thru(ea)},Bn.prototype.toJSON=Bn.prototype.valueOf=Bn.prototype.value=function(){return vi(this.__wrapped__,this.__actions__)},Bn.prototype.first=Bn.prototype.head,ne&&(Bn.prototype[ne]=function(){return this}),Bn}();he._=vn,(r=function(){return vn}.call(e,n,e,t))===i||(t.exports=r)}.call(this)},425:()=>{},65:()=>{Prism.languages.dart=Prism.languages.extend("clike",{string:[{pattern:/r?("""|''')[\s\S]*?\1/,greedy:!0},{pattern:/r?("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,greedy:!0}],keyword:[/\b(?:async|sync|yield)\*/,/\b(?:abstract|assert|async|await|break|case|catch|class|const|continue|default|deferred|do|dynamic|else|enum|export|external|extends|factory|final|finally|for|get|if|implements|import|in|library|new|null|operator|part|rethrow|return|set|static|super|switch|this|throw|try|typedef|var|void|while|with|yield)\b/],operator:/\bis!|\b(?:as|is)\b|\+\+|--|&&|\|\||<<=?|>>=?|~(?:\/=?)?|[+\-*\/%&^|=!<>]=?|\?/}),Prism.languages.insertBefore("dart","function",{metadata:{pattern:/@\w+/,alias:"symbol"}})},46:()=>{Prism.languages.go=Prism.languages.extend("clike",{keyword:/\b(?:break|case|chan|const|continue|default|defer|else|fallthrough|for|func|go(?:to)?|if|import|interface|map|package|range|return|select|struct|switch|type|var)\b/,builtin:/\b(?:bool|byte|complex(?:64|128)|error|float(?:32|64)|rune|string|u?int(?:8|16|32|64)?|uintptr|append|cap|close|complex|copy|delete|imag|len|make|new|panic|print(?:ln)?|real|recover)\b/,boolean:/\b(?:_|iota|nil|true|false)\b/,operator:/[*\/%^!=]=?|\+[=+]?|-[=-]?|\|[=|]?|&(?:=|&|\^=?)?|>(?:>=?|=)?|<(?:<=?|=|-)?|:=|\.\.\./,number:/(?:\b0x[a-f\d]+|(?:\b\d+\.?\d*|\B\.\d+)(?:e[-+]?\d+)?)i?/i,string:{pattern:/(["'`])(?:\\[\s\S]|(?!\1)[^\\])*\1/,greedy:!0}}),delete Prism.languages.go["class-name"]},660:(t,e,n)=>{var r=function(t){var e=/\blang(?:uage)?-([\w-]+)\b/i,n=0,r={manual:t.Prism&&t.Prism.manual,disableWorkerMessageHandler:t.Prism&&t.Prism.disableWorkerMessageHandler,util:{encode:function t(e){return e instanceof i?new i(e.type,t(e.content),e.alias):Array.isArray(e)?e.map(t):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(t){return Object.prototype.toString.call(t).slice(8,-1)},objId:function(t){return t.__id||Object.defineProperty(t,"__id",{value:++n}),t.__id},clone:function t(e,n){var i,u,a=r.util.type(e);switch(n=n||{},a){case"Object":if(u=r.util.objId(e),n[u])return n[u];for(var o in i={},n[u]=i,e)e.hasOwnProperty(o)&&(i[o]=t(e[o],n));return i;case"Array":return u=r.util.objId(e),n[u]?n[u]:(i=[],n[u]=i,e.forEach((function(e,r){i[r]=t(e,n)})),i);default:return e}},getLanguage:function(t){for(;t&&!e.test(t.className);)t=t.parentElement;return t?(t.className.match(e)||[,"none"])[1].toLowerCase():"none"},currentScript:function(){if("undefined"==typeof document)return null;if("currentScript"in document)return document.currentScript;try{throw new Error}catch(r){var t=(/at [^(\r\n]*\((.*):.+:.+\)$/i.exec(r.stack)||[])[1];if(t){var e=document.getElementsByTagName("script");for(var n in e)if(e[n].src==t)return e[n]}return null}}},languages:{extend:function(t,e){var n=r.util.clone(r.languages[t]);for(var i in e)n[i]=e[i];return n},insertBefore:function(t,e,n,i){var u=(i=i||r.languages)[t],a={};for(var o in u)if(u.hasOwnProperty(o)){if(o==e)for(var s in n)n.hasOwnProperty(s)&&(a[s]=n[s]);n.hasOwnProperty(o)||(a[o]=u[o])}var c=i[t];return i[t]=a,r.languages.DFS(r.languages,(function(e,n){n===c&&e!=t&&(this[e]=a)})),a},DFS:function t(e,n,i,u){u=u||{};var a=r.util.objId;for(var o in e)if(e.hasOwnProperty(o)){n.call(e,o,e[o],i||o);var s=e[o],c=r.util.type(s);"Object"!==c||u[a(s)]?"Array"!==c||u[a(s)]||(u[a(s)]=!0,t(s,n,o,u)):(u[a(s)]=!0,t(s,n,null,u))}}},plugins:{},highlightAll:function(t,e){r.highlightAllUnder(document,t,e)},highlightAllUnder:function(t,e,n){var i={callback:n,container:t,selector:'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'};r.hooks.run("before-highlightall",i),i.elements=Array.prototype.slice.apply(i.container.querySelectorAll(i.selector)),r.hooks.run("before-all-elements-highlight",i);for(var u,a=0;u=i.elements[a++];)r.highlightElement(u,!0===e,i.callback)},highlightElement:function(n,i,u){var a=r.util.getLanguage(n),o=r.languages[a];n.className=n.className.replace(e,"").replace(/\s+/g," ")+" language-"+a;var s=n.parentNode;s&&"pre"===s.nodeName.toLowerCase()&&(s.className=s.className.replace(e,"").replace(/\s+/g," ")+" language-"+a);var c={element:n,language:a,grammar:o,code:n.textContent};function l(t){c.highlightedCode=t,r.hooks.run("before-insert",c),c.element.innerHTML=c.highlightedCode,r.hooks.run("after-highlight",c),r.hooks.run("complete",c),u&&u.call(c.element)}if(r.hooks.run("before-sanity-check",c),!c.code)return r.hooks.run("complete",c),void(u&&u.call(c.element));if(r.hooks.run("before-highlight",c),c.grammar)if(i&&t.Worker){var f=new Worker(r.filename);f.onmessage=function(t){l(t.data)},f.postMessage(JSON.stringify({language:c.language,code:c.code,immediateClose:!0}))}else l(r.highlight(c.code,c.grammar,c.language));else l(r.util.encode(c.code))},highlight:function(t,e,n){var u={code:t,grammar:e,language:n};return r.hooks.run("before-tokenize",u),u.tokens=r.tokenize(u.code,u.grammar),r.hooks.run("after-tokenize",u),i.stringify(r.util.encode(u.tokens),u.language)},tokenize:function(t,e){var n=e.rest;if(n){for(var r in n)e[r]=n[r];delete e.rest}var i=new a;return o(i,i.head,t),u(t,i,e,i.head,0),function(t){var e=[],n=t.head.next;for(;n!==t.tail;)e.push(n.value),n=n.next;return e}(i)},hooks:{all:{},add:function(t,e){var n=r.hooks.all;n[t]=n[t]||[],n[t].push(e)},run:function(t,e){var n=r.hooks.all[t];if(n&&n.length)for(var i,u=0;i=n[u++];)i(e)}},Token:i};function i(t,e,n,r,i){this.type=t,this.content=e,this.alias=n,this.length=0|(r||"").length,this.greedy=!!i}function u(t,e,n,a,c,l,f){for(var p in n)if(n.hasOwnProperty(p)&&n[p]){var h=n[p];h=Array.isArray(h)?h:[h];for(var d=0;d<h.length;++d){if(f&&f==p+","+d)return;var v=h[d],g=v.inside,_=!!v.lookbehind,y=!!v.greedy,m=0,b=v.alias;if(y&&!v.pattern.global){var x=v.pattern.toString().match(/[imsuy]*$/)[0];v.pattern=RegExp(v.pattern.source,x+"g")}v=v.pattern||v;for(var w=a.next,k=c;w!==e.tail;k+=w.value.length,w=w.next){var A=w.value;if(e.length>t.length)return;if(!(A instanceof i)){var E=1;if(y&&w!=e.tail.prev){if(v.lastIndex=k,!($=v.exec(t)))break;var O=$.index+(_&&$[1]?$[1].length:0),j=$.index+$[0].length,S=k;for(S+=w.value.length;O>=S;)S+=(w=w.next).value.length;if(k=S-=w.value.length,w.value instanceof i)continue;for(var F=w;F!==e.tail&&(S<j||"string"==typeof F.value&&!F.prev.value.greedy);F=F.next)E++,S+=F.value.length;E--,A=t.slice(k,S),$.index-=k}else{v.lastIndex=0;var $=v.exec(A)}if($){_&&(m=$[1]?$[1].length:0);j=(O=$.index+m)+($=$[0].slice(m)).length;var C=A.slice(0,O),P=A.slice(j),z=w.prev;if(C&&(z=o(e,z,C),k+=C.length),s(e,z,E),w=o(e,z,new i(p,g?r.tokenize($,g):$,b,$,y)),P&&o(e,w,P),E>1&&u(t,e,n,w.prev,k,!0,p+","+d),l)break}else if(l)break}}}}}function a(){var t={value:null,prev:null,next:null},e={value:null,prev:t,next:null};t.next=e,this.head=t,this.tail=e,this.length=0}function o(t,e,n){var r=e.next,i={value:n,prev:e,next:r};return e.next=i,r.prev=i,t.length++,i}function s(t,e,n){for(var r=e.next,i=0;i<n&&r!==t.tail;i++)r=r.next;e.next=r,r.prev=e,t.length-=i}if(t.Prism=r,i.stringify=function t(e,n){if("string"==typeof e)return e;if(Array.isArray(e)){var i="";return e.forEach((function(e){i+=t(e,n)})),i}var u={type:e.type,content:t(e.content,n),tag:"span",classes:["token",e.type],attributes:{},language:n},a=e.alias;a&&(Array.isArray(a)?Array.prototype.push.apply(u.classes,a):u.classes.push(a)),r.hooks.run("wrap",u);var o="";for(var s in u.attributes)o+=" "+s+'="'+(u.attributes[s]||"").replace(/"/g,"&quot;")+'"';return"<"+u.tag+' class="'+u.classes.join(" ")+'"'+o+">"+u.content+"</"+u.tag+">"},!t.document)return t.addEventListener?(r.disableWorkerMessageHandler||t.addEventListener("message",(function(e){var n=JSON.parse(e.data),i=n.language,u=n.code,a=n.immediateClose;t.postMessage(r.highlight(u,r.languages[i],i)),a&&t.close()}),!1),r):r;var c=r.util.currentScript();function l(){r.manual||r.highlightAll()}if(c&&(r.filename=c.src,c.hasAttribute("data-manual")&&(r.manual=!0)),!r.manual){var f=document.readyState;"loading"===f||"interactive"===f&&c&&c.defer?document.addEventListener("DOMContentLoaded",l):window.requestAnimationFrame?window.requestAnimationFrame(l):window.setTimeout(l,16)}return r}("undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{});t.exports&&(t.exports=r),void 0!==n.g&&(n.g.Prism=r),r.languages.markup={comment:/<!--[\s\S]*?-->/,prolog:/<\?[\s\S]+?\?>/,doctype:{pattern:/<!DOCTYPE(?:[^>"'[\]]|"[^"]*"|'[^']*')+(?:\[(?:(?!<!--)[^"'\]]|"[^"]*"|'[^']*'|<!--[\s\S]*?-->)*\]\s*)?>/i,greedy:!0},cdata:/<!\[CDATA\[[\s\S]*?]]>/i,tag:{pattern:/<\/?(?!\d)[^\s>\/=$<%]+(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))|(?=[\s/>])))+)?\s*\/?>/i,greedy:!0,inside:{tag:{pattern:/^<\/?[^\s>\/]+/i,inside:{punctuation:/^<\/?/,namespace:/^[^\s>\/:]+:/}},"attr-value":{pattern:/=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+)/i,inside:{punctuation:[/^=/,{pattern:/^(\s*)["']|["']$/,lookbehind:!0}]}},punctuation:/\/?>/,"attr-name":{pattern:/[^\s>\/]+/,inside:{namespace:/^[^\s>\/:]+:/}}}},entity:/&#?[\da-z]{1,8};/i},r.languages.markup.tag.inside["attr-value"].inside.entity=r.languages.markup.entity,r.hooks.add("wrap",(function(t){"entity"===t.type&&(t.attributes.title=t.content.replace(/&amp;/,"&"))})),Object.defineProperty(r.languages.markup.tag,"addInlined",{value:function(t,e){var n={};n["language-"+e]={pattern:/(^<!\[CDATA\[)[\s\S]+?(?=\]\]>$)/i,lookbehind:!0,inside:r.languages[e]},n.cdata=/^<!\[CDATA\[|\]\]>$/i;var i={"included-cdata":{pattern:/<!\[CDATA\[[\s\S]*?\]\]>/i,inside:n}};i["language-"+e]={pattern:/[\s\S]+/,inside:r.languages[e]};var u={};u[t]={pattern:RegExp(/(<__[\s\S]*?>)(?:<!\[CDATA\[[\s\S]*?\]\]>\s*|[\s\S])*?(?=<\/__>)/.source.replace(/__/g,(function(){return t})),"i"),lookbehind:!0,greedy:!0,inside:i},r.languages.insertBefore("markup","cdata",u)}}),r.languages.xml=r.languages.extend("markup",{}),r.languages.html=r.languages.markup,r.languages.mathml=r.languages.markup,r.languages.svg=r.languages.markup,function(t){var e=/("|')(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/;t.languages.css={comment:/\/\*[\s\S]*?\*\//,atrule:{pattern:/@[\w-]+[\s\S]*?(?:;|(?=\s*\{))/,inside:{rule:/^@[\w-]+/,"selector-function-argument":{pattern:/(\bselector\s*\((?!\s*\))\s*)(?:[^()]|\((?:[^()]|\([^()]*\))*\))+?(?=\s*\))/,lookbehind:!0,alias:"selector"}}},url:{pattern:RegExp("url\\((?:"+e.source+"|[^\n\r()]*)\\)","i"),greedy:!0,inside:{function:/^url/i,punctuation:/^\(|\)$/}},selector:RegExp("[^{}\\s](?:[^{};\"']|"+e.source+")*?(?=\\s*\\{)"),string:{pattern:e,greedy:!0},property:/[-_a-z\xA0-\uFFFF][-\w\xA0-\uFFFF]*(?=\s*:)/i,important:/!important\b/i,function:/[-a-z0-9]+(?=\()/i,punctuation:/[(){};:,]/},t.languages.css.atrule.inside.rest=t.languages.css;var n=t.languages.markup;n&&(n.tag.addInlined("style","css"),t.languages.insertBefore("inside","attr-value",{"style-attr":{pattern:/\s*style=("|')(?:\\[\s\S]|(?!\1)[^\\])*\1/i,inside:{"attr-name":{pattern:/^\s*style/i,inside:n.tag.inside},punctuation:/^\s*=\s*['"]|['"]\s*$/,"attr-value":{pattern:/.+/i,inside:t.languages.css}},alias:"language-css"}},n.tag))}(r),r.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\s\S]*?(?:\*\/|$)/,lookbehind:!0},{pattern:/(^|[^\\:])\/\/.*/,lookbehind:!0,greedy:!0}],string:{pattern:/(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,greedy:!0},"class-name":{pattern:/(\b(?:class|interface|extends|implements|trait|instanceof|new)\s+|\bcatch\s+\()[\w.\\]+/i,lookbehind:!0,inside:{punctuation:/[.\\]/}},keyword:/\b(?:if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,boolean:/\b(?:true|false)\b/,function:/\w+(?=\()/,number:/\b0x[\da-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?/i,operator:/[<>]=?|[!=]=?=?|--?|\+\+?|&&?|\|\|?|[?*/~^%]/,punctuation:/[{}[\];(),.:]/},r.languages.javascript=r.languages.extend("clike",{"class-name":[r.languages.clike["class-name"],{pattern:/(^|[^$\w\xA0-\uFFFF])[_$A-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\.(?:prototype|constructor))/,lookbehind:!0}],keyword:[{pattern:/((?:^|})\s*)(?:catch|finally)\b/,lookbehind:!0},{pattern:/(^|[^.]|\.\.\.\s*)\b(?:as|async(?=\s*(?:function\b|\(|[$\w\xA0-\uFFFF]|$))|await|break|case|class|const|continue|debugger|default|delete|do|else|enum|export|extends|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)\b/,lookbehind:!0}],number:/\b(?:(?:0[xX](?:[\dA-Fa-f](?:_[\dA-Fa-f])?)+|0[bB](?:[01](?:_[01])?)+|0[oO](?:[0-7](?:_[0-7])?)+)n?|(?:\d(?:_\d)?)+n|NaN|Infinity)\b|(?:\b(?:\d(?:_\d)?)+\.?(?:\d(?:_\d)?)*|\B\.(?:\d(?:_\d)?)+)(?:[Ee][+-]?(?:\d(?:_\d)?)+)?/,function:/#?[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*(?:\.\s*(?:apply|bind|call)\s*)?\()/,operator:/--|\+\+|\*\*=?|=>|&&|\|\||[!=]==|<<=?|>>>?=?|[-+*/%&|^!=<>]=?|\.{3}|\?[.?]?|[~:]/}),r.languages.javascript["class-name"][0].pattern=/(\b(?:class|interface|extends|implements|instanceof|new)\s+)[\w.\\]+/,r.languages.insertBefore("javascript","keyword",{regex:{pattern:/((?:^|[^$\w\xA0-\uFFFF."'\])\s])\s*)\/(?:\[(?:[^\]\\\r\n]|\\.)*]|\\.|[^/\\\[\r\n])+\/[gimyus]{0,6}(?=(?:\s|\/\*[\s\S]*?\*\/)*(?:$|[\r\n,.;:})\]]|\/\/))/,lookbehind:!0,greedy:!0},"function-variable":{pattern:/#?[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*[=:]\s*(?:async\s*)?(?:\bfunction\b|(?:\((?:[^()]|\([^()]*\))*\)|[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*)\s*=>))/,alias:"function"},parameter:[{pattern:/(function(?:\s+[_$A-Za-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*)?\s*\(\s*)(?!\s)(?:[^()]|\([^()]*\))+?(?=\s*\))/,lookbehind:!0,inside:r.languages.javascript},{pattern:/[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*=>)/i,inside:r.languages.javascript},{pattern:/(\(\s*)(?!\s)(?:[^()]|\([^()]*\))+?(?=\s*\)\s*=>)/,lookbehind:!0,inside:r.languages.javascript},{pattern:/((?:\b|\s|^)(?!(?:as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)(?![$\w\xA0-\uFFFF]))(?:[_$A-Za-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*\s*)\(\s*)(?!\s)(?:[^()]|\([^()]*\))+?(?=\s*\)\s*\{)/,lookbehind:!0,inside:r.languages.javascript}],constant:/\b[A-Z](?:[A-Z_]|\dx?)*\b/}),r.languages.insertBefore("javascript","string",{"template-string":{pattern:/`(?:\\[\s\S]|\${(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}|(?!\${)[^\\`])*`/,greedy:!0,inside:{"template-punctuation":{pattern:/^`|`$/,alias:"string"},interpolation:{pattern:/((?:^|[^\\])(?:\\{2})*)\${(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}/,lookbehind:!0,inside:{"interpolation-punctuation":{pattern:/^\${|}$/,alias:"punctuation"},rest:r.languages.javascript}},string:/[\s\S]+/}}}),r.languages.markup&&r.languages.markup.tag.addInlined("script","javascript"),r.languages.js=r.languages.javascript,"undefined"!=typeof self&&self.Prism&&self.document&&document.querySelector&&(self.Prism.fileHighlight=function(t){t=t||document;var e={js:"javascript",py:"python",rb:"ruby",ps1:"powershell",psm1:"powershell",sh:"bash",bat:"batch",h:"c",tex:"latex"};Array.prototype.slice.call(t.querySelectorAll("pre[data-src]")).forEach((function(t){if(!t.hasAttribute("data-src-loaded")){for(var n,i=t.getAttribute("data-src"),u=t,a=/\blang(?:uage)?-([\w-]+)\b/i;u&&!a.test(u.className);)u=u.parentNode;if(u&&(n=(t.className.match(a)||[,""])[1]),!n){var o=(i.match(/\.(\w+)$/)||[,""])[1];n=e[o]||o}var s=document.createElement("code");s.className="language-"+n,t.textContent="",s.textContent="Loading…",t.appendChild(s);var c=new XMLHttpRequest;c.open("GET",i,!0),c.onreadystatechange=function(){4==c.readyState&&(c.status<400&&c.responseText?(s.textContent=c.responseText,r.highlightElement(s),t.setAttribute("data-src-loaded","")):c.status>=400?s.textContent="✖ Error "+c.status+" while fetching file: "+c.statusText:s.textContent="✖ Error: File does not exist or is empty")},c.send(null)}}))},document.addEventListener("DOMContentLoaded",(function(){self.Prism.fileHighlight()})))}},e={};function n(r){if(e[r])return e[r].exports;var i=e[r]={id:r,loaded:!1,exports:{}};return t[r].call(i.exports,i,i.exports,n),i.loaded=!0,i.exports}n.m=t,n.n=t=>{var e=t&&t.__esModule?()=>t.default:()=>t;return n.d(e,{a:e}),e},n.d=(t,e)=>{for(var r in e)n.o(e,r)&&!n.o(t,r)&&Object.defineProperty(t,r,{enumerable:!0,get:e[r]})},n.g=function(){if("object"==typeof globalThis)return globalThis;try{return this||new Function("return this")()}catch(t){if("object"==typeof window)return window}}(),n.o=(t,e)=>Object.prototype.hasOwnProperty.call(t,e),n.nmd=t=>(t.paths=[],t.children||(t.children=[]),t),(()=>{var t={773:0},e=[[80],[425]],r=()=>{};function i(){for(var r,i=0;i<e.length;i++){for(var u=e[i],a=!0,o=1;o<u.length;o++){var s=u[o];0!==t[s]&&(a=!1)}a&&(e.splice(i--,1),r=n(n.s=u[0]))}return 0===e.length&&(n.x(),n.x=()=>{}),r}n.x=()=>{n.x=()=>{},a=a.slice();for(var t=0;t<a.length;t++)u(a[t]);return(r=i)()};var u=i=>{for(var u,a,[s,c,l,f]=i,p=0,h=[];p<s.length;p++)a=s[p],n.o(t,a)&&t[a]&&h.push(t[a][0]),t[a]=0;for(u in c)n.o(c,u)&&(n.m[u]=c[u]);for(l&&l(n),o(i);h.length;)h.shift()();return f&&e.push.apply(e,f),r()},a=self.webpackChunkghost=self.webpackChunkghost||[],o=a.push.bind(a);a.push=u})(),n.x()})();
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./node_modules/alpinejs/dist/alpine.js":
+/*!**********************************************!*\
+  !*** ./node_modules/alpinejs/dist/alpine.js ***!
+  \**********************************************/
+/***/ (function(module) {
+
+(function (global, factory) {
+   true ? module.exports = factory() :
+  0;
+}(this, (function () { 'use strict';
+
+  function _defineProperty(obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+
+    return obj;
+  }
+
+  function ownKeys(object, enumerableOnly) {
+    var keys = Object.keys(object);
+
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly) symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+      keys.push.apply(keys, symbols);
+    }
+
+    return keys;
+  }
+
+  function _objectSpread2(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+
+      if (i % 2) {
+        ownKeys(Object(source), true).forEach(function (key) {
+          _defineProperty(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+      } else {
+        ownKeys(Object(source)).forEach(function (key) {
+          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
+      }
+    }
+
+    return target;
+  }
+
+  // Thanks @stimulus:
+  // https://github.com/stimulusjs/stimulus/blob/master/packages/%40stimulus/core/src/application.ts
+  function domReady() {
+    return new Promise(resolve => {
+      if (document.readyState == "loading") {
+        document.addEventListener("DOMContentLoaded", resolve);
+      } else {
+        resolve();
+      }
+    });
+  }
+  function arrayUnique(array) {
+    return Array.from(new Set(array));
+  }
+  function isTesting() {
+    return navigator.userAgent.includes("Node.js") || navigator.userAgent.includes("jsdom");
+  }
+  function checkedAttrLooseCompare(valueA, valueB) {
+    return valueA == valueB;
+  }
+  function warnIfMalformedTemplate(el, directive) {
+    if (el.tagName.toLowerCase() !== 'template') {
+      console.warn(`Alpine: [${directive}] directive should only be added to <template> tags. See https://github.com/alpinejs/alpine#${directive}`);
+    } else if (el.content.childElementCount !== 1) {
+      console.warn(`Alpine: <template> tag with [${directive}] encountered with an unexpected number of root elements. Make sure <template> has a single root element. `);
+    }
+  }
+  function kebabCase(subject) {
+    return subject.replace(/([a-z])([A-Z])/g, '$1-$2').replace(/[_\s]/, '-').toLowerCase();
+  }
+  function camelCase(subject) {
+    return subject.toLowerCase().replace(/-(\w)/g, (match, char) => char.toUpperCase());
+  }
+  function walk(el, callback) {
+    if (callback(el) === false) return;
+    let node = el.firstElementChild;
+
+    while (node) {
+      walk(node, callback);
+      node = node.nextElementSibling;
+    }
+  }
+  function debounce(func, wait) {
+    var timeout;
+    return function () {
+      var context = this,
+          args = arguments;
+
+      var later = function later() {
+        timeout = null;
+        func.apply(context, args);
+      };
+
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  }
+
+  const handleError = (el, expression, error) => {
+    console.warn(`Alpine Error: "${error}"\n\nExpression: "${expression}"\nElement:`, el);
+
+    if (!isTesting()) {
+      Object.assign(error, {
+        el,
+        expression
+      });
+      throw error;
+    }
+  };
+
+  function tryCatch(cb, {
+    el,
+    expression
+  }) {
+    try {
+      const value = cb();
+      return value instanceof Promise ? value.catch(e => handleError(el, expression, e)) : value;
+    } catch (e) {
+      handleError(el, expression, e);
+    }
+  }
+
+  function saferEval(el, expression, dataContext, additionalHelperVariables = {}) {
+    return tryCatch(() => {
+      if (typeof expression === 'function') {
+        return expression.call(dataContext);
+      }
+
+      return new Function(['$data', ...Object.keys(additionalHelperVariables)], `var __alpine_result; with($data) { __alpine_result = ${expression} }; return __alpine_result`)(dataContext, ...Object.values(additionalHelperVariables));
+    }, {
+      el,
+      expression
+    });
+  }
+  function saferEvalNoReturn(el, expression, dataContext, additionalHelperVariables = {}) {
+    return tryCatch(() => {
+      if (typeof expression === 'function') {
+        return Promise.resolve(expression.call(dataContext, additionalHelperVariables['$event']));
+      }
+
+      let AsyncFunction = Function;
+      /* MODERN-ONLY:START */
+
+      AsyncFunction = Object.getPrototypeOf(async function () {}).constructor;
+      /* MODERN-ONLY:END */
+      // For the cases when users pass only a function reference to the caller: `x-on:click="foo"`
+      // Where "foo" is a function. Also, we'll pass the function the event instance when we call it.
+
+      if (Object.keys(dataContext).includes(expression)) {
+        let methodReference = new Function(['dataContext', ...Object.keys(additionalHelperVariables)], `with(dataContext) { return ${expression} }`)(dataContext, ...Object.values(additionalHelperVariables));
+
+        if (typeof methodReference === 'function') {
+          return Promise.resolve(methodReference.call(dataContext, additionalHelperVariables['$event']));
+        } else {
+          return Promise.resolve();
+        }
+      }
+
+      return Promise.resolve(new AsyncFunction(['dataContext', ...Object.keys(additionalHelperVariables)], `with(dataContext) { ${expression} }`)(dataContext, ...Object.values(additionalHelperVariables)));
+    }, {
+      el,
+      expression
+    });
+  }
+  const xAttrRE = /^x-(on|bind|data|text|html|model|if|for|show|cloak|transition|ref|spread)\b/;
+  function isXAttr(attr) {
+    const name = replaceAtAndColonWithStandardSyntax(attr.name);
+    return xAttrRE.test(name);
+  }
+  function getXAttrs(el, component, type) {
+    let directives = Array.from(el.attributes).filter(isXAttr).map(parseHtmlAttribute); // Get an object of directives from x-spread.
+
+    let spreadDirective = directives.filter(directive => directive.type === 'spread')[0];
+
+    if (spreadDirective) {
+      let spreadObject = saferEval(el, spreadDirective.expression, component.$data); // Add x-spread directives to the pile of existing directives.
+
+      directives = directives.concat(Object.entries(spreadObject).map(([name, value]) => parseHtmlAttribute({
+        name,
+        value
+      })));
+    }
+
+    if (type) return directives.filter(i => i.type === type);
+    return sortDirectives(directives);
+  }
+
+  function sortDirectives(directives) {
+    let directiveOrder = ['bind', 'model', 'show', 'catch-all'];
+    return directives.sort((a, b) => {
+      let typeA = directiveOrder.indexOf(a.type) === -1 ? 'catch-all' : a.type;
+      let typeB = directiveOrder.indexOf(b.type) === -1 ? 'catch-all' : b.type;
+      return directiveOrder.indexOf(typeA) - directiveOrder.indexOf(typeB);
+    });
+  }
+
+  function parseHtmlAttribute({
+    name,
+    value
+  }) {
+    const normalizedName = replaceAtAndColonWithStandardSyntax(name);
+    const typeMatch = normalizedName.match(xAttrRE);
+    const valueMatch = normalizedName.match(/:([a-zA-Z0-9\-:]+)/);
+    const modifiers = normalizedName.match(/\.[^.\]]+(?=[^\]]*$)/g) || [];
+    return {
+      type: typeMatch ? typeMatch[1] : null,
+      value: valueMatch ? valueMatch[1] : null,
+      modifiers: modifiers.map(i => i.replace('.', '')),
+      expression: value
+    };
+  }
+  function isBooleanAttr(attrName) {
+    // As per HTML spec table https://html.spec.whatwg.org/multipage/indices.html#attributes-3:boolean-attribute
+    // Array roughly ordered by estimated usage
+    const booleanAttributes = ['disabled', 'checked', 'required', 'readonly', 'hidden', 'open', 'selected', 'autofocus', 'itemscope', 'multiple', 'novalidate', 'allowfullscreen', 'allowpaymentrequest', 'formnovalidate', 'autoplay', 'controls', 'loop', 'muted', 'playsinline', 'default', 'ismap', 'reversed', 'async', 'defer', 'nomodule'];
+    return booleanAttributes.includes(attrName);
+  }
+  function replaceAtAndColonWithStandardSyntax(name) {
+    if (name.startsWith('@')) {
+      return name.replace('@', 'x-on:');
+    } else if (name.startsWith(':')) {
+      return name.replace(':', 'x-bind:');
+    }
+
+    return name;
+  }
+  function convertClassStringToArray(classList, filterFn = Boolean) {
+    return classList.split(' ').filter(filterFn);
+  }
+  const TRANSITION_TYPE_IN = 'in';
+  const TRANSITION_TYPE_OUT = 'out';
+  const TRANSITION_CANCELLED = 'cancelled';
+  function transitionIn(el, show, reject, component, forceSkip = false) {
+    // We don't want to transition on the initial page load.
+    if (forceSkip) return show();
+
+    if (el.__x_transition && el.__x_transition.type === TRANSITION_TYPE_IN) {
+      // there is already a similar transition going on, this was probably triggered by
+      // a change in a different property, let's just leave the previous one doing its job
+      return;
+    }
+
+    const attrs = getXAttrs(el, component, 'transition');
+    const showAttr = getXAttrs(el, component, 'show')[0]; // If this is triggered by a x-show.transition.
+
+    if (showAttr && showAttr.modifiers.includes('transition')) {
+      let modifiers = showAttr.modifiers; // If x-show.transition.out, we'll skip the "in" transition.
+
+      if (modifiers.includes('out') && !modifiers.includes('in')) return show();
+      const settingBothSidesOfTransition = modifiers.includes('in') && modifiers.includes('out'); // If x-show.transition.in...out... only use "in" related modifiers for this transition.
+
+      modifiers = settingBothSidesOfTransition ? modifiers.filter((i, index) => index < modifiers.indexOf('out')) : modifiers;
+      transitionHelperIn(el, modifiers, show, reject); // Otherwise, we can assume x-transition:enter.
+    } else if (attrs.some(attr => ['enter', 'enter-start', 'enter-end'].includes(attr.value))) {
+      transitionClassesIn(el, component, attrs, show, reject);
+    } else {
+      // If neither, just show that damn thing.
+      show();
+    }
+  }
+  function transitionOut(el, hide, reject, component, forceSkip = false) {
+    // We don't want to transition on the initial page load.
+    if (forceSkip) return hide();
+
+    if (el.__x_transition && el.__x_transition.type === TRANSITION_TYPE_OUT) {
+      // there is already a similar transition going on, this was probably triggered by
+      // a change in a different property, let's just leave the previous one doing its job
+      return;
+    }
+
+    const attrs = getXAttrs(el, component, 'transition');
+    const showAttr = getXAttrs(el, component, 'show')[0];
+
+    if (showAttr && showAttr.modifiers.includes('transition')) {
+      let modifiers = showAttr.modifiers;
+      if (modifiers.includes('in') && !modifiers.includes('out')) return hide();
+      const settingBothSidesOfTransition = modifiers.includes('in') && modifiers.includes('out');
+      modifiers = settingBothSidesOfTransition ? modifiers.filter((i, index) => index > modifiers.indexOf('out')) : modifiers;
+      transitionHelperOut(el, modifiers, settingBothSidesOfTransition, hide, reject);
+    } else if (attrs.some(attr => ['leave', 'leave-start', 'leave-end'].includes(attr.value))) {
+      transitionClassesOut(el, component, attrs, hide, reject);
+    } else {
+      hide();
+    }
+  }
+  function transitionHelperIn(el, modifiers, showCallback, reject) {
+    // Default values inspired by: https://material.io/design/motion/speed.html#duration
+    const styleValues = {
+      duration: modifierValue(modifiers, 'duration', 150),
+      origin: modifierValue(modifiers, 'origin', 'center'),
+      first: {
+        opacity: 0,
+        scale: modifierValue(modifiers, 'scale', 95)
+      },
+      second: {
+        opacity: 1,
+        scale: 100
+      }
+    };
+    transitionHelper(el, modifiers, showCallback, () => {}, reject, styleValues, TRANSITION_TYPE_IN);
+  }
+  function transitionHelperOut(el, modifiers, settingBothSidesOfTransition, hideCallback, reject) {
+    // Make the "out" transition .5x slower than the "in". (Visually better)
+    // HOWEVER, if they explicitly set a duration for the "out" transition,
+    // use that.
+    const duration = settingBothSidesOfTransition ? modifierValue(modifiers, 'duration', 150) : modifierValue(modifiers, 'duration', 150) / 2;
+    const styleValues = {
+      duration: duration,
+      origin: modifierValue(modifiers, 'origin', 'center'),
+      first: {
+        opacity: 1,
+        scale: 100
+      },
+      second: {
+        opacity: 0,
+        scale: modifierValue(modifiers, 'scale', 95)
+      }
+    };
+    transitionHelper(el, modifiers, () => {}, hideCallback, reject, styleValues, TRANSITION_TYPE_OUT);
+  }
+
+  function modifierValue(modifiers, key, fallback) {
+    // If the modifier isn't present, use the default.
+    if (modifiers.indexOf(key) === -1) return fallback; // If it IS present, grab the value after it: x-show.transition.duration.500ms
+
+    const rawValue = modifiers[modifiers.indexOf(key) + 1];
+    if (!rawValue) return fallback;
+
+    if (key === 'scale') {
+      // Check if the very next value is NOT a number and return the fallback.
+      // If x-show.transition.scale, we'll use the default scale value.
+      // That is how a user opts out of the opacity transition.
+      if (!isNumeric(rawValue)) return fallback;
+    }
+
+    if (key === 'duration') {
+      // Support x-show.transition.duration.500ms && duration.500
+      let match = rawValue.match(/([0-9]+)ms/);
+      if (match) return match[1];
+    }
+
+    if (key === 'origin') {
+      // Support chaining origin directions: x-show.transition.top.right
+      if (['top', 'right', 'left', 'center', 'bottom'].includes(modifiers[modifiers.indexOf(key) + 2])) {
+        return [rawValue, modifiers[modifiers.indexOf(key) + 2]].join(' ');
+      }
+    }
+
+    return rawValue;
+  }
+
+  function transitionHelper(el, modifiers, hook1, hook2, reject, styleValues, type) {
+    // clear the previous transition if exists to avoid caching the wrong styles
+    if (el.__x_transition) {
+      el.__x_transition.cancel && el.__x_transition.cancel();
+    } // If the user set these style values, we'll put them back when we're done with them.
+
+
+    const opacityCache = el.style.opacity;
+    const transformCache = el.style.transform;
+    const transformOriginCache = el.style.transformOrigin; // If no modifiers are present: x-show.transition, we'll default to both opacity and scale.
+
+    const noModifiers = !modifiers.includes('opacity') && !modifiers.includes('scale');
+    const transitionOpacity = noModifiers || modifiers.includes('opacity');
+    const transitionScale = noModifiers || modifiers.includes('scale'); // These are the explicit stages of a transition (same stages for in and for out).
+    // This way you can get a birds eye view of the hooks, and the differences
+    // between them.
+
+    const stages = {
+      start() {
+        if (transitionOpacity) el.style.opacity = styleValues.first.opacity;
+        if (transitionScale) el.style.transform = `scale(${styleValues.first.scale / 100})`;
+      },
+
+      during() {
+        if (transitionScale) el.style.transformOrigin = styleValues.origin;
+        el.style.transitionProperty = [transitionOpacity ? `opacity` : ``, transitionScale ? `transform` : ``].join(' ').trim();
+        el.style.transitionDuration = `${styleValues.duration / 1000}s`;
+        el.style.transitionTimingFunction = `cubic-bezier(0.4, 0.0, 0.2, 1)`;
+      },
+
+      show() {
+        hook1();
+      },
+
+      end() {
+        if (transitionOpacity) el.style.opacity = styleValues.second.opacity;
+        if (transitionScale) el.style.transform = `scale(${styleValues.second.scale / 100})`;
+      },
+
+      hide() {
+        hook2();
+      },
+
+      cleanup() {
+        if (transitionOpacity) el.style.opacity = opacityCache;
+        if (transitionScale) el.style.transform = transformCache;
+        if (transitionScale) el.style.transformOrigin = transformOriginCache;
+        el.style.transitionProperty = null;
+        el.style.transitionDuration = null;
+        el.style.transitionTimingFunction = null;
+      }
+
+    };
+    transition(el, stages, type, reject);
+  }
+
+  const ensureStringExpression = (expression, el, component) => {
+    return typeof expression === 'function' ? component.evaluateReturnExpression(el, expression) : expression;
+  };
+
+  function transitionClassesIn(el, component, directives, showCallback, reject) {
+    const enter = convertClassStringToArray(ensureStringExpression((directives.find(i => i.value === 'enter') || {
+      expression: ''
+    }).expression, el, component));
+    const enterStart = convertClassStringToArray(ensureStringExpression((directives.find(i => i.value === 'enter-start') || {
+      expression: ''
+    }).expression, el, component));
+    const enterEnd = convertClassStringToArray(ensureStringExpression((directives.find(i => i.value === 'enter-end') || {
+      expression: ''
+    }).expression, el, component));
+    transitionClasses(el, enter, enterStart, enterEnd, showCallback, () => {}, TRANSITION_TYPE_IN, reject);
+  }
+  function transitionClassesOut(el, component, directives, hideCallback, reject) {
+    const leave = convertClassStringToArray(ensureStringExpression((directives.find(i => i.value === 'leave') || {
+      expression: ''
+    }).expression, el, component));
+    const leaveStart = convertClassStringToArray(ensureStringExpression((directives.find(i => i.value === 'leave-start') || {
+      expression: ''
+    }).expression, el, component));
+    const leaveEnd = convertClassStringToArray(ensureStringExpression((directives.find(i => i.value === 'leave-end') || {
+      expression: ''
+    }).expression, el, component));
+    transitionClasses(el, leave, leaveStart, leaveEnd, () => {}, hideCallback, TRANSITION_TYPE_OUT, reject);
+  }
+  function transitionClasses(el, classesDuring, classesStart, classesEnd, hook1, hook2, type, reject) {
+    // clear the previous transition if exists to avoid caching the wrong classes
+    if (el.__x_transition) {
+      el.__x_transition.cancel && el.__x_transition.cancel();
+    }
+
+    const originalClasses = el.__x_original_classes || [];
+    const stages = {
+      start() {
+        el.classList.add(...classesStart);
+      },
+
+      during() {
+        el.classList.add(...classesDuring);
+      },
+
+      show() {
+        hook1();
+      },
+
+      end() {
+        // Don't remove classes that were in the original class attribute.
+        el.classList.remove(...classesStart.filter(i => !originalClasses.includes(i)));
+        el.classList.add(...classesEnd);
+      },
+
+      hide() {
+        hook2();
+      },
+
+      cleanup() {
+        el.classList.remove(...classesDuring.filter(i => !originalClasses.includes(i)));
+        el.classList.remove(...classesEnd.filter(i => !originalClasses.includes(i)));
+      }
+
+    };
+    transition(el, stages, type, reject);
+  }
+  function transition(el, stages, type, reject) {
+    const finish = once(() => {
+      stages.hide(); // Adding an "isConnected" check, in case the callback
+      // removed the element from the DOM.
+
+      if (el.isConnected) {
+        stages.cleanup();
+      }
+
+      delete el.__x_transition;
+    });
+    el.__x_transition = {
+      // Set transition type so we can avoid clearing transition if the direction is the same
+      type: type,
+      // create a callback for the last stages of the transition so we can call it
+      // from different point and early terminate it. Once will ensure that function
+      // is only called one time.
+      cancel: once(() => {
+        reject(TRANSITION_CANCELLED);
+        finish();
+      }),
+      finish,
+      // This store the next animation frame so we can cancel it
+      nextFrame: null
+    };
+    stages.start();
+    stages.during();
+    el.__x_transition.nextFrame = requestAnimationFrame(() => {
+      // Note: Safari's transitionDuration property will list out comma separated transition durations
+      // for every single transition property. Let's grab the first one and call it a day.
+      let duration = Number(getComputedStyle(el).transitionDuration.replace(/,.*/, '').replace('s', '')) * 1000;
+
+      if (duration === 0) {
+        duration = Number(getComputedStyle(el).animationDuration.replace('s', '')) * 1000;
+      }
+
+      stages.show();
+      el.__x_transition.nextFrame = requestAnimationFrame(() => {
+        stages.end();
+        setTimeout(el.__x_transition.finish, duration);
+      });
+    });
+  }
+  function isNumeric(subject) {
+    return !Array.isArray(subject) && !isNaN(subject);
+  } // Thanks @vuejs
+  // https://github.com/vuejs/vue/blob/4de4649d9637262a9b007720b59f80ac72a5620c/src/shared/util.js
+
+  function once(callback) {
+    let called = false;
+    return function () {
+      if (!called) {
+        called = true;
+        callback.apply(this, arguments);
+      }
+    };
+  }
+
+  function handleForDirective(component, templateEl, expression, initialUpdate, extraVars) {
+    warnIfMalformedTemplate(templateEl, 'x-for');
+    let iteratorNames = typeof expression === 'function' ? parseForExpression(component.evaluateReturnExpression(templateEl, expression)) : parseForExpression(expression);
+    let items = evaluateItemsAndReturnEmptyIfXIfIsPresentAndFalseOnElement(component, templateEl, iteratorNames, extraVars); // As we walk the array, we'll also walk the DOM (updating/creating as we go).
+
+    let currentEl = templateEl;
+    items.forEach((item, index) => {
+      let iterationScopeVariables = getIterationScopeVariables(iteratorNames, item, index, items, extraVars());
+      let currentKey = generateKeyForIteration(component, templateEl, index, iterationScopeVariables);
+      let nextEl = lookAheadForMatchingKeyedElementAndMoveItIfFound(currentEl.nextElementSibling, currentKey); // If we haven't found a matching key, insert the element at the current position.
+
+      if (!nextEl) {
+        nextEl = addElementInLoopAfterCurrentEl(templateEl, currentEl); // And transition it in if it's not the first page load.
+
+        transitionIn(nextEl, () => {}, () => {}, component, initialUpdate);
+        nextEl.__x_for = iterationScopeVariables;
+        component.initializeElements(nextEl, () => nextEl.__x_for); // Otherwise update the element we found.
+      } else {
+        // Temporarily remove the key indicator to allow the normal "updateElements" to work.
+        delete nextEl.__x_for_key;
+        nextEl.__x_for = iterationScopeVariables;
+        component.updateElements(nextEl, () => nextEl.__x_for);
+      }
+
+      currentEl = nextEl;
+      currentEl.__x_for_key = currentKey;
+    });
+    removeAnyLeftOverElementsFromPreviousUpdate(currentEl, component);
+  } // This was taken from VueJS 2.* core. Thanks Vue!
+
+  function parseForExpression(expression) {
+    let forIteratorRE = /,([^,\}\]]*)(?:,([^,\}\]]*))?$/;
+    let stripParensRE = /^\(|\)$/g;
+    let forAliasRE = /([\s\S]*?)\s+(?:in|of)\s+([\s\S]*)/;
+    let inMatch = String(expression).match(forAliasRE);
+    if (!inMatch) return;
+    let res = {};
+    res.items = inMatch[2].trim();
+    let item = inMatch[1].trim().replace(stripParensRE, '');
+    let iteratorMatch = item.match(forIteratorRE);
+
+    if (iteratorMatch) {
+      res.item = item.replace(forIteratorRE, '').trim();
+      res.index = iteratorMatch[1].trim();
+
+      if (iteratorMatch[2]) {
+        res.collection = iteratorMatch[2].trim();
+      }
+    } else {
+      res.item = item;
+    }
+
+    return res;
+  }
+
+  function getIterationScopeVariables(iteratorNames, item, index, items, extraVars) {
+    // We must create a new object, so each iteration has a new scope
+    let scopeVariables = extraVars ? _objectSpread2({}, extraVars) : {};
+    scopeVariables[iteratorNames.item] = item;
+    if (iteratorNames.index) scopeVariables[iteratorNames.index] = index;
+    if (iteratorNames.collection) scopeVariables[iteratorNames.collection] = items;
+    return scopeVariables;
+  }
+
+  function generateKeyForIteration(component, el, index, iterationScopeVariables) {
+    let bindKeyAttribute = getXAttrs(el, component, 'bind').filter(attr => attr.value === 'key')[0]; // If the dev hasn't specified a key, just return the index of the iteration.
+
+    if (!bindKeyAttribute) return index;
+    return component.evaluateReturnExpression(el, bindKeyAttribute.expression, () => iterationScopeVariables);
+  }
+
+  function evaluateItemsAndReturnEmptyIfXIfIsPresentAndFalseOnElement(component, el, iteratorNames, extraVars) {
+    let ifAttribute = getXAttrs(el, component, 'if')[0];
+
+    if (ifAttribute && !component.evaluateReturnExpression(el, ifAttribute.expression)) {
+      return [];
+    }
+
+    let items = component.evaluateReturnExpression(el, iteratorNames.items, extraVars); // This adds support for the `i in n` syntax.
+
+    if (isNumeric(items) && items >= 0) {
+      items = Array.from(Array(items).keys(), i => i + 1);
+    }
+
+    return items;
+  }
+
+  function addElementInLoopAfterCurrentEl(templateEl, currentEl) {
+    let clone = document.importNode(templateEl.content, true);
+    currentEl.parentElement.insertBefore(clone, currentEl.nextElementSibling);
+    return currentEl.nextElementSibling;
+  }
+
+  function lookAheadForMatchingKeyedElementAndMoveItIfFound(nextEl, currentKey) {
+    if (!nextEl) return; // If we are already past the x-for generated elements, we don't need to look ahead.
+
+    if (nextEl.__x_for_key === undefined) return; // If the the key's DO match, no need to look ahead.
+
+    if (nextEl.__x_for_key === currentKey) return nextEl; // If they don't, we'll look ahead for a match.
+    // If we find it, we'll move it to the current position in the loop.
+
+    let tmpNextEl = nextEl;
+
+    while (tmpNextEl) {
+      if (tmpNextEl.__x_for_key === currentKey) {
+        return tmpNextEl.parentElement.insertBefore(tmpNextEl, nextEl);
+      }
+
+      tmpNextEl = tmpNextEl.nextElementSibling && tmpNextEl.nextElementSibling.__x_for_key !== undefined ? tmpNextEl.nextElementSibling : false;
+    }
+  }
+
+  function removeAnyLeftOverElementsFromPreviousUpdate(currentEl, component) {
+    var nextElementFromOldLoop = currentEl.nextElementSibling && currentEl.nextElementSibling.__x_for_key !== undefined ? currentEl.nextElementSibling : false;
+
+    while (nextElementFromOldLoop) {
+      let nextElementFromOldLoopImmutable = nextElementFromOldLoop;
+      let nextSibling = nextElementFromOldLoop.nextElementSibling;
+      transitionOut(nextElementFromOldLoop, () => {
+        nextElementFromOldLoopImmutable.remove();
+      }, () => {}, component);
+      nextElementFromOldLoop = nextSibling && nextSibling.__x_for_key !== undefined ? nextSibling : false;
+    }
+  }
+
+  function handleAttributeBindingDirective(component, el, attrName, expression, extraVars, attrType, modifiers) {
+    var value = component.evaluateReturnExpression(el, expression, extraVars);
+
+    if (attrName === 'value') {
+      if (Alpine.ignoreFocusedForValueBinding && document.activeElement.isSameNode(el)) return; // If nested model key is undefined, set the default value to empty string.
+
+      if (value === undefined && String(expression).match(/\./)) {
+        value = '';
+      }
+
+      if (el.type === 'radio') {
+        // Set radio value from x-bind:value, if no "value" attribute exists.
+        // If there are any initial state values, radio will have a correct
+        // "checked" value since x-bind:value is processed before x-model.
+        if (el.attributes.value === undefined && attrType === 'bind') {
+          el.value = value;
+        } else if (attrType !== 'bind') {
+          el.checked = checkedAttrLooseCompare(el.value, value);
+        }
+      } else if (el.type === 'checkbox') {
+        // If we are explicitly binding a string to the :value, set the string,
+        // If the value is a boolean, leave it alone, it will be set to "on"
+        // automatically.
+        if (typeof value !== 'boolean' && ![null, undefined].includes(value) && attrType === 'bind') {
+          el.value = String(value);
+        } else if (attrType !== 'bind') {
+          if (Array.isArray(value)) {
+            // I'm purposely not using Array.includes here because it's
+            // strict, and because of Numeric/String mis-casting, I
+            // want the "includes" to be "fuzzy".
+            el.checked = value.some(val => checkedAttrLooseCompare(val, el.value));
+          } else {
+            el.checked = !!value;
+          }
+        }
+      } else if (el.tagName === 'SELECT') {
+        updateSelect(el, value);
+      } else {
+        if (el.value === value) return;
+        el.value = value;
+      }
+    } else if (attrName === 'class') {
+      if (Array.isArray(value)) {
+        const originalClasses = el.__x_original_classes || [];
+        el.setAttribute('class', arrayUnique(originalClasses.concat(value)).join(' '));
+      } else if (typeof value === 'object') {
+        // Sorting the keys / class names by their boolean value will ensure that
+        // anything that evaluates to `false` and needs to remove classes is run first.
+        const keysSortedByBooleanValue = Object.keys(value).sort((a, b) => value[a] - value[b]);
+        keysSortedByBooleanValue.forEach(classNames => {
+          if (value[classNames]) {
+            convertClassStringToArray(classNames).forEach(className => el.classList.add(className));
+          } else {
+            convertClassStringToArray(classNames).forEach(className => el.classList.remove(className));
+          }
+        });
+      } else {
+        const originalClasses = el.__x_original_classes || [];
+        const newClasses = value ? convertClassStringToArray(value) : [];
+        el.setAttribute('class', arrayUnique(originalClasses.concat(newClasses)).join(' '));
+      }
+    } else {
+      attrName = modifiers.includes('camel') ? camelCase(attrName) : attrName; // If an attribute's bound value is null, undefined or false, remove the attribute
+
+      if ([null, undefined, false].includes(value)) {
+        el.removeAttribute(attrName);
+      } else {
+        isBooleanAttr(attrName) ? setIfChanged(el, attrName, attrName) : setIfChanged(el, attrName, value);
+      }
+    }
+  }
+
+  function setIfChanged(el, attrName, value) {
+    if (el.getAttribute(attrName) != value) {
+      el.setAttribute(attrName, value);
+    }
+  }
+
+  function updateSelect(el, value) {
+    const arrayWrappedValue = [].concat(value).map(value => {
+      return value + '';
+    });
+    Array.from(el.options).forEach(option => {
+      option.selected = arrayWrappedValue.includes(option.value || option.text);
+    });
+  }
+
+  function handleTextDirective(el, output, expression) {
+    // If nested model key is undefined, set the default value to empty string.
+    if (output === undefined && String(expression).match(/\./)) {
+      output = '';
+    }
+
+    el.textContent = output;
+  }
+
+  function handleHtmlDirective(component, el, expression, extraVars) {
+    el.innerHTML = component.evaluateReturnExpression(el, expression, extraVars);
+  }
+
+  function handleShowDirective(component, el, value, modifiers, initialUpdate = false) {
+    const hide = () => {
+      el.style.display = 'none';
+      el.__x_is_shown = false;
+    };
+
+    const show = () => {
+      if (el.style.length === 1 && el.style.display === 'none') {
+        el.removeAttribute('style');
+      } else {
+        el.style.removeProperty('display');
+      }
+
+      el.__x_is_shown = true;
+    };
+
+    if (initialUpdate === true) {
+      if (value) {
+        show();
+      } else {
+        hide();
+      }
+
+      return;
+    }
+
+    const handle = (resolve, reject) => {
+      if (value) {
+        if (el.style.display === 'none' || el.__x_transition) {
+          transitionIn(el, () => {
+            show();
+          }, reject, component);
+        }
+
+        resolve(() => {});
+      } else {
+        if (el.style.display !== 'none') {
+          transitionOut(el, () => {
+            resolve(() => {
+              hide();
+            });
+          }, reject, component);
+        } else {
+          resolve(() => {});
+        }
+      }
+    }; // The working of x-show is a bit complex because we need to
+    // wait for any child transitions to finish before hiding
+    // some element. Also, this has to be done recursively.
+    // If x-show.immediate, foregoe the waiting.
+
+
+    if (modifiers.includes('immediate')) {
+      handle(finish => finish(), () => {});
+      return;
+    } // x-show is encountered during a DOM tree walk. If an element
+    // we encounter is NOT a child of another x-show element we
+    // can execute the previous x-show stack (if one exists).
+
+
+    if (component.showDirectiveLastElement && !component.showDirectiveLastElement.contains(el)) {
+      component.executeAndClearRemainingShowDirectiveStack();
+    }
+
+    component.showDirectiveStack.push(handle);
+    component.showDirectiveLastElement = el;
+  }
+
+  function handleIfDirective(component, el, expressionResult, initialUpdate, extraVars) {
+    warnIfMalformedTemplate(el, 'x-if');
+    const elementHasAlreadyBeenAdded = el.nextElementSibling && el.nextElementSibling.__x_inserted_me === true;
+
+    if (expressionResult && (!elementHasAlreadyBeenAdded || el.__x_transition)) {
+      const clone = document.importNode(el.content, true);
+      el.parentElement.insertBefore(clone, el.nextElementSibling);
+      transitionIn(el.nextElementSibling, () => {}, () => {}, component, initialUpdate);
+      component.initializeElements(el.nextElementSibling, extraVars);
+      el.nextElementSibling.__x_inserted_me = true;
+    } else if (!expressionResult && elementHasAlreadyBeenAdded) {
+      transitionOut(el.nextElementSibling, () => {
+        el.nextElementSibling.remove();
+      }, () => {}, component, initialUpdate);
+    }
+  }
+
+  function registerListener(component, el, event, modifiers, expression, extraVars = {}) {
+    const options = {
+      passive: modifiers.includes('passive')
+    };
+
+    if (modifiers.includes('camel')) {
+      event = camelCase(event);
+    }
+
+    let handler, listenerTarget;
+
+    if (modifiers.includes('away')) {
+      listenerTarget = document;
+
+      handler = e => {
+        // Don't do anything if the click came from the element or within it.
+        if (el.contains(e.target)) return; // Don't do anything if this element isn't currently visible.
+
+        if (el.offsetWidth < 1 && el.offsetHeight < 1) return; // Now that we are sure the element is visible, AND the click
+        // is from outside it, let's run the expression.
+
+        runListenerHandler(component, expression, e, extraVars);
+
+        if (modifiers.includes('once')) {
+          document.removeEventListener(event, handler, options);
+        }
+      };
+    } else {
+      listenerTarget = modifiers.includes('window') ? window : modifiers.includes('document') ? document : el;
+
+      handler = e => {
+        // Remove this global event handler if the element that declared it
+        // has been removed. It's now stale.
+        if (listenerTarget === window || listenerTarget === document) {
+          if (!document.body.contains(el)) {
+            listenerTarget.removeEventListener(event, handler, options);
+            return;
+          }
+        }
+
+        if (isKeyEvent(event)) {
+          if (isListeningForASpecificKeyThatHasntBeenPressed(e, modifiers)) {
+            return;
+          }
+        }
+
+        if (modifiers.includes('prevent')) e.preventDefault();
+        if (modifiers.includes('stop')) e.stopPropagation(); // If the .self modifier isn't present, or if it is present and
+        // the target element matches the element we are registering the
+        // event on, run the handler
+
+        if (!modifiers.includes('self') || e.target === el) {
+          const returnValue = runListenerHandler(component, expression, e, extraVars);
+          returnValue.then(value => {
+            if (value === false) {
+              e.preventDefault();
+            } else {
+              if (modifiers.includes('once')) {
+                listenerTarget.removeEventListener(event, handler, options);
+              }
+            }
+          });
+        }
+      };
+    }
+
+    if (modifiers.includes('debounce')) {
+      let nextModifier = modifiers[modifiers.indexOf('debounce') + 1] || 'invalid-wait';
+      let wait = isNumeric(nextModifier.split('ms')[0]) ? Number(nextModifier.split('ms')[0]) : 250;
+      handler = debounce(handler, wait);
+    }
+
+    listenerTarget.addEventListener(event, handler, options);
+  }
+
+  function runListenerHandler(component, expression, e, extraVars) {
+    return component.evaluateCommandExpression(e.target, expression, () => {
+      return _objectSpread2(_objectSpread2({}, extraVars()), {}, {
+        '$event': e
+      });
+    });
+  }
+
+  function isKeyEvent(event) {
+    return ['keydown', 'keyup'].includes(event);
+  }
+
+  function isListeningForASpecificKeyThatHasntBeenPressed(e, modifiers) {
+    let keyModifiers = modifiers.filter(i => {
+      return !['window', 'document', 'prevent', 'stop'].includes(i);
+    });
+
+    if (keyModifiers.includes('debounce')) {
+      let debounceIndex = keyModifiers.indexOf('debounce');
+      keyModifiers.splice(debounceIndex, isNumeric((keyModifiers[debounceIndex + 1] || 'invalid-wait').split('ms')[0]) ? 2 : 1);
+    } // If no modifier is specified, we'll call it a press.
+
+
+    if (keyModifiers.length === 0) return false; // If one is passed, AND it matches the key pressed, we'll call it a press.
+
+    if (keyModifiers.length === 1 && keyModifiers[0] === keyToModifier(e.key)) return false; // The user is listening for key combinations.
+
+    const systemKeyModifiers = ['ctrl', 'shift', 'alt', 'meta', 'cmd', 'super'];
+    const selectedSystemKeyModifiers = systemKeyModifiers.filter(modifier => keyModifiers.includes(modifier));
+    keyModifiers = keyModifiers.filter(i => !selectedSystemKeyModifiers.includes(i));
+
+    if (selectedSystemKeyModifiers.length > 0) {
+      const activelyPressedKeyModifiers = selectedSystemKeyModifiers.filter(modifier => {
+        // Alias "cmd" and "super" to "meta"
+        if (modifier === 'cmd' || modifier === 'super') modifier = 'meta';
+        return e[`${modifier}Key`];
+      }); // If all the modifiers selected are pressed, ...
+
+      if (activelyPressedKeyModifiers.length === selectedSystemKeyModifiers.length) {
+        // AND the remaining key is pressed as well. It's a press.
+        if (keyModifiers[0] === keyToModifier(e.key)) return false;
+      }
+    } // We'll call it NOT a valid keypress.
+
+
+    return true;
+  }
+
+  function keyToModifier(key) {
+    switch (key) {
+      case '/':
+        return 'slash';
+
+      case ' ':
+      case 'Spacebar':
+        return 'space';
+
+      default:
+        return key && kebabCase(key);
+    }
+  }
+
+  function registerModelListener(component, el, modifiers, expression, extraVars) {
+    // If the element we are binding to is a select, a radio, or checkbox
+    // we'll listen for the change event instead of the "input" event.
+    var event = el.tagName.toLowerCase() === 'select' || ['checkbox', 'radio'].includes(el.type) || modifiers.includes('lazy') ? 'change' : 'input';
+    const listenerExpression = `${expression} = rightSideOfExpression($event, ${expression})`;
+    registerListener(component, el, event, modifiers, listenerExpression, () => {
+      return _objectSpread2(_objectSpread2({}, extraVars()), {}, {
+        rightSideOfExpression: generateModelAssignmentFunction(el, modifiers, expression)
+      });
+    });
+  }
+
+  function generateModelAssignmentFunction(el, modifiers, expression) {
+    if (el.type === 'radio') {
+      // Radio buttons only work properly when they share a name attribute.
+      // People might assume we take care of that for them, because
+      // they already set a shared "x-model" attribute.
+      if (!el.hasAttribute('name')) el.setAttribute('name', expression);
+    }
+
+    return (event, currentValue) => {
+      // Check for event.detail due to an issue where IE11 handles other events as a CustomEvent.
+      if (event instanceof CustomEvent && event.detail) {
+        return event.detail;
+      } else if (el.type === 'checkbox') {
+        // If the data we are binding to is an array, toggle its value inside the array.
+        if (Array.isArray(currentValue)) {
+          const newValue = modifiers.includes('number') ? safeParseNumber(event.target.value) : event.target.value;
+          return event.target.checked ? currentValue.concat([newValue]) : currentValue.filter(el => !checkedAttrLooseCompare(el, newValue));
+        } else {
+          return event.target.checked;
+        }
+      } else if (el.tagName.toLowerCase() === 'select' && el.multiple) {
+        return modifiers.includes('number') ? Array.from(event.target.selectedOptions).map(option => {
+          const rawValue = option.value || option.text;
+          return safeParseNumber(rawValue);
+        }) : Array.from(event.target.selectedOptions).map(option => {
+          return option.value || option.text;
+        });
+      } else {
+        const rawValue = event.target.value;
+        return modifiers.includes('number') ? safeParseNumber(rawValue) : modifiers.includes('trim') ? rawValue.trim() : rawValue;
+      }
+    };
+  }
+
+  function safeParseNumber(rawValue) {
+    const number = rawValue ? parseFloat(rawValue) : null;
+    return isNumeric(number) ? number : rawValue;
+  }
+
+  /**
+   * Copyright (C) 2017 salesforce.com, inc.
+   */
+  const { isArray } = Array;
+  const { getPrototypeOf, create: ObjectCreate, defineProperty: ObjectDefineProperty, defineProperties: ObjectDefineProperties, isExtensible, getOwnPropertyDescriptor, getOwnPropertyNames, getOwnPropertySymbols, preventExtensions, hasOwnProperty, } = Object;
+  const { push: ArrayPush, concat: ArrayConcat, map: ArrayMap, } = Array.prototype;
+  function isUndefined(obj) {
+      return obj === undefined;
+  }
+  function isFunction(obj) {
+      return typeof obj === 'function';
+  }
+  function isObject(obj) {
+      return typeof obj === 'object';
+  }
+  const proxyToValueMap = new WeakMap();
+  function registerProxy(proxy, value) {
+      proxyToValueMap.set(proxy, value);
+  }
+  const unwrap = (replicaOrAny) => proxyToValueMap.get(replicaOrAny) || replicaOrAny;
+
+  function wrapValue(membrane, value) {
+      return membrane.valueIsObservable(value) ? membrane.getProxy(value) : value;
+  }
+  /**
+   * Unwrap property descriptors will set value on original descriptor
+   * We only need to unwrap if value is specified
+   * @param descriptor external descrpitor provided to define new property on original value
+   */
+  function unwrapDescriptor(descriptor) {
+      if (hasOwnProperty.call(descriptor, 'value')) {
+          descriptor.value = unwrap(descriptor.value);
+      }
+      return descriptor;
+  }
+  function lockShadowTarget(membrane, shadowTarget, originalTarget) {
+      const targetKeys = ArrayConcat.call(getOwnPropertyNames(originalTarget), getOwnPropertySymbols(originalTarget));
+      targetKeys.forEach((key) => {
+          let descriptor = getOwnPropertyDescriptor(originalTarget, key);
+          // We do not need to wrap the descriptor if configurable
+          // Because we can deal with wrapping it when user goes through
+          // Get own property descriptor. There is also a chance that this descriptor
+          // could change sometime in the future, so we can defer wrapping
+          // until we need to
+          if (!descriptor.configurable) {
+              descriptor = wrapDescriptor(membrane, descriptor, wrapValue);
+          }
+          ObjectDefineProperty(shadowTarget, key, descriptor);
+      });
+      preventExtensions(shadowTarget);
+  }
+  class ReactiveProxyHandler {
+      constructor(membrane, value) {
+          this.originalTarget = value;
+          this.membrane = membrane;
+      }
+      get(shadowTarget, key) {
+          const { originalTarget, membrane } = this;
+          const value = originalTarget[key];
+          const { valueObserved } = membrane;
+          valueObserved(originalTarget, key);
+          return membrane.getProxy(value);
+      }
+      set(shadowTarget, key, value) {
+          const { originalTarget, membrane: { valueMutated } } = this;
+          const oldValue = originalTarget[key];
+          if (oldValue !== value) {
+              originalTarget[key] = value;
+              valueMutated(originalTarget, key);
+          }
+          else if (key === 'length' && isArray(originalTarget)) {
+              // fix for issue #236: push will add the new index, and by the time length
+              // is updated, the internal length is already equal to the new length value
+              // therefore, the oldValue is equal to the value. This is the forking logic
+              // to support this use case.
+              valueMutated(originalTarget, key);
+          }
+          return true;
+      }
+      deleteProperty(shadowTarget, key) {
+          const { originalTarget, membrane: { valueMutated } } = this;
+          delete originalTarget[key];
+          valueMutated(originalTarget, key);
+          return true;
+      }
+      apply(shadowTarget, thisArg, argArray) {
+          /* No op */
+      }
+      construct(target, argArray, newTarget) {
+          /* No op */
+      }
+      has(shadowTarget, key) {
+          const { originalTarget, membrane: { valueObserved } } = this;
+          valueObserved(originalTarget, key);
+          return key in originalTarget;
+      }
+      ownKeys(shadowTarget) {
+          const { originalTarget } = this;
+          return ArrayConcat.call(getOwnPropertyNames(originalTarget), getOwnPropertySymbols(originalTarget));
+      }
+      isExtensible(shadowTarget) {
+          const shadowIsExtensible = isExtensible(shadowTarget);
+          if (!shadowIsExtensible) {
+              return shadowIsExtensible;
+          }
+          const { originalTarget, membrane } = this;
+          const targetIsExtensible = isExtensible(originalTarget);
+          if (!targetIsExtensible) {
+              lockShadowTarget(membrane, shadowTarget, originalTarget);
+          }
+          return targetIsExtensible;
+      }
+      setPrototypeOf(shadowTarget, prototype) {
+      }
+      getPrototypeOf(shadowTarget) {
+          const { originalTarget } = this;
+          return getPrototypeOf(originalTarget);
+      }
+      getOwnPropertyDescriptor(shadowTarget, key) {
+          const { originalTarget, membrane } = this;
+          const { valueObserved } = this.membrane;
+          // keys looked up via hasOwnProperty need to be reactive
+          valueObserved(originalTarget, key);
+          let desc = getOwnPropertyDescriptor(originalTarget, key);
+          if (isUndefined(desc)) {
+              return desc;
+          }
+          const shadowDescriptor = getOwnPropertyDescriptor(shadowTarget, key);
+          if (!isUndefined(shadowDescriptor)) {
+              return shadowDescriptor;
+          }
+          // Note: by accessing the descriptor, the key is marked as observed
+          // but access to the value, setter or getter (if available) cannot observe
+          // mutations, just like regular methods, in which case we just do nothing.
+          desc = wrapDescriptor(membrane, desc, wrapValue);
+          if (!desc.configurable) {
+              // If descriptor from original target is not configurable,
+              // We must copy the wrapped descriptor over to the shadow target.
+              // Otherwise, proxy will throw an invariant error.
+              // This is our last chance to lock the value.
+              // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/getOwnPropertyDescriptor#Invariants
+              ObjectDefineProperty(shadowTarget, key, desc);
+          }
+          return desc;
+      }
+      preventExtensions(shadowTarget) {
+          const { originalTarget, membrane } = this;
+          lockShadowTarget(membrane, shadowTarget, originalTarget);
+          preventExtensions(originalTarget);
+          return true;
+      }
+      defineProperty(shadowTarget, key, descriptor) {
+          const { originalTarget, membrane } = this;
+          const { valueMutated } = membrane;
+          const { configurable } = descriptor;
+          // We have to check for value in descriptor
+          // because Object.freeze(proxy) calls this method
+          // with only { configurable: false, writeable: false }
+          // Additionally, method will only be called with writeable:false
+          // if the descriptor has a value, as opposed to getter/setter
+          // So we can just check if writable is present and then see if
+          // value is present. This eliminates getter and setter descriptors
+          if (hasOwnProperty.call(descriptor, 'writable') && !hasOwnProperty.call(descriptor, 'value')) {
+              const originalDescriptor = getOwnPropertyDescriptor(originalTarget, key);
+              descriptor.value = originalDescriptor.value;
+          }
+          ObjectDefineProperty(originalTarget, key, unwrapDescriptor(descriptor));
+          if (configurable === false) {
+              ObjectDefineProperty(shadowTarget, key, wrapDescriptor(membrane, descriptor, wrapValue));
+          }
+          valueMutated(originalTarget, key);
+          return true;
+      }
+  }
+
+  function wrapReadOnlyValue(membrane, value) {
+      return membrane.valueIsObservable(value) ? membrane.getReadOnlyProxy(value) : value;
+  }
+  class ReadOnlyHandler {
+      constructor(membrane, value) {
+          this.originalTarget = value;
+          this.membrane = membrane;
+      }
+      get(shadowTarget, key) {
+          const { membrane, originalTarget } = this;
+          const value = originalTarget[key];
+          const { valueObserved } = membrane;
+          valueObserved(originalTarget, key);
+          return membrane.getReadOnlyProxy(value);
+      }
+      set(shadowTarget, key, value) {
+          return false;
+      }
+      deleteProperty(shadowTarget, key) {
+          return false;
+      }
+      apply(shadowTarget, thisArg, argArray) {
+          /* No op */
+      }
+      construct(target, argArray, newTarget) {
+          /* No op */
+      }
+      has(shadowTarget, key) {
+          const { originalTarget, membrane: { valueObserved } } = this;
+          valueObserved(originalTarget, key);
+          return key in originalTarget;
+      }
+      ownKeys(shadowTarget) {
+          const { originalTarget } = this;
+          return ArrayConcat.call(getOwnPropertyNames(originalTarget), getOwnPropertySymbols(originalTarget));
+      }
+      setPrototypeOf(shadowTarget, prototype) {
+      }
+      getOwnPropertyDescriptor(shadowTarget, key) {
+          const { originalTarget, membrane } = this;
+          const { valueObserved } = membrane;
+          // keys looked up via hasOwnProperty need to be reactive
+          valueObserved(originalTarget, key);
+          let desc = getOwnPropertyDescriptor(originalTarget, key);
+          if (isUndefined(desc)) {
+              return desc;
+          }
+          const shadowDescriptor = getOwnPropertyDescriptor(shadowTarget, key);
+          if (!isUndefined(shadowDescriptor)) {
+              return shadowDescriptor;
+          }
+          // Note: by accessing the descriptor, the key is marked as observed
+          // but access to the value or getter (if available) cannot be observed,
+          // just like regular methods, in which case we just do nothing.
+          desc = wrapDescriptor(membrane, desc, wrapReadOnlyValue);
+          if (hasOwnProperty.call(desc, 'set')) {
+              desc.set = undefined; // readOnly membrane does not allow setters
+          }
+          if (!desc.configurable) {
+              // If descriptor from original target is not configurable,
+              // We must copy the wrapped descriptor over to the shadow target.
+              // Otherwise, proxy will throw an invariant error.
+              // This is our last chance to lock the value.
+              // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/getOwnPropertyDescriptor#Invariants
+              ObjectDefineProperty(shadowTarget, key, desc);
+          }
+          return desc;
+      }
+      preventExtensions(shadowTarget) {
+          return false;
+      }
+      defineProperty(shadowTarget, key, descriptor) {
+          return false;
+      }
+  }
+  function createShadowTarget(value) {
+      let shadowTarget = undefined;
+      if (isArray(value)) {
+          shadowTarget = [];
+      }
+      else if (isObject(value)) {
+          shadowTarget = {};
+      }
+      return shadowTarget;
+  }
+  const ObjectDotPrototype = Object.prototype;
+  function defaultValueIsObservable(value) {
+      // intentionally checking for null
+      if (value === null) {
+          return false;
+      }
+      // treat all non-object types, including undefined, as non-observable values
+      if (typeof value !== 'object') {
+          return false;
+      }
+      if (isArray(value)) {
+          return true;
+      }
+      const proto = getPrototypeOf(value);
+      return (proto === ObjectDotPrototype || proto === null || getPrototypeOf(proto) === null);
+  }
+  const defaultValueObserved = (obj, key) => {
+      /* do nothing */
+  };
+  const defaultValueMutated = (obj, key) => {
+      /* do nothing */
+  };
+  const defaultValueDistortion = (value) => value;
+  function wrapDescriptor(membrane, descriptor, getValue) {
+      const { set, get } = descriptor;
+      if (hasOwnProperty.call(descriptor, 'value')) {
+          descriptor.value = getValue(membrane, descriptor.value);
+      }
+      else {
+          if (!isUndefined(get)) {
+              descriptor.get = function () {
+                  // invoking the original getter with the original target
+                  return getValue(membrane, get.call(unwrap(this)));
+              };
+          }
+          if (!isUndefined(set)) {
+              descriptor.set = function (value) {
+                  // At this point we don't have a clear indication of whether
+                  // or not a valid mutation will occur, we don't have the key,
+                  // and we are not sure why and how they are invoking this setter.
+                  // Nevertheless we preserve the original semantics by invoking the
+                  // original setter with the original target and the unwrapped value
+                  set.call(unwrap(this), membrane.unwrapProxy(value));
+              };
+          }
+      }
+      return descriptor;
+  }
+  class ReactiveMembrane {
+      constructor(options) {
+          this.valueDistortion = defaultValueDistortion;
+          this.valueMutated = defaultValueMutated;
+          this.valueObserved = defaultValueObserved;
+          this.valueIsObservable = defaultValueIsObservable;
+          this.objectGraph = new WeakMap();
+          if (!isUndefined(options)) {
+              const { valueDistortion, valueMutated, valueObserved, valueIsObservable } = options;
+              this.valueDistortion = isFunction(valueDistortion) ? valueDistortion : defaultValueDistortion;
+              this.valueMutated = isFunction(valueMutated) ? valueMutated : defaultValueMutated;
+              this.valueObserved = isFunction(valueObserved) ? valueObserved : defaultValueObserved;
+              this.valueIsObservable = isFunction(valueIsObservable) ? valueIsObservable : defaultValueIsObservable;
+          }
+      }
+      getProxy(value) {
+          const unwrappedValue = unwrap(value);
+          const distorted = this.valueDistortion(unwrappedValue);
+          if (this.valueIsObservable(distorted)) {
+              const o = this.getReactiveState(unwrappedValue, distorted);
+              // when trying to extract the writable version of a readonly
+              // we return the readonly.
+              return o.readOnly === value ? value : o.reactive;
+          }
+          return distorted;
+      }
+      getReadOnlyProxy(value) {
+          value = unwrap(value);
+          const distorted = this.valueDistortion(value);
+          if (this.valueIsObservable(distorted)) {
+              return this.getReactiveState(value, distorted).readOnly;
+          }
+          return distorted;
+      }
+      unwrapProxy(p) {
+          return unwrap(p);
+      }
+      getReactiveState(value, distortedValue) {
+          const { objectGraph, } = this;
+          let reactiveState = objectGraph.get(distortedValue);
+          if (reactiveState) {
+              return reactiveState;
+          }
+          const membrane = this;
+          reactiveState = {
+              get reactive() {
+                  const reactiveHandler = new ReactiveProxyHandler(membrane, distortedValue);
+                  // caching the reactive proxy after the first time it is accessed
+                  const proxy = new Proxy(createShadowTarget(distortedValue), reactiveHandler);
+                  registerProxy(proxy, value);
+                  ObjectDefineProperty(this, 'reactive', { value: proxy });
+                  return proxy;
+              },
+              get readOnly() {
+                  const readOnlyHandler = new ReadOnlyHandler(membrane, distortedValue);
+                  // caching the readOnly proxy after the first time it is accessed
+                  const proxy = new Proxy(createShadowTarget(distortedValue), readOnlyHandler);
+                  registerProxy(proxy, value);
+                  ObjectDefineProperty(this, 'readOnly', { value: proxy });
+                  return proxy;
+              }
+          };
+          objectGraph.set(distortedValue, reactiveState);
+          return reactiveState;
+      }
+  }
+  /** version: 0.26.0 */
+
+  function wrap(data, mutationCallback) {
+
+    let membrane = new ReactiveMembrane({
+      valueMutated(target, key) {
+        mutationCallback(target, key);
+      }
+
+    });
+    return {
+      data: membrane.getProxy(data),
+      membrane: membrane
+    };
+  }
+  function unwrap$1(membrane, observable) {
+    let unwrappedData = membrane.unwrapProxy(observable);
+    let copy = {};
+    Object.keys(unwrappedData).forEach(key => {
+      if (['$el', '$refs', '$nextTick', '$watch'].includes(key)) return;
+      copy[key] = unwrappedData[key];
+    });
+    return copy;
+  }
+
+  class Component {
+    constructor(el, componentForClone = null) {
+      this.$el = el;
+      const dataAttr = this.$el.getAttribute('x-data');
+      const dataExpression = dataAttr === '' ? '{}' : dataAttr;
+      const initExpression = this.$el.getAttribute('x-init');
+      let dataExtras = {
+        $el: this.$el
+      };
+      let canonicalComponentElementReference = componentForClone ? componentForClone.$el : this.$el;
+      Object.entries(Alpine.magicProperties).forEach(([name, callback]) => {
+        Object.defineProperty(dataExtras, `$${name}`, {
+          get: function get() {
+            return callback(canonicalComponentElementReference);
+          }
+        });
+      });
+      this.unobservedData = componentForClone ? componentForClone.getUnobservedData() : saferEval(el, dataExpression, dataExtras);
+      // Construct a Proxy-based observable. This will be used to handle reactivity.
+
+      let {
+        membrane,
+        data
+      } = this.wrapDataInObservable(this.unobservedData);
+      this.$data = data;
+      this.membrane = membrane; // After making user-supplied data methods reactive, we can now add
+      // our magic properties to the original data for access.
+
+      this.unobservedData.$el = this.$el;
+      this.unobservedData.$refs = this.getRefsProxy();
+      this.nextTickStack = [];
+
+      this.unobservedData.$nextTick = callback => {
+        this.nextTickStack.push(callback);
+      };
+
+      this.watchers = {};
+
+      this.unobservedData.$watch = (property, callback) => {
+        if (!this.watchers[property]) this.watchers[property] = [];
+        this.watchers[property].push(callback);
+      };
+      /* MODERN-ONLY:START */
+      // We remove this piece of code from the legacy build.
+      // In IE11, we have already defined our helpers at this point.
+      // Register custom magic properties.
+
+
+      Object.entries(Alpine.magicProperties).forEach(([name, callback]) => {
+        Object.defineProperty(this.unobservedData, `$${name}`, {
+          get: function get() {
+            return callback(canonicalComponentElementReference, this.$el);
+          }
+        });
+      });
+      /* MODERN-ONLY:END */
+
+      this.showDirectiveStack = [];
+      this.showDirectiveLastElement;
+      componentForClone || Alpine.onBeforeComponentInitializeds.forEach(callback => callback(this));
+      var initReturnedCallback; // If x-init is present AND we aren't cloning (skip x-init on clone)
+
+      if (initExpression && !componentForClone) {
+        // We want to allow data manipulation, but not trigger DOM updates just yet.
+        // We haven't even initialized the elements with their Alpine bindings. I mean c'mon.
+        this.pauseReactivity = true;
+        initReturnedCallback = this.evaluateReturnExpression(this.$el, initExpression);
+        this.pauseReactivity = false;
+      } // Register all our listeners and set all our attribute bindings.
+      // If we're cloning a component, the third parameter ensures no duplicate
+      // event listeners are registered (the mutation observer will take care of them)
+
+
+      this.initializeElements(this.$el, () => {}, componentForClone); // Use mutation observer to detect new elements being added within this component at run-time.
+      // Alpine's just so darn flexible amirite?
+
+      this.listenForNewElementsToInitialize();
+
+      if (typeof initReturnedCallback === 'function') {
+        // Run the callback returned from the "x-init" hook to allow the user to do stuff after
+        // Alpine's got it's grubby little paws all over everything.
+        initReturnedCallback.call(this.$data);
+      }
+
+      componentForClone || setTimeout(() => {
+        Alpine.onComponentInitializeds.forEach(callback => callback(this));
+      }, 0);
+    }
+
+    getUnobservedData() {
+      return unwrap$1(this.membrane, this.$data);
+    }
+
+    wrapDataInObservable(data) {
+      var self = this;
+      let updateDom = debounce(function () {
+        self.updateElements(self.$el);
+      }, 0);
+      return wrap(data, (target, key) => {
+        if (self.watchers[key]) {
+          // If there's a watcher for this specific key, run it.
+          self.watchers[key].forEach(callback => callback(target[key]));
+        } else if (Array.isArray(target)) {
+          // Arrays are special cases, if any of the items change, we consider the array as mutated.
+          Object.keys(self.watchers).forEach(fullDotNotationKey => {
+            let dotNotationParts = fullDotNotationKey.split('.'); // Ignore length mutations since they would result in duplicate calls.
+            // For example, when calling push, we would get a mutation for the item's key
+            // and a second mutation for the length property.
+
+            if (key === 'length') return;
+            dotNotationParts.reduce((comparisonData, part) => {
+              if (Object.is(target, comparisonData[part])) {
+                self.watchers[fullDotNotationKey].forEach(callback => callback(target));
+              }
+
+              return comparisonData[part];
+            }, self.unobservedData);
+          });
+        } else {
+          // Let's walk through the watchers with "dot-notation" (foo.bar) and see
+          // if this mutation fits any of them.
+          Object.keys(self.watchers).filter(i => i.includes('.')).forEach(fullDotNotationKey => {
+            let dotNotationParts = fullDotNotationKey.split('.'); // If this dot-notation watcher's last "part" doesn't match the current
+            // key, then skip it early for performance reasons.
+
+            if (key !== dotNotationParts[dotNotationParts.length - 1]) return; // Now, walk through the dot-notation "parts" recursively to find
+            // a match, and call the watcher if one's found.
+
+            dotNotationParts.reduce((comparisonData, part) => {
+              if (Object.is(target, comparisonData)) {
+                // Run the watchers.
+                self.watchers[fullDotNotationKey].forEach(callback => callback(target[key]));
+              }
+
+              return comparisonData[part];
+            }, self.unobservedData);
+          });
+        } // Don't react to data changes for cases like the `x-created` hook.
+
+
+        if (self.pauseReactivity) return;
+        updateDom();
+      });
+    }
+
+    walkAndSkipNestedComponents(el, callback, initializeComponentCallback = () => {}) {
+      walk(el, el => {
+        // We've hit a component.
+        if (el.hasAttribute('x-data')) {
+          // If it's not the current one.
+          if (!el.isSameNode(this.$el)) {
+            // Initialize it if it's not.
+            if (!el.__x) initializeComponentCallback(el); // Now we'll let that sub-component deal with itself.
+
+            return false;
+          }
+        }
+
+        return callback(el);
+      });
+    }
+
+    initializeElements(rootEl, extraVars = () => {}, componentForClone = false) {
+      this.walkAndSkipNestedComponents(rootEl, el => {
+        // Don't touch spawns from for loop
+        if (el.__x_for_key !== undefined) return false; // Don't touch spawns from if directives
+
+        if (el.__x_inserted_me !== undefined) return false;
+        this.initializeElement(el, extraVars, componentForClone ? false : true);
+      }, el => {
+        if (!componentForClone) el.__x = new Component(el);
+      });
+      this.executeAndClearRemainingShowDirectiveStack();
+      this.executeAndClearNextTickStack(rootEl);
+    }
+
+    initializeElement(el, extraVars, shouldRegisterListeners = true) {
+      // To support class attribute merging, we have to know what the element's
+      // original class attribute looked like for reference.
+      if (el.hasAttribute('class') && getXAttrs(el, this).length > 0) {
+        el.__x_original_classes = convertClassStringToArray(el.getAttribute('class'));
+      }
+
+      shouldRegisterListeners && this.registerListeners(el, extraVars);
+      this.resolveBoundAttributes(el, true, extraVars);
+    }
+
+    updateElements(rootEl, extraVars = () => {}) {
+      this.walkAndSkipNestedComponents(rootEl, el => {
+        // Don't touch spawns from for loop (and check if the root is actually a for loop in a parent, don't skip it.)
+        if (el.__x_for_key !== undefined && !el.isSameNode(this.$el)) return false;
+        this.updateElement(el, extraVars);
+      }, el => {
+        el.__x = new Component(el);
+      });
+      this.executeAndClearRemainingShowDirectiveStack();
+      this.executeAndClearNextTickStack(rootEl);
+    }
+
+    executeAndClearNextTickStack(el) {
+      // Skip spawns from alpine directives
+      if (el === this.$el && this.nextTickStack.length > 0) {
+        // We run the tick stack after the next frame to allow any
+        // running transitions to pass the initial show stage.
+        requestAnimationFrame(() => {
+          while (this.nextTickStack.length > 0) {
+            this.nextTickStack.shift()();
+          }
+        });
+      }
+    }
+
+    executeAndClearRemainingShowDirectiveStack() {
+      // The goal here is to start all the x-show transitions
+      // and build a nested promise chain so that elements
+      // only hide when the children are finished hiding.
+      this.showDirectiveStack.reverse().map(handler => {
+        return new Promise((resolve, reject) => {
+          handler(resolve, reject);
+        });
+      }).reduce((promiseChain, promise) => {
+        return promiseChain.then(() => {
+          return promise.then(finishElement => {
+            finishElement();
+          });
+        });
+      }, Promise.resolve(() => {})).catch(e => {
+        if (e !== TRANSITION_CANCELLED) throw e;
+      }); // We've processed the handler stack. let's clear it.
+
+      this.showDirectiveStack = [];
+      this.showDirectiveLastElement = undefined;
+    }
+
+    updateElement(el, extraVars) {
+      this.resolveBoundAttributes(el, false, extraVars);
+    }
+
+    registerListeners(el, extraVars) {
+      getXAttrs(el, this).forEach(({
+        type,
+        value,
+        modifiers,
+        expression
+      }) => {
+        switch (type) {
+          case 'on':
+            registerListener(this, el, value, modifiers, expression, extraVars);
+            break;
+
+          case 'model':
+            registerModelListener(this, el, modifiers, expression, extraVars);
+            break;
+        }
+      });
+    }
+
+    resolveBoundAttributes(el, initialUpdate = false, extraVars) {
+      let attrs = getXAttrs(el, this);
+      attrs.forEach(({
+        type,
+        value,
+        modifiers,
+        expression
+      }) => {
+        switch (type) {
+          case 'model':
+            handleAttributeBindingDirective(this, el, 'value', expression, extraVars, type, modifiers);
+            break;
+
+          case 'bind':
+            // The :key binding on an x-for is special, ignore it.
+            if (el.tagName.toLowerCase() === 'template' && value === 'key') return;
+            handleAttributeBindingDirective(this, el, value, expression, extraVars, type, modifiers);
+            break;
+
+          case 'text':
+            var output = this.evaluateReturnExpression(el, expression, extraVars);
+            handleTextDirective(el, output, expression);
+            break;
+
+          case 'html':
+            handleHtmlDirective(this, el, expression, extraVars);
+            break;
+
+          case 'show':
+            var output = this.evaluateReturnExpression(el, expression, extraVars);
+            handleShowDirective(this, el, output, modifiers, initialUpdate);
+            break;
+
+          case 'if':
+            // If this element also has x-for on it, don't process x-if.
+            // We will let the "x-for" directive handle the "if"ing.
+            if (attrs.some(i => i.type === 'for')) return;
+            var output = this.evaluateReturnExpression(el, expression, extraVars);
+            handleIfDirective(this, el, output, initialUpdate, extraVars);
+            break;
+
+          case 'for':
+            handleForDirective(this, el, expression, initialUpdate, extraVars);
+            break;
+
+          case 'cloak':
+            el.removeAttribute('x-cloak');
+            break;
+        }
+      });
+    }
+
+    evaluateReturnExpression(el, expression, extraVars = () => {}) {
+      return saferEval(el, expression, this.$data, _objectSpread2(_objectSpread2({}, extraVars()), {}, {
+        $dispatch: this.getDispatchFunction(el)
+      }));
+    }
+
+    evaluateCommandExpression(el, expression, extraVars = () => {}) {
+      return saferEvalNoReturn(el, expression, this.$data, _objectSpread2(_objectSpread2({}, extraVars()), {}, {
+        $dispatch: this.getDispatchFunction(el)
+      }));
+    }
+
+    getDispatchFunction(el) {
+      return (event, detail = {}) => {
+        el.dispatchEvent(new CustomEvent(event, {
+          detail,
+          bubbles: true
+        }));
+      };
+    }
+
+    listenForNewElementsToInitialize() {
+      const targetNode = this.$el;
+      const observerOptions = {
+        childList: true,
+        attributes: true,
+        subtree: true
+      };
+      const observer = new MutationObserver(mutations => {
+        for (let i = 0; i < mutations.length; i++) {
+          // Filter out mutations triggered from child components.
+          const closestParentComponent = mutations[i].target.closest('[x-data]');
+          if (!(closestParentComponent && closestParentComponent.isSameNode(this.$el))) continue;
+
+          if (mutations[i].type === 'attributes' && mutations[i].attributeName === 'x-data') {
+            const xAttr = mutations[i].target.getAttribute('x-data') || '{}';
+            const rawData = saferEval(this.$el, xAttr, {
+              $el: this.$el
+            });
+            Object.keys(rawData).forEach(key => {
+              if (this.$data[key] !== rawData[key]) {
+                this.$data[key] = rawData[key];
+              }
+            });
+          }
+
+          if (mutations[i].addedNodes.length > 0) {
+            mutations[i].addedNodes.forEach(node => {
+              if (node.nodeType !== 1 || node.__x_inserted_me) return;
+
+              if (node.matches('[x-data]') && !node.__x) {
+                node.__x = new Component(node);
+                return;
+              }
+
+              this.initializeElements(node);
+            });
+          }
+        }
+      });
+      observer.observe(targetNode, observerOptions);
+    }
+
+    getRefsProxy() {
+      var self = this;
+      var refObj = {};
+      // One of the goals of this is to not hold elements in memory, but rather re-evaluate
+      // the DOM when the system needs something from it. This way, the framework is flexible and
+      // friendly to outside DOM changes from libraries like Vue/Livewire.
+      // For this reason, I'm using an "on-demand" proxy to fake a "$refs" object.
+
+      return new Proxy(refObj, {
+        get(object, property) {
+          if (property === '$isAlpineProxy') return true;
+          var ref; // We can't just query the DOM because it's hard to filter out refs in
+          // nested components.
+
+          self.walkAndSkipNestedComponents(self.$el, el => {
+            if (el.hasAttribute('x-ref') && el.getAttribute('x-ref') === property) {
+              ref = el;
+            }
+          });
+          return ref;
+        }
+
+      });
+    }
+
+  }
+
+  const Alpine = {
+    version: "2.8.2",
+    pauseMutationObserver: false,
+    magicProperties: {},
+    onComponentInitializeds: [],
+    onBeforeComponentInitializeds: [],
+    ignoreFocusedForValueBinding: false,
+    start: async function start() {
+      if (!isTesting()) {
+        await domReady();
+      }
+
+      this.discoverComponents(el => {
+        this.initializeComponent(el);
+      }); // It's easier and more performant to just support Turbolinks than listen
+      // to MutationObserver mutations at the document level.
+
+      document.addEventListener("turbolinks:load", () => {
+        this.discoverUninitializedComponents(el => {
+          this.initializeComponent(el);
+        });
+      });
+      this.listenForNewUninitializedComponentsAtRunTime();
+    },
+    discoverComponents: function discoverComponents(callback) {
+      const rootEls = document.querySelectorAll('[x-data]');
+      rootEls.forEach(rootEl => {
+        callback(rootEl);
+      });
+    },
+    discoverUninitializedComponents: function discoverUninitializedComponents(callback, el = null) {
+      const rootEls = (el || document).querySelectorAll('[x-data]');
+      Array.from(rootEls).filter(el => el.__x === undefined).forEach(rootEl => {
+        callback(rootEl);
+      });
+    },
+    listenForNewUninitializedComponentsAtRunTime: function listenForNewUninitializedComponentsAtRunTime() {
+      const targetNode = document.querySelector('body');
+      const observerOptions = {
+        childList: true,
+        attributes: true,
+        subtree: true
+      };
+      const observer = new MutationObserver(mutations => {
+        if (this.pauseMutationObserver) return;
+
+        for (let i = 0; i < mutations.length; i++) {
+          if (mutations[i].addedNodes.length > 0) {
+            mutations[i].addedNodes.forEach(node => {
+              // Discard non-element nodes (like line-breaks)
+              if (node.nodeType !== 1) return; // Discard any changes happening within an existing component.
+              // They will take care of themselves.
+
+              if (node.parentElement && node.parentElement.closest('[x-data]')) return;
+              this.discoverUninitializedComponents(el => {
+                this.initializeComponent(el);
+              }, node.parentElement);
+            });
+          }
+        }
+      });
+      observer.observe(targetNode, observerOptions);
+    },
+    initializeComponent: function initializeComponent(el) {
+      if (!el.__x) {
+        // Wrap in a try/catch so that we don't prevent other components
+        // from initializing when one component contains an error.
+        try {
+          el.__x = new Component(el);
+        } catch (error) {
+          setTimeout(() => {
+            throw error;
+          }, 0);
+        }
+      }
+    },
+    clone: function clone(component, newEl) {
+      if (!newEl.__x) {
+        newEl.__x = new Component(newEl, component);
+      }
+    },
+    addMagicProperty: function addMagicProperty(name, callback) {
+      this.magicProperties[name] = callback;
+    },
+    onComponentInitialized: function onComponentInitialized(callback) {
+      this.onComponentInitializeds.push(callback);
+    },
+    onBeforeComponentInitialized: function onBeforeComponentInitialized(callback) {
+      this.onBeforeComponentInitializeds.push(callback);
+    }
+  };
+
+  if (!isTesting()) {
+    window.Alpine = Alpine;
+
+    if (window.deferLoadingAlpine) {
+      window.deferLoadingAlpine(function () {
+        window.Alpine.start();
+      });
+    } else {
+      window.Alpine.start();
+    }
+  }
+
+  return Alpine;
+
+})));
+
+
+/***/ }),
+
+/***/ "./resources/js/app.js":
+/*!*****************************!*\
+  !*** ./resources/js/app.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
+/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(alpinejs__WEBPACK_IMPORTED_MODULE_0__);
+__webpack_require__(/*! prismjs */ "./node_modules/prismjs/prism.js");
+
+__webpack_require__(/*! prismjs/components/prism-go */ "./node_modules/prismjs/components/prism-go.js");
+
+__webpack_require__(/*! prismjs/components/prism-dart */ "./node_modules/prismjs/components/prism-dart.js");
+
+
+
+/***/ }),
+
+/***/ "./resources/sass/app.scss":
+/*!*********************************!*\
+  !*** ./resources/sass/app.scss ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./node_modules/prismjs/components/prism-dart.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/prismjs/components/prism-dart.js ***!
+  \*******************************************************/
+/***/ (() => {
+
+Prism.languages.dart = Prism.languages.extend('clike', {
+	'string': [
+		{
+			pattern: /r?("""|''')[\s\S]*?\1/,
+			greedy: true
+		},
+		{
+			pattern: /r?("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
+			greedy: true
+		}
+	],
+	'keyword': [
+		/\b(?:async|sync|yield)\*/,
+		/\b(?:abstract|assert|async|await|break|case|catch|class|const|continue|covariant|default|deferred|do|dynamic|else|enum|export|extension|external|extends|factory|final|finally|for|Function|get|hide|if|implements|interface|import|in|library|mixin|new|null|on|operator|part|rethrow|return|set|show|static|super|switch|sync|this|throw|try|typedef|var|void|while|with|yield)\b/
+	],
+	'operator': /\bis!|\b(?:as|is)\b|\+\+|--|&&|\|\||<<=?|>>=?|~(?:\/=?)?|[+\-*\/%&^|=!<>]=?|\?/
+});
+
+Prism.languages.insertBefore('dart','function',{
+	'metadata': {
+		pattern: /@\w+/,
+		alias: 'symbol'
+	}
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/prismjs/components/prism-go.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/prismjs/components/prism-go.js ***!
+  \*****************************************************/
+/***/ (() => {
+
+Prism.languages.go = Prism.languages.extend('clike', {
+	'string': {
+		pattern: /(["'`])(?:\\[\s\S]|(?!\1)[^\\])*\1/,
+		greedy: true
+	},
+	'keyword': /\b(?:break|case|chan|const|continue|default|defer|else|fallthrough|for|func|go(?:to)?|if|import|interface|map|package|range|return|select|struct|switch|type|var)\b/,
+	'boolean': /\b(?:_|iota|nil|true|false)\b/,
+	'number': /(?:\b0x[a-f\d]+|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e[-+]?\d+)?)i?/i,
+	'operator': /[*\/%^!=]=?|\+[=+]?|-[=-]?|\|[=|]?|&(?:=|&|\^=?)?|>(?:>=?|=)?|<(?:<=?|=|-)?|:=|\.\.\./,
+	'builtin': /\b(?:bool|byte|complex(?:64|128)|error|float(?:32|64)|rune|string|u?int(?:8|16|32|64)?|uintptr|append|cap|close|complex|copy|delete|imag|len|make|new|panic|print(?:ln)?|real|recover)\b/
+});
+delete Prism.languages.go['class-name'];
+
+
+/***/ }),
+
+/***/ "./node_modules/prismjs/prism.js":
+/*!***************************************!*\
+  !*** ./node_modules/prismjs/prism.js ***!
+  \***************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+
+/* **********************************************
+     Begin prism-core.js
+********************************************** */
+
+/// <reference lib="WebWorker"/>
+
+var _self = (typeof window !== 'undefined')
+	? window   // if in browser
+	: (
+		(typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope)
+		? self // if in worker
+		: {}   // if in node js
+	);
+
+/**
+ * Prism: Lightweight, robust, elegant syntax highlighting
+ *
+ * @license MIT <https://opensource.org/licenses/MIT>
+ * @author Lea Verou <https://lea.verou.me>
+ * @namespace
+ * @public
+ */
+var Prism = (function (_self){
+
+// Private helper vars
+var lang = /\blang(?:uage)?-([\w-]+)\b/i;
+var uniqueId = 0;
+
+
+var _ = {
+	/**
+	 * By default, Prism will attempt to highlight all code elements (by calling {@link Prism.highlightAll}) on the
+	 * current page after the page finished loading. This might be a problem if e.g. you wanted to asynchronously load
+	 * additional languages or plugins yourself.
+	 *
+	 * By setting this value to `true`, Prism will not automatically highlight all code elements on the page.
+	 *
+	 * You obviously have to change this value before the automatic highlighting started. To do this, you can add an
+	 * empty Prism object into the global scope before loading the Prism script like this:
+	 *
+	 * ```js
+	 * window.Prism = window.Prism || {};
+	 * Prism.manual = true;
+	 * // add a new <script> to load Prism's script
+	 * ```
+	 *
+	 * @default false
+	 * @type {boolean}
+	 * @memberof Prism
+	 * @public
+	 */
+	manual: _self.Prism && _self.Prism.manual,
+	disableWorkerMessageHandler: _self.Prism && _self.Prism.disableWorkerMessageHandler,
+
+	/**
+	 * A namespace for utility methods.
+	 *
+	 * All function in this namespace that are not explicitly marked as _public_ are for __internal use only__ and may
+	 * change or disappear at any time.
+	 *
+	 * @namespace
+	 * @memberof Prism
+	 */
+	util: {
+		encode: function encode(tokens) {
+			if (tokens instanceof Token) {
+				return new Token(tokens.type, encode(tokens.content), tokens.alias);
+			} else if (Array.isArray(tokens)) {
+				return tokens.map(encode);
+			} else {
+				return tokens.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\u00a0/g, ' ');
+			}
+		},
+
+		/**
+		 * Returns the name of the type of the given value.
+		 *
+		 * @param {any} o
+		 * @returns {string}
+		 * @example
+		 * type(null)      === 'Null'
+		 * type(undefined) === 'Undefined'
+		 * type(123)       === 'Number'
+		 * type('foo')     === 'String'
+		 * type(true)      === 'Boolean'
+		 * type([1, 2])    === 'Array'
+		 * type({})        === 'Object'
+		 * type(String)    === 'Function'
+		 * type(/abc+/)    === 'RegExp'
+		 */
+		type: function (o) {
+			return Object.prototype.toString.call(o).slice(8, -1);
+		},
+
+		/**
+		 * Returns a unique number for the given object. Later calls will still return the same number.
+		 *
+		 * @param {Object} obj
+		 * @returns {number}
+		 */
+		objId: function (obj) {
+			if (!obj['__id']) {
+				Object.defineProperty(obj, '__id', { value: ++uniqueId });
+			}
+			return obj['__id'];
+		},
+
+		/**
+		 * Creates a deep clone of the given object.
+		 *
+		 * The main intended use of this function is to clone language definitions.
+		 *
+		 * @param {T} o
+		 * @param {Record<number, any>} [visited]
+		 * @returns {T}
+		 * @template T
+		 */
+		clone: function deepClone(o, visited) {
+			visited = visited || {};
+
+			var clone, id;
+			switch (_.util.type(o)) {
+				case 'Object':
+					id = _.util.objId(o);
+					if (visited[id]) {
+						return visited[id];
+					}
+					clone = /** @type {Record<string, any>} */ ({});
+					visited[id] = clone;
+
+					for (var key in o) {
+						if (o.hasOwnProperty(key)) {
+							clone[key] = deepClone(o[key], visited);
+						}
+					}
+
+					return /** @type {any} */ (clone);
+
+				case 'Array':
+					id = _.util.objId(o);
+					if (visited[id]) {
+						return visited[id];
+					}
+					clone = [];
+					visited[id] = clone;
+
+					(/** @type {Array} */(/** @type {any} */(o))).forEach(function (v, i) {
+						clone[i] = deepClone(v, visited);
+					});
+
+					return /** @type {any} */ (clone);
+
+				default:
+					return o;
+			}
+		},
+
+		/**
+		 * Returns the Prism language of the given element set by a `language-xxxx` or `lang-xxxx` class.
+		 *
+		 * If no language is set for the element or the element is `null` or `undefined`, `none` will be returned.
+		 *
+		 * @param {Element} element
+		 * @returns {string}
+		 */
+		getLanguage: function (element) {
+			while (element && !lang.test(element.className)) {
+				element = element.parentElement;
+			}
+			if (element) {
+				return (element.className.match(lang) || [, 'none'])[1].toLowerCase();
+			}
+			return 'none';
+		},
+
+		/**
+		 * Returns the script element that is currently executing.
+		 *
+		 * This does __not__ work for line script element.
+		 *
+		 * @returns {HTMLScriptElement | null}
+		 */
+		currentScript: function () {
+			if (typeof document === 'undefined') {
+				return null;
+			}
+			if ('currentScript' in document && 1 < 2 /* hack to trip TS' flow analysis */) {
+				return /** @type {any} */ (document.currentScript);
+			}
+
+			// IE11 workaround
+			// we'll get the src of the current script by parsing IE11's error stack trace
+			// this will not work for inline scripts
+
+			try {
+				throw new Error();
+			} catch (err) {
+				// Get file src url from stack. Specifically works with the format of stack traces in IE.
+				// A stack will look like this:
+				//
+				// Error
+				//    at _.util.currentScript (http://localhost/components/prism-core.js:119:5)
+				//    at Global code (http://localhost/components/prism-core.js:606:1)
+
+				var src = (/at [^(\r\n]*\((.*):.+:.+\)$/i.exec(err.stack) || [])[1];
+				if (src) {
+					var scripts = document.getElementsByTagName('script');
+					for (var i in scripts) {
+						if (scripts[i].src == src) {
+							return scripts[i];
+						}
+					}
+				}
+				return null;
+			}
+		},
+
+		/**
+		 * Returns whether a given class is active for `element`.
+		 *
+		 * The class can be activated if `element` or one of its ancestors has the given class and it can be deactivated
+		 * if `element` or one of its ancestors has the negated version of the given class. The _negated version_ of the
+		 * given class is just the given class with a `no-` prefix.
+		 *
+		 * Whether the class is active is determined by the closest ancestor of `element` (where `element` itself is
+		 * closest ancestor) that has the given class or the negated version of it. If neither `element` nor any of its
+		 * ancestors have the given class or the negated version of it, then the default activation will be returned.
+		 *
+		 * In the paradoxical situation where the closest ancestor contains __both__ the given class and the negated
+		 * version of it, the class is considered active.
+		 *
+		 * @param {Element} element
+		 * @param {string} className
+		 * @param {boolean} [defaultActivation=false]
+		 * @returns {boolean}
+		 */
+		isActive: function (element, className, defaultActivation) {
+			var no = 'no-' + className;
+
+			while (element) {
+				var classList = element.classList;
+				if (classList.contains(className)) {
+					return true;
+				}
+				if (classList.contains(no)) {
+					return false;
+				}
+				element = element.parentElement;
+			}
+			return !!defaultActivation;
+		}
+	},
+
+	/**
+	 * This namespace contains all currently loaded languages and the some helper functions to create and modify languages.
+	 *
+	 * @namespace
+	 * @memberof Prism
+	 * @public
+	 */
+	languages: {
+		/**
+		 * Creates a deep copy of the language with the given id and appends the given tokens.
+		 *
+		 * If a token in `redef` also appears in the copied language, then the existing token in the copied language
+		 * will be overwritten at its original position.
+		 *
+		 * ## Best practices
+		 *
+		 * Since the position of overwriting tokens (token in `redef` that overwrite tokens in the copied language)
+		 * doesn't matter, they can technically be in any order. However, this can be confusing to others that trying to
+		 * understand the language definition because, normally, the order of tokens matters in Prism grammars.
+		 *
+		 * Therefore, it is encouraged to order overwriting tokens according to the positions of the overwritten tokens.
+		 * Furthermore, all non-overwriting tokens should be placed after the overwriting ones.
+		 *
+		 * @param {string} id The id of the language to extend. This has to be a key in `Prism.languages`.
+		 * @param {Grammar} redef The new tokens to append.
+		 * @returns {Grammar} The new language created.
+		 * @public
+		 * @example
+		 * Prism.languages['css-with-colors'] = Prism.languages.extend('css', {
+		 *     // Prism.languages.css already has a 'comment' token, so this token will overwrite CSS' 'comment' token
+		 *     // at its original position
+		 *     'comment': { ... },
+		 *     // CSS doesn't have a 'color' token, so this token will be appended
+		 *     'color': /\b(?:red|green|blue)\b/
+		 * });
+		 */
+		extend: function (id, redef) {
+			var lang = _.util.clone(_.languages[id]);
+
+			for (var key in redef) {
+				lang[key] = redef[key];
+			}
+
+			return lang;
+		},
+
+		/**
+		 * Inserts tokens _before_ another token in a language definition or any other grammar.
+		 *
+		 * ## Usage
+		 *
+		 * This helper method makes it easy to modify existing languages. For example, the CSS language definition
+		 * not only defines CSS highlighting for CSS documents, but also needs to define highlighting for CSS embedded
+		 * in HTML through `<style>` elements. To do this, it needs to modify `Prism.languages.markup` and add the
+		 * appropriate tokens. However, `Prism.languages.markup` is a regular JavaScript object literal, so if you do
+		 * this:
+		 *
+		 * ```js
+		 * Prism.languages.markup.style = {
+		 *     // token
+		 * };
+		 * ```
+		 *
+		 * then the `style` token will be added (and processed) at the end. `insertBefore` allows you to insert tokens
+		 * before existing tokens. For the CSS example above, you would use it like this:
+		 *
+		 * ```js
+		 * Prism.languages.insertBefore('markup', 'cdata', {
+		 *     'style': {
+		 *         // token
+		 *     }
+		 * });
+		 * ```
+		 *
+		 * ## Special cases
+		 *
+		 * If the grammars of `inside` and `insert` have tokens with the same name, the tokens in `inside`'s grammar
+		 * will be ignored.
+		 *
+		 * This behavior can be used to insert tokens after `before`:
+		 *
+		 * ```js
+		 * Prism.languages.insertBefore('markup', 'comment', {
+		 *     'comment': Prism.languages.markup.comment,
+		 *     // tokens after 'comment'
+		 * });
+		 * ```
+		 *
+		 * ## Limitations
+		 *
+		 * The main problem `insertBefore` has to solve is iteration order. Since ES2015, the iteration order for object
+		 * properties is guaranteed to be the insertion order (except for integer keys) but some browsers behave
+		 * differently when keys are deleted and re-inserted. So `insertBefore` can't be implemented by temporarily
+		 * deleting properties which is necessary to insert at arbitrary positions.
+		 *
+		 * To solve this problem, `insertBefore` doesn't actually insert the given tokens into the target object.
+		 * Instead, it will create a new object and replace all references to the target object with the new one. This
+		 * can be done without temporarily deleting properties, so the iteration order is well-defined.
+		 *
+		 * However, only references that can be reached from `Prism.languages` or `insert` will be replaced. I.e. if
+		 * you hold the target object in a variable, then the value of the variable will not change.
+		 *
+		 * ```js
+		 * var oldMarkup = Prism.languages.markup;
+		 * var newMarkup = Prism.languages.insertBefore('markup', 'comment', { ... });
+		 *
+		 * assert(oldMarkup !== Prism.languages.markup);
+		 * assert(newMarkup === Prism.languages.markup);
+		 * ```
+		 *
+		 * @param {string} inside The property of `root` (e.g. a language id in `Prism.languages`) that contains the
+		 * object to be modified.
+		 * @param {string} before The key to insert before.
+		 * @param {Grammar} insert An object containing the key-value pairs to be inserted.
+		 * @param {Object<string, any>} [root] The object containing `inside`, i.e. the object that contains the
+		 * object to be modified.
+		 *
+		 * Defaults to `Prism.languages`.
+		 * @returns {Grammar} The new grammar object.
+		 * @public
+		 */
+		insertBefore: function (inside, before, insert, root) {
+			root = root || /** @type {any} */ (_.languages);
+			var grammar = root[inside];
+			/** @type {Grammar} */
+			var ret = {};
+
+			for (var token in grammar) {
+				if (grammar.hasOwnProperty(token)) {
+
+					if (token == before) {
+						for (var newToken in insert) {
+							if (insert.hasOwnProperty(newToken)) {
+								ret[newToken] = insert[newToken];
+							}
+						}
+					}
+
+					// Do not insert token which also occur in insert. See #1525
+					if (!insert.hasOwnProperty(token)) {
+						ret[token] = grammar[token];
+					}
+				}
+			}
+
+			var old = root[inside];
+			root[inside] = ret;
+
+			// Update references in other language definitions
+			_.languages.DFS(_.languages, function(key, value) {
+				if (value === old && key != inside) {
+					this[key] = ret;
+				}
+			});
+
+			return ret;
+		},
+
+		// Traverse a language definition with Depth First Search
+		DFS: function DFS(o, callback, type, visited) {
+			visited = visited || {};
+
+			var objId = _.util.objId;
+
+			for (var i in o) {
+				if (o.hasOwnProperty(i)) {
+					callback.call(o, i, o[i], type || i);
+
+					var property = o[i],
+					    propertyType = _.util.type(property);
+
+					if (propertyType === 'Object' && !visited[objId(property)]) {
+						visited[objId(property)] = true;
+						DFS(property, callback, null, visited);
+					}
+					else if (propertyType === 'Array' && !visited[objId(property)]) {
+						visited[objId(property)] = true;
+						DFS(property, callback, i, visited);
+					}
+				}
+			}
+		}
+	},
+
+	plugins: {},
+
+	/**
+	 * This is the most high-level function in Prism’s API.
+	 * It fetches all the elements that have a `.language-xxxx` class and then calls {@link Prism.highlightElement} on
+	 * each one of them.
+	 *
+	 * This is equivalent to `Prism.highlightAllUnder(document, async, callback)`.
+	 *
+	 * @param {boolean} [async=false] Same as in {@link Prism.highlightAllUnder}.
+	 * @param {HighlightCallback} [callback] Same as in {@link Prism.highlightAllUnder}.
+	 * @memberof Prism
+	 * @public
+	 */
+	highlightAll: function(async, callback) {
+		_.highlightAllUnder(document, async, callback);
+	},
+
+	/**
+	 * Fetches all the descendants of `container` that have a `.language-xxxx` class and then calls
+	 * {@link Prism.highlightElement} on each one of them.
+	 *
+	 * The following hooks will be run:
+	 * 1. `before-highlightall`
+	 * 2. `before-all-elements-highlight`
+	 * 3. All hooks of {@link Prism.highlightElement} for each element.
+	 *
+	 * @param {ParentNode} container The root element, whose descendants that have a `.language-xxxx` class will be highlighted.
+	 * @param {boolean} [async=false] Whether each element is to be highlighted asynchronously using Web Workers.
+	 * @param {HighlightCallback} [callback] An optional callback to be invoked on each element after its highlighting is done.
+	 * @memberof Prism
+	 * @public
+	 */
+	highlightAllUnder: function(container, async, callback) {
+		var env = {
+			callback: callback,
+			container: container,
+			selector: 'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'
+		};
+
+		_.hooks.run('before-highlightall', env);
+
+		env.elements = Array.prototype.slice.apply(env.container.querySelectorAll(env.selector));
+
+		_.hooks.run('before-all-elements-highlight', env);
+
+		for (var i = 0, element; element = env.elements[i++];) {
+			_.highlightElement(element, async === true, env.callback);
+		}
+	},
+
+	/**
+	 * Highlights the code inside a single element.
+	 *
+	 * The following hooks will be run:
+	 * 1. `before-sanity-check`
+	 * 2. `before-highlight`
+	 * 3. All hooks of {@link Prism.highlight}. These hooks will be run by an asynchronous worker if `async` is `true`.
+	 * 4. `before-insert`
+	 * 5. `after-highlight`
+	 * 6. `complete`
+	 *
+	 * Some the above hooks will be skipped if the element doesn't contain any text or there is no grammar loaded for
+	 * the element's language.
+	 *
+	 * @param {Element} element The element containing the code.
+	 * It must have a class of `language-xxxx` to be processed, where `xxxx` is a valid language identifier.
+	 * @param {boolean} [async=false] Whether the element is to be highlighted asynchronously using Web Workers
+	 * to improve performance and avoid blocking the UI when highlighting very large chunks of code. This option is
+	 * [disabled by default](https://prismjs.com/faq.html#why-is-asynchronous-highlighting-disabled-by-default).
+	 *
+	 * Note: All language definitions required to highlight the code must be included in the main `prism.js` file for
+	 * asynchronous highlighting to work. You can build your own bundle on the
+	 * [Download page](https://prismjs.com/download.html).
+	 * @param {HighlightCallback} [callback] An optional callback to be invoked after the highlighting is done.
+	 * Mostly useful when `async` is `true`, since in that case, the highlighting is done asynchronously.
+	 * @memberof Prism
+	 * @public
+	 */
+	highlightElement: function(element, async, callback) {
+		// Find language
+		var language = _.util.getLanguage(element);
+		var grammar = _.languages[language];
+
+		// Set language on the element, if not present
+		element.className = element.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
+
+		// Set language on the parent, for styling
+		var parent = element.parentElement;
+		if (parent && parent.nodeName.toLowerCase() === 'pre') {
+			parent.className = parent.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
+		}
+
+		var code = element.textContent;
+
+		var env = {
+			element: element,
+			language: language,
+			grammar: grammar,
+			code: code
+		};
+
+		function insertHighlightedCode(highlightedCode) {
+			env.highlightedCode = highlightedCode;
+
+			_.hooks.run('before-insert', env);
+
+			env.element.innerHTML = env.highlightedCode;
+
+			_.hooks.run('after-highlight', env);
+			_.hooks.run('complete', env);
+			callback && callback.call(env.element);
+		}
+
+		_.hooks.run('before-sanity-check', env);
+
+		if (!env.code) {
+			_.hooks.run('complete', env);
+			callback && callback.call(env.element);
+			return;
+		}
+
+		_.hooks.run('before-highlight', env);
+
+		if (!env.grammar) {
+			insertHighlightedCode(_.util.encode(env.code));
+			return;
+		}
+
+		if (async && _self.Worker) {
+			var worker = new Worker(_.filename);
+
+			worker.onmessage = function(evt) {
+				insertHighlightedCode(evt.data);
+			};
+
+			worker.postMessage(JSON.stringify({
+				language: env.language,
+				code: env.code,
+				immediateClose: true
+			}));
+		}
+		else {
+			insertHighlightedCode(_.highlight(env.code, env.grammar, env.language));
+		}
+	},
+
+	/**
+	 * Low-level function, only use if you know what you’re doing. It accepts a string of text as input
+	 * and the language definitions to use, and returns a string with the HTML produced.
+	 *
+	 * The following hooks will be run:
+	 * 1. `before-tokenize`
+	 * 2. `after-tokenize`
+	 * 3. `wrap`: On each {@link Token}.
+	 *
+	 * @param {string} text A string with the code to be highlighted.
+	 * @param {Grammar} grammar An object containing the tokens to use.
+	 *
+	 * Usually a language definition like `Prism.languages.markup`.
+	 * @param {string} language The name of the language definition passed to `grammar`.
+	 * @returns {string} The highlighted HTML.
+	 * @memberof Prism
+	 * @public
+	 * @example
+	 * Prism.highlight('var foo = true;', Prism.languages.javascript, 'javascript');
+	 */
+	highlight: function (text, grammar, language) {
+		var env = {
+			code: text,
+			grammar: grammar,
+			language: language
+		};
+		_.hooks.run('before-tokenize', env);
+		env.tokens = _.tokenize(env.code, env.grammar);
+		_.hooks.run('after-tokenize', env);
+		return Token.stringify(_.util.encode(env.tokens), env.language);
+	},
+
+	/**
+	 * This is the heart of Prism, and the most low-level function you can use. It accepts a string of text as input
+	 * and the language definitions to use, and returns an array with the tokenized code.
+	 *
+	 * When the language definition includes nested tokens, the function is called recursively on each of these tokens.
+	 *
+	 * This method could be useful in other contexts as well, as a very crude parser.
+	 *
+	 * @param {string} text A string with the code to be highlighted.
+	 * @param {Grammar} grammar An object containing the tokens to use.
+	 *
+	 * Usually a language definition like `Prism.languages.markup`.
+	 * @returns {TokenStream} An array of strings and tokens, a token stream.
+	 * @memberof Prism
+	 * @public
+	 * @example
+	 * let code = `var foo = 0;`;
+	 * let tokens = Prism.tokenize(code, Prism.languages.javascript);
+	 * tokens.forEach(token => {
+	 *     if (token instanceof Prism.Token && token.type === 'number') {
+	 *         console.log(`Found numeric literal: ${token.content}`);
+	 *     }
+	 * });
+	 */
+	tokenize: function(text, grammar) {
+		var rest = grammar.rest;
+		if (rest) {
+			for (var token in rest) {
+				grammar[token] = rest[token];
+			}
+
+			delete grammar.rest;
+		}
+
+		var tokenList = new LinkedList();
+		addAfter(tokenList, tokenList.head, text);
+
+		matchGrammar(text, tokenList, grammar, tokenList.head, 0);
+
+		return toArray(tokenList);
+	},
+
+	/**
+	 * @namespace
+	 * @memberof Prism
+	 * @public
+	 */
+	hooks: {
+		all: {},
+
+		/**
+		 * Adds the given callback to the list of callbacks for the given hook.
+		 *
+		 * The callback will be invoked when the hook it is registered for is run.
+		 * Hooks are usually directly run by a highlight function but you can also run hooks yourself.
+		 *
+		 * One callback function can be registered to multiple hooks and the same hook multiple times.
+		 *
+		 * @param {string} name The name of the hook.
+		 * @param {HookCallback} callback The callback function which is given environment variables.
+		 * @public
+		 */
+		add: function (name, callback) {
+			var hooks = _.hooks.all;
+
+			hooks[name] = hooks[name] || [];
+
+			hooks[name].push(callback);
+		},
+
+		/**
+		 * Runs a hook invoking all registered callbacks with the given environment variables.
+		 *
+		 * Callbacks will be invoked synchronously and in the order in which they were registered.
+		 *
+		 * @param {string} name The name of the hook.
+		 * @param {Object<string, any>} env The environment variables of the hook passed to all callbacks registered.
+		 * @public
+		 */
+		run: function (name, env) {
+			var callbacks = _.hooks.all[name];
+
+			if (!callbacks || !callbacks.length) {
+				return;
+			}
+
+			for (var i=0, callback; callback = callbacks[i++];) {
+				callback(env);
+			}
+		}
+	},
+
+	Token: Token
+};
+_self.Prism = _;
+
+
+// Typescript note:
+// The following can be used to import the Token type in JSDoc:
+//
+//   @typedef {InstanceType<import("./prism-core")["Token"]>} Token
+
+/**
+ * Creates a new token.
+ *
+ * @param {string} type See {@link Token#type type}
+ * @param {string | TokenStream} content See {@link Token#content content}
+ * @param {string|string[]} [alias] The alias(es) of the token.
+ * @param {string} [matchedStr=""] A copy of the full string this token was created from.
+ * @class
+ * @global
+ * @public
+ */
+function Token(type, content, alias, matchedStr) {
+	/**
+	 * The type of the token.
+	 *
+	 * This is usually the key of a pattern in a {@link Grammar}.
+	 *
+	 * @type {string}
+	 * @see GrammarToken
+	 * @public
+	 */
+	this.type = type;
+	/**
+	 * The strings or tokens contained by this token.
+	 *
+	 * This will be a token stream if the pattern matched also defined an `inside` grammar.
+	 *
+	 * @type {string | TokenStream}
+	 * @public
+	 */
+	this.content = content;
+	/**
+	 * The alias(es) of the token.
+	 *
+	 * @type {string|string[]}
+	 * @see GrammarToken
+	 * @public
+	 */
+	this.alias = alias;
+	// Copy of the full string this token was created from
+	this.length = (matchedStr || '').length | 0;
+}
+
+/**
+ * A token stream is an array of strings and {@link Token Token} objects.
+ *
+ * Token streams have to fulfill a few properties that are assumed by most functions (mostly internal ones) that process
+ * them.
+ *
+ * 1. No adjacent strings.
+ * 2. No empty strings.
+ *
+ *    The only exception here is the token stream that only contains the empty string and nothing else.
+ *
+ * @typedef {Array<string | Token>} TokenStream
+ * @global
+ * @public
+ */
+
+/**
+ * Converts the given token or token stream to an HTML representation.
+ *
+ * The following hooks will be run:
+ * 1. `wrap`: On each {@link Token}.
+ *
+ * @param {string | Token | TokenStream} o The token or token stream to be converted.
+ * @param {string} language The name of current language.
+ * @returns {string} The HTML representation of the token or token stream.
+ * @memberof Token
+ * @static
+ */
+Token.stringify = function stringify(o, language) {
+	if (typeof o == 'string') {
+		return o;
+	}
+	if (Array.isArray(o)) {
+		var s = '';
+		o.forEach(function (e) {
+			s += stringify(e, language);
+		});
+		return s;
+	}
+
+	var env = {
+		type: o.type,
+		content: stringify(o.content, language),
+		tag: 'span',
+		classes: ['token', o.type],
+		attributes: {},
+		language: language
+	};
+
+	var aliases = o.alias;
+	if (aliases) {
+		if (Array.isArray(aliases)) {
+			Array.prototype.push.apply(env.classes, aliases);
+		} else {
+			env.classes.push(aliases);
+		}
+	}
+
+	_.hooks.run('wrap', env);
+
+	var attributes = '';
+	for (var name in env.attributes) {
+		attributes += ' ' + name + '="' + (env.attributes[name] || '').replace(/"/g, '&quot;') + '"';
+	}
+
+	return '<' + env.tag + ' class="' + env.classes.join(' ') + '"' + attributes + '>' + env.content + '</' + env.tag + '>';
+};
+
+/**
+ * @param {RegExp} pattern
+ * @param {number} pos
+ * @param {string} text
+ * @param {boolean} lookbehind
+ * @returns {RegExpExecArray | null}
+ */
+function matchPattern(pattern, pos, text, lookbehind) {
+	pattern.lastIndex = pos;
+	var match = pattern.exec(text);
+	if (match && lookbehind && match[1]) {
+		// change the match to remove the text matched by the Prism lookbehind group
+		var lookbehindLength = match[1].length;
+		match.index += lookbehindLength;
+		match[0] = match[0].slice(lookbehindLength);
+	}
+	return match;
+}
+
+/**
+ * @param {string} text
+ * @param {LinkedList<string | Token>} tokenList
+ * @param {any} grammar
+ * @param {LinkedListNode<string | Token>} startNode
+ * @param {number} startPos
+ * @param {RematchOptions} [rematch]
+ * @returns {void}
+ * @private
+ *
+ * @typedef RematchOptions
+ * @property {string} cause
+ * @property {number} reach
+ */
+function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
+	for (var token in grammar) {
+		if (!grammar.hasOwnProperty(token) || !grammar[token]) {
+			continue;
+		}
+
+		var patterns = grammar[token];
+		patterns = Array.isArray(patterns) ? patterns : [patterns];
+
+		for (var j = 0; j < patterns.length; ++j) {
+			if (rematch && rematch.cause == token + ',' + j) {
+				return;
+			}
+
+			var patternObj = patterns[j],
+				inside = patternObj.inside,
+				lookbehind = !!patternObj.lookbehind,
+				greedy = !!patternObj.greedy,
+				alias = patternObj.alias;
+
+			if (greedy && !patternObj.pattern.global) {
+				// Without the global flag, lastIndex won't work
+				var flags = patternObj.pattern.toString().match(/[imsuy]*$/)[0];
+				patternObj.pattern = RegExp(patternObj.pattern.source, flags + 'g');
+			}
+
+			/** @type {RegExp} */
+			var pattern = patternObj.pattern || patternObj;
+
+			for ( // iterate the token list and keep track of the current token/string position
+				var currentNode = startNode.next, pos = startPos;
+				currentNode !== tokenList.tail;
+				pos += currentNode.value.length, currentNode = currentNode.next
+			) {
+
+				if (rematch && pos >= rematch.reach) {
+					break;
+				}
+
+				var str = currentNode.value;
+
+				if (tokenList.length > text.length) {
+					// Something went terribly wrong, ABORT, ABORT!
+					return;
+				}
+
+				if (str instanceof Token) {
+					continue;
+				}
+
+				var removeCount = 1; // this is the to parameter of removeBetween
+				var match;
+
+				if (greedy) {
+					match = matchPattern(pattern, pos, text, lookbehind);
+					if (!match) {
+						break;
+					}
+
+					var from = match.index;
+					var to = match.index + match[0].length;
+					var p = pos;
+
+					// find the node that contains the match
+					p += currentNode.value.length;
+					while (from >= p) {
+						currentNode = currentNode.next;
+						p += currentNode.value.length;
+					}
+					// adjust pos (and p)
+					p -= currentNode.value.length;
+					pos = p;
+
+					// the current node is a Token, then the match starts inside another Token, which is invalid
+					if (currentNode.value instanceof Token) {
+						continue;
+					}
+
+					// find the last node which is affected by this match
+					for (
+						var k = currentNode;
+						k !== tokenList.tail && (p < to || typeof k.value === 'string');
+						k = k.next
+					) {
+						removeCount++;
+						p += k.value.length;
+					}
+					removeCount--;
+
+					// replace with the new match
+					str = text.slice(pos, p);
+					match.index -= pos;
+				} else {
+					match = matchPattern(pattern, 0, str, lookbehind);
+					if (!match) {
+						continue;
+					}
+				}
+
+				var from = match.index,
+					matchStr = match[0],
+					before = str.slice(0, from),
+					after = str.slice(from + matchStr.length);
+
+				var reach = pos + str.length;
+				if (rematch && reach > rematch.reach) {
+					rematch.reach = reach;
+				}
+
+				var removeFrom = currentNode.prev;
+
+				if (before) {
+					removeFrom = addAfter(tokenList, removeFrom, before);
+					pos += before.length;
+				}
+
+				removeRange(tokenList, removeFrom, removeCount);
+
+				var wrapped = new Token(token, inside ? _.tokenize(matchStr, inside) : matchStr, alias, matchStr);
+				currentNode = addAfter(tokenList, removeFrom, wrapped);
+
+				if (after) {
+					addAfter(tokenList, currentNode, after);
+				}
+
+				if (removeCount > 1) {
+					// at least one Token object was removed, so we have to do some rematching
+					// this can only happen if the current pattern is greedy
+					matchGrammar(text, tokenList, grammar, currentNode.prev, pos, {
+						cause: token + ',' + j,
+						reach: reach
+					});
+				}
+			}
+		}
+	}
+}
+
+/**
+ * @typedef LinkedListNode
+ * @property {T} value
+ * @property {LinkedListNode<T> | null} prev The previous node.
+ * @property {LinkedListNode<T> | null} next The next node.
+ * @template T
+ * @private
+ */
+
+/**
+ * @template T
+ * @private
+ */
+function LinkedList() {
+	/** @type {LinkedListNode<T>} */
+	var head = { value: null, prev: null, next: null };
+	/** @type {LinkedListNode<T>} */
+	var tail = { value: null, prev: head, next: null };
+	head.next = tail;
+
+	/** @type {LinkedListNode<T>} */
+	this.head = head;
+	/** @type {LinkedListNode<T>} */
+	this.tail = tail;
+	this.length = 0;
+}
+
+/**
+ * Adds a new node with the given value to the list.
+ * @param {LinkedList<T>} list
+ * @param {LinkedListNode<T>} node
+ * @param {T} value
+ * @returns {LinkedListNode<T>} The added node.
+ * @template T
+ */
+function addAfter(list, node, value) {
+	// assumes that node != list.tail && values.length >= 0
+	var next = node.next;
+
+	var newNode = { value: value, prev: node, next: next };
+	node.next = newNode;
+	next.prev = newNode;
+	list.length++;
+
+	return newNode;
+}
+/**
+ * Removes `count` nodes after the given node. The given node will not be removed.
+ * @param {LinkedList<T>} list
+ * @param {LinkedListNode<T>} node
+ * @param {number} count
+ * @template T
+ */
+function removeRange(list, node, count) {
+	var next = node.next;
+	for (var i = 0; i < count && next !== list.tail; i++) {
+		next = next.next;
+	}
+	node.next = next;
+	next.prev = node;
+	list.length -= i;
+}
+/**
+ * @param {LinkedList<T>} list
+ * @returns {T[]}
+ * @template T
+ */
+function toArray(list) {
+	var array = [];
+	var node = list.head.next;
+	while (node !== list.tail) {
+		array.push(node.value);
+		node = node.next;
+	}
+	return array;
+}
+
+
+if (!_self.document) {
+	if (!_self.addEventListener) {
+		// in Node.js
+		return _;
+	}
+
+	if (!_.disableWorkerMessageHandler) {
+		// In worker
+		_self.addEventListener('message', function (evt) {
+			var message = JSON.parse(evt.data),
+				lang = message.language,
+				code = message.code,
+				immediateClose = message.immediateClose;
+
+			_self.postMessage(_.highlight(code, _.languages[lang], lang));
+			if (immediateClose) {
+				_self.close();
+			}
+		}, false);
+	}
+
+	return _;
+}
+
+// Get current script and highlight
+var script = _.util.currentScript();
+
+if (script) {
+	_.filename = script.src;
+
+	if (script.hasAttribute('data-manual')) {
+		_.manual = true;
+	}
+}
+
+function highlightAutomaticallyCallback() {
+	if (!_.manual) {
+		_.highlightAll();
+	}
+}
+
+if (!_.manual) {
+	// If the document state is "loading", then we'll use DOMContentLoaded.
+	// If the document state is "interactive" and the prism.js script is deferred, then we'll also use the
+	// DOMContentLoaded event because there might be some plugins or languages which have also been deferred and they
+	// might take longer one animation frame to execute which can create a race condition where only some plugins have
+	// been loaded when Prism.highlightAll() is executed, depending on how fast resources are loaded.
+	// See https://github.com/PrismJS/prism/issues/2102
+	var readyState = document.readyState;
+	if (readyState === 'loading' || readyState === 'interactive' && script && script.defer) {
+		document.addEventListener('DOMContentLoaded', highlightAutomaticallyCallback);
+	} else {
+		if (window.requestAnimationFrame) {
+			window.requestAnimationFrame(highlightAutomaticallyCallback);
+		} else {
+			window.setTimeout(highlightAutomaticallyCallback, 16);
+		}
+	}
+}
+
+return _;
+
+})(_self);
+
+if ( true && module.exports) {
+	module.exports = Prism;
+}
+
+// hack for components to work correctly in node.js
+if (typeof __webpack_require__.g !== 'undefined') {
+	__webpack_require__.g.Prism = Prism;
+}
+
+// some additional documentation/types
+
+/**
+ * The expansion of a simple `RegExp` literal to support additional properties.
+ *
+ * @typedef GrammarToken
+ * @property {RegExp} pattern The regular expression of the token.
+ * @property {boolean} [lookbehind=false] If `true`, then the first capturing group of `pattern` will (effectively)
+ * behave as a lookbehind group meaning that the captured text will not be part of the matched text of the new token.
+ * @property {boolean} [greedy=false] Whether the token is greedy.
+ * @property {string|string[]} [alias] An optional alias or list of aliases.
+ * @property {Grammar} [inside] The nested grammar of this token.
+ *
+ * The `inside` grammar will be used to tokenize the text value of each token of this kind.
+ *
+ * This can be used to make nested and even recursive language definitions.
+ *
+ * Note: This can cause infinite recursion. Be careful when you embed different languages or even the same language into
+ * each another.
+ * @global
+ * @public
+*/
+
+/**
+ * @typedef Grammar
+ * @type {Object<string, RegExp | GrammarToken | Array<RegExp | GrammarToken>>}
+ * @property {Grammar} [rest] An optional grammar object that will be appended to this grammar.
+ * @global
+ * @public
+ */
+
+/**
+ * A function which will invoked after an element was successfully highlighted.
+ *
+ * @callback HighlightCallback
+ * @param {Element} element The element successfully highlighted.
+ * @returns {void}
+ * @global
+ * @public
+*/
+
+/**
+ * @callback HookCallback
+ * @param {Object<string, any>} env The environment variables of the hook.
+ * @returns {void}
+ * @global
+ * @public
+ */
+
+
+/* **********************************************
+     Begin prism-markup.js
+********************************************** */
+
+Prism.languages.markup = {
+	'comment': /<!--[\s\S]*?-->/,
+	'prolog': /<\?[\s\S]+?\?>/,
+	'doctype': {
+		// https://www.w3.org/TR/xml/#NT-doctypedecl
+		pattern: /<!DOCTYPE(?:[^>"'[\]]|"[^"]*"|'[^']*')+(?:\[(?:[^<"'\]]|"[^"]*"|'[^']*'|<(?!!--)|<!--(?:[^-]|-(?!->))*-->)*\]\s*)?>/i,
+		greedy: true,
+		inside: {
+			'internal-subset': {
+				pattern: /(\[)[\s\S]+(?=\]>$)/,
+				lookbehind: true,
+				greedy: true,
+				inside: null // see below
+			},
+			'string': {
+				pattern: /"[^"]*"|'[^']*'/,
+				greedy: true
+			},
+			'punctuation': /^<!|>$|[[\]]/,
+			'doctype-tag': /^DOCTYPE/,
+			'name': /[^\s<>'"]+/
+		}
+	},
+	'cdata': /<!\[CDATA\[[\s\S]*?]]>/i,
+	'tag': {
+		pattern: /<\/?(?!\d)[^\s>\/=$<%]+(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))|(?=[\s/>])))+)?\s*\/?>/,
+		greedy: true,
+		inside: {
+			'tag': {
+				pattern: /^<\/?[^\s>\/]+/,
+				inside: {
+					'punctuation': /^<\/?/,
+					'namespace': /^[^\s>\/:]+:/
+				}
+			},
+			'attr-value': {
+				pattern: /=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+)/,
+				inside: {
+					'punctuation': [
+						{
+							pattern: /^=/,
+							alias: 'attr-equals'
+						},
+						/"|'/
+					]
+				}
+			},
+			'punctuation': /\/?>/,
+			'attr-name': {
+				pattern: /[^\s>\/]+/,
+				inside: {
+					'namespace': /^[^\s>\/:]+:/
+				}
+			}
+
+		}
+	},
+	'entity': [
+		{
+			pattern: /&[\da-z]{1,8};/i,
+			alias: 'named-entity'
+		},
+		/&#x?[\da-f]{1,8};/i
+	]
+};
+
+Prism.languages.markup['tag'].inside['attr-value'].inside['entity'] =
+	Prism.languages.markup['entity'];
+Prism.languages.markup['doctype'].inside['internal-subset'].inside = Prism.languages.markup;
+
+// Plugin to make entity title show the real entity, idea by Roman Komarov
+Prism.hooks.add('wrap', function (env) {
+
+	if (env.type === 'entity') {
+		env.attributes['title'] = env.content.replace(/&amp;/, '&');
+	}
+});
+
+Object.defineProperty(Prism.languages.markup.tag, 'addInlined', {
+	/**
+	 * Adds an inlined language to markup.
+	 *
+	 * An example of an inlined language is CSS with `<style>` tags.
+	 *
+	 * @param {string} tagName The name of the tag that contains the inlined language. This name will be treated as
+	 * case insensitive.
+	 * @param {string} lang The language key.
+	 * @example
+	 * addInlined('style', 'css');
+	 */
+	value: function addInlined(tagName, lang) {
+		var includedCdataInside = {};
+		includedCdataInside['language-' + lang] = {
+			pattern: /(^<!\[CDATA\[)[\s\S]+?(?=\]\]>$)/i,
+			lookbehind: true,
+			inside: Prism.languages[lang]
+		};
+		includedCdataInside['cdata'] = /^<!\[CDATA\[|\]\]>$/i;
+
+		var inside = {
+			'included-cdata': {
+				pattern: /<!\[CDATA\[[\s\S]*?\]\]>/i,
+				inside: includedCdataInside
+			}
+		};
+		inside['language-' + lang] = {
+			pattern: /[\s\S]+/,
+			inside: Prism.languages[lang]
+		};
+
+		var def = {};
+		def[tagName] = {
+			pattern: RegExp(/(<__[^>]*>)(?:<!\[CDATA\[(?:[^\]]|\](?!\]>))*\]\]>|(?!<!\[CDATA\[)[\s\S])*?(?=<\/__>)/.source.replace(/__/g, function () { return tagName; }), 'i'),
+			lookbehind: true,
+			greedy: true,
+			inside: inside
+		};
+
+		Prism.languages.insertBefore('markup', 'cdata', def);
+	}
+});
+
+Prism.languages.html = Prism.languages.markup;
+Prism.languages.mathml = Prism.languages.markup;
+Prism.languages.svg = Prism.languages.markup;
+
+Prism.languages.xml = Prism.languages.extend('markup', {});
+Prism.languages.ssml = Prism.languages.xml;
+Prism.languages.atom = Prism.languages.xml;
+Prism.languages.rss = Prism.languages.xml;
+
+
+/* **********************************************
+     Begin prism-css.js
+********************************************** */
+
+(function (Prism) {
+
+	var string = /("|')(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/;
+
+	Prism.languages.css = {
+		'comment': /\/\*[\s\S]*?\*\//,
+		'atrule': {
+			pattern: /@[\w-](?:[^;{\s]|\s+(?![\s{]))*(?:;|(?=\s*\{))/,
+			inside: {
+				'rule': /^@[\w-]+/,
+				'selector-function-argument': {
+					pattern: /(\bselector\s*\(\s*(?![\s)]))(?:[^()\s]|\s+(?![\s)])|\((?:[^()]|\([^()]*\))*\))+(?=\s*\))/,
+					lookbehind: true,
+					alias: 'selector'
+				},
+				'keyword': {
+					pattern: /(^|[^\w-])(?:and|not|only|or)(?![\w-])/,
+					lookbehind: true
+				}
+				// See rest below
+			}
+		},
+		'url': {
+			// https://drafts.csswg.org/css-values-3/#urls
+			pattern: RegExp('\\burl\\((?:' + string.source + '|' + /(?:[^\\\r\n()"']|\\[\s\S])*/.source + ')\\)', 'i'),
+			greedy: true,
+			inside: {
+				'function': /^url/i,
+				'punctuation': /^\(|\)$/,
+				'string': {
+					pattern: RegExp('^' + string.source + '$'),
+					alias: 'url'
+				}
+			}
+		},
+		'selector': RegExp('[^{}\\s](?:[^{};"\'\\s]|\\s+(?![\\s{])|' + string.source + ')*(?=\\s*\\{)'),
+		'string': {
+			pattern: string,
+			greedy: true
+		},
+		'property': /(?!\s)[-_a-z\xA0-\uFFFF](?:(?!\s)[-\w\xA0-\uFFFF])*(?=\s*:)/i,
+		'important': /!important\b/i,
+		'function': /[-a-z0-9]+(?=\()/i,
+		'punctuation': /[(){};:,]/
+	};
+
+	Prism.languages.css['atrule'].inside.rest = Prism.languages.css;
+
+	var markup = Prism.languages.markup;
+	if (markup) {
+		markup.tag.addInlined('style', 'css');
+
+		Prism.languages.insertBefore('inside', 'attr-value', {
+			'style-attr': {
+				pattern: /(^|["'\s])style\s*=\s*(?:"[^"]*"|'[^']*')/i,
+				lookbehind: true,
+				inside: {
+					'attr-value': {
+						pattern: /=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+)/,
+						inside: {
+							'style': {
+								pattern: /(["'])[\s\S]+(?=["']$)/,
+								lookbehind: true,
+								alias: 'language-css',
+								inside: Prism.languages.css
+							},
+							'punctuation': [
+								{
+									pattern: /^=/,
+									alias: 'attr-equals'
+								},
+								/"|'/
+							]
+						}
+					},
+					'attr-name': /^style/i
+				}
+			}
+		}, markup.tag);
+	}
+
+}(Prism));
+
+
+/* **********************************************
+     Begin prism-clike.js
+********************************************** */
+
+Prism.languages.clike = {
+	'comment': [
+		{
+			pattern: /(^|[^\\])\/\*[\s\S]*?(?:\*\/|$)/,
+			lookbehind: true,
+			greedy: true
+		},
+		{
+			pattern: /(^|[^\\:])\/\/.*/,
+			lookbehind: true,
+			greedy: true
+		}
+	],
+	'string': {
+		pattern: /(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
+		greedy: true
+	},
+	'class-name': {
+		pattern: /(\b(?:class|interface|extends|implements|trait|instanceof|new)\s+|\bcatch\s+\()[\w.\\]+/i,
+		lookbehind: true,
+		inside: {
+			'punctuation': /[.\\]/
+		}
+	},
+	'keyword': /\b(?:if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,
+	'boolean': /\b(?:true|false)\b/,
+	'function': /\w+(?=\()/,
+	'number': /\b0x[\da-f]+\b|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e[+-]?\d+)?/i,
+	'operator': /[<>]=?|[!=]=?=?|--?|\+\+?|&&?|\|\|?|[?*/~^%]/,
+	'punctuation': /[{}[\];(),.:]/
+};
+
+
+/* **********************************************
+     Begin prism-javascript.js
+********************************************** */
+
+Prism.languages.javascript = Prism.languages.extend('clike', {
+	'class-name': [
+		Prism.languages.clike['class-name'],
+		{
+			pattern: /(^|[^$\w\xA0-\uFFFF])(?!\s)[_$A-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\.(?:prototype|constructor))/,
+			lookbehind: true
+		}
+	],
+	'keyword': [
+		{
+			pattern: /((?:^|})\s*)(?:catch|finally)\b/,
+			lookbehind: true
+		},
+		{
+			pattern: /(^|[^.]|\.\.\.\s*)\b(?:as|async(?=\s*(?:function\b|\(|[$\w\xA0-\uFFFF]|$))|await|break|case|class|const|continue|debugger|default|delete|do|else|enum|export|extends|for|from|function|(?:get|set)(?=\s*[\[$\w\xA0-\uFFFF])|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)\b/,
+			lookbehind: true
+		},
+	],
+	// Allow for all non-ASCII characters (See http://stackoverflow.com/a/2008444)
+	'function': /#?(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*(?:\.\s*(?:apply|bind|call)\s*)?\()/,
+	'number': /\b(?:(?:0[xX](?:[\dA-Fa-f](?:_[\dA-Fa-f])?)+|0[bB](?:[01](?:_[01])?)+|0[oO](?:[0-7](?:_[0-7])?)+)n?|(?:\d(?:_\d)?)+n|NaN|Infinity)\b|(?:\b(?:\d(?:_\d)?)+\.?(?:\d(?:_\d)?)*|\B\.(?:\d(?:_\d)?)+)(?:[Ee][+-]?(?:\d(?:_\d)?)+)?/,
+	'operator': /--|\+\+|\*\*=?|=>|&&=?|\|\|=?|[!=]==|<<=?|>>>?=?|[-+*/%&|^!=<>]=?|\.{3}|\?\?=?|\?\.?|[~:]/
+});
+
+Prism.languages.javascript['class-name'][0].pattern = /(\b(?:class|interface|extends|implements|instanceof|new)\s+)[\w.\\]+/;
+
+Prism.languages.insertBefore('javascript', 'keyword', {
+	'regex': {
+		pattern: /((?:^|[^$\w\xA0-\uFFFF."'\])\s]|\b(?:return|yield))\s*)\/(?:\[(?:[^\]\\\r\n]|\\.)*]|\\.|[^/\\\[\r\n])+\/[gimyus]{0,6}(?=(?:\s|\/\*(?:[^*]|\*(?!\/))*\*\/)*(?:$|[\r\n,.;:})\]]|\/\/))/,
+		lookbehind: true,
+		greedy: true,
+		inside: {
+			'regex-source': {
+				pattern: /^(\/)[\s\S]+(?=\/[a-z]*$)/,
+				lookbehind: true,
+				alias: 'language-regex',
+				inside: Prism.languages.regex
+			},
+			'regex-flags': /[a-z]+$/,
+			'regex-delimiter': /^\/|\/$/
+		}
+	},
+	// This must be declared before keyword because we use "function" inside the look-forward
+	'function-variable': {
+		pattern: /#?(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*[=:]\s*(?:async\s*)?(?:\bfunction\b|(?:\((?:[^()]|\([^()]*\))*\)|(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)\s*=>))/,
+		alias: 'function'
+	},
+	'parameter': [
+		{
+			pattern: /(function(?:\s+(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)?\s*\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\))/,
+			lookbehind: true,
+			inside: Prism.languages.javascript
+		},
+		{
+			pattern: /(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*=>)/i,
+			inside: Prism.languages.javascript
+		},
+		{
+			pattern: /(\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\)\s*=>)/,
+			lookbehind: true,
+			inside: Prism.languages.javascript
+		},
+		{
+			pattern: /((?:\b|\s|^)(?!(?:as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)(?![$\w\xA0-\uFFFF]))(?:(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*\s*)\(\s*|\]\s*\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\)\s*\{)/,
+			lookbehind: true,
+			inside: Prism.languages.javascript
+		}
+	],
+	'constant': /\b[A-Z](?:[A-Z_]|\dx?)*\b/
+});
+
+Prism.languages.insertBefore('javascript', 'string', {
+	'template-string': {
+		pattern: /`(?:\\[\s\S]|\${(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}|(?!\${)[^\\`])*`/,
+		greedy: true,
+		inside: {
+			'template-punctuation': {
+				pattern: /^`|`$/,
+				alias: 'string'
+			},
+			'interpolation': {
+				pattern: /((?:^|[^\\])(?:\\{2})*)\${(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}/,
+				lookbehind: true,
+				inside: {
+					'interpolation-punctuation': {
+						pattern: /^\${|}$/,
+						alias: 'punctuation'
+					},
+					rest: Prism.languages.javascript
+				}
+			},
+			'string': /[\s\S]+/
+		}
+	}
+});
+
+if (Prism.languages.markup) {
+	Prism.languages.markup.tag.addInlined('script', 'javascript');
+}
+
+Prism.languages.js = Prism.languages.javascript;
+
+
+/* **********************************************
+     Begin prism-file-highlight.js
+********************************************** */
+
+(function () {
+	if (typeof self === 'undefined' || !self.Prism || !self.document) {
+		return;
+	}
+
+	// https://developer.mozilla.org/en-US/docs/Web/API/Element/matches#Polyfill
+	if (!Element.prototype.matches) {
+		Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+	}
+
+	var Prism = window.Prism;
+
+	var LOADING_MESSAGE = 'Loading…';
+	var FAILURE_MESSAGE = function (status, message) {
+		return '✖ Error ' + status + ' while fetching file: ' + message;
+	};
+	var FAILURE_EMPTY_MESSAGE = '✖ Error: File does not exist or is empty';
+
+	var EXTENSIONS = {
+		'js': 'javascript',
+		'py': 'python',
+		'rb': 'ruby',
+		'ps1': 'powershell',
+		'psm1': 'powershell',
+		'sh': 'bash',
+		'bat': 'batch',
+		'h': 'c',
+		'tex': 'latex'
+	};
+
+	var STATUS_ATTR = 'data-src-status';
+	var STATUS_LOADING = 'loading';
+	var STATUS_LOADED = 'loaded';
+	var STATUS_FAILED = 'failed';
+
+	var SELECTOR = 'pre[data-src]:not([' + STATUS_ATTR + '="' + STATUS_LOADED + '"])'
+		+ ':not([' + STATUS_ATTR + '="' + STATUS_LOADING + '"])';
+
+	var lang = /\blang(?:uage)?-([\w-]+)\b/i;
+
+	/**
+	 * Sets the Prism `language-xxxx` or `lang-xxxx` class to the given language.
+	 *
+	 * @param {HTMLElement} element
+	 * @param {string} language
+	 * @returns {void}
+	 */
+	function setLanguageClass(element, language) {
+		var className = element.className;
+		className = className.replace(lang, ' ') + ' language-' + language;
+		element.className = className.replace(/\s+/g, ' ').trim();
+	}
+
+
+	Prism.hooks.add('before-highlightall', function (env) {
+		env.selector += ', ' + SELECTOR;
+	});
+
+	Prism.hooks.add('before-sanity-check', function (env) {
+		var pre = /** @type {HTMLPreElement} */ (env.element);
+		if (pre.matches(SELECTOR)) {
+			env.code = ''; // fast-path the whole thing and go to complete
+
+			pre.setAttribute(STATUS_ATTR, STATUS_LOADING); // mark as loading
+
+			// add code element with loading message
+			var code = pre.appendChild(document.createElement('CODE'));
+			code.textContent = LOADING_MESSAGE;
+
+			var src = pre.getAttribute('data-src');
+
+			var language = env.language;
+			if (language === 'none') {
+				// the language might be 'none' because there is no language set;
+				// in this case, we want to use the extension as the language
+				var extension = (/\.(\w+)$/.exec(src) || [, 'none'])[1];
+				language = EXTENSIONS[extension] || extension;
+			}
+
+			// set language classes
+			setLanguageClass(code, language);
+			setLanguageClass(pre, language);
+
+			// preload the language
+			var autoloader = Prism.plugins.autoloader;
+			if (autoloader) {
+				autoloader.loadLanguages(language);
+			}
+
+			// load file
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', src, true);
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState == 4) {
+					if (xhr.status < 400 && xhr.responseText) {
+						// mark as loaded
+						pre.setAttribute(STATUS_ATTR, STATUS_LOADED);
+
+						// highlight code
+						code.textContent = xhr.responseText;
+						Prism.highlightElement(code);
+
+					} else {
+						// mark as failed
+						pre.setAttribute(STATUS_ATTR, STATUS_FAILED);
+
+						if (xhr.status >= 400) {
+							code.textContent = FAILURE_MESSAGE(xhr.status, xhr.statusText);
+						} else {
+							code.textContent = FAILURE_EMPTY_MESSAGE;
+						}
+					}
+				}
+			};
+			xhr.send(null);
+		}
+	});
+
+	Prism.plugins.fileHighlight = {
+		/**
+		 * Executes the File Highlight plugin for all matching `pre` elements under the given container.
+		 *
+		 * Note: Elements which are already loaded or currently loading will not be touched by this method.
+		 *
+		 * @param {ParentNode} [container=document]
+		 */
+		highlight: function highlight(container) {
+			var elements = (container || document).querySelectorAll(SELECTOR);
+
+			for (var i = 0, element; element = elements[i++];) {
+				Prism.highlightElement(element);
+			}
+		}
+	};
+
+	var logged = false;
+	/** @deprecated Use `Prism.plugins.fileHighlight.highlight` instead. */
+	Prism.fileHighlight = function () {
+		if (!logged) {
+			console.warn('Prism.fileHighlight is deprecated. Use `Prism.plugins.fileHighlight.highlight` instead.');
+			logged = true;
+		}
+		Prism.plugins.fileHighlight.highlight.apply(this, arguments);
+	}
+
+})();
+
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/chunk loaded */
+/******/ 	(() => {
+/******/ 		var deferred = [];
+/******/ 		__webpack_require__.O = (result, chunkIds, fn, priority) => {
+/******/ 			if(chunkIds) {
+/******/ 				priority = priority || 0;
+/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
+/******/ 				deferred[i] = [chunkIds, fn, priority];
+/******/ 				return;
+/******/ 			}
+/******/ 			var notFulfilled = Infinity;
+/******/ 			for (var i = 0; i < deferred.length; i++) {
+/******/ 				var [chunkIds, fn, priority] = deferred[i];
+/******/ 				var fulfilled = true;
+/******/ 				for (var j = 0; j < chunkIds.length; j++) {
+/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every((key) => (__webpack_require__.O[key](chunkIds[j])))) {
+/******/ 						chunkIds.splice(j--, 1);
+/******/ 					} else {
+/******/ 						fulfilled = false;
+/******/ 						if(priority < notFulfilled) notFulfilled = priority;
+/******/ 					}
+/******/ 				}
+/******/ 				if(fulfilled) {
+/******/ 					deferred.splice(i--, 1)
+/******/ 					result = fn();
+/******/ 				}
+/******/ 			}
+/******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		// no baseURI
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"/js/app": 0,
+/******/ 			"css/app": 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
+/******/ 		
+/******/ 		// install a JSONP callback for chunk loading
+/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
+/******/ 			var [chunkIds, moreModules, runtime] = data;
+/******/ 			// add "moreModules" to the modules object,
+/******/ 			// then flag all "chunkIds" as loaded and fire callback
+/******/ 			var moduleId, chunkId, i = 0;
+/******/ 			for(moduleId in moreModules) {
+/******/ 				if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 					__webpack_require__.m[moduleId] = moreModules[moduleId];
+/******/ 				}
+/******/ 			}
+/******/ 			if(runtime) runtime(__webpack_require__);
+/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
+/******/ 			for(;i < chunkIds.length; i++) {
+/******/ 				chunkId = chunkIds[i];
+/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 					installedChunks[chunkId][0]();
+/******/ 				}
+/******/ 				installedChunks[chunkIds[i]] = 0;
+/******/ 			}
+/******/ 			__webpack_require__.O();
+/******/ 		}
+/******/ 		
+/******/ 		var chunkLoadingGlobal = self["webpackChunkghost"] = self["webpackChunkghost"] || [];
+/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
+/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
+/******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/sass/app.scss")))
+/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
+/******/ 	
+/******/ })()
+;

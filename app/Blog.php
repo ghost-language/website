@@ -64,6 +64,7 @@ class Blog
                         'url'       => route('blog.show', [$date->format('Y'), $date->format('m'), $slug]),
                         'title'     => $document->title,
                         'published' => $document->published,
+                        'excerpt'   => (new Parsedown)->text($document->excerpt),
                         'content'   => (new Parsedown)->text($document->body()),
                     ];
                 })
