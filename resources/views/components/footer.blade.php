@@ -11,25 +11,25 @@
                         </h3>
 
                         <ul class="mt-4 space-y-4">
-                            <li><a href="#" class="text-base text-gray-300 hover:text-white">
+                            <li><a href="/docs/{{ DEFAULT_VERSION }}/getting-started" class="text-base text-gray-300 hover:text-white">
                                 Getting Started
                             </a></li>
-                            <li><a href="#" class="text-base text-gray-300 hover:text-white">
+                            <li><a href="/docs/{{ DEFAULT_VERSION }}/syntax" class="text-base text-gray-300 hover:text-white">
                                 Syntax
                             </a></li>
-                            <li><a href="#" class="text-base text-gray-300 hover:text-white">
+                            <li><a href="/docs/{{ DEFAULT_VERSION }}/values" class="text-base text-gray-300 hover:text-white">
                                 Values
                             </a></li>
-                            <li><a href="#" class="text-base text-gray-300 hover:text-white">
+                            <li><a href="/docs/{{ DEFAULT_VERSION }}/variables" class="text-base text-gray-300 hover:text-white">
                                 Variables
                             </a></li>
-                            <li><a href="#" class="text-base text-gray-300 hover:text-white">
+                            <li><a href="/docs/{{ DEFAULT_VERSION }}/operators" class="text-base text-gray-300 hover:text-white">
                                 Operators
                             </a></li>
-                            <li><a href="#" class="text-base text-gray-300 hover:text-white">
+                            <li><a href="/docs/{{ DEFAULT_VERSION }}/control-flow" class="text-base text-gray-300 hover:text-white">
                                 Control Flow
                             </a></li>
-                            <li><a href="#" class="text-base text-gray-300 hover:text-white">
+                            <li><a href="/docs/{{ DEFAULT_VERSION }}/functions" class="text-base text-gray-300 hover:text-white">
                                 Functions
                             </a></li>
                         </ul>
@@ -43,11 +43,17 @@
                             <li><a href="#" class="text-base text-gray-300 hover:text-white">
                                 About
                             </a></li>
-                            <li><a href="#" class="text-base text-gray-300 hover:text-white">
+                            <li><a href="/blog" class="text-base text-gray-300 hover:text-white">
                                 Blog
                             </a></li>
-                            <li><a href="#" class="text-base text-gray-300 hover:text-white">
+                            <li><a href="/docs" class="text-base text-gray-300 hover:text-white">
                                 Documentation
+                            </a></li>
+                            <li><a href="/playground" class="text-base text-gray-300 hover:text-white">
+                                Playground
+                            </a></li>
+                            <li><a href="/docs/{{ DEFAULT_VERSION }}/style-guide" class="text-base text-gray-300 hover:text-white">
+                                Style Guide
                             </a></li>
                         </ul>
                     </div>
