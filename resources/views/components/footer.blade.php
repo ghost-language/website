@@ -65,11 +65,14 @@
                             Ecosystem
                         </h3>
                         <ul class="mt-4 space-y-4">
-                            <li><a href="#" class="text-base text-gray-300 hover:text-white">
+                            <li><a href="https://github.com/ghost-language/engine" class="text-base text-gray-300 hover:text-white">
                                 Engine
                             </a></li>
-                            <li><a href="#" class="text-base text-gray-300 hover:text-white">
+                            <li><a href="https://github.com/ghost-language/machina" class="text-base text-gray-300 hover:text-white">
                                 Machina
+                            </a></li>
+                            <li><a href="https://github.com/ghost-language/vscode" class="text-base text-gray-300 hover:text-white">
+                                VSCode Extension
                             </a></li>
                         </ul>
                     </div>
