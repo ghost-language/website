@@ -21,6 +21,10 @@ Route::get('/blog/{year}/{month}/{slug}', 'BlogController@show')->name('blog.sho
 Route::get('/docs', 'DocsController@index');
 Route::get('/docs/{version}/{page?}', 'DocsController@show')->name('docs.version');
 
+Route::get('/discord', function() {
+    return redirect(env('DISCORD_INVITE_URL', '/'));
+});
+
 Route::get('/playground', 'PlaygroundController@index');
 
 Route::get('/', function () {
