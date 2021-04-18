@@ -4,6 +4,7 @@ module.exports = {
   mode: 'jit',
   purge: [
     './resources/views/**/*.blade.php',
+    './resources/js/components/**/*.js',
   ],
   theme: {
     extend: {
@@ -14,13 +15,8 @@ module.exports = {
       colors: {
         gray: colors.coolGray,
         violet: colors.violet
-      }
+      },
     },
-  },
-  variants: {
-    extend: {
-      visibility: ['responsive', 'group-focus'],
-    }
   },
   plugins: [
     require('@tailwindcss/typography'),

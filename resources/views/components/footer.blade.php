@@ -52,6 +52,9 @@
                             <li><a href="/playground" class="text-base text-gray-300 hover:text-white">
                                 Playground
                             </a></li>
+                            <li><a href="/roadmap" class="text-base text-gray-300 hover:text-white">
+                                Roadmap
+                            </a></li>
                             <li><a href="/docs/{{ DEFAULT_VERSION }}/style-guide" class="text-base text-gray-300 hover:text-white">
                                 Style Guide
                             </a></li>

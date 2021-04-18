@@ -1,5 +1,3 @@
-require('prismjs')
-require('prismjs/components/prism-go')
-require('prismjs/components/prism-dart')
+import './bootstrap.js'
 
-import 'alpinejs'
+import SiteHeader from './components/SiteHeader'

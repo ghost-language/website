@@ -47,8 +47,7 @@
     </head>
     <body class="font-sans antialiased text-gray-900 language-javascript" x-data="{ isOpen: false }">
         <x-banner></x-banner>
-        <x-header></x-header>
-        <x-sidebar></x-sidebar>
+        <header id="site-header" class="relative"></header>
 
         <main>
             <div class="max-w-6xl mx-auto py-12 px-6">

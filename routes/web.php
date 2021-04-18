@@ -25,6 +25,10 @@ Route::get('/discord', function() {
     return redirect(env('DISCORD_INVITE_URL', '/'));
 });
 
+Route::get('/roadmap', function() {
+    return view('roadmap');
+});
+
 Route::get('/playground', 'PlaygroundController@index');
 
 Route::get('/', function () {
