@@ -5,10 +5,24 @@ import { MenuIcon, XIcon, DownloadIcon } from '@heroicons/react/outline'
 import ReactDOM from 'react-dom'
 
 const navigation = [
-    { name: 'Blog', href: "/blog", current: false },
-    { name: 'Documentation', href: "/docs", current: false },
-    { name: 'Playground', href: "/playground", current: false },
-    { name: 'Roadmap', href: "/roadmap", current: false },
+    { name: 'Blog', href: "/blog" },
+    { name: 'Documentation', href: "/docs" },
+    { name: 'Playground', href: "/playground" },
+    { name: 'Roadmap', href: "/roadmap" },
+]
+
+const documentation = [
+    { name: 'Getting Started', href: '/docs/nightly/getting-started' },
+    { name: 'Syntax', href: '/docs/nightly/syntax' },
+    { name: 'Values', href: '/docs/nightly/values' },
+    { name: 'Variables', href: '/docs/nightly/variables' },
+    { name: 'Operators', href: '/docs/nightly/operators' },
+    { name: 'Control Flow', href: '/docs/nightly/control-flow' },
+    { name: 'Functions', href: '/docs/nightly/functions' },
+    { name: 'Lists', href: '/docs/nightly/lists' },
+    { name: 'Maps', href: '/docs/nightly/maps' },
+    { name: 'Strings', href: '/docs/nightly/strings' },
+    { name: 'Style Guide', href: '/docs/nightly/style-guide' },
 ]
 
 class SiteHeader extends Component {
@@ -145,6 +159,17 @@ class SiteHeader extends Component {
                                                         </a>
                                                     ))}
                                                 </div>
+                                            </div>
+                                            <div className="py-4 px-2 space-y-1">
+                                                {documentation.map((item) => (
+                                                    <a
+                                                        key={item.name}
+                                                        href={item.href}
+                                                        className="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800"
+                                                    >
+                                                        {item.name}
+                                                    </a>
+                                                ))}
                                             </div>
                                         </div>
                                     </Popover.Panel>
