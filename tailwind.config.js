@@ -1,6 +1,10 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
+  mode: 'jit',
   purge: [
     './resources/views/**/*.blade.php',
+    './resources/js/components/**/*.js',
   ],
   theme: {
     extend: {
@@ -8,12 +12,13 @@ module.exports = {
         'sans': ['Inter', 'sans-serif'],
         'mono': ['Ubuntu Mono', 'monospace'],
       },
+      colors: {
+        gray: colors.coolGray,
+        violet: colors.violet
+      },
     },
   },
-  variants: {},
   plugins: [
-    require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
-    require('@tailwindcss/aspect-ratio'),
   ],
 }

@@ -1,7 +1,3 @@
-window._ = require('lodash')
+import './bootstrap.js'
 
-require('prismjs')
-require('prismjs/components/prism-go')
-require('prismjs/components/prism-dart')
-
-import 'alpinejs'
+import SiteHeader from './components/SiteHeader'
