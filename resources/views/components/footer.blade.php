@@ -40,18 +40,18 @@
                             Resources
                         </h3>
                         <ul class="mt-4 space-y-4">
-                            <li><a href="#" class="text-base text-gray-300 hover:text-white">
+                            {{-- <li><a href="#" class="text-base text-gray-300 hover:text-white">
                                 About
-                            </a></li>
+                            </a></li> --}}
                             <li><a href="/blog" class="text-base text-gray-300 hover:text-white">
                                 Blog
                             </a></li>
                             <li><a href="/docs" class="text-base text-gray-300 hover:text-white">
                                 Documentation
                             </a></li>
-                            <li><a href="/playground" class="text-base text-gray-300 hover:text-white">
+                            {{-- <li><a href="/playground" class="text-base text-gray-300 hover:text-white">
                                 Playground
-                            </a></li>
+                            </a></li> --}}
                             <li><a href="/roadmap" class="text-base text-gray-300 hover:text-white">
                                 Roadmap
                             </a></li>

@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom'
 const navigation = [
     { name: 'Blog', href: "/blog" },
     { name: 'Documentation', href: "/docs" },
-    { name: 'Playground', href: "/playground" },
+    // { name: 'Playground', href: "/playground" },
     { name: 'Roadmap', href: "/roadmap" },
 ]
 
@@ -58,8 +58,9 @@ class SiteHeader extends Component {
                                         ))}
                                     </div>
                                 </div>
-                                <div className="flex-1 flex items-center justify-center px-2 lg:ml-6 lg:justify-end">
-                                    <div className="max-w-lg w-full lg:max-w-xs">
+
+                                <div className="flex-1 flex items-center justify-center px-2 lg:justify-end">
+                                    {/* <div className="max-w-lg w-full lg:max-w-xs">
                                         <label htmlFor="search" className="sr-only">
                                             Search
                                         </label>
@@ -78,15 +79,15 @@ class SiteHeader extends Component {
                                                 <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="none"><rect x=".5" y=".5" width="19" height="19" rx="3.5" stroke="currentColor"></rect><path d="M6.5 16l7-12" stroke="currentColor"></path></svg>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> */}
 
-                                    <div class="hidden lg:ml-4 lg:flex lg:items-center">
+                                    {/* <div class="hidden lg:ml-4 lg:flex lg:items-center">
                                         <button class="flex-shrink-0 bg-white p-1 text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                             <span class="sr-only">Download latest version</span>
 
                                             <DownloadIcon className="block h-6 w-6" aria-hidden="true" />
                                         </button>
-                                    </div>
+                                    </div> */}
                                 </div>
 
                                 <div className="flex items-center lg:hidden">

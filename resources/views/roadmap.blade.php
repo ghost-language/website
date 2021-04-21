@@ -1,6 +1,6 @@
 <x-layout title="Roadmap">
-    <div class="divide-y divide-gray-200">
-        <div class="pt-6 pb-8 space-y-2 md:space-y-5">
+    <div>
+        <div class="pt-6 pb-8 space-y-2 md:space-y-5 border-b border-gray-200">
             <h1 class="text-3xl leading-9 font-extrabold text-gray-900 tracking-tight sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
                 Roadmap
             </h1>
@@ -8,8 +8,8 @@
             <p class="text-lg leading-7 text-gray-500">Keep up to date on the progress towards a stable 1.0 release.</p>
         </div>
 
-        <div class="xl:grid xl:gap-6 xl:grid-cols-3 xl:items-baseline space-y-5 md:space-y-0 pt-6">
-            <dl class="pb-4">
+        <div class="flex items-center flex-1 flex-col pt-6 max-w-2xl mx-auto">
+            <dl class="mb-10">
                 <dt class="sr-only">Last updated</dt>
                 <dd>
                     <ul class="flex justify-center xl:block space-x-8 sm:space-x-12 xl:space-x-0 xl:space-y-8">
@@ -25,7 +25,7 @@
                                 <dd class="text-gray-900">Last Updated</dd>
                                 <dt class="sr-only">Date</dt>
                                 <dd>
-                                    <span class="text-indigo-500">April 17, 2021</span>
+                                    <span class="text-indigo-500">April 21, 2021</span>
                                 </dd>
                             </dl>
                         </li>
@@ -33,40 +33,73 @@
                 </dd>
             </dl>
 
-            <div class="xl:col-span-2">
-                <div class="mb-10">
+
+                <div class="mb-10 w-full">
                     <h3 class="text-center pb-2 text-lg font-extrabold uppercase tracking-wide">Literals</h3>
                     <div class="bg-white rounded-md border border-gray-200 divide-y divide-gray-200 -space-y-px">
                         <x-feature title="Booleans" complete />
-                        <x-feature title="Lists" />
-                        <x-feature title="Maps" />
+                        <x-feature title="Lists" complete />
+                        <x-feature title="Maps" complete />
                         <x-feature title="Null" complete />
                         <x-feature title="Numbers" complete />
                         <x-feature title="Strings" complete />
                     </div>
                 </div>
 
-                <div class="mb-10">
+                <div class="mb-10 w-full">
+                    <h3 class="text-center pb-2 text-lg font-extrabold uppercase tracking-wide">Operators</h3>
+                    <div class="bg-white rounded-md border border-gray-200 divide-y divide-gray-200 -space-y-px">
+                        <x-feature title="Addition (+)" complete />
+                        <x-feature title="Subtraction (-)" complete />
+                        <x-feature title="Multiplication (*)" complete />
+                        <x-feature title="Division (/)" complete />
+                        <x-feature title="Modulo (%)" complete />
+                        <x-feature title="Greater Then (>)" complete />
+                        <x-feature title="Less Then (<)" complete />
+                        <x-feature title="Greater Then or Equal (>=)" complete />
+                        <x-feature title="Less Then or Equal (<=)" complete />
+                        <x-feature title="Equals (==)" complete />
+                        <x-feature title="Not Equals (!=)" complete />
+                        <x-feature title="Assign (:=)" complete />
+                        <x-feature title="Range (..)" complete />
+                        <x-feature title="Logical And" complete />
+                        <x-feature title="Logical Or" complete />
+                        <x-feature title="Negation (-)" complete />
+                    </div>
+                </div>
+
+                <div class="mb-10 w-full">
                     <h3 class="text-center pb-2 text-lg font-extrabold uppercase tracking-wide">Control Flow</h3>
                     <div class="bg-white rounded-md border border-gray-200 divide-y divide-gray-200 -space-y-px">
                         <x-feature title="Logical Operators" complete />
                         <x-feature title="If Statements" complete />
-                        <x-feature title="While Statements" />
-                        <x-feature title="For Statements" />
+                        <x-feature title="While Statements" complete />
+                        <x-feature title="For Statements" complete />
                     </div>
                 </div>
 
-                <div class="mb-10">
+                <div class="mb-10 w-full">
                     <h3 class="text-center pb-2 text-lg font-extrabold uppercase tracking-wide">Structures</h3>
                     <div class="bg-white rounded-md border border-gray-200 divide-y divide-gray-200 -space-y-px">
                         <x-feature title="Native Functions" complete />
-                        <x-feature title="User Defined Functions" />
+                        <x-feature title="User Defined Functions" complete />
                         <x-feature title="Native Classes" />
                         <x-feature title="User Defined Classes" />
                     </div>
                 </div>
 
-                <div class="mb-10">
+                <div class="mb-10 w-full">
+                    <h3 class="text-center pb-2 text-lg font-extrabold uppercase tracking-wide">Features</h3>
+                    <div class="bg-white rounded-md border border-gray-200 divide-y divide-gray-200 -space-y-px">
+                        <x-feature title="Built-in Server" />
+                        <x-feature title="Embeddable API" complete />
+                        <x-feature title="Full Unicode Support" complete />
+                        <x-feature title="REPL" complete />
+                        <x-feature title="Scientific Number Notation" />
+                    </div>
+                </div>
+
+                <div class="mb-10 w-full">
                     <h3 class="text-center pb-2 text-lg font-extrabold uppercase tracking-wide">Standard Library</h3>
                     <div class="bg-white rounded-md border border-gray-200 divide-y divide-gray-200 -space-y-px">
                         <x-feature title="csv" />
@@ -78,7 +111,16 @@
                         <x-feature title="os" />
                     </div>
                 </div>
-            </div>
+
+                <div class="mb-10 w-full">
+                    <h3 class="text-center pb-2 text-lg font-extrabold uppercase tracking-wide">Platforms</h3>
+                    <div class="bg-white rounded-md border border-gray-200 divide-y divide-gray-200 -space-y-px">
+                        <x-feature title="macOS" complete />
+                        <x-feature title="Linux" complete />
+                        <x-feature title="Windows" complete />
+                        <x-feature title="Web (WASM)" />
+                    </div>
+                </div>
         </div>
     </div>
 </x-layout>
