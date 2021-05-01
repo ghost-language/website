@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="divide-y divide-gray-200 space-y-10">
+    <div class="space-y-10">
         <div class="relative lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
             <div class="relative">
                 <h3 class="border-0 text-3xl mt-2 leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 p-0">
@@ -85,6 +85,29 @@ maker := CoffeeMaker('espresso')
 maker.brew()</code></pre>
 
                 <pre class="relative mx-auto bg-gray-800 text-gray-200 p-6 rounded shadow">>>> Enjoy your cup of espresso</pre>
+            </div>
+        </div>
+
+        <div class="bg-gray-900 rounded">
+            <div class="max-w-7xl mx-auto text-center py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+                <h2 class="text-3xl font-extrabold tracking-tight text-gray-100 sm:text-4xl">
+                    <span class="block">Ready to dive in?</span>
+                    <span class="block">Get started with our documentation.</span>
+                </h2>
+
+                <div class="mt-8 flex justify-center">
+                    <div class="inline-flex rounded-md shadow">
+                        <a href="/docs/nightly/getting-started" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+                            Get started
+                        </a>
+                    </div>
+
+                    <div class="ml-3 inline-flex">
+                        <a href="/docs/nightly/syntax" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
 

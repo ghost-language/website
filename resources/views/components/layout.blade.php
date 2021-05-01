@@ -45,17 +45,20 @@
         {{-- Styles --}}
         <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
     </head>
-    <body class="font-sans antialiased text-gray-900 language-javascript" x-data="{ isOpen: false }">
-        <x-banner></x-banner>
-        <header id="site-header" class="relative"></header>
+    <body class="font-sans antialiased text-gray-900 language-javascript">
+        <div id="app">
+            <x-banner></x-banner>
 
-        <main>
-            <div class="max-w-6xl mx-auto py-12 px-6">
-                {{ $slot }}
-            </div>
-        </main>
+            <app-header active="{{ request()->path() }}"></app-header>
 
-        <x-footer></x-footer>
+            <main>
+                <div class="max-w-7xl mx-auto py-12 px-6">
+                    {{ $slot }}
+                </div>
+            </main>
+
+            <x-footer></x-footer>
+        </div>
 
         <script src="{{ mix('/js/app.js') }}"></script>
     </body>

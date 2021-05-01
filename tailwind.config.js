@@ -4,7 +4,7 @@ module.exports = {
   mode: 'jit',
   purge: [
     './resources/views/**/*.blade.php',
-    './resources/js/components/**/*.js',
+    './resources/js/components/**/*.vue',
   ],
   theme: {
     extend: {
@@ -14,11 +14,11 @@ module.exports = {
       },
       colors: {
         gray: colors.coolGray,
-        violet: colors.violet
       },
     },
   },
   plugins: [
     require('@tailwindcss/typography'),
+    require('@tailwindcss/forms'),
   ],
 }
