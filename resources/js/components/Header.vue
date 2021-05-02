@@ -94,6 +94,7 @@
                 <a href="/" class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium" :class="{'bg-indigo-50 border-indigo-500 text-indigo-700': isExact('/'), 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800': !isExact('/')}">Home</a>
                 <a href="/blog" class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium" :class="{'bg-indigo-50 border-indigo-500 text-indigo-700': isActive('blog'), 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800': !isActive('blog')}">Blog</a>
                 <a href="/docs" class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium" :class="{'bg-indigo-50 border-indigo-500 text-indigo-700': isActive('docs'), 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800': !isActive('docs')}">Documentation</a>
+                <a href="/playground" class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium" :class="{'bg-indigo-50 border-indigo-500 text-indigo-700': isActive('playground'), 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800': !isActive('playground')}">Playground</a>
                 <a href="/roadmap" class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium" :class="{'bg-indigo-50 border-indigo-500 text-indigo-700': isActive('roadmap'), 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800': !isActive('roadmap')}">Roadmap</a>
             </div>
 
