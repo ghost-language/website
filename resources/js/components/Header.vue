@@ -1,6 +1,6 @@
 <template>
     <Disclosure as="nav" class="bg-white shadow" v-slot="{ open }">
-        <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
+        <div class="w-full mx-auto px-6" :class="{'max-w-7xl': !fullWidth}">
             <div class="flex justify-between h-16">
                 <div class="flex px-2 lg:px-0">
                     <a href="/" class="flex-shrink-0 flex items-center" alt="Home">
@@ -18,12 +18,8 @@
                             Documentation
                         </a>
 
-                        <a href="/playground" class="inline-flex items-center px-1 pt-1 text-sm font-medium border-b-2" :class="{'border-indigo-500 text-gray-900': isActive('playground'), 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700': !isActive('playground')}">
-                            Playground
-                        </a>
-
-                        <a href="/roadmap" class="inline-flex items-center px-1 pt-1 text-sm font-medium border-b-2" :class="{'border-indigo-500 text-gray-900': isActive('roadmap'), 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700': !isActive('roadmap')}">
-                            Roadmap
+                        <a href="/play" class="inline-flex items-center px-1 pt-1 text-sm font-medium border-b-2" :class="{'border-indigo-500 text-gray-900': isActive('play'), 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700': !isActive('play')}">
+                            Play
                         </a>
                     </div>
                 </div>
@@ -147,7 +143,10 @@
     import { BellIcon, MenuIcon, XIcon } from '@heroicons/vue/outline'
 
     export default {
-        props: ['active'],
+        props: {
+            active: String,
+            fullWidth: Boolean,
+        },
 
         components: {
             Disclosure,

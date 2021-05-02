@@ -1,0 +1,7 @@
+.splitpanes--vertical > .splitpanes__splitter {
+    @apply w-1 bg-gray-700;
+}
+
+.splitpanes--horizontal > .splitpanes__splitter {
+    @apply h-1 bg-gray-700;
+}

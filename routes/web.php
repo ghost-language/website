@@ -12,6 +12,10 @@ if (! defined('LATEST_VERSION')) {
 
 Route::pattern('slug', '[a-z0-9-]+');
 
+Route::domain('play.'.env('APP_BASE_DOMAIN'))->group(function() {
+    Route::get('/', 'PlayController@index')->name('play');
+});
+
 Route::get('/x/{project}', 'VanityController')->name('vanity')->where('project', '(.*)');
 
 Route::get('/blog.json', 'BlogFeedController');
@@ -29,7 +33,9 @@ Route::get('/roadmap', function() {
     return view('roadmap');
 });
 
-Route::get('/playground', 'PlaygroundController@index');
+Route::get('/play', function() {
+    return Redirect::route('play');
+});
 
 Route::get('/', function () {
     return view('welcome');

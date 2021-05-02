@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-class PlaygroundController extends Controller
+class PlayController extends Controller
 {
     public function index()
     {
-        return view('playground');
+        return view('play');
     }
 }
