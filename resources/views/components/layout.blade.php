@@ -60,6 +60,8 @@
             <x-footer></x-footer>
         </div>
 
+        <script src="/js/wasm_exec.js"></script>
         <script src="{{ mix('/js/app.js') }}"></script>
+        {{ $scripts ?? '' }}
     </body>
 </html>

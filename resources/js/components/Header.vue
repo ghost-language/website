@@ -18,6 +18,10 @@
                             Documentation
                         </a>
 
+                        <a href="/playground" class="inline-flex items-center px-1 pt-1 text-sm font-medium border-b-2" :class="{'border-indigo-500 text-gray-900': isActive('playground'), 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700': !isActive('playground')}">
+                            Playground
+                        </a>
+
                         <a href="/roadmap" class="inline-flex items-center px-1 pt-1 text-sm font-medium border-b-2" :class="{'border-indigo-500 text-gray-900': isActive('roadmap'), 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700': !isActive('roadmap')}">
                             Roadmap
                         </a>

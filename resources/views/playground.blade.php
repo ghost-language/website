@@ -1,3 +1,3 @@
 <x-layout title="Playground">
-    play!
+    <app-play></app-play>
 </x-layout>
