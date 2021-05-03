@@ -20,13 +20,13 @@
                     </pane>
 
                     <pane key="results" v-if="!isMobile">
-                        <div class="bg-gray-900 font-mono p-3 text-gray-100 w-full h-full" v-html="result"></div>
+                        <pre class="bg-gray-900 font-mono p-3 text-gray-100 w-full h-full" v-html="result"></pre>
                     </pane>
                 </splitpanes>
             </pane>
 
             <pane key="results" v-if="isMobile">
-                <div class="bg-gray-900 font-mono p-3 text-gray-100 w-full h-full" v-html="result"></div>
+                <pre class="bg-gray-900 font-mono p-3 text-gray-100 w-full h-full" v-html="result"></pre>
             </pane>
         </splitpanes>
     </div>
