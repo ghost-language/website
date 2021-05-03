@@ -49,9 +49,9 @@
                             <li><a href="/docs" class="text-base text-gray-300 hover:text-white">
                                 Documentation
                             </a></li>
-                            {{-- <li><a href="/playground" class="text-base text-gray-300 hover:text-white">
-                                Playground
-                            </a></li> --}}
+                            <li><a href="/play" class="text-base text-gray-300 hover:text-white">
+                                Play
+                            </a></li>
                             <li><a href="/roadmap" class="text-base text-gray-300 hover:text-white">
                                 Roadmap
                             </a></li>
