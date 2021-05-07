@@ -17,7 +17,7 @@
                                 </div>
                             </nav>
 
-                            <textarea ref="editor" v-model="code" rows="14" class="w-full h-full sm:text-sm p-4 font-mono bg-gray-800 border-0 text-gray-300 focus:outline-none focus:ring-0 ring-transparent" style="resize: none;"></textarea>
+                            <monaco-editor class="w-full h-full" theme="vs-dark" v-model="code" language="dart"></monaco-editor>
                         </div>
                     </pane>
 
