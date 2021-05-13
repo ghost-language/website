@@ -37,7 +37,7 @@
         <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
     </head>
     <body class="font-sans antialiased text-gray-900 language-javascript">
-        <div id="app">
+        <div id="app" v-cloak>
             <x-banner></x-banner>
 
             <app-header active="{{ request()->path() }}"></app-header>
