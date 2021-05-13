@@ -72,6 +72,7 @@ class Documentation
                         'slug'    => $slug,
                         'url'     => route('docs.version', [$version, $slug]),
                         'title'   => $document->title,
+                        'draft'   => $document->draft ?? false,
                         'content' => $this->replaceLinks($version, (new Parsedown)->text($document->body())),
                     ];
                 });

@@ -9,6 +9,12 @@
                 <h1 class="mt-2 mb-8 text-4xl leading-tight font-extrabold tracking-tight text-gray-900 sm:text-5xl">{{ $title }}</h1>
             </div>
 
+            @if($draft)
+                <x-draft />
+            @else
+                <x-construction />
+            @endif
+
             <div class="prose text-gray-700">
                 {!! $content !!}
             </div>

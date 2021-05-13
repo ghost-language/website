@@ -66,6 +66,7 @@ class DocsController extends Controller
 
         return view('docs', [
            'title'          => $doc->title,
+           'draft'          => $doc->draft,
            'index'          => $this->docs->getIndex($version),
            'content'        => $doc->content,
            'currentVersion' => $version,
