@@ -1,7 +1,0 @@
-.banner {
-    @apply h-10 bg-gray-800 text-white text-sm flex items-center leading-none font-semibold font-mono;
-
-    &__container {
-        @apply mx-auto max-w-6xl w-full flex justify-between items-center px-6 leading-none;
-    }
-}
