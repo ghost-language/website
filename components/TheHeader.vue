@@ -1,12 +1,31 @@
 <template>
-    <nav class="bg-white shadow">
+    <nav class="bg-white shadow border-t-8 border-indigo-500">
         <div class="w-full max-w-7xl mx-auto px-6">
             <div class="flex justify-between h-16">
-                <div class="flex px-2 lg:px-0">
+                <div class="flex px-3">
                     <a href="/" class="flex-shrink-0 flex items-center" alt="Home">
                         <img class="block lg:hidden h-5 w-auto" src="/img/logo.svg" alt="Ghost" />
                         <img class="hidden lg:block h-5 w-auto" src="/img/logo-text.svg" alt="Ghost" />
                     </a>
+
+                    <div class="hidden lg:ml-6 lg:flex lg:space-x-8">
+                        <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
+                        <a href="/blog" class="inline-flex items-center px-1 pt-1 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                            Blog
+                        </a>
+
+                        <a href="/docs" class="inline-flex items-center px-1 pt-1 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                            Documentation
+                        </a>
+
+                        <a href="/play" class="inline-flex items-center px-1 pt-1 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                            Play
+                        </a>
+
+                        <a href="/download" class="inline-flex items-center px-1 pt-1 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                            Download
+                        </a>
+                    </div>
                 </div>
 
                 <div class="flex items-center lg:hidden">

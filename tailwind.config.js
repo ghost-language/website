@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   mode: 'jit',
   purge: [
@@ -10,7 +12,17 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'sans': ['Inter', 'sans-serif'],
+        'mono': ['Source Code Pro', 'monospace'],
+      },
+      colors: {
+        gray: colors.coolGray,
+        cyan: colors.cyan,
+        sky: colors.sky,
+      },
+    },
   },
   variants: {
     extend: {},

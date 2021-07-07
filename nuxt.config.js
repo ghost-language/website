@@ -7,6 +7,11 @@ export default {
   publicRuntimeConfig: {
     defaultVersion: 'nightly',
     latestVersion: 'v0.16.0',
+
+    projects: {
+      'engine': 'https://github.com/ghost-language/engine',
+      'ghost': 'https://github.com/ghost-language/ghost',
+    }
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -41,6 +46,7 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/google-fonts',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -63,5 +69,14 @@ export default {
     configPath: 'tailwind.config.js',
     exposeConfig: false,
     config: {}
+  },
+
+  googleFonts: {
+    families: {
+      'Inter': [500, 600, 700, 900],
+      'Source Code Pro': [500],
+    },
+    display: 'swap',
+    prefetch: true
   }
 }

@@ -1,0 +1,15 @@
+---
+title: Visual Studio Code Support
+slug: visual-studio-code-support
+date: 2021-05-16
+summary: This week we’ve officially published our Visual Studio Code extension adding support for Ghost.
+published: true
+---
+
+This week we’ve officially published our Visual Studio Code extension adding support for Ghost.
+
+[![Visual Studio Code Ghost Extension](/img/posts/visual_studio_code_support.png)](/img/posts/visual_studio_code_support.png)
+
+In particular, it adds syntax highlighting to your Ghost programs and a small handful of snippets. Syntax highlighting is still early in the works as we add new functionality to Ghost. In future updates you can expect better function and variable highlighting support as well as a more robust selection of snippets to aid in development.
+
+Give the source code a look over on [GitHub](https://github.com/ghost-language/vscode) or install it directly from the [VSCode marketplace](https://marketplace.visualstudio.com/items?itemName=GhostLanguage.ghost-language) to get started!
