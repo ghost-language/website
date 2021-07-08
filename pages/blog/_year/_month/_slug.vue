@@ -37,7 +37,7 @@
 
             <div class="divide-y divide-gray-200 xl:pb-0 xl:col-span-3 xl:row-span-2">
                 <div class="prose max-w-none pb-8">
-                    <nuxt-content :document="post" />
+                    <NuxtContent :document="post" />
                 </div>
             </div>
 

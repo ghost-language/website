@@ -13,15 +13,18 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      fontFamily: {
-        'sans': ['Inter', 'sans-serif'],
-        'mono': ['Source Code Pro', 'monospace'],
-      },
       colors: {
         gray: colors.coolGray,
         cyan: colors.cyan,
         sky: colors.sky,
       },
+      fontFamily: {
+        'sans': ['Inter', 'sans-serif'],
+        'mono': ['Source Code Pro', 'monospace'],
+      },
+      maxWidth: {
+        '8xl': '90rem',
+      }
     },
   },
   variants: {

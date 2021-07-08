@@ -10,7 +10,7 @@ It's important to remove barriers for anyone wishing to explore or adopt a new l
 
 Today we're excited to release the first version of [Ghost Play](https://ghostlang.org/play), an online playground for Ghost that let's you explore and utilize the language with zero setup, directly in your browser.
 
-![Ghost Play](/img/blog/ghost_play.png)
+![Ghost Play](/img/posts/ghost_play.png)
 
 To achieve this, we've used Go to compile Ghost into WebAssembly (wasm), which can run directly in your browser on your local machine. With the wasm build, we're able to register new functions that can be called from Javascript directly. Currently, the wasm build includes a single function: `ghost_run_code`. With this single function, you can pass through a string of Ghost code and have it executed. It returns an array of two values: the `result` and returning `object`:
 
