@@ -32,7 +32,7 @@
                     </div>
 
                     <div class="flex items-center justify-end px-3 w-32">
-                        <span class="inline-flex items-center px-2.5 py-0.5 rounded text-sm font-medium bg-gray-800 text-gray-100">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded text-sm font-medium font-mono bg-gray-800 text-gray-100">
                             {{ latestVersion }}
                         </span>
 
