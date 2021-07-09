@@ -1,5 +1,5 @@
 export default async function ({ store, app }) {
-    if (process.server) {
+    if (process.server || process.static) {
         await store.dispatch('fetchCategories')
     }
 

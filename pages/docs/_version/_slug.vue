@@ -18,7 +18,7 @@
 
                 </div>
 
-                <OnThisPage :document="page" />
+                <OnThisPage :document="page" :prev="prev" :next="next" />
             </div>
         </div>
     </div>
@@ -29,7 +29,13 @@
         async asyncData({ $content, params }) {
             const page = await $content('docs', params.version, params.slug).fetch()
 
-            return { page }
+            const [prev, next] = await $content('docs', params.version)
+                .only(['title', 'slug'])
+                .sortBy('order', 'asc')
+                .surround(params.slug)
+                .fetch()
+
+            return { page, prev, next }
         },
     }
 </script>TheSidebar

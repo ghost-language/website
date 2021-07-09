@@ -7,6 +7,10 @@
 
             <p class="text-lg leading-7 text-gray-500">All the latest Ghost news and deep dives, straight from the team.</p>
         </div>
+
+        <div>
+            <TheSearch />
+        </div>
     </div>
 </template>
 
