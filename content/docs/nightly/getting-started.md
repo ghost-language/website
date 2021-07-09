@@ -1,6 +1,8 @@
 ---
 title: Getting Started
-summary: Learn how to get Ghost up and running on your local machine.
+subtitle: Learn how to get Ghost up and running on your local machine.
+category: Introduction
+order: 1
 ---
 
 ## What is Ghost

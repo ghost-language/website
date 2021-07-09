@@ -8,7 +8,7 @@
                     <div class="pb-10 border-b border-gray-200 mb-10">
                         <h1 class="inline-block text-3xl font-extrabold text-gray-900 tracking-tight">{{ page.title }}</h1>
                         <p class="pt-1 text-lg text-gray-500">
-                            {{ page.summary }}
+                            {{ page.subtitle }}
                         </p>
                     </div>
 
@@ -18,7 +18,7 @@
 
                 </div>
 
-                <OnThisPage />
+                <OnThisPage :document="page" />
             </div>
         </div>
     </div>
