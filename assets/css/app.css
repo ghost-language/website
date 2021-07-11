@@ -1,3 +1,19 @@
 body {
     @apply font-sans antialiased text-gray-900;
 }
+
+.ghost-header .nuxt-link-active {
+    @apply border-indigo-500 text-gray-900;
+}
+
+.docs-sidebar .nuxt-link-active {
+    @apply bg-indigo-50 rounded-md text-indigo-700;
+}
+
+.on-this-page .nuxt-link-exact-active {
+    @apply text-gray-900;
+}
+
+.on-this-page .nuxt-link-exact-active:hover {
+    @apply text-gray-900;
+}

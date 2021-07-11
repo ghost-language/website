@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div class="w-full">
         <label for="search" class="sr-only">Search</label>
 
-        <div class="mt-1 relative rounded-md shadow-sm">
+        <div class="mt-1 relative rounded-md shadow-sm hidden lg:block">
             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <!-- Heroicon name: solid/mail -->
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -11,6 +11,14 @@
             </div>
 
             <input type="search" name="query" v-model="query" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md" placeholder="Search...">
+
+            <ul v-if="docs.length" class="z-10 absolute flex-1 mt-1 w-full bg-white dark:bg-gray-900 rounded-md border border-gray-300 overflow-hidden">
+                <li v-for="doc of docs" :key="doc.slug" class="flex">
+                    <NuxtLink :to="{ name: 'docs-version-slug', params: { 'version': 'nightly', 'slug': doc.slug } }" class="flex-1 py-3 px-4 bg-gray-50 transition-colors duration-200 hover:bg-gray-200 focus:outline-none focus:bg-gray-200">
+                        <div class="text-sm font-medium">{{ doc.title }}</div>
+                    </NuxtLink>
+                </li>
+            </ul>
         </div>
     </div>
     <!-- <div class="flex-1 flex items-center justify-center px-2 lg:ml-6 lg:justify-end">

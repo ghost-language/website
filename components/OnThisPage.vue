@@ -4,7 +4,7 @@
             <div class="mb-8">
                 <h5 class="text-gray-900 uppercase tracking-wide font-semibold mb-3 text-sm lg:text-xs">On this page</h5>
 
-                <ul class="overflow-x-hidden text-gray-500 font-medium list-none">
+                <ul class="on-this-page overflow-x-hidden text-gray-500 font-medium list-none">
                     <li v-for="link of document.toc" :key="link.id">
                         <NuxtLink
                             :to="`#${link.id}`"

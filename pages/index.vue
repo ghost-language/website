@@ -1,5 +1,5 @@
 <template>
-    <div class="space-y-10">
+    <div class="space-y-32">
         <div class="relative lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
             <div class="relative">
                 <h3 class="border-0 text-3xl mt-2 leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 p-0">
@@ -70,7 +70,7 @@
             </div>
         </div>
 
-        <div class="bg-gray-900 rounded">
+        <div class="bg-gradient-to-r from-gray-800 to-gray-900 bg-origin-border rounded-md">
             <div class="max-w-7xl mx-auto text-center py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
                 <h2 class="text-3xl font-extrabold tracking-tight text-gray-100 sm:text-4xl">
                     <span class="block">Ready to dive in?</span>
@@ -79,7 +79,7 @@
 
                 <div class="mt-8 flex justify-center">
                     <div class="inline-flex rounded-md shadow">
-                        <a href="/docs/nightly/getting-started" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+                        <a href="/docs/nightly/getting-started" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border hover:bg-indigo-700">
                             Get started
                         </a>
                     </div>
@@ -96,7 +96,7 @@
         <div>
             <h2 class="text-2xl tracking-tight font-extrabold text-gray-900 mt-10 mb-8">Get Involved</h2>
 
-            <ul class="grid sm:grid-cols-2 gap-6 xl:gap-8">
+            <ul class="grid sm:grid-cols-2 gap-4">
                 <li>
                     <a href="http://github.com/ghost-language" class="flex items-start space-x-4 rounded-md hover:bg-gray-50 p-3 hover:shadow-sm">
                         <svg fill="currentColor" class="flex-none text-gray-900 w-12 h-12"><rect width="48" height="48" rx="12"></rect><path d="M23.997 12a12 12 0 00-3.792 23.388c.6.12.816-.264.816-.576l-.012-2.04c-3.336.72-4.044-1.608-4.044-1.608-.552-1.392-1.332-1.764-1.332-1.764-1.08-.744.084-.72.084-.72 1.2.084 1.836 1.236 1.836 1.236 1.08 1.824 2.808 1.296 3.492.996.12-.78.42-1.308.756-1.608-2.664-.3-5.46-1.332-5.46-5.928 0-1.32.468-2.388 1.236-3.228a4.32 4.32 0 01.12-3.168s1.008-.324 3.3 1.224a11.496 11.496 0 016 0c2.292-1.56 3.3-1.224 3.3-1.224.66 1.644.24 2.88.12 3.168.768.84 1.236 1.92 1.236 3.228 0 4.608-2.808 5.616-5.484 5.916.432.372.816 1.104.816 2.22l-.012 3.3c0 .312.216.696.828.576A12 12 0 0023.997 12z" fill="currentColor" class="text-gray-50"></path></svg>

@@ -1,5 +1,5 @@
 <template>
-    <footer class="bg-gray-800 mt-32" aria-labelledby="footerHeading">
+    <footer class="bg-gradient-to-r from-gray-800 to-gray-900 bg-origin-border mt-32" aria-labelledby="footerHeading">
         <h2 id="footerHeading" class="sr-only">Footer</h2>
 
         <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
