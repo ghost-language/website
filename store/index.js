@@ -19,7 +19,7 @@ export const mutations = {
 export const actions = {
     async fetchCategories({ commit, state }) {
         // Avoid re-fetching in production
-        if (process.dev === false && state.categories) {
+        if (process.dev === false && state.categories.length > 0) {
             return
         }
 

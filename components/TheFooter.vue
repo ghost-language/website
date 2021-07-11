@@ -32,10 +32,7 @@
                                     Documentation
                                 </a></li>
                                 <li><a href="/play" class="text-base text-gray-300 hover:text-white">
-                                    Play
-                                </a></li>
-                                <li><a href="/roadmap" class="text-base text-gray-300 hover:text-white">
-                                    Roadmap
+                                    Playground
                                 </a></li>
                                 <li><a :href="`/docs/${defaultVersion}/style-guide`" class="text-base text-gray-300 hover:text-white">
                                     Style Guide

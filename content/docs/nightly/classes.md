@@ -6,7 +6,7 @@ order: 23
 draft: true
 ---
 
-Classes define an objects _behavior_ and _state_. Behavior is defined by [methods](/docs/{{version}}/method-calls) which live in the class. Every object of the same class supports the same methods. State is defined in fields, whose values are stored in each instance.
+Classes define an objects _behavior_ and _state_. Behavior is defined by [methods](/docs/nightly/method-calls) which live in the class. Every object of the same class supports the same methods. State is defined in fields, whose values are stored in each instance.
 
 ## Defining A Class
 Classes are created using the `class` keyword, unsurprisingly:
@@ -41,7 +41,7 @@ class CoffeeMaker {
 ```
 
 ## Method Scope
-Up to this point, "[scope](/docs/{{version}}/variables#scope)" has been used to talk exclusively about [variables](/docs/{{version}}/variables). In a procedural language like C, or a functional one like Scheme, that's the only kind of scope there is. But object-oriented languages like Ghost introduce another kind of scope: _object scope_. It contains the methods that are available on an object. When you write:
+Up to this point, "[scope](/docs/nightly/variables#scope)" has been used to talk exclusively about [variables](/docs/nightly/variables). In a procedural language like C, or a functional one like Scheme, that's the only kind of scope there is. But object-oriented languages like Ghost introduce another kind of scope: _object scope_. It contains the methods that are available on an object. When you write:
 
 ```
 Coffee.brew()

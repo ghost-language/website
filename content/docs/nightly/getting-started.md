@@ -48,4 +48,4 @@ Ready to give Ghost a spin?
 print("Hello, world!")
 ```
 
-Once you have Ghost setup and installed, you're ready to jump into [learning the language](/docs/{{version}}/syntax).
+Once you have Ghost setup and installed, you're ready to jump into [learning the language](/docs/nightly/syntax).
