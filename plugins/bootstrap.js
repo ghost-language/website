@@ -1,11 +1,16 @@
 export default async function ({ store }) {
     if (process.server || process.static) {
         await store.dispatch('fetchCategories')
+        await store.dispatch('fetchReleases')
     }
 
     // SPA support
-    if (process.client && !store.state.categories) {
+    if (process.client && store.state.categories.length == 0) {
         await store.dispatch('fetchCategories')
+    }
+
+    if (process.client && store.state.releases.length == 0) {
+        await store.dispatch('fetchReleases')
     }
 
     // Hot reload support

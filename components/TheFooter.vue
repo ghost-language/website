@@ -25,18 +25,24 @@
                                 Resources
                             </h3>
                             <ul class="mt-4 space-y-4">
-                                <li><a href="/blog" class="text-base text-gray-300 hover:text-white">
+                                <li><NuxtLink to="/about" class="text-base text-gray-300 hover:text-white">
+                                    About
+                                </NuxtLink></li>
+                                <li><NuxtLink to="/blog" class="text-base text-gray-300 hover:text-white">
                                     Blog
-                                </a></li>
-                                <li><a href="/docs" class="text-base text-gray-300 hover:text-white">
+                                </NuxtLink></li>
+                                <li><NuxtLink to="/docs" class="text-base text-gray-300 hover:text-white">
                                     Documentation
-                                </a></li>
-                                <li><a href="/play" class="text-base text-gray-300 hover:text-white">
+                                </NuxtLink></li>
+                                <li><NuxtLink to="/download" class="text-base text-gray-300 hover:text-white">
+                                    Download
+                                </NuxtLink></li>
+                                <li><NuxtLink to="/play" class="text-base text-gray-300 hover:text-white">
                                     Playground
-                                </a></li>
-                                <li><a :href="`/docs/${defaultVersion}/style-guide`" class="text-base text-gray-300 hover:text-white">
+                                </NuxtLink></li>
+                                <li><NuxtLink :to="`/docs/${defaultVersion}/style-guide`" class="text-base text-gray-300 hover:text-white">
                                     Style Guide
-                                </a></li>
+                                </NuxtLink></li>
                             </ul>
                         </div>
                     </div>
