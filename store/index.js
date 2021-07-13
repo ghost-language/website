@@ -70,8 +70,6 @@ export const actions = {
             }).then(response => response.json())
 
             releases = data.filter(r => !r.draft).map((release) => {
-                console.log(release)
-
                 return {
                     name: (release.name || release.tag_name).replace('Release ', ''),
                     url: release.url,

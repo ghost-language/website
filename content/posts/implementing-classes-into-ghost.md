@@ -176,3 +176,20 @@ func (c *Class) Inspect() string {
 	return out.String()
 }
 ```
+
+## Class Declarations
+Now that we have our internal representation defined, we can move on to building our class declarations. Much like functions in Ghost, a class declaration is the `class` keyword, followed by it's name, then a curly-braced body.
+
+```dart
+class Dog {
+    speak() {
+        print "Wan!"
+    }
+
+    fetch(item) {
+        print "> Runs and fetches " + item + " for you."
+    }
+}
+```
+
+We've already defined our class AST, so now all we have to do is update our parser to walk through and fill it out.
