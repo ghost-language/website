@@ -41,7 +41,23 @@
                 </div>
             </div>
 
-            <footer class="text-sm font-medium divide-y divide-gray-200 xl:col-start-1 xl:row-start-2">
+            <footer class="text-sm font-medium divide-y divide-gray-200 xl:col-start-1 xl:row-start-2 ">
+                <div class="py-8" v-if="post.toc.length">
+                    <h5 class="text-gray-900 uppercase tracking-wide font-semibold mb-3 text-sm lg:text-xs">On this page</h5>
+
+                    <ul class="on-this-page overflow-x-hidden text-gray-500 font-medium list-none">
+                        <li v-for="link of post.toc" :key="link.id">
+                            <NuxtLink
+                                :to="`#${link.id}`"
+                                class="block transform transition-colors duration-200 py-2 hover:text-gray-900"
+                                :class="{ 'py-2': link.depth === 2, 'ml-4 pb-2': link.depth === 3 }"
+                            >
+                                {{ link.text }}
+                            </NuxtLink>
+                        </li>
+                    </ul>
+                </div>
+
                 <div class="space-y-8 py-8">
                     <!-- Next -->
                     <div v-if="next">
