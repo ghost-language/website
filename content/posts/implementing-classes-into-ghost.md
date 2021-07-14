@@ -193,3 +193,18 @@ class Dog {
 ```
 
 We've already defined our class AST, so now all we have to do is update our parser to walk through and fill it out.
+
+## Creating Instances
+...
+
+## Properties
+...
+
+## Methods
+...
+
+## This
+...
+
+## Constructors
+...
