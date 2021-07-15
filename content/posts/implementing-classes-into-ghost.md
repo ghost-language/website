@@ -7,7 +7,7 @@ published: false
 ---
 
 ## Introduction
-Ghost up the point of this writing, currently supports all the basics of both procedural and functional programming. With it, programmers could even "program" their own class system using maps:
+Ghost up the point of this writing (v0.16.0), currently supports all the basics of both procedural and functional programming. With it, programmers could even "program" their own class system using maps:
 
 ```dart
 function Greeter() {
@@ -30,12 +30,12 @@ But, this is just not good enough. As programmers, we are creatures of comfort, 
 
 ```dart
 class Greeter {
-    function greet(name) {
+    greet(name) {
         print("Hello, " + name + "!")
     }
 }
 
-greeter := Greeter.new()
+greeter := Greeter()
 greeter.greet("Kai")
 
 // Hello, Kai!
@@ -44,7 +44,14 @@ greeter.greet("Kai")
 So strap yourself in, because this is going to probably be the most in-depth post written on Ghost's internals as we walk through things, step-by-step.
 
 ## Overview
-\# Thing's were going to cover (ast, lexer, objects, evaluation, etc.)
+Much like our previous blog post on [implementing a range operator](/blog/2020/10/implementing-a-range-operator-into-ghost), we'll be touching on a lot of the core inner workings of how our code goes from raw text to executable code:
+
+- **Updating our available tokens:** We will be registering a new `class` token, used as a keyword to declare a new class.
+- **Updating the AST:** The **A**bstract **S**yntax **T**ree (AST) builds a representation of our code that is easier to parse and work with later on in our evaluation step. We will need to create a new syntax for our new `class` structure.
+- **Updating our available objects:** Once we've declared a class, we're able to create any number of instances of the class and store it under a new identifier. We need a new object to properly work with and pass our class instance around our code.
+- **Updating the parser:**
+- **Updating the evaluator:**
+- **Writing tests:**
 
 ## Internal Representation
 The first step to implementing classes into Ghost is to define the representation of them. We will be doing this by adding our **token**, updating the **AST**, and adding a new **object** to represent our classes.
@@ -192,10 +199,75 @@ class Dog {
 }
 ```
 
-We've already defined our class AST, so now all we have to do is update our parser to walk through and fill it out.
+We've already defined our class AST, so now all we have to do is update our parser to walk through and fill it out. To start, we need to register a new `prefix` rule so our parser knows how to handle the new `class` token we created earlier.
+
+```go
+// parser/parser.go
+
+func New(l *lexer.Lexer) *Parser {
+    ...
+
+    p.registerPrefix(token.CLASS, p.parseClassLiteral)
+    ...
+}
+```
+
+To keep things tidy within our codebase, we're going to create a new `parser/class.go` file to hold everything we need to properly parse classes. Inside there, we will create our `parseClassLiteral` method:
+
+```go
+// parser/class.go
+
+package parser
+
+import (
+	"ghostlang.org/x/ghost/ast"
+	"ghostlang.org/x/ghost/token"
+)
+
+func (p *Parser) parseClassLiteral() ast.Expression {
+    class := &ast.ClassLiteral{Token: p.currentToken}
+
+	p.nextToken()
+
+	class.Name = p.currentToken.Literal
+
+	if !p.expectPeek(token.LBRACE) {
+		return nil
+	}
+
+	class = p.parseClassBlock(class)
+
+	return class
+}
+```
+
+At this stage this is nearly identical to how we parse Function literals:
+
+1. Bootstrap our class AST
+2. Consume the `class` token
+3. Grab the name of our class and store it
+4. Check that we have an opening curly brace, and consume it
+5. Pass our class into a magical `parseClassBlock` method - we'll go over this next
+6. Return our built `class` AST instance
 
 ## Creating Instances
-...
+Nice! We can now declare classes in our code. Albiet, our classes can't store anything useful, but it's still a step in the right direction. Right now if we try creating a new instance, we get an error:
+
+```dart
+class Dog {}
+
+soma := Dog()
+```
+
+```
+RUNTIME ERROR: not a function: CLASS on line 3
+```
+
+### TODO
+```
+- Create instance object
+- Update ApplyFunction method on evaluator to return new instance
+```
 
 ## Properties
 ...
