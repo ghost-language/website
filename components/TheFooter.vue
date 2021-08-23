@@ -43,6 +43,9 @@
                                 <li><NuxtLink :to="`/docs/${defaultVersion}/style-guide`" class="text-base text-gray-300 hover:text-white">
                                     Style Guide
                                 </NuxtLink></li>
+                                <li><NuxtLink :to="`/design`" class="text-base text-gray-300 hover:text-white">
+                                    Design Kit
+                                </NuxtLink></li>
                             </ul>
                         </div>
                     </div>

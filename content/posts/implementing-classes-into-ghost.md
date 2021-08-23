@@ -263,10 +263,64 @@ soma := Dog()
 RUNTIME ERROR: not a function: CLASS on line 3
 ```
 
-### TODO
+This is because Ghost is attempting to evaluate `Dog()` as a _function_ call expression. We'll need to update how Ghost handles call expressions to support classes now as well. This is handled by the `ApplyFunction` method within the evaluator. You'll find that it too is also a simple switch statement. So we'll add a new case for our new class object and have it return a new class _instance_:
+
+```go
+func applyFunction(tok token.Token, fn object.Object, env *object.Environment, arguments []object.Object) object.Object {
+    switch fn := fn.(type) {
+    ...
+    case *object.Class:
+		instance := &object.Instance{Class: fn}
+
+		return instance
+    }
+}
 ```
-- Create instance object
-- Update ApplyFunction method on evaluator to return new instance
+
+This leads us to a new object, `object.Instance`. Instances are the runtime representation of our class. We'll create our new object within `object/instance.go`:
+
+```go
+package object
+
+import (
+	"bytes"
+	"fmt"
+)
+
+const INSTANCE_OBJ = "INSTANCE"
+
+type Instance struct {
+	Class *Class
+}
+
+func (c *Instance) Type() ObjectType {
+	return INSTANCE_OBJ
+}
+
+func (i *Instance) Inspect() string {
+	var out bytes.Buffer
+
+	out.WriteString(i.Class.Name + " instance {}\n")
+
+	return out.String()
+}
+
+func (i *Instance) CallMethod(method string, args []Object) Object {
+	switch method {
+	case "toString":
+		return &String{Value: i.Inspect()}
+	}
+
+	return &Error{Message: fmt.Sprintf(NoMethodFound, method, i.Type())}
+}
+```
+
+We're going to keep instances simple for now; only containing a reference to the class object. We'll expand on this further once we get to properties and methods. With this though, our program no longer errors out and we have an empty class instance good to go!
+
+```dart
+class Dog {}
+soma := Dog()
+print(soma)    // Dog instance {}
 ```
 
 ## Properties
