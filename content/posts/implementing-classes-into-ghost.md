@@ -117,7 +117,12 @@ ClassStatement struct {
 }
 
 ...
-func (cl *ClassStatement) statementNode()      {}
+func (cs *ClassStatement) statementNode()      {}
+
+...
+func (cs *ClassStatement) TokenLiteral() string {
+    return cs.Token.Literal
+}
 
 ...
 func (cs *ClassStatement) String() string {
