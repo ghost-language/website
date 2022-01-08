@@ -1,8 +1,7 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  mode: 'jit',
-  purge: [
+  content: [
     './components/**/*.{vue,js}',
     './content/**/*.{md,json}',
     './layouts/**/*.vue',
@@ -10,11 +9,10 @@ module.exports = {
     './plugins/**/*.{js,ts}',
     './nuxt.config.{js,ts}',
   ],
-  darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       colors: {
-        gray: colors.coolGray,
+        gray: colors.gray,
         cyan: colors.cyan,
         sky: colors.sky,
       },
@@ -26,9 +24,6 @@ module.exports = {
         '8xl': '90rem',
       }
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [
     require('@tailwindcss/forms'),

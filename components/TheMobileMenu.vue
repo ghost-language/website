@@ -14,7 +14,7 @@
 
                 <br>
 
-                <a href="#" class="" @click.prevent="close">Close</a>
+                <a href="#" class="absolute " @click.prevent="close">Close</a>
             </div>
         </div>
     </div>
