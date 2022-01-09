@@ -1,20 +1,49 @@
 <template>
-    <div ref="mobilenav" class="relative lg:hidden">
-        <button id="nav-btn" ref="mobilebtn" class="nav-toggle" :class="{'block': isOpen}" aria-label="Toggle Navigation" aria-controls="nav-mobile" @click.prevent="toggle()">
-            <span>X</span>
-        </button>
+    <div class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden z-50" v-if="isOpen" id="nav-mobile" ref="mobilePanel" :aria-hidden="isOpen ? 'false' : 'true'" aria-modal="true">
+        <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
+            <div class="pt-5 pb-6 px-5">
+                <div class="flex items-center justify-between">
+                    <a href="/" class="flex-shrink-0 flex items-center" alt="Home">
+                        <img class="h-5 w-auto" src="/img/logo-text.svg" alt="Ghost" />
+                    </a>
 
-        <div v-if="isOpen" id="nav-mobile" ref="mobilePanel" class="block" :aria-hidden="isOpen ? 'false' : 'true'" aria-modal="true">
-            <div>
-                <ul>
-                    <li>item a</li>
-                    <li>item b</li>
-                    <li>item c</li>
+                    <div class="-mr-2">
+                        <button type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" @click.prevent="close">
+                            <span class="sr-only">Close menu</span>
+
+                            <!-- Heroicon name: outline/x -->
+                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <ul class="space-y-6 mt-6">
+                    <li>
+                        <NuxtLink to="/blog" class="hover:text-indigo-500">
+                            Blog
+                        </NuxtLink>
+                    </li>
+
+                    <li>
+                        <NuxtLink to="/docs" class="hover:text-indigo-500">
+                            Documentation
+                        </NuxtLink>
+                    </li>
+
+                    <li>
+                        <NuxtLink to="/download" class="hover:text-indigo-500">
+                            Download
+                        </NuxtLink>
+                    </li>
+
+                    <li>
+                        <NuxtLink to="/play" class="hover:text-indigo-500">
+                            Playground
+                        </NuxtLink>
+                    </li>
                 </ul>
-
-                <br>
-
-                <a href="#" class="absolute " @click.prevent="close">Close</a>
             </div>
         </div>
     </div>
@@ -50,7 +79,6 @@
             open() {
                 this.isOpen = true
                 this.disableScroll()
-                this.$emit('open-nav')
 
                 setTimeout(() => {
                     this.focusTrap(this.$refs.mobilePanel)
@@ -61,8 +89,7 @@
             close() {
                 this.isOpen = false
                 this.enableScroll()
-                this.$emit('close-nav')
-                this.$refs.mobilebtn.focus()
+                this.$parent.$refs.mobilebtn.focus()
             },
 
             enableScroll() {
@@ -93,6 +120,14 @@
             }
 
             document.addEventListener('keyup', escape)
+
+            this.$nuxt.$on('close-nav', () => {
+                this.close()
+            })
+
+            this.$nuxt.$on('open-nav', () => {
+                this.open()
+            })
 
             this.$on('hook:destroyed', () => {
                 document.removeEventListener('keyup', escape)
