@@ -38,11 +38,8 @@
             })
                 .only(['title', 'slug', 'order'])
                 .sortBy('order', 'asc')
+                .where({ extension: '.md' })
                 .fetch()
-
-            examples = examples.filter((example) => {
-                return example.extension == '.md'
-            })
 
             return { examples }
         },
