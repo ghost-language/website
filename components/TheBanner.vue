@@ -4,7 +4,7 @@
 
         <div class="w-full py-3 flex items-center justify-center">
             <p class="font-medium text-white text-sm">
-                Ghost is under heavy active development.
+                Ghost is in early beta.
             </p>
         </div>
     </div>

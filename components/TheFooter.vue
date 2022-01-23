@@ -37,9 +37,6 @@
                                 <li><NuxtLink to="/download" class="text-base text-gray-300 hover:text-white">
                                     Download
                                 </NuxtLink></li>
-                                <li><NuxtLink to="/examples" class="text-base text-gray-300 hover:text-white">
-                                    Examples
-                                </NuxtLink></li>
                                 <li><NuxtLink to="/play" class="text-base text-gray-300 hover:text-white">
                                     Playground
                                 </NuxtLink></li>
@@ -48,6 +45,9 @@
                                 </NuxtLink></li>
                                 <li><NuxtLink :to="`/design`" class="text-base text-gray-300 hover:text-white">
                                     Design Kit
+                                </NuxtLink></li>
+                                <li><NuxtLink to="/example" class="text-base text-gray-300 hover:text-white">
+                                    Ghost by Example
                                 </NuxtLink></li>
                             </ul>
                         </div>
@@ -156,6 +156,14 @@
                     {
                         name: 'Functions',
                         slug: 'functions',
+                    },
+                    {
+                        name: 'Classes',
+                        slug: 'classes',
+                    },
+                    {
+                        name: 'Modules',
+                        slug: 'modules',
                     }
                 ]
             }
