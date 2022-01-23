@@ -37,6 +37,9 @@
                                 <li><NuxtLink to="/download" class="text-base text-gray-300 hover:text-white">
                                     Download
                                 </NuxtLink></li>
+                                <li><NuxtLink to="/examples" class="text-base text-gray-300 hover:text-white">
+                                    Examples
+                                </NuxtLink></li>
                                 <li><NuxtLink to="/play" class="text-base text-gray-300 hover:text-white">
                                     Playground
                                 </NuxtLink></li>

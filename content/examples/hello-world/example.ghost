@@ -1,0 +1,3 @@
+// Creating the classic "hello world" program
+// in Ghost couldn't be simpler.
+print("hello world")

@@ -1,0 +1,26 @@
+// Lists are constructed as a comma separated
+// list of elements and are enclosed by
+// square brackets.
+[
+    1,
+    2,
+    3.14,
+]
+
+// Lists can also contain any type of value.
+[
+    1,
+    true,
+    "hello",
+    function() {
+        return false
+    },
+]
+
+// You can access any element in a list by calling
+// the subscript operator on it with the index
+// of the element you want.
+vocabulary = ["activation", "propogate"]
+
+print(vocabulary[0])
+print(vocabulary[1])
