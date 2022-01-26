@@ -6,10 +6,6 @@
                     A small, class-based programming language that's a joy to use.
                 </h3>
 
-                <p class="mt-3 text-lg leading-7 text-gray-500">
-                    Ghost is currently under heavy active development. While it's not feature complete yet, we have some very clear goals in mind.
-                </p>
-
                 <ul class="mt-10 p-0 list-none">
                     <li>
                         <div class="flex">
