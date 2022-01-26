@@ -71,16 +71,16 @@
 
             <div class="mt-10 relative lg:mt-0">
                 <pre class="relative mx-auto language-dart rounded shadow"><code>class CoffeeMaker {
-    function __constructor(coffee) {
+    function constructor(coffee) {
         this.coffee = coffee
     }
 
     function brew() {
-        print('Enjoy your cup of ' + this.coffee)
+        print('Enjoy your cup of %s'.format(this.coffee))
     }
 }
 
-maker := CoffeeMaker('espresso')
+maker := CoffeeMaker.new('espresso')
 
 maker.brew()</code></pre>
 
