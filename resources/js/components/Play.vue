@@ -78,7 +78,7 @@ print(reverseString("hello world"))`,
 
         methods: {
             run() {
-                let {result, object} = ghost_run_code(this.code)
+                let {result, object} = ghost(this.code)
 
                 this.result = result
             },
