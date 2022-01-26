@@ -1,6 +1,12 @@
 {
     "name": "ghost",
     "private": true,
+    "browser": {
+        "crypto": false,
+        "fs": false,
+        "path": false,
+        "os": false
+    },
     "scripts": {
         "dev": "npx mix",
         "production": "npx mix --production",

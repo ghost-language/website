@@ -1,4 +1,5 @@
 import './bootstrap.js'
+import './wasm_exec.js'
 import './ghost.js'
 
 import { createApp } from 'vue'
