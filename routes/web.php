@@ -7,7 +7,7 @@ if (! defined('DEFAULT_VERSION')) {
 }
 
 if (! defined('LATEST_VERSION')) {
-    define('LATEST_VERSION', 'v0.16.0');
+    define('LATEST_VERSION', 'v1.0-beta.1');
 }
 
 Route::pattern('slug', '[a-z0-9-]+');
