@@ -25,9 +25,9 @@
                                 Resources
                             </h3>
                             <ul class="mt-4 space-y-4">
-                                <li><NuxtLink to="/about" class="text-base text-slate-300 hover:text-white">
+                                <!-- <li><NuxtLink to="/about" class="text-base text-slate-300 hover:text-white">
                                     About
-                                </NuxtLink></li>
+                                </NuxtLink></li> -->
                                 <li><NuxtLink to="/blog" class="text-base text-slate-300 hover:text-white">
                                     Blog
                                 </NuxtLink></li>
