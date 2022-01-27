@@ -1,6 +1,5 @@
 ---
 title: Introducing The Blog
-slug: introducing-the-blog
 date: 2020-06-28
 summary: Ghost is all about dispelling and opening black boxes; How do languages work? What process do they go through to translate the commands I type in an editor down to the ones and zeros that our machines consume? I hope to answer these questions and more through this blog as I research and learn.
 published: true

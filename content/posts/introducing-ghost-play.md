@@ -1,6 +1,5 @@
 ---
 title: Introducing Ghost Play
-slug: introducing-ghost-play
 date: 2021-05-02
 summary: It's important to remove barriers for anyone wishing to explore or adopt a new language. It can be a hassle to download and set up environments locally just to mess around with things. Today, we're happy to announce that we have the first version of Ghost Play online. No downloads or local environments necessary, just dive in and code immediately!
 published: true
@@ -15,7 +14,7 @@ Today we're excited to release the first version of [Ghost Play](https://ghostla
 To achieve this, we've used Go to compile Ghost into WebAssembly (wasm), which can run directly in your browser on your local machine. With the wasm build, we're able to register new functions that can be called from Javascript directly. Currently, the wasm build includes a single function: `ghost_run_code`. With this single function, you can pass through a string of Ghost code and have it executed. It returns an array of two values: the `result` and returning `object`:
 
 ```js
-let {result, object} = ghost_run_code(`print('hello world!')`)
+let { result, object } = ghost_run_code(`print('hello world!')`);
 ```
 
 `result` is the resulting output of your program, e.g. results from things like `print()`. `object` is the returning object after evaluation, useful for insight into your code.

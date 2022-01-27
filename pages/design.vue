@@ -1,16 +1,16 @@
 <template>
     <div>
-        <div class="divide-y divide-gray-200">
-            <div class="pt-6 pb-8 space-y-2 md:space-y-5">
-                <h1 class="text-3xl leading-9 font-extrabold text-gray-900 tracking-tight sm:leading-10 md:leading-14">
+        <div class="divide-y divide-slate-200">
+            <div class="pt-6 pb-8 space-y-2 md:space-y-5 bg-slate-900 p-6 rounded-lg mb-10">
+                <h1 class="text-3xl leading-9 font-extrabold text-slate-100 tracking-tight sm:leading-10 md:leading-14">
                     Design Kit
                 </h1>
 
-                <p class="text-lg leading-7 text-gray-500">Grab and reference the various design elements that make up Ghost's branding.</p>
+                <p class="text-lg leading-7 text-slate-300">Grab and reference the various design elements that make up Ghost's branding.</p>
             </div>
         </div>
 
-        <article class="prose max-w-none">
+        <article class="prose prose-slate max-w-none">
             <h2>Logo</h2>
             <p>The logo is minimalistic and simple in design. It's made up of a triangle with soft rounded corners, inspired by the logo of Ghost in the Shell.</p>
 
@@ -35,7 +35,7 @@
                 </div>
 
                 <div>
-                    <div class="w-full h-32 rounded-lg bg-white border-4 border-gray-200"></div>
+                    <div class="w-full h-32 rounded-lg bg-white border-4 border-slate-200"></div>
 
                     <div class="pt-4 font-semibold">White</div>
                     <div>#FFFFFF</div>
@@ -43,7 +43,7 @@
                 </div>
 
                 <div>
-                    <div class="w-full h-32 rounded-lg bg-gray-900"></div>
+                    <div class="w-full h-32 rounded-lg bg-slate-900"></div>
 
                     <div class="pt-4 font-semibold">Black</div>
                     <div>#0F172A</div>
@@ -56,9 +56,9 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 py-4 gap-6">
                 <div>
-                    <div class="w-full p-8 rounded-lg bg-gray-100">
+                    <div class="w-full p-8 rounded-lg bg-slate-100">
                         <div class="flex justify-end mb-10 items-center">
-                            <div class="rounded-md bg-gray-900 shadow w-8 h-8 mr-3"></div>
+                            <div class="rounded-md bg-slate-900 shadow w-8 h-8 mr-3"></div>
                             <span class="text-xs">#0F172A</span>
                         </div>
 
@@ -84,9 +84,9 @@
                 </div>
 
                 <div>
-                    <div class="w-full p-8 rounded-lg bg-gray-900 text-gray-100">
+                    <div class="w-full p-8 rounded-lg bg-slate-900 text-slate-100">
                         <div class="flex justify-end mb-10 items-center">
-                            <div class="rounded-md bg-gray-100 shadow w-8 h-8 mr-3"></div>
+                            <div class="rounded-md bg-slate-100 shadow w-8 h-8 mr-3"></div>
                             <span class="text-xs">#F1F5F9</span>
                         </div>
 
@@ -113,7 +113,7 @@
             </div>
 
             <h2>Wallpapers</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt dolores possimus ducimus voluptas, eveniet reiciendis, maiores magnam autem porro veniam ipsa qui necessitatibus! Est illo, perferendis perspiciatis quasi totam doloribus.</p>
+            <p>Coming soon.</p>
         </article>
     </div>
 </template>

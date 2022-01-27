@@ -3,7 +3,7 @@
         <TheBanner />
 
         <div class="bg-white border-b border-gray-200">
-            <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="max-w-8xl mx-auto px-4 sm:px-8">
                 <div class="flex justify-between items-center h-16 md:space-x-10">
                     <div class="flex w-72">
                         <a href="/" class="flex-shrink-0 flex items-center" alt="Home">

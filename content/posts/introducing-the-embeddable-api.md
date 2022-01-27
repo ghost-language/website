@@ -1,6 +1,5 @@
 ---
 title: Introducing The Embeddable API
-slug: introducing-the-embeddable-api
 date: 2020-07-26
 summary: We've made the first steps towards the embeddable API. Taking cues from Lua and Wren, we want the API to be simple and straight forward, allowing Ghost to truly extend your core application's capabilities.
 published: true
@@ -11,6 +10,7 @@ One of the goals of Ghost was to make an embeddable scripting language. The abil
 We've made the first step towards that realization the other day by introducing the beginnings of the embeddable API. We really want the API to be simple and easy to use, taking cues from Lua and Wren's embeddable APIs. For the time being, the API is limited in what it offers. We can register and execute scripts through Go, and we can extend Ghost with new native functions. Let's take a look at how we can do these two things below.
 
 ## Embedding and Executing Ghost
+
 ```go
 package main
 
@@ -27,6 +27,7 @@ func main() {
 With just two lines of code and a single import, we're able to load in Ghost source code and execute it. Couldn't be simpler! But that's not why we'd want to embed Ghost in our application. Not only do we want to execute code, but we want to **extend** it. So let's look how we can add our own native functions to Ghost next.
 
 ## Registering Functions
+
 ```go
 package main
 
@@ -59,6 +60,7 @@ Here we've introduced `ghost.RegisterFunction()`, it accepts two parameters: the
 We'll be getting the documentation up to date with the latest versions of the interpreter, where you will find information on the provided objects and how they can be utilized.
 
 ## Conclusion
+
 Even with these two "limited" abilities, we have a powerful arsenal at our fingertips. We can embed Ghost in other applications and extend it with new native functions not provided with the language. In future updates we'll be exploring the ability to call and pass values to and from our Ghost instance. This will be especially useful in cases such as [game engines](https://github.com/ghost-language/engine), where we need to call a specific function at key moments in our application (e.g. calling a draw function inside our game loop).
 
 Stay tuned for more posts and be sure to keep an eye on [GitHub](https://github.com/ghost-language/ghost) for development updates ✌️

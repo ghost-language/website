@@ -64,6 +64,8 @@ export default {
     // Target: https://go.nuxtjs.dev/config-target
     target: 'static',
 
+    dev: process.env.NODE_ENV !== 'production',
+
     publicRuntimeConfig: {
         defaultVersion: 'nightly',
         latestVersion: 'v0.16.0',

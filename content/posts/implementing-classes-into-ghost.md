@@ -1,12 +1,12 @@
 ---
 title: Implementing Classes Into Ghost
-slug: implementing-classes-into-ghost
 date: 2021-07-08
 summary: Classes make up the heart of Ghost's object-oriented programming system. In this post, we'll look at how we implemented the system into the virtual machine.
 published: false
 ---
 
 ## Introduction
+
 Ghost up the point of this writing (v0.16.0), currently supports all the basics of both procedural and functional programming. With it, programmers could even "program" their own class system using maps:
 
 ```dart
@@ -44,6 +44,7 @@ greeter.greet("Kai")
 So strap yourself in, because this is going to probably be the most in-depth post written on Ghost's internals as we walk through things, step-by-step.
 
 ## Overview
+
 Much like our previous blog post on [implementing a range operator](/blog/2020/10/implementing-a-range-operator-into-ghost), we'll be touching on a lot of the core inner workings of how our code goes from raw text to executable code:
 
 - **Updating our available tokens:** We will be registering a new `class` token, used as a keyword to declare a new class.
@@ -54,9 +55,11 @@ Much like our previous blog post on [implementing a range operator](/blog/2020/1
 - **Writing tests:**
 
 ## Internal Representation
+
 The first step to implementing classes into Ghost is to define the representation of them. We will be doing this by adding our **token**, updating the **AST**, and adding a new **object** to represent our classes.
 
 ### Token
+
 Within the `token/token.go` file, we want to update our list of keywords to include our new `class` syntax. First up are the list of all tokens within the main `const`:
 
 ```go
@@ -104,6 +107,7 @@ func TestNextToken(t *testing.T) {
 ```
 
 ### AST
+
 Once we have our tokens in place, it's time to build the abstract syntax of our `class` statement. For starters, our classes will consist of a `name` and list of `methods`:
 
 ```go
@@ -138,6 +142,7 @@ func (cs *ClassStatement) String() string {
 ```
 
 ### Object
+
 Finally, we need a new class object that we can pass around our evaluator.
 
 ```go
@@ -190,6 +195,7 @@ func (c *Class) Inspect() string {
 ```
 
 ## Class Declarations
+
 Now that we have our internal representation defined, we can move on to building our class declarations. Much like functions in Ghost, a class declaration is the `class` keyword, followed by it's name, then a curly-braced body.
 
 ```dart
@@ -256,6 +262,7 @@ At this stage this is nearly identical to how we parse Function literals:
 6. Return our built `class` AST instance
 
 ## Creating Instances
+
 Nice! We can now declare classes in our code. Albiet, our classes can't store anything useful, but it's still a step in the right direction. Right now if we try creating a new instance, we get an error:
 
 ```dart
@@ -329,13 +336,17 @@ print(soma)    // Dog instance {}
 ```
 
 ## Properties
+
 ...
 
 ## Methods
+
 ...
 
 ## This
+
 ...
 
 ## Constructors
+
 ...

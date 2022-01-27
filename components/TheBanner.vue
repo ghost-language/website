@@ -1,10 +1,10 @@
 <template>
-    <div class="bg-gray-800">
+    <div class="bg-slate-800">
         <div class="h-2 bg-gradient-to-r from-indigo-500 to-pink-500 bg-origin-border"></div>
 
         <div class="w-full py-3 flex items-center justify-center">
             <p class="font-medium text-white text-sm">
-                Ghost is in early beta.
+                <!-- Work in progress - for preview only -->
             </p>
         </div>
     </div>

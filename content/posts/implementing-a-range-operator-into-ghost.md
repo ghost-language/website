@@ -1,12 +1,12 @@
 ---
 title: Implementing A Range Operator Into Ghost
-slug: implementing-a-range-operator-into-ghost
 date: 2020-10-26
 summary: In this post we'll show how easy it is to extend and build new functionality into Ghost by adding a new range operator `..` into the core language. In this guide, we'll be going over tokens, the lexer, parser, updating the evaluator and writing tests to ensure the implementation is stable.
 published: true
 ---
 
 ## Introduction
+
 This post was inspired by an article written over at [PHP Internals](https://phpinternals.net/articles/implementing_a_range_operator_into_php) detailing a similar topic by implementing a range operator into PHP.
 
 Here, we'll demonstrate how to implement a new operator into Ghost. Doing so will allow us to cover the following topics:
@@ -20,6 +20,7 @@ Here, we'll demonstrate how to implement a new operator into Ghost. Doing so wil
 The above items cover a large portion of the internal working of Ghost's implementation in Go and its tree-walking interpreter. There are some aspects we will not be covering as we will not need to work with them, such as the object and abstract syntax tree systems. We may cover these in a separate but similar blog post in the future.
 
 ## The Range Operator
+
 The operator that will be added into Ghost in this post will be called the range operator (`..`). To keep things simple, the range operator will be defined with the following semantics:
 
 1. The incrementation step will always be `1`
@@ -28,6 +29,7 @@ The operator that will be added into Ghost in this post will be called the range
 If any of the above semantics are not satisfied, then an `Error` will be thrown.
 
 ### Examples
+
 ```dart
 1 .. 3            // >> [1, 2, 3]
 2.5 .. 5          // >> [2.5, 3.5, 4.5]
@@ -42,6 +44,7 @@ foo() .. 1        // Error
 ```
 
 ## Updating Tokens
+
 The first step, and argubly the simplest one, will be registering our new token. When we perform a lexical analysis or scan of our raw Ghost source code, we will have a token that signifies our range operator.
 
 All tokens can be found within `tokens/token.go`. This is largely a very simple file. What we're interested in is the `const` table of tokens:
@@ -73,6 +76,7 @@ RANGE = ".."
 Perfect! We have our new token. That wasn't so bad. Let's move on to the lexer.
 
 ## Updating The Lexer
+
 The lexer takes source code as input and outputs the tokens that represent it. The lexer does this token by token, character by character.
 
 Behind the scenes, our lexer repeatedly calls a `NextToken()` method, which will walk through our source code and output each token it comes across.
@@ -158,6 +162,7 @@ ok  	ghostlang.org/x/ghost/lexer	0.276s
 ```
 
 ## Updating The Parser
+
 Ghost uses a hand-written parser rather than use a parse generator (yacc, bison, ANTLR and the like). There are many different strategies and approaches to parsing source code; the one Ghost uses is a top-down operator precedence parser, also called a **Pratt parser** named after its inventor, **Vaughan Pratt**.
 
 Our range operator is whats called an **infix operator**. Infix operators sit inbetween its operands, like this:
@@ -250,6 +255,7 @@ func New(l *lexer.Lexer) *Parser {
 And with that, we're done with updating the parser! In terms of pure code, we only needed to add about 3 lines of code to support our range operator. How amazing is that?
 
 ## Updating The Evaluator
+
 We've registered a new token, updated the lexer, and updated the parser -- we have all the pieces in place to properly evaluate _what_ the range opreator actually does. As always, we'll first write a test:
 
 ```go
@@ -329,6 +335,7 @@ Ghost utilizies decimals for its number system, so we have to work with things a
 And with that, our evaluator update is complete. We can now fully utilize our new range operator within our Ghost programs!
 
 ## Conclusion
+
 We've covered a lot here, seeing some of the core steps the interpreter takes; reading the raw source code, converting it into a series of tokens, parsing and then finally evaluating the results to be executed by the computer.
 
 The range operator and `for (___ in ___)` statements will be available in v0.4.0.

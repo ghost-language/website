@@ -1,6 +1,5 @@
 ---
 title: Visual Studio Code Support
-slug: visual-studio-code-support
 date: 2021-05-16
 summary: This week we’ve officially published our Visual Studio Code extension adding support for Ghost.
 published: true

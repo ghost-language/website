@@ -2,7 +2,7 @@
     <div>
         <TheHeader />
 
-        <main class="max-w-7xl mx-auto py-12 px-8">
+        <main class="max-w-8xl mx-auto py-12 px-4 sm:px-8">
             <Nuxt />
         </main>
 
