@@ -70,7 +70,7 @@ export default {
 
     publicRuntimeConfig: {
         defaultVersion: 'nightly',
-        latestVersion: 'v0.16.0',
+        latestVersion: 'v1.0-beta.1',
 
         projects: {
             'engine': 'https://github.com/ghost-language/engine',
@@ -120,7 +120,7 @@ export default {
         extractCSS: true,
         postcss: {
             plugins: {
-                tailwindcss: join(__dirname, 'tailwind.config.js'),
+                tailwindcss: {},
                 autoprefixer: {},
             },
         },

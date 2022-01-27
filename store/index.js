@@ -78,7 +78,7 @@ export const actions = {
                 }
             })
         } catch (e) {
-            //
+            console.error(e)
         }
 
         const getMajorVersion = r => r.name && Number(r.name.substring(1, 2))
