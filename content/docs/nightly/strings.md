@@ -11,21 +11,21 @@ Strings are useful for holding data that can be represented in text form.
 
 Strings are created using either single or double quotes.
 
-```dart
-string1 = "A string value"
-string2 = 'This is also a string value'
+```typescript
+string1 = "A string value";
+string2 = "This is also a string value";
 ```
 
 ## Comparing Strings
 
 Strings can be compared against each other using the `==` operator. This will compare strings in a case-sensitive manner.
 
-```dart
-string1 = "a"
-string2 = "b"
+```typescript
+string1 = "a";
+string2 = "b";
 
 // false
-result = string1 == string2
+result = string1 == string2;
 ```
 
 ## Long Strings

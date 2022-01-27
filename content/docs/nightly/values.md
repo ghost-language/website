@@ -15,19 +15,21 @@ A boolean value represents truthy or falsy states. There are two boolean values,
 
 Lists are an ordered list of elements of possibly different types identified by a number index. Each element in a list can be accessed individually by their index. Lists are constructed as a comma separated list of elements, can contain any type of value, and are enclosed by square brackets:
 
-```dart
+```typescript
 [
-    "Ghost",
-    57.3,
-    function(x) { x * x}
-]
+  "Ghost",
+  57.3,
+  function (x) {
+    x * x;
+  },
+];
 ```
 
 ## Maps
 
 Maps — sometimes called _associative arrays_, _hashes_, or _dictionaries_ in other programming languages, store a collection of key-value pairings. Maps are constructed as a comma-separated list of key-value pairs enclosed by curly braces. Each key-value pair uses a colon to differentiate between the key and the value.
 
-```dart
+```typescript
 {
     "name": "Ghost",
     "value": 57.3,
@@ -47,20 +49,18 @@ It's true that decimals have a very small performance hit over using something l
 
 Furthermore, because Ghost uses an arbitrary-precision fixed-point decimal system, it is extremely accurate. Number values look like you expect from other languages:
 
-```dart
-0
-1234
--5678
-3.14159
-1.0
--12.34
+```typescript
+0;
+1234 - 5678;
+3.14159;
+1.0 - 12.34;
 ```
 
 ## Strings
 
 A string value is a (possibly empty) sequence of bytes. The number of bytes is called the length of the string and is never negative. String values can be surrounded in either double or single quotes, and can store unicode text.
 
-```dart
-string1 = "Hello, world!"
-string2 = 'こんにちは、世界'
+```typescript
+string1 = "Hello, world!";
+string2 = "こんにちは、世界";
 ```

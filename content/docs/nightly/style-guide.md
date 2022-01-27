@@ -46,10 +46,9 @@ Function names MUST NOT be declared with space after the method name. The openin
 
 A function declaration looks like the following. Note the placement of parentheses, commas, spaces, and braces.
 
-```dart
-function fooBarBaz(arg1, arg2, arg3)
-{
-    // function body
+```typescript
+function fooBarBaz(arg1, arg2, arg3) {
+  // function body
 }
 ```
 
@@ -57,10 +56,9 @@ function fooBarBaz(arg1, arg2, arg3)
 
 In the argument list, there MUST NOT be a space before each comma, and there MUST be one space after each comma.
 
-```dart
-function fooBarBaz(arg1, arg2, arg3)
-{
-    // Function body
+```typescript
+function fooBarBaz(arg1, arg2, arg3) {
+  // Function body
 }
 ```
 
@@ -68,8 +66,8 @@ function fooBarBaz(arg1, arg2, arg3)
 
 When making a function call, there MUST NOT be a space between the function name and the opening parenthesis, there MUST NOT be a space after the opening parenthesis, and there MUST NOT be a space before the closing parenthesis. In the argument list, there MUST NOT be a space before each comma, and there MUST be one space after each comma.
 
-```dart
-foo(arg1, arg2)
+```typescript
+foo(arg1, arg2);
 ```
 
 ## Control Structures
@@ -90,13 +88,13 @@ The body of each structure MUST be enclosed by braces.
 
 An `if` structure looks like the following. Note the placement of parentheses, spaces, and braces; and that `else` and `else if` are on the same line as the closing brace from the earlier body.
 
-```dart
+```typescript
 if (condition1) {
-    // if body
+  // if body
 } else if (condition2) {
-    // else if body
+  // else if body
 } else {
-    // else body
+  // else body
 }
 ```
 
@@ -104,9 +102,9 @@ if (condition1) {
 
 A `while` statement looks like the following. Note the placement of parentheses, spaces, and braces.
 
-```dart
+```typescript
 while (condition) {
-    // structure body
+  // structure body
 }
 ```
 
@@ -114,11 +112,11 @@ while (condition) {
 
 All binary artihmetic, comparison, and assignment operators MUST be preceded and followed by at least one space:
 
-```dart
+```typescript
 if (a == b) {
-    foo = bar
+  foo = bar;
 } else if (a > b) {
-    foo = a + b * c
+  foo = a + b * c;
 }
 ```
 
@@ -134,8 +132,8 @@ In the argument list and variable list, there MUST NOT be a space before each co
 
 A closure declaration looks like the following. Note the placement of parentheses, commas, spaces, and braces:
 
-```dart
+```typescript
 closure = function (arg1, arg2) {
-    // body
-}
+  // body
+};
 ```

@@ -15,14 +15,14 @@ Unlike most other operators in Ghost which are just a special syntax for method 
 
 An `and` ("logical and") expression evaluates the left-hand argument. If it's false, it returns that value. Otherwise it evaluates and returns the right-hand argument.
 
-```dart
+```typescript
 print(false and 1)
 print(1 and 2)
 ```
 
 An `or` ("logical or") expression is reversed. If the left-hand argument is _true_, it's returned, otherwise the right-hand argument is evaluated and returned:
 
-```dart
+```typescript
 print(false or 1)
 print(1 or 2)
 ```
@@ -35,9 +35,9 @@ A conditional statement is a set of commands that executes if a specified condit
 
 The simplest conditional statement, `if` lets you conditionally skip a chunk of code. It looks like this:
 
-```dart
+```typescript
 if (condition) {
-    // Do something
+  // Do something
 }
 ```
 
@@ -45,11 +45,11 @@ This evaluates the parenthesized expression after `if`. If it's `true`, then the
 
 You may also provide an `else` branch. It will be executed if the condition is `false`:
 
-```dart
+```typescript
 if (condition) {
-    // Do something
+  // Do something
 } else {
-    // Do something else
+  // Do something else
 }
 ```
 
@@ -61,9 +61,9 @@ A looping statement offers a quick and easy way to do something repeatedly. In t
 
 A `while` statement executes its block as long as a specified condition evaluates to `true`. A `while` statement looks like the following:
 
-```dart
+```typescript
 while (condition) {
-    // Do something
+  // Do something
 }
 ```
 
@@ -73,13 +73,13 @@ The condition test occurs _before_ the block is executed. If the condition retur
 
 The following `while` loop iterates as long as `n` is less than `3`:
 
-```dart
-n = 0
-x = 0
+```typescript
+n = 0;
+x = 0;
 
 while (n < 3) {
-    n = n + 1
-    x += n
+  n = n + 1;
+  x += n;
 }
 ```
 
@@ -95,9 +95,9 @@ After completing the third pass, the condition `n < 3` is no longer `true`, so t
 
 Generally you'll want to avoid infinite loops (there are very few cases where an infinite loops are utilized, such as in game development). These are loops where the condition never evaluates to `false`. The following example will loop forever because the condition is always `true`:
 
-```dart
+```typescript
 while (true) {
-    print("Hello, world!")
+  print("Hello, world!");
 }
 ```
 
@@ -107,9 +107,9 @@ A `for` loop repeats until a specified condition evaluates to `false`. The Ghost
 
 A `for` statement looks like the following:
 
-```dart
+```typescript
 for (initializer; condition; increment) {
-    // Do something
+  // Do something
 }
 ```
 

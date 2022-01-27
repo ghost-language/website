@@ -9,7 +9,7 @@ published: false
 
 Ghost up the point of this writing (v0.16.0), currently supports all the basics of both procedural and functional programming. With it, programmers could even "program" their own class system using maps:
 
-```dart
+```typescript
 function Greeter() {
     this := {}
 
@@ -28,7 +28,7 @@ greeter.greet("Kai")
 
 But, this is just not good enough. As programmers, we are creatures of comfort, and most of us are all to familiar with class object-oriented systems through other languages like PHP, Ruby, Python, and JavaScript. Instead, this would be much easier to work with and maintain:
 
-```dart
+```typescript
 class Greeter {
     greet(name) {
         print("Hello, " + name + "!")
@@ -198,7 +198,7 @@ func (c *Class) Inspect() string {
 
 Now that we have our internal representation defined, we can move on to building our class declarations. Much like functions in Ghost, a class declaration is the `class` keyword, followed by it's name, then a curly-braced body.
 
-```dart
+```typescript
 class Dog {
     speak() {
         print "Wan!"
@@ -265,7 +265,7 @@ At this stage this is nearly identical to how we parse Function literals:
 
 Nice! We can now declare classes in our code. Albiet, our classes can't store anything useful, but it's still a step in the right direction. Right now if we try creating a new instance, we get an error:
 
-```dart
+```typescript
 class Dog {}
 
 soma := Dog()
@@ -329,7 +329,7 @@ func (i *Instance) CallMethod(method string, args []Object) Object {
 
 We're going to keep instances simple for now; only containing a reference to the class object. We'll expand on this further once we get to properties and methods. With this though, our program no longer errors out and we have an empty class instance good to go!
 
-```dart
+```typescript
 class Dog {}
 soma := Dog()
 print(soma)    // Dog instance {}

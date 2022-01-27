@@ -12,9 +12,9 @@ Classes define an objects _behavior_ and _state_. Behavior is defined by [method
 
 Classes are created using the `class` keyword, unsurprisingly:
 
-```dart
+```typescript
 class CoffeeMaker {
-    //
+  //
 }
 ```
 
@@ -24,7 +24,7 @@ This creates a class named `CoffeeMaker` with no methods or fields.
 
 To add functionality to our coffee maker class, we need to give it methods.
 
-```dart
+```typescript
 class CoffeeMaker {
     function brew() {
         print("Your coffee is now brewing.")
@@ -34,7 +34,7 @@ class CoffeeMaker {
 
 This defines a `brew` method that takes no arguments. To add parameters, put their names inside the parentheses:
 
-```dart
+```typescript
 class CoffeeMaker {
     function brew(dosage, temperature) {
         print("Your %s of coffee is now brewing at %s degrees.".format(dosage, temperature))
@@ -56,7 +56,7 @@ you're saying "look up the method `brew` in the scope of the object `Coffee`". I
 
 Things get more interesting when you're inside the body of a method. When the method is called on some object and the body is being executed, you often need to access that object itself. You can do that using `this`.
 
-```dart
+```typescript
 class CoffeeMaker {
     function setGrind(grind) {
         this.grind = grind
@@ -74,7 +74,7 @@ The `this` keyword works sort of like a variable, but has special behavior. It a
 
 It's an error to refer to `this` outside of a method. However, it's perfectly fine to use it _inside_ a method. When you do, `this` still refers to the instance whose _method_ is being called:
 
-```dart
+```typescript
 class CoffeeMaker {
     function setGrind(grind) {
         this.grind = grind
@@ -98,7 +98,7 @@ This is unlike Lua and Dart which can "forget" `this` when you create a callback
 
 We've seen how to define classes and how to declare methods on them. Our coffee maker can brew coffee, but we don't actually have any way to control it. To create _instances_ of a class, we need a _constructor_. You define one like so:
 
-```dart
+```typescript
 class CoffeeMaker {
     function constructor(grind, temperature) {
         print("Grind set to: %s".format(grind))
@@ -109,11 +109,11 @@ class CoffeeMaker {
 
 The `constructor` keyword says we're defining a constructor. To make a coffee maker now, we can now pass through the set arguments to customize our class:
 
-```dart
-drip = CoffeeMaker.new("flat", "200")
-chemex = CoffeeMaker.new("coarse", "202")
-pourOver = CoffeeMaker.new("fine", "202")
-frenchPress = CoffeeMaker.new("very course", "202")
+```typescript
+drip = CoffeeMaker.new("flat", "200");
+chemex = CoffeeMaker.new("coarse", "202");
+pourOver = CoffeeMaker.new("fine", "202");
+frenchPress = CoffeeMaker.new("very course", "202");
 ```
 
 Note that we didn't need to call the `constructor` method directly. A constructor is actually a method on the class. When we reference a class using `new()`, Ghost creates the new instance, then it invokes the _constructor_ on that instance. This is where the constructor body you defined gets run.
@@ -124,7 +124,7 @@ This distinction is important because it means inside the body of the constructo
 
 All state stored in instances are stored in _fields_. Each field has a name, are bound to `this`, and act the same as variables.
 
-```dart
+```typescript
 class CoffeeMaker {
     function constructor(grind, temperature) {
         this.grind = grind
@@ -146,9 +146,9 @@ A class can inherit from a "parent" or _superclass_. When you invoke a method on
 
 To inherit another class, use `extends` when you declare your class:
 
-```dart
+```typescript
 class Bar extends foo {
-    //
+  //
 }
 ```
 

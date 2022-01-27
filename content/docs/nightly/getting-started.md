@@ -50,7 +50,7 @@ If you just run `ghost` without any arguments, it starts the interpreter in inte
 
 Ready to give Ghost a spin?
 
-```javascript
+```typescript
 print("Hello, world!");
 ```
 

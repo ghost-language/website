@@ -46,21 +46,21 @@ Remember basic arithmetic from school? These work just like those.
 
 The result of the modulo operator (`%`) has the same sign as the dividend - that is, the result of `a % b` will have the same sign as `a`. For example:
 
-```dart
-print(5 % 3)     // >> 2
-print(5 % -3)    // >> 2
-print(-5 % 3)    // >> -2
-print(-5 % -3)   // >> -2
+```typescript
+print(5 % 3); // >> 2
+print(5 % -3); // >> 2
+print(-5 % 3); // >> -2
+print(-5 % -3); // >> -2
 ```
 
 ## Assignment Operator
 
 The assignment operator is `=`. This declares and assigns the value of the expression on the right.
 
-```dart
-message = "Hello, world!"
+```typescript
+message = "Hello, world!";
 
-print(message)  // >> Hello, world!
+print(message); // >> Hello, world!
 ```
 
 ## Comparison Operators

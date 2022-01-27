@@ -11,7 +11,7 @@ This library provides basic mathematical functions.
 
 Returns the absolute, or non-negative value, of a given value.
 
-```javascript
+```typescript
 >>> math.abs(-100);
 100
 ```
@@ -20,7 +20,7 @@ Returns the absolute, or non-negative value, of a given value.
 
 Returns the inverse cosine in radians of the given value.
 
-```javascript
+```typescript
 >>> math.acos(1);
 0
 >>> math.acos(0);
@@ -31,7 +31,7 @@ Returns the inverse cosine in radians of the given value.
 
 Returns the inverse sine in radians of the given value.
 
-```javascript
+```typescript
 >>> math.asin(0);
 0
 >>> math.asin(1);
@@ -42,7 +42,7 @@ Returns the inverse sine in radians of the given value.
 
 Returns the inverse tangent in radians.
 
-```javascript
+```typescript
 >>> var c = math.cos(0.8);
 >>> var s = math.cos(0.8);
 >>> math.atan(s/c);
@@ -53,7 +53,7 @@ Returns the inverse tangent in radians.
 
 Returns the integer no greater than the given value (even for negatives).
 
-```javascript
+```typescript
 >>> math.ceil(0.5);
 1
 >>> math.ceil(-0.5);
@@ -64,7 +64,7 @@ Returns the integer no greater than the given value (even for negatives).
 
 Return the cosine value for the given value in radians.
 
-```javascript
+```typescript
 >>> math.cos(math.pi() / 4);
 0.999906
 ```
@@ -73,7 +73,7 @@ Return the cosine value for the given value in radians.
 
 Returns the integer no less than the given value (even for negatives).
 
-```javascript
+```typescript
 >>> math.floor(0.5);
 0
 >>> math.floor(-0.5);
@@ -84,7 +84,7 @@ Returns the integer no less than the given value (even for negatives).
 
 Return the maximum value from a variable length list of arguments.
 
-```javascript
+```typescript
 >>> math.max(1.2, -7, 3);
 3
 >>> math.max(1.2, 7, 3);
@@ -95,7 +95,7 @@ Return the maximum value from a variable length list of arguments.
 
 Returns a part of the constant Pi.
 
-```javascript
+```typescript
 >>> math.pi();
 3.14159
 ```

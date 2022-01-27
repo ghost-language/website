@@ -25,7 +25,7 @@ modules/
 
 ### `main.ghost`
 
-```dart
+```typescript
 import * from "modules/functions"
 import * from "modules/variables"
 
@@ -37,22 +37,22 @@ greet(hello)
 
 ### `functions.ghost`
 
-```dart
+```typescript
 function add(a, b) {
-    print(a + b)
+  print(a + b);
 }
 
 function greet(message) {
-    print(message)
+  print(message);
 }
 ```
 
 ### `variables.ghost`
 
-```dart
-one = 1
-two = 2
-hello = "Hello, world!"
+```typescript
+one = 1;
+two = 2;
+hello = "Hello, world!";
 ```
 
 While this is a very rudimentary example, it showcases how simple it is to load in modules. Modules are nothing more than other Ghost files, and can be located anywhere within your program. We chose to put our modules in a `modules` directory, but you don't have to do this.

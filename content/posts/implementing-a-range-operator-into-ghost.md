@@ -30,7 +30,7 @@ If any of the above semantics are not satisfied, then an `Error` will be thrown.
 
 ### Examples
 
-```dart
+```typescript
 1 .. 3            // >> [1, 2, 3]
 2.5 .. 5          // >> [2.5, 3.5, 4.5]
 1 .. number('3')  // >> [1, 2, 3]
