@@ -10,6 +10,7 @@ Control flow is used to determine which blocks of code are executed and how many
 ## Truthiness
 
 ### Logical Operators
+
 Unlike most other operators in Ghost which are just a special syntax for method calls, the `and` and `or` operators are special. This is because they only conditionally evaluate right operand--they short-circuit.
 
 An `and` ("logical and") expression evaluates the left-hand argument. If it's false, it returns that value. Otherwise it evaluates and returns the right-hand argument.
@@ -27,9 +28,11 @@ print(1 or 2)
 ```
 
 ## Conditional Statements
+
 A conditional statement is a set of commands that executes if a specified condition is true.
 
 ## If Statement
+
 The simplest conditional statement, `if` lets you conditionally skip a chunk of code. It looks like this:
 
 ```dart
@@ -51,9 +54,11 @@ if (condition) {
 ```
 
 ## Looping Statements
+
 A looping statement offers a quick and easy way to do something repeatedly. In this section, we'll introduce the different looping statements available in Ghost.
 
 ### While Statement
+
 A `while` statement executes its block as long as a specified condition evaluates to `true`. A `while` statement looks like the following:
 
 ```dart
@@ -65,14 +70,15 @@ while (condition) {
 The condition test occurs _before_ the block is executed. If the condition returns `true`, the block is executed and the condition is tested again. If the condition returns `false`, execution stops, and control is passed to the statement following `while`.
 
 #### Example 1
+
 The following `while` loop iterates as long as `n` is less than `3`:
 
 ```dart
-n := 0
-x := 0
+n = 0
+x = 0
 
 while (n < 3) {
-    n++
+    n = n + 1
     x += n
 }
 ```
@@ -86,6 +92,7 @@ With each iteration, the loop increments `n` and adds that value to `x`. Therefo
 After completing the third pass, the condition `n < 3` is no longer `true`, so the loop terminates.
 
 #### Example 2
+
 Generally you'll want to avoid infinite loops (there are very few cases where an infinite loops are utilized, such as in game development). These are loops where the condition never evaluates to `false`. The following example will loop forever because the condition is always `true`:
 
 ```dart
@@ -95,6 +102,7 @@ while (true) {
 ```
 
 ### For Statement
+
 A `for` loop repeats until a specified condition evaluates to `false`. The Ghost `for` loop is similar to the C loop for those familiar.
 
 A `for` statement looks like the following:

@@ -16,10 +16,11 @@ Maps — sometimes called _associative arrays_, _hashes_, or _dictionaries_ in o
 ```
 
 ## Accessing Elements
+
 You can access any element in a map by calling the subscript operator on it with the _key_ of the element you want.
 
 ```dart
-people := {"Artemis": 35, "Rabbit": 37, "Orion": 43}
+people = {"Artemis": 35, "Rabbit": 37, "Orion": 43}
 
 print(people["Artemis"])  // >> 35
 print(people["Rabbit"])   // >> 35

@@ -6,9 +6,11 @@ order: 98
 ---
 
 ## Introduction
+
 Scanning is the first step in taking raw source code and turning it into a useable format that the interpreter can use to execute. Scanning is also arguably the easiest step in the process and can written by hand in a clean and maintainable manner.
 
 ## What Is Scanning?
+
 In short, scanning is the process of converting raw text into a series of **tokens**. Tokens are small data structures that store information that Ghost's parser and interpreter use later for things like reporting errors and actually executing code.
 
 <callout>**Tokens** are the smallest elements of a programming language. They can range from single characters (`+`) to a range of characters (`class`).</callout>
@@ -20,7 +22,7 @@ The scanner takes in raw source code, and walks through it character-by-characte
 As an example, let's look at this simple print statement in Ghost:
 
 ```typescript
-print("Hello, world!")
+print("Hello, world!");
 ```
 
 The resulting tokens would then be the following:
@@ -40,6 +42,7 @@ These series of tokens are much easier to work with than the individual characte
 </mermaid>
 
 ## Tokens
+
 Tokens themselves are nothing more than constants defined within Go. In Ghost, all tokens are defined within the `token` package -- here's what they all look like at the time of this writing:
 
 ```go
@@ -98,6 +101,7 @@ const (
 ```
 
 ## Token Struct
+
 Token's themselves not only hold the token representation itself, but other useful information on its makeup. Ghost uses this additional information at later stages for evaluation or in cases of errors.
 
 Ghost's token type struct looks like the following - we'll go over each of the properties after:
@@ -112,17 +116,21 @@ type Token struct {
 ```
 
 ### Type
+
 The `Type` property holds the value of one of the previous token constants. This is determined during the scanning process and attached to the token instance.
 
 ### Lexeme
+
 The `Lexeme` property holds the _value_ of the token in **string** format. This is useful for debugging and error reporting.
 
 ### Literal
+
 The `Literal` property holds the _value_ of the token in its native format. For example, if we have a `NUMBER` token, it's Literal value would be an `int64`.
 
 <callout>In Ghost, we make use of a decimal package to add arbitrary-precision fixed-point decimal numbers. The scope of this is way beyond this post, but in short this gives us the ability to cleanly evaluate things like `2.3 + 2.3 == 2.6`.</callout>
 
 ### Line
+
 Lastly, the `Line` property simply holds which line the token was found on. This is particularly helpful for error reporting. We will be expanding on this and adding a `Column` property in the future to add precise location reporting on where the token in a given line can be found.
 
 <mermaid>
@@ -131,7 +139,6 @@ Lastly, the `Line` property simply holds which line the token was found on. This
 </mermaid>
 
 ## Scanning
-
 
 ---
 
@@ -143,10 +150,11 @@ Lastly, the `Line` property simply holds which line the token was found on. This
 - Lexical grammar describes the structure of the language's vocabulary.
 
 ## Glossary
-| Term | Definition |
-| ---- | ---------- |
-| Token | Tokens are the smallest elements of a programming language. They can range from single characters (+) to a range of characters (class).  |
-| Lexical Grammar | A lexical grammar is a formal grammar defining the syntax of tokens. |
-| Lexical Structure | The lexical structure is the set of basic rules that governs how programs are written. |
-| Lexeme | Lexemes are the raw substrings of scanned source code. Lexemes are used to create tokens. |
-| Literal | Literals are the literal representation of the lexeme in the "parent" language (e.g. 5 represented as an int64 in Go). These can be used in the interpreter at a later stage. |
+
+| Term              | Definition                                                                                                                                                                    |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Token             | Tokens are the smallest elements of a programming language. They can range from single characters (+) to a range of characters (class).                                       |
+| Lexical Grammar   | A lexical grammar is a formal grammar defining the syntax of tokens.                                                                                                          |
+| Lexical Structure | The lexical structure is the set of basic rules that governs how programs are written.                                                                                        |
+| Lexeme            | Lexemes are the raw substrings of scanned source code. Lexemes are used to create tokens.                                                                                     |
+| Literal           | Literals are the literal representation of the lexeme in the "parent" language (e.g. 5 represented as an int64 in Go). These can be used in the interpreter at a later stage. |

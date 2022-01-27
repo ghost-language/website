@@ -8,6 +8,7 @@ order: 46
 This library provides basic mathematical functions.
 
 ## math.abs
+
 Returns the absolute, or non-negative value, of a given value.
 
 ```javascript
@@ -16,6 +17,7 @@ Returns the absolute, or non-negative value, of a given value.
 ```
 
 ## math.acos
+
 Returns the inverse cosine in radians of the given value.
 
 ```javascript
@@ -26,6 +28,7 @@ Returns the inverse cosine in radians of the given value.
 ```
 
 ## math.asin
+
 Returns the inverse sine in radians of the given value.
 
 ```javascript
@@ -36,6 +39,7 @@ Returns the inverse sine in radians of the given value.
 ```
 
 ## math.atan
+
 Returns the inverse tangent in radians.
 
 ```javascript
@@ -46,6 +50,7 @@ Returns the inverse tangent in radians.
 ```
 
 ## math.ceil
+
 Returns the integer no greater than the given value (even for negatives).
 
 ```javascript
@@ -56,6 +61,7 @@ Returns the integer no greater than the given value (even for negatives).
 ```
 
 ## math.cos
+
 Return the cosine value for the given value in radians.
 
 ```javascript
@@ -64,6 +70,7 @@ Return the cosine value for the given value in radians.
 ```
 
 ## math.floor
+
 Returns the integer no less than the given value (even for negatives).
 
 ```javascript
@@ -74,6 +81,7 @@ Returns the integer no less than the given value (even for negatives).
 ```
 
 ## math.max
+
 Return the maximum value from a variable length list of arguments.
 
 ```javascript
@@ -84,6 +92,7 @@ Return the maximum value from a variable length list of arguments.
 ```
 
 ## math.pi
+
 Returns a part of the constant Pi.
 
 ```javascript

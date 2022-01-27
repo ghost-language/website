@@ -16,10 +16,11 @@ Lists are an ordered list of elements of possibly different types identified by 
 ```
 
 ## Accessing Elements
+
 You can access any element in a list by calling the subscript operator on it with the index of the element you want. Like most languages, indices start at zero:
 
 ```dart
-vocabulary := ["activation", "propogate", "execute", "initialize"]
+vocabulary = ["activation", "propogate", "execute", "initialize"]
 
 print(vocabulary[0])  // >> activation
 print(vocabulary[1])  // >> propogate
