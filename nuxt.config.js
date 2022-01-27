@@ -1,3 +1,5 @@
+import { join } from 'path'
+
 const parseCodeAndComments = (file) => {
     // segment
     // { code: '', comment: '' }
@@ -95,6 +97,7 @@ export default {
 
     // Global CSS: https://go.nuxtjs.dev/config-css
     css: [
+        '@/assets/css/main.css',
         '@/assets/css/app.css',
         '@/assets/css/prism.css',
     ],
@@ -110,9 +113,18 @@ export default {
     // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
     buildModules: [
         '@nuxt/postcss8',
-        '@nuxtjs/tailwindcss',
         '@nuxtjs/google-fonts',
     ],
+
+    build: {
+        extractCSS: true,
+        postcss: {
+            plugins: {
+                tailwindcss: join(__dirname, 'tailwind.config.js'),
+                autoprefixer: {},
+            },
+        },
+    },
 
     // Modules: https://go.nuxtjs.dev/config-modules
     modules: [
@@ -132,13 +144,6 @@ export default {
             '.sh': parseCodeAndComments,
             '.ghost': parseCodeAndComments,
         }
-    },
-
-    tailwindcss: {
-        cssPath: '~/assets/css/tailwind.css',
-        configPath: 'tailwind.config.js',
-        exposeConfig: false,
-        config: {}
     },
 
     googleFonts: {

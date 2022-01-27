@@ -1,5 +1,3 @@
-const colors = require('tailwindcss/colors')
-
 module.exports = {
   content: [
     "./components/**/*.{js,vue,ts}",
@@ -10,11 +8,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors: {
-        gray: colors.gray,
-        cyan: colors.cyan,
-        sky: colors.sky,
-      },
       fontFamily: {
         'sans': ['Inter', 'sans-serif'],
         'mono': ['Source Code Pro', 'monospace'],
