@@ -7,7 +7,7 @@
                     <ul class="docs-sidebar list-none">
                         <li v-for="doc of docs" :key="doc.slug">
                             <NuxtLink
-                                :to="{ name: 'docs-version-slug', params: { version: 'nightly', slug: doc.slug } }"
+                                :to="{ name: 'docs-version-slug', params: { version: '1.0', slug: doc.slug } }"
                                 class="px-3 py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500"
                             >
                                 {{ doc.title }}

@@ -67,7 +67,7 @@ function fooBarBaz(arg1, arg2, arg3) {
 When making a function call, there MUST NOT be a space between the function name and the opening parenthesis, there MUST NOT be a space after the opening parenthesis, and there MUST NOT be a space before the closing parenthesis. In the argument list, there MUST NOT be a space before each comma, and there MUST be one space after each comma.
 
 ```typescript
-foo(arg1, arg2);
+foo(arg1, arg2)
 ```
 
 ## Control Structures
@@ -114,9 +114,9 @@ All binary artihmetic, comparison, and assignment operators MUST be preceded and
 
 ```typescript
 if (a == b) {
-  foo = bar;
+  foo = bar
 } else if (a > b) {
-  foo = a + b * c;
+  foo = a + b * c
 }
 ```
 
@@ -135,5 +135,5 @@ A closure declaration looks like the following. Note the placement of parenthese
 ```typescript
 closure = function (arg1, arg2) {
   // body
-};
+}
 ```

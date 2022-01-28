@@ -25,7 +25,7 @@ Ghost detects these errors as soon as it tries to read your code. When it hits o
 Some slightly more "semantic" errors fall into this bucket too, like using a variable that hasn't been defined:
 
 ```typescript
-print(message);
+print(message)
 ```
 
 Ghost tells you:
@@ -73,7 +73,7 @@ This is just one example of a runtime error, but there are others. A runtime err
 Most runtime errors come from within the Ghost evaluator, but you may want to be able to cause your own runtime errors to occur. This can be done by calling the `ghost.abort()` function:
 
 ```typescript
-ghost.abort("Something bad happened");
+ghost.abort("Something bad happened")
 ```
 
 You must pass in an error message, and it must be a string. If the provided message is `null`, no runtime error is raised.

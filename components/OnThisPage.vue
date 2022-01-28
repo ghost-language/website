@@ -22,7 +22,7 @@
                 <div v-if="prev">
                     <h2 class="text-xs leading-5 tracking-wide uppercase text-gray-500">Previous</h2>
                     <div class="text-indigo-600 hover:text-indigo-700">
-                        <NuxtLink :to="{ name: 'docs-version-slug', params: { version: 'nightly', slug: prev.slug } }">{{ prev.title }}</NuxtLink>
+                        <NuxtLink :to="{ name: 'docs-version-slug', params: { version: '1.0', slug: prev.slug } }">{{ prev.title }}</NuxtLink>
                     </div>
                 </div>
 
@@ -30,7 +30,7 @@
                 <div v-if="next">
                     <h2 class="text-xs leading-5 tracking-wide uppercase text-gray-500">Next</h2>
                     <div class="text-indigo-600 hover:text-indigo-700">
-                        <NuxtLink :to="{ name: 'docs-version-slug', params: { version: 'nightly', slug: next.slug } }">{{ next.title }}</NuxtLink>
+                        <NuxtLink :to="{ name: 'docs-version-slug', params: { version: '1.0', slug: next.slug } }">{{ next.title }}</NuxtLink>
                     </div>
                 </div>
             </div>

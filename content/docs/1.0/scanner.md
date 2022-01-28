@@ -22,7 +22,7 @@ The scanner takes in raw source code, and walks through it character-by-characte
 As an example, let's look at this simple print statement in Ghost:
 
 ```typescript
-print("Hello, world!");
+print("Hello, world!")
 ```
 
 The resulting tokens would then be the following:

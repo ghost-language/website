@@ -14,7 +14,7 @@
 
             <ul v-if="docs.length" class="z-10 absolute flex-1 mt-1 w-full bg-white dark:bg-gray-900 rounded-md border border-gray-300 overflow-hidden">
                 <li v-for="doc of docs" :key="doc.slug" class="flex">
-                    <NuxtLink :to="{ name: 'docs-version-slug', params: { 'version': 'nightly', 'slug': doc.slug } }" class="flex-1 py-3 px-4 bg-gray-50 transition-colors duration-200 hover:bg-gray-200 focus:outline-none focus:bg-gray-200">
+                    <NuxtLink :to="{ name: 'docs-version-slug', params: { 'version': '1.0', 'slug': doc.slug } }" class="flex-1 py-3 px-4 bg-gray-50 transition-colors duration-200 hover:bg-gray-200 focus:outline-none focus:bg-gray-200">
                         <div class="text-sm font-medium">{{ doc.title }}</div>
                     </NuxtLink>
                 </li>
@@ -60,7 +60,7 @@
                     return
                 }
 
-                this.docs = await this.$content('docs', 'nightly')
+                this.docs = await this.$content('docs', '1.0')
                     .limit(6)
                     .search(query)
                     .fetch()

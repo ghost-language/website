@@ -12,8 +12,8 @@ Strings are useful for holding data that can be represented in text form.
 Strings are created using either single or double quotes.
 
 ```typescript
-string1 = "A string value";
-string2 = "This is also a string value";
+string1 = "A string value"
+string2 = "This is also a string value"
 ```
 
 ## Comparing Strings
@@ -21,11 +21,11 @@ string2 = "This is also a string value";
 Strings can be compared against each other using the `==` operator. This will compare strings in a case-sensitive manner.
 
 ```typescript
-string1 = "a";
-string2 = "b";
+string1 = "a"
+string2 = "b"
 
 // false
-result = string1 == string2;
+result = string1 == string2
 ```
 
 ## Long Strings

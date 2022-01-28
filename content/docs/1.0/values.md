@@ -20,9 +20,9 @@ Lists are an ordered list of elements of possibly different types identified by 
   "Ghost",
   57.3,
   function (x) {
-    x * x;
+    return x * x
   },
-];
+]
 ```
 
 ## Maps
@@ -50,10 +50,10 @@ It's true that decimals have a very small performance hit over using something l
 Furthermore, because Ghost uses an arbitrary-precision fixed-point decimal system, it is extremely accurate. Number values look like you expect from other languages:
 
 ```typescript
-0;
-1234 - 5678;
-3.14159;
-1.0 - 12.34;
+0
+1234 - 5678
+3.14159
+1.0 - 12.34
 ```
 
 ## Strings
@@ -61,6 +61,6 @@ Furthermore, because Ghost uses an arbitrary-precision fixed-point decimal syste
 A string value is a (possibly empty) sequence of bytes. The number of bytes is called the length of the string and is never negative. String values can be surrounded in either double or single quotes, and can store unicode text.
 
 ```typescript
-string1 = "Hello, world!";
-string2 = "こんにちは、世界";
+string1 = "Hello, world!"
+string2 = "こんにちは、世界"
 ```

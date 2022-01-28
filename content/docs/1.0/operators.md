@@ -47,10 +47,10 @@ Remember basic arithmetic from school? These work just like those.
 The result of the modulo operator (`%`) has the same sign as the dividend - that is, the result of `a % b` will have the same sign as `a`. For example:
 
 ```typescript
-print(5 % 3); // >> 2
-print(5 % -3); // >> 2
-print(-5 % 3); // >> -2
-print(-5 % -3); // >> -2
+print(5 % 3) // >> 2
+print(5 % -3) // >> 2
+print(-5 % 3) // >> -2
+print(-5 % -3) // >> -2
 ```
 
 ## Assignment Operator
@@ -58,9 +58,9 @@ print(-5 % -3); // >> -2
 The assignment operator is `=`. This declares and assigns the value of the expression on the right.
 
 ```typescript
-message = "Hello, world!";
+message = "Hello, world!"
 
-print(message); // >> Hello, world!
+print(message) // >> Hello, world!
 ```
 
 ## Comparison Operators

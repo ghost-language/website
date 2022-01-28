@@ -6,7 +6,7 @@ order: 23
 draft: true
 ---
 
-Classes define an objects _behavior_ and _state_. Behavior is defined by [methods](/docs/nightly/method-calls) which live in the class. Every object of the same class supports the same methods. State is defined in fields, whose values are stored in each instance.
+Classes define an objects _behavior_ and _state_. Behavior is defined by [methods](/docs/1.0/method-calls) which live in the class. Every object of the same class supports the same methods. State is defined in fields, whose values are stored in each instance.
 
 ## Defining A Class
 
@@ -44,7 +44,7 @@ class CoffeeMaker {
 
 ## Method Scope
 
-Up to this point, "[scope](/docs/nightly/variables#scope)" has been used to talk exclusively about [variables](/docs/nightly/variables). In a procedural language like C, or a functional one like Scheme, that's the only kind of scope there is. But object-oriented languages like Ghost introduce another kind of scope: _object scope_. It contains the methods that are available on an object. When you write:
+Up to this point, "[scope](/docs/1.0/variables#scope)" has been used to talk exclusively about [variables](/docs/1.0/variables). In a procedural language like C, or a functional one like Scheme, that's the only kind of scope there is. But object-oriented languages like Ghost introduce another kind of scope: _object scope_. It contains the methods that are available on an object. When you write:
 
 ```
 Coffee.brew()
@@ -110,10 +110,10 @@ class CoffeeMaker {
 The `constructor` keyword says we're defining a constructor. To make a coffee maker now, we can now pass through the set arguments to customize our class:
 
 ```typescript
-drip = CoffeeMaker.new("flat", "200");
-chemex = CoffeeMaker.new("coarse", "202");
-pourOver = CoffeeMaker.new("fine", "202");
-frenchPress = CoffeeMaker.new("very course", "202");
+drip = CoffeeMaker.new("flat", "200")
+chemex = CoffeeMaker.new("coarse", "202")
+pourOver = CoffeeMaker.new("fine", "202")
+frenchPress = CoffeeMaker.new("very course", "202")
 ```
 
 Note that we didn't need to call the `constructor` method directly. A constructor is actually a method on the class. When we reference a class using `new()`, Ghost creates the new instance, then it invokes the _constructor_ on that instance. This is where the constructor body you defined gets run.

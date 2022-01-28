@@ -8,19 +8,19 @@ order: 24
 Ghost is deeply object oriented, so most code consists of invoking methods on objects, usually something like this:
 
 ```typescript
-dog.speak("Throw the ball!");
+dog.speak("Throw the ball!")
 ```
 
 You have a _receiver_ expression (here `dog`) followed by a `.`, then a name (`speak`) and an argument list in parentheses (`("Throw the ball!")`). Multiple arguments are separated by commas:
 
 ```typescript
-dog.command("fetch", "ball");
+dog.command("fetch", "ball")
 ```
 
 The argument list can also be empty:
 
 ```typescript
-dog.sit();
+dog.sit()
 ```
 
 Ghost executes a method call like so:

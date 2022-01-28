@@ -1,7 +1,7 @@
 <script>
     export default {
         async asyncData(context) {
-            context.redirect(`/docs/${context.$config.defaultVersion}/getting-started`)
+            context.redirect(`/docs/1.0/getting-started`)
 
             return {}
         }

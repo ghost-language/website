@@ -36,7 +36,7 @@ export const actions = {
             return
         }
 
-        const docs = await this.$content('docs', 'nightly', { deep: true })
+        const docs = await this.$content('docs', '1.0', { deep: true })
             .only([
                 'title',
                 'slug',

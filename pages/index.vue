@@ -79,13 +79,13 @@
 
                 <div class="mt-8 flex justify-center">
                     <div class="inline-flex rounded-md shadow">
-                        <a href="/docs/nightly/getting-started" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border hover:bg-indigo-700">
+                        <a href="/docs/1.0/getting-started" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border hover:bg-indigo-700">
                             Get started
                         </a>
                     </div>
 
                     <div class="ml-3 inline-flex">
-                        <a href="/docs/nightly/syntax" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200">
+                        <a href="/docs/1.0/syntax" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200">
                             Learn more
                         </a>
                     </div>

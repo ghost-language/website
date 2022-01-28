@@ -74,12 +74,12 @@ The condition test occurs _before_ the block is executed. If the condition retur
 The following `while` loop iterates as long as `n` is less than `3`:
 
 ```typescript
-n = 0;
-x = 0;
+n = 0
+x = 0
 
 while (n < 3) {
-  n = n + 1;
-  x += n;
+  n = n + 1
+  x += n
 }
 ```
 
@@ -97,7 +97,7 @@ Generally you'll want to avoid infinite loops (there are very few cases where an
 
 ```typescript
 while (true) {
-  print("Hello, world!");
+  print("Hello, world!")
 }
 ```
 

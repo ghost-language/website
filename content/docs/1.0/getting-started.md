@@ -42,7 +42,7 @@ cd ghost
 make
 ```
 
-This downloads and builds the latest `nightly` version of Ghost found on GitHub. You will be put inside a fresh instance of `ghost` if everything was successful.
+This downloads and builds the latest version of Ghost found on GitHub. You will be put inside a fresh instance of `ghost` if everything was successful.
 
 ## Interactive Mode
 
@@ -51,7 +51,7 @@ If you just run `ghost` without any arguments, it starts the interpreter in inte
 Ready to give Ghost a spin?
 
 ```typescript
-print("Hello, world!");
+print("Hello, world!")
 ```
 
-Once you have Ghost setup and installed, you're ready to jump into [learning the language](/docs/nightly/syntax).
+Once you have Ghost setup and installed, you're ready to jump into [learning the language](/docs/1.0/syntax).

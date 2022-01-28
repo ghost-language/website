@@ -53,9 +53,9 @@ ALL_CAPS
 Ghost uses curly braces to define _blocks_. You can use a block anywhere a statement is allowed, like in control flow statements.
 
 ```typescript
-pressure = 3.6;
+pressure = 3.6
 
 if (pressure > 3.4) {
-  print("Pressure is above critical levels.");
+  print("Pressure is above critical levels.")
 }
 ```

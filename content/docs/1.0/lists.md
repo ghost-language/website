@@ -12,9 +12,9 @@ Lists are an ordered list of elements of possibly different types identified by 
   "Ghost",
   57.3,
   function (x) {
-    x * x;
+    return x * x
   },
-];
+]
 ```
 
 ## Accessing Elements
@@ -22,10 +22,10 @@ Lists are an ordered list of elements of possibly different types identified by 
 You can access any element in a list by calling the subscript operator on it with the index of the element you want. Like most languages, indices start at zero:
 
 ```typescript
-vocabulary = ["activation", "propogate", "execute", "initialize"];
+vocabulary = ["activation", "propogate", "execute", "initialize"]
 
-print(vocabulary[0]); // >> activation
-print(vocabulary[1]); // >> propogate
-print(vocabulary[2]); // >> execute
-print(vocabulary[3]); // >> initialize
+print(vocabulary[0]) // >> activation
+print(vocabulary[1]) // >> propogate
+print(vocabulary[2]) // >> execute
+print(vocabulary[3]) // >> initialize
 ```
