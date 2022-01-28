@@ -48,31 +48,37 @@ Tokens themselves are nothing more than constants defined within Go. In Ghost, a
 ```go
 const (
 	// single-character tokens
-	COLON      = ":"
-	COMMA      = ","
-	DOT        = "."
-	LEFTBRACE  = "{"
-	LEFTPAREN  = "("
-	MINUS      = "-"
-	PLUS       = "+"
-	QUESTION   = "?"
-	RIGHTBRACE = "}"
-	RIGHTPAREN = ")"
-	SEMICOLON  = ";"
-	SLASH      = "/"
-	STAR       = "*"
-	PERCENT    = "%"
+	COLON        = ":"
+	COMMA        = ","
+	LEFTBRACE    = "{"
+	LEFTBRACKET  = "["
+	LEFTPAREN    = "("
+	MINUS        = "-"
+	PLUS         = "+"
+	QUESTION     = "?"
+	RIGHTBRACE   = "}"
+	RIGHTBRACKET = "]"
+	RIGHTPAREN   = ")"
+	SEMICOLON    = ";"
+	SLASH        = "/"
+	STAR         = "*"
+	PERCENT      = "%"
 
 	// one or two character tokens
 	BANG         = "!"
 	BANGEQUAL    = "!="
+	DOT          = "."
+	DOTDOT       = ".."
 	EQUAL        = "="
 	EQUALEQUAL   = "=="
-	ASSIGN       = ":="
 	GREATER      = ">"
 	GREATEREQUAL = ">="
 	LESS         = "<"
 	LESSEQUAL    = "<="
+	PLUSEQUAL    = "+="
+	MINUSEQUAL   = "-="
+	STAREQUAL    = "*="
+	SLASHEQUAL   = "/="
 
 	// literals
 	IDENTIFIER = "IDENTIFIER"
@@ -81,17 +87,26 @@ const (
 
 	// keywords
 	AND      = "and"
+	AS       = "as"
+	BREAK    = "break"
+	CASE     = "case"
 	CLASS    = "class"
+	CONTINUE = "continue"
 	ELSE     = "else"
+	EXTENDS  = "extends"
 	FALSE    = "false"
 	FOR      = "for"
+	FROM     = "from"
 	FUNCTION = "function"
 	IF       = "if"
+	IMPORT   = "import"
+	IN       = "in"
 	NULL     = "null"
 	OR       = "or"
 	PRINT    = "print"
 	RETURN   = "return"
 	SUPER    = "super"
+	SWITCH   = "switch"
 	THIS     = "this"
 	TRUE     = "true"
 	WHILE    = "while"
@@ -112,6 +127,8 @@ type Token struct {
 	Lexeme  string
 	Literal interface{}
 	Line    int
+	Column  int
+	File    string
 }
 ```
 
@@ -131,11 +148,19 @@ The `Literal` property holds the _value_ of the token in its native format. For 
 
 ### Line
 
-Lastly, the `Line` property simply holds which line the token was found on. This is particularly helpful for error reporting. We will be expanding on this and adding a `Column` property in the future to add precise location reporting on where the token in a given line can be found.
+The `Line` property holds which line the token is found on. This is particularly helpful for error reporting.
+
+### Column
+
+The `Column` property holds the column where the token is found on its given line. This is particularly helpful for error reporting.
+
+### File
+
+The `File` property holds the filename the token is found in. This is particularly helpful for error reporting.
 
 <mermaid>
     flowchart LR
-	    A["Raw Source"] --> B["Token"] --- C["Type"] & D["Lexeme"] & E["Literal"] & F["Line"]
+	    A["Raw Source"] --> B["Token"] --- C["Type"] & D["Lexeme"] & E["Literal"] & F["Line"] & G["Column"] & H["File"]
 </mermaid>
 
 ## Scanning
