@@ -127,7 +127,7 @@
     export default {
         data() {
             return {
-                defaultVersion: this.$config.defaultVersion,
+                defaultVersion: this.$config.defaultVersion.substring(1),
                 highlights: [
                     {
                         name: 'Getting Started',

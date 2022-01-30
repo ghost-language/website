@@ -69,7 +69,7 @@ export default {
     dev: process.env.NODE_ENV !== 'production',
 
     publicRuntimeConfig: {
-        defaultVersion: '1.0',
+        defaultVersion: ("v1.0"),
         latestVersion: 'v1.0-beta.1',
 
         projects: {
