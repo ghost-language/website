@@ -4,7 +4,7 @@
 
         <div class="w-full py-3 flex items-center justify-center">
             <p class="font-medium text-white text-sm">
-                <!-- Work in progress - for preview only -->
+                Currently in Beta 🌸🌸
             </p>
         </div>
     </div>
