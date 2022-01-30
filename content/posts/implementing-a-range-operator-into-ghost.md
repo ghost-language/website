@@ -3,6 +3,7 @@ title: Implementing A Range Operator Into Ghost
 date: 2020-10-26
 summary: In this post we'll show how easy it is to extend and build new functionality into Ghost by adding a new range operator `..` into the core language. In this guide, we'll be going over tokens, the lexer, parser, updating the evaluator and writing tests to ensure the implementation is stable.
 published: true
+version: v0.0.16
 ---
 
 ## Introduction

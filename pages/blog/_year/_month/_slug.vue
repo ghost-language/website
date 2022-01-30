@@ -37,6 +37,10 @@
 
             <div class="divide-y divide-slate-200 xl:pb-0 xl:col-span-3 xl:row-span-2">
                 <div class="prose prose-slate max-w-none pb-8">
+                    <Callout secondary v-if="post.isOutdated">
+                        This post was originally written for {{ post.version }} and may not reflect the current state of Ghost anymore.
+                    </Callout>
+
                     <NuxtContent :document="post" />
                 </div>
             </div>
@@ -74,6 +78,14 @@
                             <NuxtLink :to="{ name: 'blog-year-month-slug', params: { year: getYear(prev), month: getMonth(prev), slug: prev.slug } }">{{ prev.title }}</NuxtLink>
                         </div>
                     </div>
+
+                    <!-- Version -->
+                    <div v-if="post.version">
+                        <h2 class="text-xs leading-5 tracking-wide uppercase text-slate-500">Version</h2>
+                        <div class="text-slate-600">
+                            {{ post.version }}
+                        </div>
+                    </div>
                 </div>
             </footer>
         </div>
@@ -81,12 +93,20 @@
 </template>
 
 <script>
+    import semver from 'semver'
+
     export default {
-        async asyncData({ $content, params }) {
+        async asyncData({ $content, $config, params }) {
             const post = await $content('posts', params.slug).fetch()
 
+            post.isOutdated = false
+
+            if (post.version) {
+                post.isOutdated = !semver.satisfies(post.version.substring(1), $config.latestVersion.substring(1))
+            }
+
             const [prev, next] = await $content('posts')
-                .only(['title', 'slug', 'date'])
+                .only(['title', 'slug', 'date', 'version'])
                 .sortBy('date', 'asc')
                 .surround(params.slug)
                 .fetch()

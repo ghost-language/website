@@ -3,6 +3,7 @@ title: Ghost 1.0 Beta 1 is Available
 date: 2022-01-25
 summary: Ghost 1.0 Beta 1 is the first preview of Ghost 1.0. Give it a spin and let me know what you think!
 published: true
+version: v1.0.0-beta.1
 ---
 
 Ghost 1.0 Beta 1 is now available, which you can get by visiting releases on Github or installing through Homebrew if you’re on mac.

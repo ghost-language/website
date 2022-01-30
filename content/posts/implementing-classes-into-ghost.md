@@ -3,6 +3,7 @@ title: Implementing Classes Into Ghost
 date: 2021-07-08
 summary: Classes make up the heart of Ghost's object-oriented programming system. In this post, we'll look at how we implemented the system into the virtual machine.
 published: false
+version: v0.0.16
 ---
 
 ## Introduction

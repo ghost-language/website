@@ -1,7 +1,10 @@
 export default async function ({ store }) {
     if (process.server || process.static) {
         await store.dispatch('fetchCategories')
-        await store.dispatch('fetchReleases')
+
+        if (process.env.NODE_ENV === "production") {
+            await store.dispatch('fetchReleases')
+        }
     }
 
     // SPA support
@@ -9,7 +12,7 @@ export default async function ({ store }) {
         await store.dispatch('fetchCategories')
     }
 
-    if (process.client && store.state.releases.length == 0) {
+    if (process.client && store.state.releases.length == 0 && process.env.NODE_ENV === "production") {
         await store.dispatch('fetchReleases')
     }
 

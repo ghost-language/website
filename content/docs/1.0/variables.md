@@ -5,13 +5,13 @@ category: Language
 order: 18
 ---
 
-Variables are named slots for storing values. You define a new variable in Ghost using the `:=` operator, like so:
+Variables are named slots for storing values. You define a new variable in Ghost using the `=` operator, like so:
 
 ```typescript
 a = 1 + 2
 ```
 
-This creates a new variable `a` in the current scope and initializes it with the result of the expression following `:=`. Once a variable has been defined, it can be accessed by name as you would expect.
+This creates a new variable `a` in the current scope and initializes it with the result of the expression following `=`. Once a variable has been defined, it can be accessed by name as you would expect.
 
 ```typescript
 technology = "Micromachines"

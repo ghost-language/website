@@ -3,6 +3,7 @@ title: Introducing The Embeddable API
 date: 2020-07-26
 summary: We've made the first steps towards the embeddable API. Taking cues from Lua and Wren, we want the API to be simple and straight forward, allowing Ghost to truly extend your core application's capabilities.
 published: true
+version: v0.0.16
 ---
 
 One of the goals of Ghost was to make an embeddable scripting language. The ability to embed Ghost in other applications is a powerful tool and means to build and expand on the core offerings of the language to truly create something unique.
