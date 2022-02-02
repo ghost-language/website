@@ -105,6 +105,7 @@ export default {
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
     plugins: [
         { src: '@/plugins/bootstrap.js' },
+        { src: '@/plugins/fathom.client.js' },
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
@@ -113,7 +114,6 @@ export default {
     // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
     buildModules: [
         '@nuxt/postcss8',
-        '@nuxtjs/google-analytics',
         '@nuxtjs/google-fonts',
     ],
 
@@ -145,10 +145,6 @@ export default {
             '.sh': parseCodeAndComments,
             '.ghost': parseCodeAndComments,
         }
-    },
-
-    googleAnalytics: {
-        id: 'UA-165345570-1',
     },
 
     googleFonts: {
