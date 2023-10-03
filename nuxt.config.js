@@ -69,8 +69,8 @@ export default {
     dev: process.env.NODE_ENV !== 'production',
 
     publicRuntimeConfig: {
-        defaultVersion: "v1.0",
-        latestVersion: 'v^1.0.0-beta.0',
+        defaultVersion: "v1.0.0",
+        latestVersion: 'v^1.0.0-beta.2',
 
         projects: {
             'engine': 'https://github.com/ghost-language/engine',
